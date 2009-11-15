@@ -1,0 +1,79 @@
+!XTerm*foreground   : White
+!XTerm*background   : Black
+!XTerm*font         : -misc-fixed-medium-r-normal-*-*-120-75-*-*-*-*-15
+!XTerm*boldFont     : -misc-fixed-bold-r-normal-*-*-120-75-*-*-*-*-15
+!XTerm*font         : -misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1
+!XTerm*boldFont     : -misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1
+!XTerm*fading       : 90
+!XTerm*scrollBar    : false
+!XTerm*reverseVideo : false
+!XTerm*shading      : 90
+!XTerm*saveLines    : 30000
+!XTerm*cursorColor  : red
+!XTerm*meta8        : true
+
+yeahconsole*stepSize     : 0
+yeahconsole*consoleHeight: 24
+yeahconsole*handleWidth  : 0
+yeahconsole*aniDelay     : 0
+yeahconsole*keyBigger    : Alt+j
+yeahconsole*keySmaller   : Alt+k
+yeahconsole*toggleKey    : Alt+y
+yeahconsole*keyFull      : Alt+f
+yeahconsole*term         : urxvt
+yeahconsole*screenWidth  : 1366
+
+URxvt*foreground   : Black
+URxvt*background   : gray88
+URxvt*font         : -windows-dina-medium-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1
+URxvt*boldFont     : -windows-dina-medium-r-bold-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1
+URxvt*scrollBar    : false
+URxvt*reverseVideo : false
+URxvt*saveLines    : 60000
+URxvt*cursorColor  : red
+URxvt*borderLess   : true
+URxvt*meta8        : false
+URxvt*modifer      : alt
+!URxvt.keysym.Control-Return:\037\036
+URxvt*keysym.Control-Insert : 10.200.21.
+URxvt.perl-ext-common: matcher
+!URxvt.perl-ext-common: matcher,tabbed
+URxvt*urlLauncher  : firefox
+URxvt.iso14755_52  : false
+
+! white black
+URxvt*color0       : black
+URxvt*color1       : red3
+URxvt*color2       : green3
+URxvt*color3       : yellow3
+URxvt*color4       : blue2
+URxvt*color5       : magenta3
+URxvt*color6       : cyan3
+URxvt*color7       : gray90
+
+URxvt*color8       : gray50
+URxvt*color9       : red2
+URxvt*color10      : green2
+URxvt*color11      : yellow2
+URxvt*color12      : rgb:5c/5c/ff
+URxvt*color13      : magenta2
+URxvt*color14      : cyan3
+URxvt*color15      : white
+
+! black white
+!URxvt*color0       : black
+!URxvt*color1       : red
+!URxvt*color2       : green
+!URxvt*color3       : yellow
+!URxvt*color4       : blue
+!URxvt*color5       : magenta
+!URxvt*color6       : orange
+!URxvt*color7       : gray90
+!URxvt*color8       : gray50
+!URxvt*color9       : red
+!URxvt*color10      : lightgreen
+!URxvt*color11      : yellow
+!URxvt*color12      : rgb:0c/0c/ff
+!URxvt*color13      : magenta
+!URxvt*color14      : cyan
+!URxvt*color15      : white
