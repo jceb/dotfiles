@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 set -o emacs
 
 #bind -m vi-command "\C-e":vi-append-eol
@@ -14,10 +17,25 @@ set -o emacs
 
 export HISTFILE=~/.history
 
+LANG=en_US.UTF-8; export LANG
+#LANGUAGE=$LANG
+#LC_ALL=$LANG
+EDITOR=/usr/bin/vim;          export EDITOR
+EMAIL=jceb@e-jc.de;           export EMAIL
+PAGER=less;                   export PAGER
+LESS="--ignore-case -r -FSX"; export LESS
+GPG_TTY=$(tty);               export GPG_TTY
+QUILT_PATCHES=debian/patches; export QUILT_PATCHES
+BC_ENV_ARGS=~/.bcrc;          export BC_ENV_ARGS
+GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-files=without-match'; export GREP_OPTIONS
+
+# set PATH so it includes user's private bin if it exists
+[ -d ~/bin ] && PATH=~/bin:"${PATH}"
+
 # Comment for support call
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+PYTHONPATH=~/MyFiles/Projekte/:/home/jceb/lib/python; export PYTHONPATH
+PYTHONSTARTUP=/home/jceb/.pystartup;                  export PYTHONSTARTUP
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -26,17 +44,29 @@ export HISTCONTROL=ignoredups
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto -CF'
+    #alias dir='ls --color=auto --format=vertical'
+    #alias vdir='ls --color=auto --format=long'
+fi
+
+# some more ls aliases
+alias ll='ls -lF'
+alias la='ls -AF'
+
+# Define your own aliases here ...
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# include bin 
-if [ -d ~/bin ]; then
-    PATH=~/bin:$PATH
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
