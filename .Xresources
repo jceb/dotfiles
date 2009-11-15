@@ -12,6 +12,8 @@
 !XTerm*cursorColor  : red
 !XTerm*meta8        : true
 
+Xft.dpi: 96.0
+
 yeahconsole*stepSize     : 0
 yeahconsole*consoleHeight: 24
 yeahconsole*handleWidth  : 0
@@ -21,25 +23,29 @@ yeahconsole*keySmaller   : Alt+k
 yeahconsole*toggleKey    : Alt+y
 yeahconsole*keyFull      : Alt+f
 yeahconsole*term         : urxvt
-yeahconsole*screenWidth  : 1366
+!yeahconsole*screenWidth  : 1366
+yeahconsole*screenWidth  : 1550
 
 URxvt*foreground   : Black
 URxvt*background   : gray88
-URxvt*font         : -windows-dina-medium-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1
-URxvt*boldFont     : -windows-dina-medium-r-bold-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1
+!URxvt*font         : xft:Monospace:pixelsize=10
+URxvt*font         : -windows-dina-medium-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
+!URxvt*font         : -misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
+!URxvt*boldFont     : -misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
+URxvt*boldFont     : -windows-dina-bold-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
+!URxvt*boldFont     : xft:Monospace:style=bold:pixelsize=10
 URxvt*scrollBar    : false
 URxvt*reverseVideo : false
 URxvt*saveLines    : 60000
 URxvt*cursorColor  : red
-URxvt*borderLess   : true
-URxvt*meta8        : false
-URxvt*modifer      : alt
+URxvt*meta8        : true
+URxvt*modifer      : mod4
 !URxvt.keysym.Control-Return:\037\036
 URxvt*keysym.Control-Insert : 10.200.21.
 URxvt.perl-ext-common: matcher
 !URxvt.perl-ext-common: matcher,tabbed
 URxvt*urlLauncher  : firefox
-URxvt.iso14755_52  : false
+URxvt*iso14755_52  : false
 
 ! white black
 URxvt*color0       : black

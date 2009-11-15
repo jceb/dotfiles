@@ -16,7 +16,7 @@ BC_ENV_ARGS=~/.bcrc;             export BC_ENV_ARGS
 
 PATH=$PATH:/sbin:/usr/sbin
 
-export GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-files=without-match'
+GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-files=without-match'; export GREP_OPTIONS
 
 #ECLIPSE_HOME=/home/jceb/tmp/eclipse.clean;     export ECLIPSE_HOME
 #GRAILS_HOME=/home/jceb/Software/grails;        export GRAILS_HOME
