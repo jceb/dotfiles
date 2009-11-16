@@ -38,8 +38,8 @@ URxvt*scrollBar    : false
 URxvt*reverseVideo : false
 URxvt*saveLines    : 60000
 URxvt*cursorColor  : red
-URxvt*meta8        : true
-URxvt*modifer      : mod4
+URxvt*meta8        : false
+URxvt*modifer      : alt
 !URxvt.keysym.Control-Return:\037\036
 URxvt*keysym.Control-Insert : 10.200.21.
 URxvt.perl-ext-common: matcher
