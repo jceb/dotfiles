@@ -5,7 +5,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-set -o emacs
+#set -o emacs
+set -o vi
 
 #bind -m vi-command "\C-e":vi-append-eol
 #bind -m vi-insert "\C-e":vi-append-eol
