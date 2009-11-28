@@ -5,8 +5,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-#set -o emacs
-set -o vi
+set -o emacs
+#set -o vi
 
 #bind -m vi-command "\C-e":vi-append-eol
 #bind -m vi-insert "\C-e":vi-append-eol
@@ -120,6 +120,21 @@ alias l='ls -CF'
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+# Use VIM as man pager
+# http://www.reddit.com/r/vim/comments/a8k6q/using_vim_as_a_manpage_viewer_under_nix/
+vman() {
+	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+	vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+	-c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+	-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+
+	# invoke man page 
+	man $1
+
+	# we must unset the PAGER, so regular man pager is used afterwards
+	unset PAGER
+}
 
 # function to copy files back to the system you are coming from
 function sshget () {
