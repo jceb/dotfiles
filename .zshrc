@@ -84,6 +84,21 @@ if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# Use VIM as man pager
+# http://www.reddit.com/r/vim/comments/a8k6q/using_vim_as_a_manpage_viewer_under_nix/
+vman() {
+	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+	vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+	-c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+	-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+
+	# invoke man page 
+	man "$@"
+
+	# we must unset the PAGER, so regular man pager is used afterwards
+	unset PAGER
+}
+
 # function to change directories in an easier way
 function ff () { eval "$(~/bin/cd.py $*)" }
 
