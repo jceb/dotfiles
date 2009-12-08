@@ -20,6 +20,8 @@ bindkey -e
 bindkey -M emacs "^[" vi-cmd-mode
 #bindkey -r "^b"
 bindkey -r "^h"
+bindkey -r "^[h"
+bindkey -r "^[H"
 bindkey -M vicmd "^x" run-help
 bindkey -M emacs "^x" run-help
 bindkey "^h" backward-kill-word

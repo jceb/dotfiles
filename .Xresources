@@ -42,6 +42,7 @@ URxvt*meta8        : false
 URxvt*modifer      : alt
 !URxvt.keysym.Control-Return:\037\036
 URxvt*keysym.Control-Insert : 10.200.21.
+URxvt*keysym.M-Insert : 10.120.5.114
 URxvt.perl-ext-common: matcher
 !URxvt.perl-ext-common: matcher,tabbed
 URxvt*urlLauncher  : firefox
