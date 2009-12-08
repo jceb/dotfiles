@@ -22,8 +22,8 @@ GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-fil
 #GRAILS_HOME=/home/jceb/Software/grails;        export GRAILS_HOME
 #PATH=$PATH:$GRAILS_HOME/bin;                   export PATH
 
-PYTHONPATH=/home/jebersba/lib/python;           export PYTHONPATH
-PYTHONSTARTUP=/home/jebersba/.pystartup;        export PYTHONSTARTUP
+PYTHONPATH=~/lib/python;           export PYTHONPATH
+PYTHONSTARTUP=~/.pystartup;        export PYTHONSTARTUP
 #AWT_TOOLKIT=MToolkit                           export AWT_TOOLKIT
 
 [ -e ~/.zshother ] && source ~/.zshother
