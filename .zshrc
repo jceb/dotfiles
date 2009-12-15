@@ -3,7 +3,7 @@
 HISTFILE=~/.historyzsh
 HISTSIZE=1000
 SAVEHIST=1000
-WORDCHARS='' # Make the Alt-Backspace bash alike
+WORDCHARS='._,():;!@#$%^&*=+-?\<>[]{}~`"' # Make the Alt-Backspace bash alike
 
 setopt SHARE_HISTORY
 #setopt appendhistory extendedglob
