@@ -3,6 +3,7 @@
 HISTFILE=~/.historyzsh
 HISTSIZE=1000
 SAVEHIST=1000
+setopt SHARE_HISTORY
 #setopt appendhistory extendedglob
 
 #setopt chaselinks
