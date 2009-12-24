@@ -49,3 +49,7 @@ alias R22='Repo_get_version -r 2-2-0-0'
 alias pdr='patch --dry-run'
 alias p0='patch -p0'
 alias p1='patch -p1'
+
+# convinience functions
+function h() { date +'%H:%M' }
+function d() { date +'%Y-%m-%d' }
