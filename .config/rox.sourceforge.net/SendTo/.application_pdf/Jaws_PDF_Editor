@@ -1,0 +1,2 @@
+#!/bin/sh
+~/Software/bin/jawspdfeditor.sh z:$1

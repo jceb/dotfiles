@@ -1,0 +1,2 @@
+#!/bin/sh
+inkscape -f "$*" -e "$(echo $* | sed -e 's/[sS][vV][gG]$/png/')"

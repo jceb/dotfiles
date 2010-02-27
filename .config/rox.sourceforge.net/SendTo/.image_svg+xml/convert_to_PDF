@@ -1,0 +1,2 @@
+#!/bin/sh
+inkscape -f "$*" -A "$(echo $* | sed -e 's/[sS][vV][gG]$/pdf/')"

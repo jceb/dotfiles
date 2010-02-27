@@ -1,0 +1,2 @@
+#!/bin/sh
+x-terminal-emulator -e ~/bin/mailAttachment -n $*
