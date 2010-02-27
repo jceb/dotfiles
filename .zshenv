@@ -26,4 +26,8 @@ PYTHONPATH=~/lib/python;           export PYTHONPATH
 PYTHONSTARTUP=~/.pystartup;        export PYTHONSTARTUP
 #AWT_TOOLKIT=MToolkit                           export AWT_TOOLKIT
 
-[ -e ~/.zshother ] && source ~/.zshother
+[ -e ~/.zshother ] && . ~/.zshother
+
+hostname=$(hostname)
+
+[ -e ~/.gnupg/gpg-agent-info-$hostname ] && . ~/.gnupg/gpg-agent-info-$hostname && export GPG_AGENT_INFO

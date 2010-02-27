@@ -150,6 +150,7 @@ function cdb ()
 }
 alias cb='cdb'
 alias cv='cdb'
+alias c='cdb'
 
 # --------------------------------------------- #
 # Mark the current directory with alias         #

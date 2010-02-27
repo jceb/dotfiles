@@ -45,6 +45,10 @@ alias R21='Repo_get_version -r 2-1-0-0'
 alias r22='repo_get_version.py -r 2-2-0-0'
 alias R22='Repo_get_version -r 2-2-0-0'
 
+alias rmdeb='rm *.deb *.diff.gz *.dsc *.changes'
+
+alias vis='vim --servername vim'
+
 # Patches
 alias pdr='patch --dry-run'
 alias p0='patch -p0'

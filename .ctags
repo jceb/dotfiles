@@ -1,0 +1,13 @@
+--langdef=txt
+--langmap=txt:.txt
+
+--regex-txt=/^([0-9]+\.?[ \t]+)([^,]+$)/\1\2/c,content/
+--regex-txt=/^(([0-9]+\.){1}([0-9]+\.?)[ \t]+)([^,]+$)/.   \1\4/c,content/
+--regex-txt=/^(([0-9]+\.){2}([0-9]+\.?)[ \t]+)([^,]+$)/.       \1\4/c,content/
+
+--regex-txt=/^[ \t]+(figure[ \t]+[0-9a-zA-Z]+([.: ]([ \t]*.+)?)?$)/\1/f,figures/i
+--regex-txt=/^[ \t]*(图[ \t]*[0-9a-zA-Z]+[.: ][ \t]*.+$)/\1/f,figures/i
+
+--regex-txt=/^[ \t]+(table[ \t]+[0-9a-zA-Z]+([.: ]([ \t]*.+)?)?$)/\1/t,tables/i
+--regex-txt=/^[ \t]*(表[ \t]*[0-9a-zA-Z]+[.: ][ \t]*.+$)/\1/t,tables/i
+

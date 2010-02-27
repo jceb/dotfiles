@@ -24,7 +24,7 @@ yeahconsole*toggleKey    : Alt+y
 yeahconsole*keyFull      : Alt+f
 yeahconsole*term         : urxvt
 !yeahconsole*screenWidth  : 1366
-yeahconsole*screenWidth  : 1550
+!yeahconsole*screenWidth  : 1550
 
 URxvt*foreground   : Black
 URxvt*background   : gray88
@@ -45,7 +45,7 @@ URxvt*keysym.Control-Insert : 10.200.21.
 URxvt*keysym.M-Insert : 10.120.5.114
 URxvt.perl-ext-common: matcher
 !URxvt.perl-ext-common: matcher,tabbed
-URxvt*urlLauncher  : firefox
+URxvt*urlLauncher  : google-chrome
 URxvt*iso14755_52  : false
 
 ! white black
