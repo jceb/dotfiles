@@ -49,6 +49,8 @@ alias rmdeb='rm *.deb *.diff.gz *.dsc *.changes'
 
 alias vis='vim --servername vim'
 
+alias ack=ack-grep
+
 # Patches
 alias pdr='patch --dry-run'
 alias p0='patch -p0'

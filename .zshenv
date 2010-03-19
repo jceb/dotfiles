@@ -6,7 +6,8 @@ EDITOR=/usr/bin/vim;             export EDITOR
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 PAGER=less;                      export PAGER
-LESS="--ignore-case -r -FSX";    export LESS
+# add -F to automatically quit less if page fits on one screen
+LESS="--ignore-case -r -SX";    export LESS
 GPG_TTY=$(tty);                  export GPG_TTY
 QUILT_PATCHES=debian/patches;    export QUILT_PATCHES
 BC_ENV_ARGS=~/.bcrc;             export BC_ENV_ARGS
