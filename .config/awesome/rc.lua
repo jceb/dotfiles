@@ -64,9 +64,15 @@ tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, awful.layout.suit.tile)
+
+    -- set mwfact on all tags
+    for i, tag in ipairs(tags[s]) do
+        awful.tag.setmwfact(0.7, tag)
+    end
 end
 
 -- }}}
+
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -247,7 +253,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
-    awful.key({ modkey            }, "t",      awful.client.togglemarked),
+    --awful.key({ modkey            }, "t",      awful.client.togglemarked),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
@@ -323,17 +329,17 @@ clientkeys = awful.util.table.join(
 
    awful.key({ modkey, }, ".",
    function (c)
-	   if awful.client.property.get (c, "floating") == true then
-		   c.ontop = true
-		   c:raise()
-	   end
+       if awful.client.property.get (c, "floating") == true then
+           c.ontop = true
+           c:raise()
+       end
    end),
 
    awful.key({ modkey, }, ",",
    function (c)
-	   if awful.client.property.get (c, "floating") == true then
-		   c.ontop = false
-	   end
+       if awful.client.property.get (c, "floating") == true then
+           c.ontop = false
+       end
    end)
 )
 
@@ -375,6 +381,38 @@ for i = 1, keynumber do
                       end
                   end))
 end
+
+-- toggle stickyness of client
+globalkeys = awful.util.table.join(globalkeys,
+    awful.key({ modkey, "Control", "Shift" }, "0",
+    function ()
+        client.focus.sticky = not client.focus.sticky
+    end))
+
+-- toggle: display all tags in current tag, just the first tag of the focused client
+globalkeys = awful.util.table.join(globalkeys,
+    awful.key({ modkey, "Control" }, "0",
+    function ()
+        if client.focus then
+            local alltagsvisible = true
+            for i, t in ipairs(tags[client.focus.screen]) do
+                if not t.selected then
+                    alltagsvisible = false
+                    break
+                end
+            end
+            if alltagsvisible then
+                -- view first tag of focused client
+                awful.tag.viewonly(client.focus:tags()[1])
+
+                -- view all tags of focused client
+                --awful.tag.viewmore(client.focus:tags())
+            else
+                -- view all tags
+                awful.tag.viewmore(tags[client.focus.screen])
+            end
+        end
+    end))
 
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
@@ -447,13 +485,17 @@ client.add_signal("manage", function (c, startup)
             awful.placement.no_offscreen(c)
         end
     end
-	if awful.client.property.get (c, "floating") == true then
-		c.ontop = true
-	else
-		c.ontop = false
-	end
+    if awful.client.property.get (c, "floating") == true then
+        c.ontop = true
+    else
+        c.ontop = false
+    end
 end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+awful.util.spawn("/home/jceb/bin/xsession")
+
+-- vi: ft=lua:tw=0:sw=4:ts=4:et

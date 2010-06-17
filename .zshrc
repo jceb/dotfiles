@@ -5,8 +5,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 WORDCHARS='._,():;!@#$%^&*=+-?\<>[]{}~`"' # Make the Alt-Backspace bash alike
 
-setopt SHARE_HISTORY
-#setopt appendhistory extendedglob
+#setopt SHARE_HISTORY
+setopt appendhistory extendedglob
 
 #setopt chaselinks
 setopt pushdignoredups
