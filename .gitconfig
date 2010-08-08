@@ -23,3 +23,9 @@
 	lg = log -p
 [core]
 	pager =
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 1245x1179+0+19
+	history-view-vpane-position = 887
+	file-view-vpane-position = 887
+	main-window-view = HistoryView

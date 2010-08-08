@@ -450,6 +450,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Pidgin" },
       properties = { floating = true } },
+    { rule = { class = "Empathy" },
+      properties = { floating = true } },
     { rule = { class = "Skype" },
       properties = { floating = true } },
     { rule = { class = "Xchat" },

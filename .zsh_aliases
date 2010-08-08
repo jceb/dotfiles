@@ -1,6 +1,18 @@
 # Convenience
 #alias installsieve="sieveshell -u ebersbach@univention.de -a ebersbach@univention.de -f sieve/install_sieve localhost"
 
+# enable color support of ls and also add handy aliases
+if test "$TERM" != "dumb"; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto -CF'
+    #alias dir='ls --color=auto --format=vertical'
+    #alias vdir='ls --color=auto --format=long'
+fi
+
+# some more ls aliases
+alias ll='ls -lF'
+alias la='ls -AF'
+
 # Development
 alias cdvm="cd /srv/vmware/jceb"
 alias cdqa="cd /mnt/visdalen/sdd/vmware/ucs"
