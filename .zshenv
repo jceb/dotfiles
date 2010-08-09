@@ -1,4 +1,9 @@
-LANG=en_US.UTF-8; export LANG
+if $(locale -a|grep -q en_US.utf8); then
+	LANG=en_US.UTF-8; export LANG
+else
+	LANG=C; export LANG
+fi
+
 #LANGUAGE=$LANG
 #LC_ALL=$LANG
 EDITOR=/usr/bin/vim;             export EDITOR
