@@ -17,6 +17,8 @@ GPG_TTY=$(tty);                  export GPG_TTY
 QUILT_PATCHES=debian/patches;    export QUILT_PATCHES
 BC_ENV_ARGS=~/.bcrc;             export BC_ENV_ARGS
 
+QUILT_DIFF_ARGS="--color=auto"
+
 # set PATH so it includes user's private bin if it exists
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
 
