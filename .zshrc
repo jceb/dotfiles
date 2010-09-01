@@ -65,6 +65,15 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# add colors to completion
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# list dirs first
+zstyle ':completion:*:default' list-dirs-first 1
+
+# sort files by last modification
+zstyle ':completion:*' file-sort modification
+
 zstyle ':completion:*' menu select=10
 
 # Define your own aliases here ...
