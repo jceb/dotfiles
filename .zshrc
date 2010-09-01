@@ -25,7 +25,7 @@ setopt AUTO_NAME_DIRS
 #setopt COMPLETE_IN_WORD
 # always show options instead of just completing the first one
 unsetopt LIST_AMBIGUOUS
-setopt MENU_COMPLETE
+#setopt MENU_COMPLETE
 setopt GLOB_DOTS
 
 # emacs keybindings by default - but the escape key starts vi-cmd-mode to do the real stuff ;-)
@@ -74,7 +74,7 @@ zstyle ':completion:*:default' list-dirs-first 1
 # sort files by last modification
 zstyle ':completion:*' file-sort modification
 
-zstyle ':completion:*' menu select=10
+zstyle ':completion:*' menu select=long-list
 
 # Define your own aliases here ...
 if [ -f ~/.zsh_aliases ]; then
