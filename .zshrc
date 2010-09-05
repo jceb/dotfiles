@@ -22,10 +22,12 @@ setopt AUTO_CONTINUE
 
 # completion configuration
 setopt AUTO_NAME_DIRS
-#setopt COMPLETE_IN_WORD
+setopt COMPLETE_IN_WORD
 # always show options instead of just completing the first one
 unsetopt LIST_AMBIGUOUS
 #setopt MENU_COMPLETE
+setopt AUTO_MENU
+setopt AUTO_LIST
 setopt GLOB_DOTS
 
 # emacs keybindings by default - but the escape key starts vi-cmd-mode to do the real stuff ;-)
@@ -65,14 +67,19 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# enable color support of ls and also add handy aliases
+if test "$TERM" != "dumb"; then
+    eval "`dircolors -b`"
+fi
+
 # add colors to completion
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # list dirs first
-zstyle ':completion:*:default' list-dirs-first 1
+zstyle ':completion:*' list-dirs-first 1
 
 # sort files by last modification
-zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' file-sort modification follow
 
 zstyle ':completion:*' menu select=long-list
 
@@ -89,6 +96,9 @@ fi
 # Use VIM as man pager
 # http://www.reddit.com/r/vim/comments/a8k6q/using_vim_as_a_manpage_viewer_under_nix/
 vman() {
+	# store current pager settings
+	p="$PAGER"
+
 	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 		vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
 		-c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
@@ -98,13 +108,13 @@ vman() {
 	man "$@"
 
 	# we must unset the PAGER, so regular man pager is used afterwards
-	unset PAGER
+	export PAGER="$p"
 }
 
-# function to change directories in an easier way
+# change directories in an easier way
 function ff () { eval "$(~/bin/cd.py $*)" }
 
-# function to copy files back to the system you are coming from
+# copy files back to the system you were coming from
 function sshget () {
 	if [ -n "$SSH_CLIENT" ]; then
 		user=$USER
@@ -118,6 +128,7 @@ function sshget () {
 	fi
 }
 
+# my previous prompt
 #PS1=$'%{\e[1;31m%}%n%{\e[0m%}@%{\e[1;32m%}%m%{\e[0m%}:%1~%{\e[1;33m%}%#%{\e[0m%} '
 
 # Phil!'s ZSH Prompt http://aperiodic.net/phil/prompt/
@@ -153,7 +164,7 @@ function precmd_off {
 }
 
 
-setopt extended_glob
+setopt EXTENDED_GLOB
 function preexec () {
 	if [[ "$TERM" == "screen" ]]; then
 		local CMD=${1[(wr)^(*=*|sudo|-*)]}
@@ -164,7 +175,6 @@ function preexec () {
 function precmd () {
 	vcs_info 'prompt'
 }
-
 
 setprompt () {
 	# set formats
@@ -190,7 +200,7 @@ setprompt () {
 	###
 	# Need this so the prompt will work.
 
-	setopt prompt_subst
+	setopt PROMPT_SUBST
 
 
 	###

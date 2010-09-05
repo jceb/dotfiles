@@ -1,30 +1,30 @@
 if $(locale -a|grep -q en_US.utf8); then
-	LANG=en_US.UTF-8; export LANG
+	LANG=en_US.UTF-8;	export LANG
 else
-	LANG=C; export LANG
+	LANG=C;				export LANG
 fi
 
-#LANGUAGE=$LANG
-#LC_ALL=$LANG
-EDITOR=/usr/bin/vim;             export EDITOR
-#EMAIL=put me in ~/.zshother;    export EMAIL
+EDITOR=/usr/bin/vim;			export EDITOR
+#EMAIL=put me in ~/.zshother;	export EMAIL
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-PAGER=less;                      export PAGER
 # add -F to automatically quit less if page fits on one screen
-LESS="--ignore-case -r -SX";    export LESS
-GPG_TTY=$(tty);                  export GPG_TTY
-QUILT_PATCHES=debian/patches;    export QUILT_PATCHES
-BC_ENV_ARGS=~/.bcrc;             export BC_ENV_ARGS
+LESS="--ignore-case -r -SX";	export LESS
+PAGER=less;						export PAGER
 
-QUILT_DIFF_ARGS="--color=auto"
+GPG_TTY=$(tty);					export GPG_TTY
+
+QUILT_PATCHES=debian/patches;	export QUILT_PATCHES
+QUILT_DIFF_ARGS="--color=auto";	export QUILT_DIFF_ARGS
+
+GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-files=without-match'; export GREP_OPTIONS
+
+BC_ENV_ARGS=~/.bcrc;			export BC_ENV_ARGS
 
 # set PATH so it includes user's private bin if it exists
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
-
-PATH=$PATH:/sbin:/usr/sbin
-
-GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-files=without-match'; export GREP_OPTIONS
+PATH=$PATH:/sbin:/usr/sbin;		export PATH
 
 #ECLIPSE_HOME=/home/jceb/tmp/eclipse.clean;     export ECLIPSE_HOME
 #GRAILS_HOME=/home/jceb/Software/grails;        export GRAILS_HOME
@@ -32,12 +32,11 @@ GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-fil
 
 JAVA_HOME=/usr/lib/jvm/java-6-sun;	export JAVA_HOME
 
-PYTHONPATH=~/lib/python;           export PYTHONPATH
-PYTHONSTARTUP=~/.pystartup;        export PYTHONSTARTUP
-#AWT_TOOLKIT=MToolkit                           export AWT_TOOLKIT
+PYTHONPATH=~/lib/python;			export PYTHONPATH
+PYTHONSTARTUP=~/.pystartup;			export PYTHONSTARTUP
+#AWT_TOOLKIT=MToolkit;				export AWT_TOOLKIT
+
+[ -e ~/.gnupg/gpg-agent-info-$(hostname) ] && . ~/.gnupg/gpg-agent-info-$(hostname) && export GPG_AGENT_INFO
 
 [ -e ~/.zshother ] && . ~/.zshother
 
-hostname=$(hostname)
-
-[ -e ~/.gnupg/gpg-agent-info-$hostname ] && . ~/.gnupg/gpg-agent-info-$hostname && export GPG_AGENT_INFO

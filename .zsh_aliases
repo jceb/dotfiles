@@ -1,33 +1,21 @@
 # Convenience
 #alias installsieve="sieveshell -u ebersbach@univention.de -a ebersbach@univention.de -f sieve/install_sieve localhost"
 
-# enable color support of ls and also add handy aliases
-if test "$TERM" != "dumb"; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto -CF'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
-
 # some more ls aliases
+alias ls='ls --color=auto -CF'
 alias ll='ls -lF'
 alias la='ls -AF'
+#alias dir='ls --color=auto --format=vertical'
+#alias vdir='ls --color=auto --format=long'
 
 # Development
-alias cdvm="cd /srv/vmware/jceb"
-alias cdqa="cd /mnt/visdalen/sdd/vmware/ucs"
-alias cdiso="cd /mnt/visdalen/sdd/iso-images/ucs"
 alias cdt='cd $(echo $(pwd)/|sed -e "s#/branches/ucs[^/]*/#/trunk/#")'
 alias cdb2='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.0/#")'
 alias cdb21='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.1/#")'
 alias cdb22='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.2/#")'
 alias cdb23='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.3/#")'
-alias cdbu='cd /var/univention/buildsystem2'
-alias cdtc='cd /var/lib/univention-client-root'
-alias cdjc='cd /var/univention/buildsystem2/temp/jceb'
 alias cdsvn='cd $(echo $(pwd)/|sed -e "s#/git/#/svn/#")'
 alias cdgit='cd $(echo $(pwd)/|sed -e "s#/svn/#/git/#")'
-alias cd_='dirs -pv'
 alias cddeb='cd $(_file=debian; _d="$(pwd)/"; while [ "$_d" != "/" ]; do if [ -e "${_d}/${_file}" ]; then echo $_d; return; else; _d=$(dirname "$_d"); fi; done; echo ${_file} not found in parent directories >&2; pwd)'
 alias cd-='cd $(_dirs="$(_d=$(pwd)/; while [ "$_d" != "/" ]; do _d=$(dirname "$_d"); echo $_d; done)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
 alias cd+='cd $(_dirs="$(find . -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|sort)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
@@ -37,19 +25,10 @@ alias cd3='cd $(_dirs="$(find . -maxdepth 3 -type d ! -wholename \*debian/\* ! -
 alias cd..='cd ..'
 
 alias findfile='find . ! -wholename \*debian/\* ! -wholename \*.svn\*|grep -i $1'
-
-alias ech='$EDITOR debian/changelog'
-
-alias trunk='cd ~/dev/svn/trunk'
-alias branches='cd ~/dev/svn/branches'
-alias doku='cd ~/dev/svn/doku/'
-alias patches='cd ~/dev/svn/patches'
-
-alias horde='cd ~/dev/svn/trunk/component/horde/horde-webmailer'
+alias finddir='find . -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|grep -i $1'
 
 alias chr='LANG=C EDITOR=vim sudo chroot . bash'
 
-alias Ping='xmessage -center ping'
 alias ToSeries='toSeries -p0 *.patch > series'
 
 alias r1='repo_get_version.py -r 1-3-2-0'
@@ -61,10 +40,9 @@ alias R21='Repo_get_version -r 2-1-0-0'
 alias r22='repo_get_version.py -r 2-2-0-0'
 alias R22='Repo_get_version -r 2-2-0-0'
 
-alias rmdeb='rm *.deb *.diff.gz *.dsc *.changes'
+alias cleardeb='rm *.deb *.diff.gz *.dsc *.changes'
 
-alias vis='vim --servername vim'
-
+# on debian based systems this makes the use of ack a bit easier
 alias ack=ack-grep
 
 # Patches
