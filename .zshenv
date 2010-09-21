@@ -24,7 +24,7 @@ BC_ENV_ARGS=~/.bcrc;			export BC_ENV_ARGS
 
 # set PATH so it includes user's private bin if it exists
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
-PATH=$PATH:/sbin:/usr/sbin;		export PATH
+PATH=$PATH:/sbin:/usr/sbin:/usr/NX/bin;		export PATH
 
 #ECLIPSE_HOME=/home/jceb/tmp/eclipse.clean;     export ECLIPSE_HOME
 #GRAILS_HOME=/home/jceb/Software/grails;        export GRAILS_HOME

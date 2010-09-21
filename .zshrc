@@ -78,8 +78,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # list dirs first
 zstyle ':completion:*' list-dirs-first 1
 
-# sort files by last modification
-zstyle ':completion:*' file-sort modification follow
+## sort files by last modification
+#zstyle ':completion:*' file-sort modification follow
 
 zstyle ':completion:*' menu select=long-list
 
