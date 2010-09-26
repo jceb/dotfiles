@@ -29,12 +29,12 @@ yeahconsole*term         : urxvt
 
 URxvt*foreground   : Black
 URxvt*background   : gray88
-!URxvt*font         : xft:Monospace:pixelsize=10
-URxvt*font         : -windows-dina-medium-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
+URxvt*font         : xft:Bitstream Vera Sans Mono:pixelsize=12
+!URxvt*font         : -windows-dina-medium-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-medium-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
 !URxvt*font         : -misc-fixed-medium-r-normal-*-10-100-75-75-c-60-iso10646-1,-misc-fixed-medium-r-normal-*-12-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
 !URxvt*boldFont     : -misc-fixed-medium-r-normal-*-10-100-75-75-c-60-iso10646-1,-misc-fixed-bold-r-normal-*-12-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
-URxvt*boldFont     : -windows-dina-bold-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
-!URxvt*boldFont     : xft:Monospace:style=bold:pixelsize=10
+!URxvt*boldFont     : -windows-dina-bold-r-normal-*-12-120-75-75-c-0-iso8859-1,-misc-fixed-bold-r-normal-*-13-120-75-75-c-70-iso10646-1,xft:AR PL ZenKai Uni:Bold:pixelsize=14
+URxvt*boldFont     : xft:Bitstream Vera Sans Mono:style=bold:pixelsize=12
 URxvt*scrollBar    : false
 URxvt*reverseVideo : false
 URxvt*saveLines    : 60000
