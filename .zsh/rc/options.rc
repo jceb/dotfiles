@@ -1,0 +1,39 @@
+# move cursor to end when doing a completion
+setopt ALWAYS_TO_END
+
+# report status of background jobs immediately
+setopt NOTIFY
+
+setopt NO_BEEP
+
+# This option is not necessary if your system correctly returns the
+# printability of eight bit characters (see ctype(3))
+#setopt PRINT_EIGHT_BIT
+
+# append to history from all shell so that not just the last shell closed can save their history
+#setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+
+#setopt chaselinks
+setopt AUTO_PUSHD
+setopt AUTO_CD
+# ignore multiple copies of the same directory
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+setopt AUTO_CONTINUE
+
+# completion configuration
+setopt AUTO_NAME_DIRS
+setopt COMPLETE_IN_WORD
+# always show options instead of just completing the first one
+unsetopt LIST_AMBIGUOUS
+#setopt MENU_COMPLETE
+setopt AUTO_MENU
+setopt AUTO_LIST
+#setopt GLOB_DOTS
+# improve globbing
+setopt EXTENDED_GLOB
+setopt CORRECT
+setopt HASH_LIST_ALL
+
+# vi: ft=zsh:tw=0:sw=4:ts=4

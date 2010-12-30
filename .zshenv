@@ -4,6 +4,10 @@ else
 	LANG=C;				export LANG
 fi
 
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
 EDITOR=/usr/bin/vim;			export EDITOR
 #EMAIL=put me in ~/.zshother;	export EMAIL
 
@@ -34,7 +38,7 @@ JAVA_HOME=/usr/lib/jvm/java-6-sun;	export JAVA_HOME
 
 PYTHONPATH=~/lib/python;			export PYTHONPATH
 PYTHONSTARTUP=~/.pystartup;			export PYTHONSTARTUP
-#AWT_TOOLKIT=MToolkit;				export AWT_TOOLKIT
+AWT_TOOLKIT=MToolkit;				export AWT_TOOLKIT
 
 [ -e ~/.gnupg/gpg-agent-info-$(hostname) ] && . ~/.gnupg/gpg-agent-info-$(hostname) && export GPG_AGENT_INFO
 

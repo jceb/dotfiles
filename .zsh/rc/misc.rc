@@ -1,0 +1,4 @@
+# source cdargs bash binding
+[ -e ~/.cdargs-bash.sh ] && source ~/.cdargs-bash.sh
+
+# vi: ft=zsh:tw=0:sw=4:ts=4
