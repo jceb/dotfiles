@@ -1,3 +1,5 @@
+fpath=($HOME/.zsh/functions $fpath)
+
 # enable color support
 if test "$TERM" != "dumb"; then
     eval "$(dircolors -b)"
@@ -6,6 +8,9 @@ fi
 autoload -U zutil
 autoload -U compinit
 autoload -U complist
+
+# Activation
+compinit
 
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
@@ -22,11 +27,6 @@ bindkey '\eOF' end-of-line
 # other cool stuff
 # Esc-q push-line/input so the you can execute another command
 # Esc-? run which command on the current command
-
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-#zstyle :compinstall filename '~/.zshrc'
-
 
 # emacs keybindings by default - but the escape key starts vi-cmd-mode to do the real stuff ;-)
 # btw, this is a really collegue friendly setup
@@ -51,8 +51,15 @@ bindkey -M vicmd "^x" run-help
 bindkey -M emacs "^x" run-help
 bindkey "^h" backward-kill-word
 
-# Activation
-compinit
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -r vicmd v
+bindkey -M vicmd v edit-command-line
+
+autoload -Uz insert-second-last-word
+zle -N insert-second-last-word
+bindkey -r "^[,"
+bindkey -M emacs "^[," insert-second-last-word
 
 # Resource files
 for file in $HOME/.zsh/rc/*.rc; do
