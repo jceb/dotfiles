@@ -53,8 +53,8 @@ bindkey "^h" backward-kill-word
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -r vicmd v
-bindkey -M vicmd v edit-command-line
+#bindkey -r v
+bindkey -M vicmd '^v' edit-command-line
 
 autoload -Uz insert-second-last-word
 zle -N insert-second-last-word
