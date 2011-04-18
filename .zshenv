@@ -1,3 +1,4 @@
+TERM=xterm-256color; export TERM
 if $(locale -a|grep -q en_US.utf8); then
 	LANG=en_US.UTF-8;	export LANG
 else
@@ -28,7 +29,7 @@ BC_ENV_ARGS=~/.bcrc;			export BC_ENV_ARGS
 
 # set PATH so it includes user's private bin if it exists
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
-PATH=$PATH:/sbin:/usr/sbin:/usr/NX/bin;		export PATH
+PATH=$PATH:/sbin:/usr/sbin:/usr/NX/bin:/var/lib/gems/1.8/bin;		export PATH
 
 #ECLIPSE_HOME=/home/jceb/tmp/eclipse.clean;     export ECLIPSE_HOME
 #GRAILS_HOME=/home/jceb/Software/grails;        export GRAILS_HOME
