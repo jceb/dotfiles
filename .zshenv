@@ -1,4 +1,3 @@
-TERM=xterm-256color; export TERM
 if $(locale -a|grep -q en_US.utf8); then
 	LANG=en_US.UTF-8;	export LANG
 else
