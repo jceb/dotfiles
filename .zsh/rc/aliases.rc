@@ -50,4 +50,5 @@ alias pdr='patch --dry-run'
 alias p0='patch -p0'
 alias p1='patch -p1'
 
+alias oo='ooffice'
 # vi: ft=zsh:tw=0:sw=4:ts=4
