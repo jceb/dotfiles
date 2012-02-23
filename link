@@ -1,0 +1,21 @@
+#!/bin/bash
+# this script links dotfiles from any directory to the home directory
+[ $# -eq 0 ] && echo "$(basename $0) DOTFILE(s)" && exit 1
+
+while [ $# -ge 1 ]; do
+	if [ -e $1 ]; then
+		dest="$(basename $1)"
+		if [ "${dest:0:1}" != '.' && "${dest}" != 'bin' ]; then
+			dest=".${dest}"
+			echo "Prefixing destination name with a dot: ${dest}"
+		fi
+		if [ ! -e "~/${dest}" ]; then
+			ln -vs $PWD/$1 ~/
+		else
+			echo "The dotfile already exists: ~/$(basename $1)"
+		fi
+	else
+		echo "No such file or directory: $1"
+	fi
+	shift
+done
