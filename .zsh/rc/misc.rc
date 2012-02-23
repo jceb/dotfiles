@@ -1,4 +1,8 @@
 # source cdargs bash binding
-[ -e ~/.cdargs-bash.sh ] && source ~/.cdargs-bash.sh
+if [[ -e ~/.cdargs-bash.sh ]]; then
+	source ~/.cdargs-bash.sh
+elif [[ -e /usr/share/cdargs/cdargs-bash.sh ]]; then
+	source /usr/share/cdargs/cdargs-bash.sh
+fi
 
 # vi: ft=zsh:tw=0:sw=4:ts=4

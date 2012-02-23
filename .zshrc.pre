@@ -1,0 +1,2 @@
+# prevent right prompt to be set by grmlzsh
+DONTSETRPROMPT=1

@@ -5,7 +5,7 @@
 while [ $# -ge 1 ]; do
 	if [ -e $1 ]; then
 		dest="$(basename $1)"
-		if [ "${dest:0:1}" != '.' && "${dest}" != 'bin' ]; then
+		if [ "${dest:0:1}" != '.' -a "${dest}" != 'bin' ]; then
 			dest=".${dest}"
 			echo "Prefixing destination name with a dot: ${dest}"
 		fi

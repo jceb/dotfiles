@@ -1,33 +1,3 @@
-# convinience functions
-h() {
-	date +'%H:%M'
-}
-
-d() {
-	date +'%Y-%m-%d'
-}
-
-# Use VIM as man pager
-# http://www.reddit.com/r/vim/comments/a8k6q/using_vim_as_a_manpage_viewer_under_nix/
-vman() {
-	# store current pager settings
-	p="$PAGER"
-
-	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-		vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-		-c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-		-c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
-
-	# invoke man page
-	man "$@"
-
-	# we must unset the PAGER, so regular man pager is used afterwards
-	export PAGER="$p"
-}
-
-# change directories in an easier way
-function ff () { eval "$(~/bin/cd.py $*)" }
-
 # copy files back to the system you were coming from
 function sshget () {
 	if [ -n "$SSH_CLIENT" ]; then
