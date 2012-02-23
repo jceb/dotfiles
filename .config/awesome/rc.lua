@@ -500,6 +500,6 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-awful.util.spawn("/home/jceb/bin/xsession")
+--awful.util.spawn("/home/jceb/bin/xsession")
 
 -- vi: ft=lua:tw=0:sw=4:ts=4:et

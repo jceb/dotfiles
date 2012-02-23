@@ -45,7 +45,7 @@ theme.taglist_squares_sel   = "/usr/share/awesome/themes/default/taglist/squaref
 theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew.png"
 
 -- MISC
-theme.wallpaper_cmd = { "awsetbg /home/jceb/wallpaper0.jpg" }
+--theme.wallpaper_cmd = { "awsetbg /home/jceb/wallpaper0.jpg" }
 --theme.wallpaper_cmd         = { "habak -hi /home/jceb/wallpaper0.jpg -mc 90,90,90,200 -mh 20 -mp 10,850 -mf /usr/share/fonts/truetype/msttcorefonts/Trebuchet_MS.ttf -ht `verse`" }
 theme.taglist_squares       = "true"
 theme.titlebar_close_button = "true"
@@ -77,4 +77,4 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/defau
 theme.titlebar_maximized_button_focus_active = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
 return theme
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
