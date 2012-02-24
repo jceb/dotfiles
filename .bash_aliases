@@ -1,1 +1,0 @@
-/home/jceb/Documents/dotfiles/github/.zsh_aliases

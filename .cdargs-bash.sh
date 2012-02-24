@@ -32,15 +32,15 @@ function _cdargs_get_dir ()
     # if there is one exact match (possibly with extra path info after it),
     # then just use that match without calling cdargs
     if [ -e "$HOME/.cdargs" ]; then
-        dir=`/bin/grep "^$1 " "$HOME/.cdargs"`
+        dir=`grep "^$1 " "$HOME/.cdargs"`
         if [ -z "$dir" ]; then
             bookmark="${1/\/*/}"
             if [ "$bookmark" != "$1" ]; then
-                dir=`/bin/grep "^$bookmark " "$HOME/.cdargs"`
-                extrapath=`echo "$1" | /bin/sed 's#^[^/]*/#/#'`
+                dir=`grep "^$bookmark " "$HOME/.cdargs"`
+                extrapath=`echo "$1" | sed 's#^[^/]*/#/#'`
             fi
         fi
-        [ -n "$dir" ] && dir=`echo "$dir" | /bin/sed 's/^[^ ]* //'`
+        [ -n "$dir" ] && dir=`echo "$dir" | sed 's/^[^ ]* //'`
     fi
     if [ -z "$dir" -o "$dir" != "${dir/
 /}" ]; then
@@ -49,7 +49,7 @@ function _cdargs_get_dir ()
         dir=
         if cdargs --noresolve "${1/\/*/}"; then
             dir=`cat "$HOME/.cdargsresult"`
-            /bin/rm -f "$HOME/.cdargsresult";
+            rm -f "$HOME/.cdargsresult";
         fi
     fi
     if [ -z "$dir" ]; then
@@ -150,7 +150,6 @@ function cdb ()
 }
 alias cb='cdb'
 alias cv='cdb'
-alias c='cdb'
 
 # --------------------------------------------- #
 # Mark the current directory with alias         #
@@ -167,10 +166,10 @@ function mark ()
     local tmpfile
 
     # first clear any bookmarks with this same alias, if file exists
-    if [[ -n "$CDARGS_NODUPS" && -e "$HOME/.cdargs" ]]; then
-        tmpfile=`echo ${TEMP:-${TMPDIR:-/tmp}} | /bin/sed -e "s/\\/$//"`
+    if [[ "$CDARGS_NODUPS" == '1' ]] && [[ -e "$HOME/.cdargs" ]]; then
+        tmpfile=`echo ${TEMP:-${TMPDIR:-/tmp}} | sed -e "s/\\/$//"`
         tmpfile=$tmpfile/cdargs.$USER.$$.$RANDOM
-        /bin/grep -v "^$1 " "$HOME/.cdargs" > $tmpfile && 'mv' -f $tmpfile "$HOME/.cdargs";
+        grep -v "^$1 " "$HOME/.cdargs" > $tmpfile && 'mv' -f $tmpfile "$HOME/.cdargs";
     fi
     # add the alias to the list of bookmarks
     cdargs --add=":$1:`pwd`"; 
@@ -219,7 +218,7 @@ function _cdargs_aliases ()
         cur=${COMP_WORDS[COMP_CWORD]}
         if [ "$cur" != "${cur/\//}" ]; then # if at least one /
             bookmark="${cur/\/*/}"
-            dir=`/bin/grep "^$bookmark " "$HOME/.cdargs" | /bin/sed 's#^[^ ]* ##'`
+            dir=`grep "^$bookmark " "$HOME/.cdargs" | sed 's#^[^ ]* ##'`
             if [ -n "$dir" -a "$dir" = "${dir/
 /}" -a -d "$dir" ]; then
                 strip="${dir//?/.}"
@@ -227,8 +226,8 @@ function _cdargs_aliases ()
                 IFS='
 '
                 COMPREPLY=( $(
-                    compgen -d "$dir`echo "$cur" | /bin/sed 's#^[^/]*##'`" \
-                        | /bin/sed -e "s/^$strip/$bookmark/" -e "s/\([^\/a-zA-Z0-9#%_+\\\\,.-]\)/\\\\\\1/g" ) )
+                    compgen -d "$dir`echo "$cur" | sed 's#^[^/]*##'`" \
+                        | sed -e "s/^$strip/$bookmark/" -e "s/\([^\/a-zA-Z0-9#%_+\\\\,.-]\)/\\\\\\1/g" ) )
                 IFS="$oldIFS"
             fi
         else
@@ -251,10 +250,10 @@ function _cdargs_aliases ()
 # @access private                               #
 # @return void                                  #
 # --------------------------------------------- #
-_cdargs_complete() {
-  local nospace=
-  [ "${BASH_VERSINFO[0]}" -ge 3 -o \( "${BASH_VERSINFO[0]}" = 2 -a \( "${BASH_VERSINFO[1]}" = 05a -o "${BASH_VERSINFO[1]}" = 05b \) \) ] && nospace='-o nospace'
-  complete $nospace -S / -X '*/' -F _cdargs_aliases cv cb cdb
-}
-
+#_cdargs_complete() {
+#  local nospace=
+#  [ "${BASH_VERSINFO[0]}" -ge 3 -o \( "${BASH_VERSINFO[0]}" = 2 -a \( "${BASH_VERSINFO[1]}" = 05a -o "${BASH_VERSINFO[1]}" = 05b \) \) ] && nospace='-o nospace'
+#  complete $nospace -S / -X '*/' -F _cdargs_aliases cv cb cdb
+#}
+#
 #_cdargs_complete
