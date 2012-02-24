@@ -1,6 +1,9 @@
 #!/bin/bash
 # this script links dotfiles from any directory to the home directory
-[ $# -eq 0 ] && echo "$(basename $0) DOTFILE(s)" && exit 1
+[ $# -eq 0 ] && echo "$(basename $0) [-f|--force] DOTFILE(s)" && exit 1
+
+force=
+[ "${1}" = '-f' -o "${1}" = '--force' ] && force=1 && shift
 
 while [ $# -ge 1 ]; do
 	if [ -e $1 ]; then
@@ -9,8 +12,8 @@ while [ $# -ge 1 ]; do
 			dest=".${dest}"
 			echo "Prefixing destination name with a dot: ${dest}"
 		fi
-		if [ ! -e "~/${dest}" ]; then
-			ln -vs $PWD/$1 ~/
+		if [ ! -e "~/${dest}" -o -n "${force}" ]; then
+			ln -vfs $PWD/$1 ~/
 		else
 			echo "The dotfile already exists: ~/$(basename $1)"
 		fi
