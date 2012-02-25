@@ -142,8 +142,8 @@ function cpb ()
 # @access public                                #
 # @return void                                  #
 # --------------------------------------------- #
-function cdb () 
-{ 
+function cdb ()
+{
     local dir
 
     _cdargs_get_dir "$1" && cd "$dir" && echo `pwd`;
@@ -161,8 +161,8 @@ alias cv='cdb'
 # @access public                                #
 # @return void                                  #
 # --------------------------------------------- #
-function mark () 
-{ 
+function mark ()
+{
     local tmpfile
 
     # first clear any bookmarks with this same alias, if file exists
@@ -172,14 +172,14 @@ function mark ()
         grep -v "^$1 " "$HOME/.cdargs" > $tmpfile && 'mv' -f $tmpfile "$HOME/.cdargs";
     fi
     # add the alias to the list of bookmarks
-    cdargs --add=":$1:`pwd`"; 
+    cdargs --add=":$1:`pwd`";
     # sort the resulting list
     if [ "$CDARGS_SORT" ]; then
         sort -o "$HOME/.cdargs" "$HOME/.cdargs";
     fi
 }
-# Oh, no! Not overwrite 'm' for stefan! This was 
-# the very first alias I ever wrote in my un*x 
+# Oh, no! Not overwrite 'm' for stefan! This was
+# the very first alias I ever wrote in my un*x
 # carreer and will always be aliased to less...
 # alias m='mark'
 
@@ -198,7 +198,8 @@ function mark ()
 function ca ()
 {
     # add the alias to the list of bookmarks
-    cdargs --add=":$1:`pwd`"; 
+    cdargs --add=":$1:`pwd`";
+    sync-cdargs-mc_hotlist &>/dev/null
 }
 
 # --------------------------------------------- #
