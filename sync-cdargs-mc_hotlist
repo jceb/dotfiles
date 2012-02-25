@@ -1,0 +1,17 @@
+#!/bin/sh
+# Synchronize cdargs directory list with mc's hotlist
+
+if [[ ! -e ~/.cdargs ]]; then
+	echo "Unable to find file ~/.cdargs." 1>&2
+fi
+
+if [[ ! -e ~/.config/mc/hotlist ]]; then
+	mkdir -p ~/.config/mc
+fi
+
+while read n l; do
+	if [[ -z "${n}" ]] || [[ -z "${l}" ]]; then
+		continue
+	fi
+	echo "ENTRY \"${n}\" URL \"${l}\""
+done < ~/.cdargs > ~/.config/mc/hotlist
