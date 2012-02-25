@@ -12,13 +12,13 @@ while [ $# -ge 1 ]; do
 			dest=".${dest}"
 			echo "Prefixing destination name with a dot: ${dest}"
 		fi
-		if [ ! -e ~/"${dest}" -a -L ~/"${dest}" ] || [ -n "${force}" ]; then
+		if [ ! -e ~/"${dest}" -o -L ~/"${dest}" ] || [ -n "${force}" ]; then
 			if [ -L ~/"${dest}" ]; then
 				rm -v ~/"${dest}"
 			fi
 			ln -vfs "$PWD/$1" ~/"${dest}"
 		else
-			echo "The dotfile already exists: ~/$(basename $1)"
+			echo "The dotfile already exists: ~/${dest}"
 		fi
 	else
 		echo "No such file or directory: $1"
