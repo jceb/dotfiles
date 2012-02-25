@@ -1,0 +1,7 @@
+[ui]
+username = Jan Christoph Ebersbach <jceb@e-jc.de>
+style = compact
+#template = '{rev}\t{node}\t{date}\t{author}\n\t{desc}\n\t{files}\n'
+
+[extensions]
+mq =
