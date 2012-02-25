@@ -1,0 +1,89 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 0.1.3
+#
+# If you edit this, do not forget to uncomment any lines that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h 
+# The XK_ is not needed. 
+#
+# List of modifier (on my keyboard): 
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+#
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+#
+# This file is created by xbindkey_config 
+# The structure is : 
+# # Remark 
+# "command" 
+# m:xxx + c:xxx 
+# Shift+... 
+
+
+
+
+#keystate_numlock = enable
+#keystate_scrolllock = enable
+#keystate_capslock = enable
+
+
+
+#explorer
+"nautilus $HOME"
+    m:0x40 + c:26
+    Mod4 + e 
+
+#translate
+"dmenu-translate"
+    m:0x40 + c:28
+    Mod4 + t 
+
+#ssh
+"dmenu-ssh"
+    m:0x40 + c:27
+    Mod4 + r 
+
+#manpage
+"dmenu-manpage"
+    m:0x18 + c:58
+    Alt + m 
+
+#file manager
+"krusader"
+    m:0x41 + c:26
+    Shift+Mod4 + e 
+
+#xkill
+"xkill"
+    m:0x4 + c:9
+    Control + Escape 
+
+#vim
+"gvim"
+    m:0x40 + c:55
+    Mod4 + v 
+
+#exec
+"dmenu-exec"
+    m:0x40 + c:33
+    Mod4 + p 
+
+#cd
+"dmenu-cd"
+    m:0x40 + c:54
+    Mod4 + c 
+
+#terminal
+"x-terminal-emulator"
+    m:0x41 + c:36
+    Shift+Mod4 + Return 
+
+#
+# End of xbindkeys configuration
