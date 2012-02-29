@@ -1,3 +1,5 @@
+alias ls='ls -b -CF --color=auto'
+
 alias cdt='cd $(echo $(pwd)/|sed -e "s#/branches/ucs[^/]*/#/trunk/#")'
 alias cdb2='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.0/#")'
 alias cdb21='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.1/#")'
