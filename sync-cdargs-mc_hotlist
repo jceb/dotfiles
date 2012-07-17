@@ -15,3 +15,10 @@ while read n l; do
 	fi
 	echo "ENTRY \"${n}\" URL \"${l}\""
 done < ~/.cdargs > ~/.config/mc/hotlist
+
+while read n l; do
+	if [[ -z "${n}" ]] || [[ -z "${l}" ]]; then
+		continue
+	fi
+	echo "file://${l} ${n}"
+done < ~/.cdargs > ~/.config/spacefm/bookmarks

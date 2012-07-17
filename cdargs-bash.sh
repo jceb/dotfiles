@@ -199,7 +199,9 @@ function ca ()
 {
     # add the alias to the list of bookmarks
     cdargs --add=":$1:`pwd`";
-    sync-cdargs-mc_hotlist &>/dev/null
+    if which sync-cdargs &>/dev/null; then
+		sync-cdargs &>/dev/null
+    fi
 }
 
 # --------------------------------------------- #
