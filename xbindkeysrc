@@ -36,29 +36,14 @@
 
 
 #explorer
-"nautilus $HOME"
-    m:0x40 + c:26
-    Mod4 + e 
-
-#translate
-"dmenu-translate"
-    m:0x40 + c:28
-    Mod4 + t 
-
-#ssh
-"dmenu-ssh"
-    m:0x40 + c:27
-    Mod4 + r 
-
-#manpage
-"dmenu-manpage"
-    m:0x18 + c:58
-    Alt + m 
-
-#file manager
-"krusader"
+"x-terminal-emulator -e mc"
     m:0x41 + c:26
     Shift+Mod4 + e 
+
+#file manager
+"spacefm"
+    m:0x40 + c:26
+    Mod4 + e 
 
 #xkill
 "xkill"
@@ -70,20 +55,70 @@
     m:0x40 + c:55
     Mod4 + v 
 
-#exec
-"dmenu-exec"
-    m:0x40 + c:33
-    Mod4 + p 
-
-#cd
-"dmenu-cd"
-    m:0x40 + c:54
-    Mod4 + c 
-
 #terminal
 "x-terminal-emulator"
     m:0x41 + c:36
     Shift+Mod4 + Return 
+
+#XF86AudioMute
+"amixer -q set Master toggle"
+    m:0x0 + c:121
+    XF86AudioMute 
+
+#XF86AudioRaiseVolume
+"amixer -q set Master 5%+ unmute"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume 
+
+#XF86AudioLowerVolumeor
+"amixer -q set Master 5%- unmute"
+    m:0x0 + c:122
+    XF86AudioLowerVolume 
+
+#XF86MonBrightnessDown
+"/usr/bin/xbrightness -5000"
+    m:0x0 + c:232
+    XF86MonBrightnessDown 
+
+#XF86MonBrightnessUp
+"xbrightness +5000"
+    m:0x0 + c:233
+    XF86MonBrightnessUp 
+
+#Calculator
+"gcalctool"
+    m:0x0 + c:148
+    XF86Calculator 
+
+#Browser
+"x-www-browser"
+    m:0x0 + c:180
+    XF86HomePage 
+
+#Mail
+"x-terminal-emulator -e mutt"
+    m:0x0 + c:163
+    XF86Mail 
+
+#Search
+"x-www-browser"
+    m:0x0 + c:225
+    XF86Search 
+
+#Music
+"clementine"
+    m:0x0 + c:179
+    XF86Tools 
+
+#Lock Screensaver
+"xscreensaver-command -lock"
+    m:0xc + c:46
+    Control+Alt + l 
+
+#Vaio
+"gcalctool"
+    m:0x0 + c:146
+    Help 
 
 #
 # End of xbindkeys configuration
