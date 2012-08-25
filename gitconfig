@@ -4,14 +4,9 @@
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
-	editor = /usr/bin/gvim
+	editor = gvim
 [merge]
-	tool = kdiff3
-[cola]
-	fontdiff = Bitstream Vera Sans Mono,8,-1,5,50,0,0,0,0,0
-	fontui = Nimbus Sans L,8,-1,5,50,0,0,0,0,0
-	savewindowsettings = true
-	geometry = 1398x1033+0,15
+	tool = gvimdiff
 [color]
 	diff = auto
 [alias]
@@ -20,14 +15,8 @@
 	br = branch
 	co = checkout
 	df = diff
+	cdiff = diff --cached
 	lg = log -p
-[core]
-	pager =
-[giggle]
-	main-window-maximized = false
-	main-window-geometry = 1245x1179+0+19
-	history-view-vpane-position = 887
-	file-view-vpane-position = 887
-	main-window-view = HistoryView
+	last = log HEAD -1
 [push]
-	default = current
+	default = upstream
