@@ -20,3 +20,5 @@
 	last = log HEAD -1
 [push]
 	default = upstream
+[core]
+	pager = less -FSRX
