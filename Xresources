@@ -14,13 +14,20 @@ yeahconsole*term			: urxvt
 !yeahconsole*xOffset			: 100
 yeahconsole*screenWidth		: 1600
 
-!URxvt*font				: xft:Monospace:regular:pixelsize=11
-!URxvt*imFont			: xft:Monospace:regular:pixelsize=11
+!URxvt*font				: xft:Ubuntu Mono:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
+!URxvt*boldFont			: xft:Ubuntu Mono:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
+
 URxvt*font				: -windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:regular:pixelsize=16
 URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:bold:pixelsize=16
+
+!URxvt*font				: xft:Monospace:regular:pixelsize=11
+!URxvt*imFont			: xft:Monospace:regular:pixelsize=11
 !URxvt*boldFont			: xft:Monospace:bold:pixelsize=11
 !URxvt*italicFont		: xft:Monospace:italic:pixelsize=11
 !URxvt*boldItalicFont	: xft:Monospace:bold:italic:pixelsize=11
+
+! enable letter space in case you want to you use xft fonts
+!URxvt*letterSpace		: -1
 URxvt*scrollBar			: false
 URxvt*reverseVideo		: false
 URxvt*saveLines			: 60000
@@ -64,7 +71,7 @@ URxvtLight*color15		: white
 
 ! Molokai theme
 URxvt*background		: #1B1D1E
-URxvt*foreground		: #D0D0D0
+URxvt*foreground		: #F8F8F2
 URxvt*cursorColor		: #FF0000
 ! Black         0;30
 URxvt*color0			: #1B1D1E
@@ -98,4 +105,4 @@ URxvt*color13			: #BB88DD
 ! Light Cyan    1;36
 URxvt*color14			: #66D9EF
 ! White         1;37
-URxvt*color15			: #D0D0D0
+URxvt*color15			: #F8F8F2
