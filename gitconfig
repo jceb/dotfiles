@@ -17,7 +17,7 @@
 	df = diff
 	cdiff = diff --cached
 	lg = log -p
-	last = log HEAD -1
+	last = log HEAD -1 --
 [push]
 	default = upstream
 [core]
