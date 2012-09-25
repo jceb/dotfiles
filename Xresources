@@ -1,5 +1,6 @@
 Xcursor.theme		: DMZ-Black
-!Xft.dpi				: 96.0
+Xcursor.size		: 16
+Xft.dpi				: 96.0
 
 yeahconsole*restart			: 0
 yeahconsole*stepSize		: 0
