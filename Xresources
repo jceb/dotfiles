@@ -6,14 +6,16 @@ yeahconsole*restart			: 0
 yeahconsole*stepSize		: 0
 yeahconsole*consoleHeight	: 24
 yeahconsole*handleWidth		: 0
-yeahconsole*aniDelay		: 0
+yeahconsole*aniDelay		: 20
 yeahconsole*keyBigger		: Alt+j
 yeahconsole*keySmaller		: Alt+k
 yeahconsole*toggleKey		: Alt+y
 yeahconsole*keyFull			: Alt+f
 yeahconsole*term			: urxvt
 !yeahconsole*xOffset			: 100
+yeahconsole*yOffset			: 15
 yeahconsole*screenWidth		: 1600
+yeahconsole*xrandrSupport	: 1
 
 !URxvt*font				: xft:Ubuntu Mono:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
 !URxvt*boldFont			: xft:Ubuntu Mono:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
