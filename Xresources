@@ -22,7 +22,7 @@ yeahconsole*screenWidth		: 1600
 yeahconsole*xrandrSupport	: 1
 
 ! enable letter space in case you want to you use xft fonts
-URxvt.letterSpace: -2
+URxvt.letterSpace		: -2
 URxvt*font				: xft:Source Code Pro:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
 URxvt*boldFont			: xft:Source Code Pro:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
 
