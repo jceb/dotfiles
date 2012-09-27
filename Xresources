@@ -1,6 +1,10 @@
 Xcursor.theme		: DMZ-Black
 Xcursor.size		: 16
 Xft.dpi				: 96.0
+Xft.antialias		: 1
+Xft.rgba			: rgb
+Xft.hinting			: 1
+Xft.hintstyle		: hintfull
 
 yeahconsole*restart			: 0
 yeahconsole*stepSize		: 0
@@ -17,11 +21,16 @@ yeahconsole*yOffset			: 15
 yeahconsole*screenWidth		: 1600
 yeahconsole*xrandrSupport	: 1
 
+! enable letter space in case you want to you use xft fonts
+URxvt.letterSpace: -2
+URxvt*font				: xft:Source Code Pro:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
+URxvt*boldFont			: xft:Source Code Pro:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
+
 !URxvt*font				: xft:Ubuntu Mono:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
 !URxvt*boldFont			: xft:Ubuntu Mono:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
 
-URxvt*font				: -windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:regular:pixelsize=16
-URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:bold:pixelsize=16
+!URxvt*font				: -windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:regular:pixelsize=16
+!URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:bold:pixelsize=16
 
 !URxvt*font				: xft:Monospace:regular:pixelsize=11
 !URxvt*imFont			: xft:Monospace:regular:pixelsize=11
@@ -29,8 +38,6 @@ URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fi
 !URxvt*italicFont		: xft:Monospace:italic:pixelsize=11
 !URxvt*boldItalicFont	: xft:Monospace:bold:italic:pixelsize=11
 
-! enable letter space in case you want to you use xft fonts
-!URxvt*letterSpace		: -1
 URxvt*scrollBar			: false
 URxvt*reverseVideo		: false
 URxvt*saveLines			: 60000
