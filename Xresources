@@ -56,63 +56,101 @@ URxvt*iso14755					: false
 URxvt*iso14755_52				: false
 
 
-!            COLORS
-! http://critical.ch/xterm/
-URxvtLight*foreground	: black
-URxvtLight*background	: gray88
-URxvtLight*cursorColor	: red
-URxvtLight*color0		: black
-URxvtLight*color1		: red3
-URxvtLight*color2		: green4
-URxvtLight*color3		: yellow3
-URxvtLight*color4		: blue2
-URxvtLight*color5		: magenta3
-URxvtLight*color6		: cyan3
-URxvtLight*color7		: gray90
+!!            COLORS
+!! http://critical.ch/xterm/
+!URxvtLight*foreground	: black
+!URxvtLight*background	: gray88
+!URxvtLight*cursorColor	: red
+!URxvtLight*color0		: black
+!URxvtLight*color1		: red3
+!URxvtLight*color2		: green4
+!URxvtLight*color3		: yellow3
+!URxvtLight*color4		: blue2
+!URxvtLight*color5		: magenta3
+!URxvtLight*color6		: cyan3
+!URxvtLight*color7		: gray90
+!
+!URxvtLight*color8		: gray50
+!URxvtLight*color9		: red2
+!URxvtLight*color10		: green3
+!URxvtLight*color11		: yellow2
+!URxvtLight*color12		: rgb:5c/5c/ff
+!URxvtLight*color13		: magenta2
+!URxvtLight*color14		: cyan3
+!URxvtLight*color15		: white
 
-URxvtLight*color8		: gray50
-URxvtLight*color9		: red2
-URxvtLight*color10		: green3
-URxvtLight*color11		: yellow2
-URxvtLight*color12		: rgb:5c/5c/ff
-URxvtLight*color13		: magenta2
-URxvtLight*color14		: cyan3
-URxvtLight*color15		: white
+!! Molokai theme
+!URxvt*background		: #1B1D1E
+!URxvt*foreground		: #F8F8F2
+!URxvt*cursorColor		: #FF0000
+!! Black         0;30
+!URxvt*color0			: #1B1D1E
+!! Red           0;31
+!URxvt*color1			: #B60050
+!! Green         0;32
+!URxvt*color2			: #88BB22
+!! Brown         0;33
+!URxvt*color3			: #C47F2C
+!! Blue          0;34
+!URxvt*color4			: #30309B
+!! Purple        0;35
+!URxvt*color5			: #7E40A5
+!! Cyan          0;36
+!URxvt*color6			: #4699AF
+!! Light Gray    0;37
+!URxvt*color7			: #9999AA
+!
+!! Dark Gray     1;30
+!URxvt*color8			: #303030
+!! Light Red     1;31
+!URxvt*color9			: #F92672
+!! Light Green   1;32
+!URxvt*color10			: #80FF00
+!! Yellow        1;33
+!URxvt*color11			: #FFBA68
+!! Light Blue    1;34
+!URxvt*color12			: #7070F0
+!! Light Purple  1;35
+!URxvt*color13			: #BB88DD
+!! Light Cyan    1;36
+!URxvt*color14			: #66D9EF
+!! White         1;37
+!URxvt*color15			: #F8F8F2
 
-! Molokai theme
-URxvt*background		: #1B1D1E
-URxvt*foreground		: #F8F8F2
-URxvt*cursorColor		: #FF0000
+! Lucius theme, light
+URxvt*background		: #eeeeee
+URxvt*foreground		: #626262
+URxvt*cursorColor		: #87afd7
 ! Black         0;30
-URxvt*color0			: #1B1D1E
+URxvt*color0			: #626262
 ! Red           0;31
-URxvt*color1			: #B60050
+URxvt*color1			: #af0000
 ! Green         0;32
-URxvt*color2			: #88BB22
+URxvt*color2			: #008700
 ! Brown         0;33
-URxvt*color3			: #C47F2C
+URxvt*color3			: #af8700
 ! Blue          0;34
-URxvt*color4			: #30309B
+URxvt*color4			: #87afd7
 ! Purple        0;35
-URxvt*color5			: #7E40A5
+URxvt*color5			: #870087
 ! Cyan          0;36
-URxvt*color6			: #4699AF
+URxvt*color6			: #0087af
 ! Light Gray    0;37
-URxvt*color7			: #9999AA
+URxvt*color7			: #9e9e9e
 
 ! Dark Gray     1;30
-URxvt*color8			: #303030
+URxvt*color8			: #8a8a8a
 ! Light Red     1;31
-URxvt*color9			: #F92672
+URxvt*color9			: #d70000
 ! Light Green   1;32
-URxvt*color10			: #80FF00
+URxvt*color10			: #00af00
 ! Yellow        1;33
-URxvt*color11			: #FFBA68
+URxvt*color11			: #ffaf00
 ! Light Blue    1;34
-URxvt*color12			: #7070F0
+URxvt*color12			: #0087d7
 ! Light Purple  1;35
-URxvt*color13			: #BB88DD
+URxvt*color13			: #af00af
 ! Light Cyan    1;36
-URxvt*color14			: #66D9EF
+URxvt*color14			: #00afd7
 ! White         1;37
-URxvt*color15			: #F8F8F2
+URxvt*color15			: #eeeeee
