@@ -1,0 +1,20 @@
+#!/bin/sh
+if [ $# -ge 1 ]; then
+	MAILDIR="$1"
+else
+	MAILDIR=~/Documents/Data/backup/Mail/
+fi
+
+cd "$MAILDIR"
+
+#echo -n "+ "
+
+find . -type d | while read file
+do
+    #box=$(basename "$file")
+    box="$file"
+    if [[ -d "$file/new" ]] && [[ -d "$file/cur" ]] && [[ -d "$file/tmp" ]]
+    then
+        echo -n "\"+${box:2:${#box}}\" "
+    fi
+done

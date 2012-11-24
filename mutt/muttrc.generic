@@ -1,0 +1,13 @@
+set record    = "$spoolfile/Sent"
+set postponed = "$spoolfile/Drafts"
+
+unmy_hdr *
+
+unhook send-hook
+send-hook . 'my_hdr From: $from'
+# bcc to me if not defined differently
+send-hook .  'my_hdr X-Bcc: $from'
+send-hook ~l 'my_hdr X-Bcc:'
+
+macro index I "<change-folder>$spoolfile<enter>" "open inbox-folder"
+macro pager I "<change-folder>$spoolfile<enter>" "open inbox-folder"

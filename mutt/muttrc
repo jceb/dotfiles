@@ -1,0 +1,258 @@
+# Muttrc
+# Maintained by: Jan Christoph Ebersbach <jceb@e-jc.de>
+# default account
+source ~/.mutt/muttrc.default
+
+set mask      = "!^\\.[^.]"
+
+# no markers for wrapped long long lines
+set markers   = no
+
+# Don't mark unread new msgs as old.
+set mark_old  = no
+
+set use_from  = "yes"
+
+set fcc_clear
+
+# default list of header fields to weed when displaying
+ignore *
+# ignore Received References Message-Id Delivered-To X-Original-To X-Spam-Level X-Spam-Status X-Spam-Checker-Version Envelope-to X-Gmail-Received X-VirusChecked X-Env-Sender X-Msg-Ref X-StarScan-Version X-Originating-IP X-Virus-Scanned X-CheckCompat X-Originating-Email X-Sender Return-Path Content-Disposition In-Reply-To X-Priority X-Abuse X-Received-before X-Authenticated X-MSMail-Priority X-MimeOLE X-GMX-Antispam X-UID X-RZG-CLASS-ID X-Sasl-enc X-Provags-ID X-GMX-UID X-FuHaFi DomainKey-Status X-VirtualServer X-VirtualServerGroup X-MailingID X-SMHeaderMap X-SMFBL X-OriginalArrivalTime X-RZG-AUTH
+unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent X-Spam-Status Mailing-List Message-Id
+
+# Order to display the headers in
+hdr_order From Reply-To To Cc Subject Date X-Mailer User-Agent
+
+# restore the behaviour of mutt versions up to 1.5.7
+#set menu_move_off
+
+# View html mails using lynx
+#set implicit_autoview
+#auto_view text/html application/x-pgp-message
+auto_view text/html
+alternative_order text/enriched text/plain text application/postscript image/*
+set mailcap_path="~/.muttmailcap:~/.mailcap:/etc/mailcap"
+set mailcap_sanitize=yes
+
+# set Return-Path according to the From-Field
+set use_envelope_from=yes
+
+# don't add the hostname to the From header
+unset use_domain
+
+# Specifies how to sort messages in the index menu.
+set sort = threads
+
+# Exim does not remove Bcc headers
+unset write_bcc
+
+# Postfix and qmail use Delivered-To for detecting loops
+unset bounce_delivered
+
+# weed out binary-only announcements to -devel-changes
+#macro index \CW T!~s\(.*source.*\)\nWn^T~A\n "Weed out binary-only announcements"
+
+# simulate the old url menu
+macro index,pager \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
+macro attach,compose \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
+# macro index,pager \cb |urlview\n 'call urlview to extract URLs out of a message'
+# macro attach,compose \cb |urlview\n 'call urlview to extract URLs out of a message'
+
+# Show documentation when pressing F12
+macro generic,index,pager <f12> "!zcat ~/.mutt/manual.txt.gz | sensible-pager\n" "Show Mutt documentation"
+
+# If Mutt is unable to determine your site's domain name correctly, you can
+# set the default here.
+# set hostname=cs.hmc.edu
+
+# If your sendmail supports the -B8BITMIME flag, enable the following
+# set use_8bitmime
+
+#source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
+
+#color normal	white		black	# normal text
+color normal	color0		color15	# normal text
+color indicator	color0		brightyellow	# actual message
+color tree		color1			color15	#	thread	arrows
+# color tree		color1			color15	#	thread	arrows
+color status	brightblue	brightyellow	# status line
+color error		brightred	color15	# errors
+color message	brightred	color15	# info messages
+color signature	brightblue	color15	# signature
+# color error		brightred	color15	# errors
+# color message	brightred	color15	# info messages
+# color signature	brightblue	color15	# signature
+color attachment	brightyellow	color15	# MIME attachments
+color search	brightyellow	color1	# search matches
+color tilde		brightmagenta	color15	# ~ at bottom of msg
+color markers	color1			color15	# + at beginning of wrapped lines
+color hdrdefault	color2	color15	# default header lines
+color bold		color1			color15	# hiliting bold patterns in body
+color underline	color2		color15	# hiliting underlined patterns in body
+color quoted	color2		color15	# quoted text
+color quoted1	color5		color15
+color quoted2	brightblue	color15
+color quoted3	brightred	color15
+color header	brightmagenta	color15	^From:
+color header	brightmagenta	color15	^Reply-To:
+color header	brightblue	color15	^To:
+color header	brightblue	color15	^Cc:
+color header	brightred	color15	^Subject:
+color header	brightyellow	color15	^Date:
+color body		brightblue	color15	"((ftp|http|https)://|news:)[^	>)\"\t]+"
+color body		brightred	color15	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
+color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
+color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
+color index		brightblue	color15	~F	# Flagged
+color index		brightred	color15	~N	# New
+color index		brightgreen	color15	~O	# Old
+color index		brightmagenta	color15	~T	# Tagged
+color index		color6		color15	~D	#	Deleted
+# color tilde		brightmagenta	color15	# ~ at bottom of msg
+#color markers	color1			color15	# + at beginning of wrapped lines
+#color hdrdefault	color4	color15	# default header lines
+#color bold		color1			color15	# hiliting bold patterns in body
+#color underline	color2		color15	# hiliting underlined patterns in body
+#color quoted	color2		color15	# quoted text
+#color quoted1	magenta		color15
+#color quoted2	brightblue	color15
+#color quoted3	brightred	color15
+#color header	brightmagenta	color15	^From:
+#color header	brightmagenta	color15	^Reply-To:
+#color header	brightblue	color15	^To:
+#color header	brightblue	color15	^Cc:
+#color header	brightred	color15	^Subject:
+#color header	brightblack	color15	^Date:
+#color body		brightblue	color15	"((ftp|http|https)://|news:)[^	>)\"\t]+"
+#color body		brightred	color15	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
+#color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+#color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
+#color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+#color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
+#color index		brightblue	color15	~F	# Flagged
+#color index		brightred	color15	~N	# New
+#color index		brightgreen	color15	~O	# Old
+#color index		brightmagenta	color15	~T	# Tagged
+#color index		color6		color15	~D	#	Deleted
+#color index		color2		color15	(!~N)(!~T)(!~D)(!~F)~d<1d	# < 1 days
+#color index		yellow		color15	(!~N)(!~T)(!~D)(!~F)~d>1d~d<2d	# < 2 days
+#color index		color4		color15	(!~N)(!~T)(!~D)(!~F)~d>2d~d<4d	# < 4 days
+#color index		color1			color15	(!~N)(!~T)(!~D)(!~F)~d>4d~d<8d	# < 7 days
+
+#   0      black
+#   1      red
+#   2      green
+#   3      yellow
+#   4      blue
+#   5      magenta
+#   6      cyan
+#   7      white
+
+# GnuPG configuration
+set pgp_decode_command       = "gpg --charset utf-8 --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_verify_command       = "gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
+set pgp_decrypt_command      = "gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_sign_command         = "gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command    = "gpg --charset utf-8 --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command = "/usr/lib/mutt/pgpewrap gpg --charset utf-8 --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_sign_command = "/usr/lib/mutt/pgpewrap gpg --charset utf-8 %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_import_command       = "gpg --no-verbose --import %f"
+set pgp_export_command       = "gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command   = "gpg --verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command = "gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
+set pgp_list_secring_command = "gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
+set pgp_good_sign            = "^gpg: Good signature from"
+
+# S/MIME configuration
+source ~/.mutt/smime.rc
+set smime_default_key              = "30a9f1c3.0"
+
+# GPG-Encryption
+set crypt_autoencrypt = no
+set crypt_autosign    = yes
+set pgp_use_gpg_agent = yes
+set pgp_auto_decode   = yes
+set pgp_timeout       = 30000 # save it for xx minutes
+set pgp_show_unusable = yes   # show unusable PGP keys in menu
+
+# UTF-8 settings
+set charset         = "utf-8"
+set send_charset    = "us-ascii:iso-8859-1:utf-8"
+set assumed_charset = "us-ascii:iso-8859-1:utf-8"
+set file_charset    = "us-ascii:iso-8859-1:utf-8"
+set config_charset  = "utf-8"
+
+# Header Cache
+set header_cache    = "~/.mutt/MailCache/"
+
+# set nntp_host = "nntp://news.informatik.uni-bremen.de"
+
+# mailing lists
+lists     `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
+subscribe `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
+
+set edit_headers    = yes
+set collapse_unread = no
+#set wrap            = 120
+
+folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
+folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
+
+macro generic,index,pager <f5> ":source ~/.mutt/muttrc<enter>I" "Reload muttrc"
+macro generic,index,pager <f6> ":source ~/.mutt/muttrc.kuerbis<enter>I" "Open mailbox kuerbis"
+macro generic,index,pager <f7> ":source ~/.mutt/muttrc.herbst<enter>I" "Open mailbox herbst"
+macro generic,index,pager <f8> ":source ~/.mutt/muttrc.backup<enter>I" "Open mailbox backup"
+macro generic,index,pager <f9> ":source ~/.mutt/muttrc.univention<enter>I" "Open mailbox univention"
+
+# remap list-reply to G instead of the L key which is used to jump to the bottom
+# of the page
+bind index,pager G list-reply
+bind index L bottom-page
+
+# avoid annoying questions
+set noconfirmappend
+set nomove # never ask for "move mail out of spoolbox"
+set nowait_key
+
+set auto_tag
+set delete
+set fast_reply
+set include
+
+set pager_stop
+set pager_context      = 3
+#set menu_scroll        = yes
+set pager_index_lines  = 5
+
+set attribution   = "On %d, %n wrote:\n"
+set date_format   = "%a %d-%m-%Y %H:%M %z"
+set index_format  = "%4C %Z %d %-28.28F (%?l?%4l&%4c?) %s"
+set pager_format  = "-%Z- %C/%m: %D %-28.28n %s"
+set folder_format = "%2C %5.0N %f"
+#set folder_format = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+
+# special editor-command to wrap signatures
+#set editor        = "/usr/bin/vim \"+set filetype=mail\" -c 'silent! /^> --[\t ]*$/,/^-- $/-2d' -c 'silent! 1,/^-- $/-1!par gql'"
+set editor = "/usr/bin/vim"
+#set query_command = "abook --mutt-query '%s'"
+#set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/Documents/Office/addressbooks/vcards.vcf"
+set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vcf"
+#set query_command = "/home/jceb/bin/mutt_ldap_query '%s'"
+#set query_command = 'awk -f ~/bin/ldap_query.awk -v mutt="1" -v server="james.herbst.lan" -v password="secret" -v base="ou=people,dc=herbst,dc=homeunix,dc=org" -v dn="cn=Manager,dc=herbst,dc=homeunix,dc=org" -v fields="cn sn mail givenname" -v answers="mail cn" "%s"'
+
+set xterm_title="Mutt %?b?[NEW mail in %b mailboxes]? %?n?[%n NEW]?"
+set xterm_set_titles
+
+set print_command="iconv -f UTF-8 -t LATIN1 | a2ps"
+
+macro index,pager s "<save-message>?<toggle-mailboxes><home><search>" "open a different folder"
+macro index,pager c "<change-folder>?<toggle-mailboxes><home>" "open another folder"
+macro index,pager C "<copy-message>?<toggle-mailboxes><home><search>" "copy message to another folder"
+macro index,pager i "<change-newsgroup>?" "open a different folder"
+macro attach s "<save-entry><home>"
+# macro index,pager ? "<search-reverse>"
+
+#macro pager o |"/home/jceb/bin/add2kaddressbook<enter>" "added sender to addressbook"
+#macro pager o |"abook --add-email<enter>" "added sender to addressbook"
