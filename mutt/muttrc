@@ -1,7 +1,7 @@
 # Muttrc
 # Maintained by: Jan Christoph Ebersbach <jceb@e-jc.de>
 # default account
-source ~/.mutt/muttrc.default
+source ~/.mutt/account.default
 
 set mask      = "!^\\.[^.]"
 
