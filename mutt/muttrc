@@ -181,7 +181,7 @@ set pgp_show_unusable = yes   # show unusable PGP keys in menu
 set charset         = "utf-8"
 set send_charset    = "us-ascii:iso-8859-1:utf-8"
 set assumed_charset = "us-ascii:iso-8859-1:utf-8"
-set file_charset    = "us-ascii:iso-8859-1:utf-8"
+#set file_charset    = "us-ascii:iso-8859-1:utf-8"
 set config_charset  = "utf-8"
 
 # Header Cache
@@ -201,10 +201,10 @@ folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
 folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
 
 macro generic,index,pager <f5> ":source ~/.mutt/muttrc<enter>I" "Reload muttrc"
-macro generic,index,pager <f6> ":source ~/.mutt/muttrc.kuerbis<enter>I" "Open mailbox kuerbis"
-macro generic,index,pager <f7> ":source ~/.mutt/muttrc.herbst<enter>I" "Open mailbox herbst"
-macro generic,index,pager <f8> ":source ~/.mutt/muttrc.backup<enter>I" "Open mailbox backup"
-macro generic,index,pager <f9> ":source ~/.mutt/muttrc.univention<enter>I" "Open mailbox univention"
+macro generic,index,pager <f6> ":source ~/.mutt/account.herbst<enter>I" "Open mailbox herbst"
+macro generic,index,pager <f7> ":source ~/.mutt/account.backup<enter>I" "Open mailbox herbst backup"
+macro generic,index,pager <f8> ":source ~/.mutt/account.univention<enter>I" "Open mailbox univention"
+macro generic,index,pager <f9> ":source ~/.mutt/account.backupunivention<enter>I" "Open mailbox univention backup"
 
 # remap list-reply to G instead of the L key which is used to jump to the bottom
 # of the page
@@ -236,16 +236,12 @@ set folder_format = "%2C %5.0N %f"
 # special editor-command to wrap signatures
 #set editor        = "/usr/bin/vim \"+set filetype=mail\" -c 'silent! /^> --[\t ]*$/,/^-- $/-2d' -c 'silent! 1,/^-- $/-1!par gql'"
 set editor = "/usr/bin/vim"
-#set query_command = "abook --mutt-query '%s'"
-#set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/Documents/Office/addressbooks/vcards.vcf"
 set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vcf"
-#set query_command = "/home/jceb/bin/mutt_ldap_query '%s'"
-#set query_command = 'awk -f ~/bin/ldap_query.awk -v mutt="1" -v server="james.herbst.lan" -v password="secret" -v base="ou=people,dc=herbst,dc=homeunix,dc=org" -v dn="cn=Manager,dc=herbst,dc=homeunix,dc=org" -v fields="cn sn mail givenname" -v answers="mail cn" "%s"'
 
-set xterm_title="Mutt %?b?[NEW mail in %b mailboxes]? %?n?[%n NEW]?"
-set xterm_set_titles
+#set xterm_title="Mutt %?b?[NEW mail in %b mailboxes]? %?n?[%n NEW]?"
+#set xterm_set_titles
 
-set print_command="iconv -f UTF-8 -t LATIN1 | a2ps"
+set print_command="iconv -f UTF-8 -t LATIN1 | a2ps -E -2 -B"
 
 macro index,pager s "<save-message>?<toggle-mailboxes><home><search>" "open a different folder"
 macro index,pager c "<change-folder>?<toggle-mailboxes><home>" "open another folder"
