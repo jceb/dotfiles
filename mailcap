@@ -1,0 +1,42 @@
+# PDF-Files
+application/octetstream; /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+application/octet-stream; /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+application/pdf; /usr/bin/evince '%s'; test=test "$DISPLAY" != ""; description=Portable
+application/pdf; /usr/bin/pdftotext '%s' - | less; description=Portable; needsterminal
+
+# PS-Files
+application/postscript; /usr/bin/gv '%s'; test=test -n "$DISPLAY"; description=postscript
+
+# DVI-Files
+application/x-dvi; /usr/bin/xdvi '%s'; nametemplate=%s.dvi; test=test "$DISPLAY" != ""; description=Portable
+
+# Text-Files
+text/plain; view '%s'; edit=$EDITOR '%s'; compose=$EDITOR '%s'; needsterminal
+
+# HTML-Files
+text/html; /usr/bin/elinks -force-html -dump 1 '%s'; copiousoutput; description=HTML Text; nametemplate=%s.html
+# text/html; /usr/bin/elinks -dump-charset %{charset} -force-html -dump 1 '%s'; copiousoutput; description=HTML Text; nametemplate=%s.html
+text/html; /usr/bin/elinks '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
+#text/html; /usr/bin/mozilla-firefox '%s'; description=HTML Text; test=test -n "$DISPLAY";  nametemplate=%s.html
+#text/xml;  /usr/bin/mozilla-firefox '%s'; description=XML Text; test=test -n "$DISPLAY";  nametemplate=%s.xml
+text/x-vcard; /usr/bin/kaddressbook '%s'; description=VCard; test=test -n "$DISPLAY";  nametemplate=%s.vcf
+
+# Audio
+#audio/mpeg4;     xmms -e '%s'; test=test "$DISPLAY" != ""
+#audio/mpeg;      xmms -e '%s'; nametemplate=%s.mp3; test=test "$DISPLAY" != ""
+#audio/mpegurl;   xmms -e '%s'; nametemplate=%s.m3u; test=test "$DISPLAY" != ""
+#audio/x-mpegurl; xmms -e '%s'; nametemplate=%s.m3u; test=test "$DISPLAY" != ""
+#audio/x-ogg;     xmms -e '%s'; nametemplate=%s.ogg; test=test "$DISPLAY" != ""
+#audio/x-mp3;     xmms -e '%s'; nametemplate=%s.mp3; test=test "$DISPLAY" != ""
+#audio/x-scpls;   xmms -e '%s'; nametemplate=%s.pls; test=test "$DISPLAY" != ""
+#audio/x-wav;     xmms -e '%s'; nametemplate=%s.wav; test=test "$DISPLAY" != ""
+#application/ogg; xmms -e '%s'; nametemplate=%s.ogg; test=test "$DISPLAY" != ""
+
+# Images
+image/*; geeqie '%s'; test=test -n "$DISPLAY"
+
+# bittorrent
+#application/x-bittorrent; /home/jceb/downloads/azureus/azureus '%s'; test=test -z "$DISPLAY"; needsterminal
+
+# Powerpoint
+application/vnd.ms-powerpoint; /usr/bin/soffice '%s'; description=Powerpoint Presentation; test=test -n "$DISPLAY"; nametemplate=%s.ppt; nametemplate=%s.pps
