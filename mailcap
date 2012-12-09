@@ -11,6 +11,7 @@ application/postscript; /usr/bin/gv '%s'; test=test -n "$DISPLAY"; description=p
 application/x-dvi; /usr/bin/xdvi '%s'; nametemplate=%s.dvi; test=test "$DISPLAY" != ""; description=Portable
 
 # Text-Files
+text/plain; clementine '%s'; nametemplate='%s.m3u'; edit=clementine '%s'; compose=clementine '%s'
 text/plain; view '%s'; edit=$EDITOR '%s'; compose=$EDITOR '%s'; needsterminal
 
 # HTML-Files
