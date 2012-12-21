@@ -84,7 +84,7 @@ Q=~/.msmtp.queue
 ##     (doing so would be inadvisable under most conditions, however)
 ##
 ## the queue log file - modify (or comment out) to taste  (but no quotes !!)
-LOG=~/log/msmtp.queue.log
+LOG=~/.msmtp.queue.log
 ## ======================================================================================
 
 umask 077                            # set secure permissions on created directories and files
