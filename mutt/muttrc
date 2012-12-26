@@ -185,7 +185,7 @@ set assumed_charset = "us-ascii:iso-8859-1:utf-8"
 set config_charset  = "utf-8"
 
 # Header Cache
-set header_cache    = "~/.mutt/MailCache/"
+set header_cache    = "~/.cache/mutt/"
 
 # set nntp_host = "nntp://news.informatik.uni-bremen.de"
 
