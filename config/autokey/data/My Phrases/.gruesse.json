@@ -1,14 +1,14 @@
 {
-    "usageCount": 235, 
+    "usageCount": 238, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "gr\u00fcsse", 
+    "description": "gruesse", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
             "GG"
         ], 
-        "immediate": false, 
+        "immediate": true, 
         "ignoreCase": false, 
         "backspace": true, 
         "triggerInside": false

@@ -1,7 +1,7 @@
 {
-    "usageCount": 2, 
+    "usageCount": 3, 
     "omitTrigger": false, 
-    "prompt": true, 
+    "prompt": false, 
     "description": "sgH", 
     "abbreviation": {
         "wordChars": "[\\w]", 
