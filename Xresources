@@ -44,6 +44,7 @@ URxvt*meta8				: false
 !URxvt*keysym.M-o				: $OLDPWD
 URxvt.perl-ext-common			: matcher,searchable-scrollback<M-s>,selection
 URxvt*url-launcher				: x-www-browser
+URxvt*urlLauncher				: x-www-browser
 URxvt*iso14755					: false
 URxvt*iso14755_52				: false
 
