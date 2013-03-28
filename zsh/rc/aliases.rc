@@ -1,35 +1,101 @@
-alias ls='ls -b -CF --color=auto'
+alias ls='ls -b -CF --file-type --color=auto'
 
-alias cdt='cd $(echo $(pwd)/|sed -e "s#/branches/ucs[^/]*/#/trunk/#")'
-alias cdb2='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.0/#")'
-alias cdb21='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.1/#")'
-alias cdb22='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.2/#")'
-alias cdb23='cd $(echo $(pwd)/|sed -e "s#/trunk/#/branches/ucs-2.3/#")'
-alias cdsvn='cd $(echo $(pwd)/|sed -e "s#/git/#/svn/#")'
-alias cdgit='cd $(echo $(pwd)/|sed -e "s#/svn/#/git/#")'
-alias cddeb='cd $(_file=debian; _d="$(pwd)/"; while [ "$_d" != "/" ]; do if [ -e "${_d}/${_file}" ]; then echo $_d; return; else; _d=$(dirname "$_d"); fi; done; echo ${_file} not found in parent directories >&2; pwd)'
-alias cd-='cd $(_dirs="$(_d=$(pwd)/; while [ "$_d" != "/" ]; do _d=$(dirname "$_d"); echo $_d; done)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
-alias cd+='cd $(_dirs="$(find . -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|sort)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
-alias cd1='cd $(_dirs="$(find . -maxdepth 1 -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|sort)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
-alias cd2='cd $(_dirs="$(find . -maxdepth 2 -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|sort)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
-alias cd3='cd $(_dirs="$(find . -maxdepth 3 -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|sort)"; echo $_dirs | awk "{print NR, \$0}">&2; echo -n "which one? " >&2; read d; [ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || pwd)'
+# aliases for quickly traversing through the Univention SVN
+_chdir () {
+	if echo "$PWD" | grep -q '/trunk/'; then
+		echo "$PWD" | sed -e "s#/trunk/#/branches/ucs-$1/#"
+	else
+		echo "$PWD" | sed -e "s#/branches/ucs-[0-9.]*/#/branches/ucs-$1/#"
+	fi
+}
+alias cdt='cd $(echo $(pwd)/|sed -e "s#/branches/ucs-[^/]*/#/trunk/#")'
+alias cdb2='cd $(_chdir 2.0)'
+alias cdb21='cd $(_chdir 2.1)'
+alias cdb22='cd $(_chdir 2.2)'
+alias cdb23='cd $(_chdir 2.3)'
+alias cdb24='cd $(_chdir 2.4)'
+alias cdb3='cd $(_chdir 3.0)'
+alias cdb31='cd $(_chdir 3.1)'
+alias cdb32='cd $(_chdir 3.2)'
+
+# jump to the next parent directory containing a debian subdirectory
+_findparentdir () {
+	local _dir _d
+	_dir="$1"
+	_d="$PWD"
+	while [ "$_d" != "/" ]; do
+		if [ -d "${_d}/${_dir}" ]; then
+			echo "$_d"
+			return
+		else
+			_d="$(dirname "$_d")"
+		fi
+	done
+	echo "$PWD"
+	echo "Directory not found in parent directories: ${_dir}"  >&2
+	return
+pwd
+}
+alias cddeb='cd "$(_findparentdir debian)"'
+
+# aliases for quickly traversing through the directory structures
+_seldir () {
+	local _depth _dirs _d _maxdepth
+	_depth="$1"
+	_maxdepth="-maxdepth"
+	if [ "$_depth" = '-1' ]; then
+		# advance backwards
+		_dirs="$(_d="$PWD"; while [ "$_d" != "/" ]; do _d="$(dirname "$_d")"; echo "$_d"; done)"
+	else
+		# advance forwards
+		if [ "$_depth" = '0' ]; then
+			_depth=""
+			_maxdepth=""
+		fi
+		_dirs="$(find . $_maxdepth $_depth -type d ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 1d -e 's/^\.\///'|sort)"
+	fi
+	if [ -n "$_dirs" ]; then
+		echo $_dirs | awk "{print NR, \$0}">&2
+		echo -n "which one? " >&2
+		read d
+		[ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || echo "$PWD"
+	else
+		echo "$PWD"
+	fi
+}
+alias cd-='cd "$(_seldir -1)"'
+alias cd+='cd "$(_seldir 0)"'
+alias cd1='cd "$(_seldir 1)"'
+alias cd2='cd "$(_seldir 2)"'
+alias cd3='cd "$(_seldir 3)"'
 alias cd..='cd ..'
 
-alias findfile='find . ! -wholename \*debian/\* ! -wholename \*.svn\*|grep -i $1'
-alias finddir='find . -type d ! -wholename \*debian/\* ! -wholename \*.svn\*|grep -i $1'
+# handy functions for searching files and directories
+_find () {
+	# $1: search directory "" or not "!"; $2: search pattern or search directory if $3 is specified; $3: if sepcified: search pattern
+	local _dir _pattern _searchdir
+	_searchdir="$1"; shift
+	_dir="."
+	_pattern="$1"
+	if [ -n "$2" ]; then
+		_dir="$1"
+		_pattern="$2"
+	fi
+	# the final grep command highlights pattern
+	find "$_dir" "$_searchdir" -type d -iname "*$_pattern*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i "$_pattern"
+}
 
-# archlinux
-alias p=pacman
+findfile () {
+	_find "!" "$@"
+}
+
+finddir () {
+	_find "" "$@"
+}
 
 # on debian based systems this makes the use of ack a bit easier
 if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
-fi
-
-if [ -e /usr/bin/ooffice ]; then
-	alias oo='ooffice'
-else
-	alias oo='libreoffice'
 fi
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
