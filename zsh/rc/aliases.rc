@@ -3,71 +3,97 @@ alias ls='ls -b -CF --file-type --color=auto'
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
 	if echo "$PWD" | grep -q '/trunk/'; then
-		echo "$PWD" | sed -e "s#/trunk/#/branches/ucs-$1/#"
+		cd "$(echo "$PWD" | sed -e "s#/trunk/#/branches/ucs-$1/#")"
 	else
-		echo "$PWD" | sed -e "s#/branches/ucs-[0-9.]*/#/branches/ucs-$1/#"
+		cd "$(echo "$PWD" | sed -e "s#/branches/ucs-[0-9.]*/#/branches/ucs-$1/#")"
 	fi
 }
 alias cdt='cd $(echo $(pwd)/|sed -e "s#/branches/ucs-[^/]*/#/trunk/#")'
-alias cdb2='cd $(_chdir 2.0)'
-alias cdb21='cd $(_chdir 2.1)'
-alias cdb22='cd $(_chdir 2.2)'
-alias cdb23='cd $(_chdir 2.3)'
-alias cdb24='cd $(_chdir 2.4)'
-alias cdb3='cd $(_chdir 3.0)'
-alias cdb31='cd $(_chdir 3.1)'
-alias cdb32='cd $(_chdir 3.2)'
+alias cdb2='_chdir 2.0'
+alias cdb21='_chdir 2.1'
+alias cdb22='_chdir 2.2'
+alias cdb23='_chdir 2.3'
+alias cdb24='_chdir 2.4'
+alias cdb3='_chdir 3.0'
+alias cdb31='_chdir 3.1'
+alias cdb32='_chdir 3.2'
 
 # jump to the next parent directory containing a debian subdirectory
-_findparentdir () {
+_ch2parentdir () {
 	local _dir _d
 	_dir="$1"
 	_d="$PWD"
 	while [ "$_d" != "/" ]; do
 		if [ -d "${_d}/${_dir}" ]; then
-			echo "$_d"
+			cd "$_d"
 			return
 		else
 			_d="$(dirname "$_d")"
 		fi
 	done
-	echo "$PWD"
 	echo "Directory not found in parent directories: ${_dir}"  >&2
 	return
 pwd
 }
-alias cddeb='cd "$(_findparentdir debian)"'
+alias cddeb='_ch2parentdir debian'
 
 # aliases for quickly traversing through the directory structures
+_glob () {
+	# $1: pattern; $2: term
+	case "$2" in
+		*$1*) return 0;;
+		*) return 1;;
+	esac
+}
+
 _seldir () {
-	local _depth _dirs _d _maxdepth
+	# $1 direction: -1: backward, 0: unlimited forward: >0: limited forward; $2 filter
+	local _depth _dirs _d _dn _maxdepth _filter _delfirst
 	_depth="$1"
+	_filter="$2"
+	[ -z "$2" ] && _filter='*' && _delfirst="1d;"
 	_maxdepth="-maxdepth"
+
+	# find directories
 	if [ "$_depth" = '-1' ]; then
-		# advance backwards
-		_dirs="$(_d="$PWD"; while [ "$_d" != "/" ]; do _d="$(dirname "$_d")"; echo "$_d"; done)"
+		# traverse backward
+		_dirs="$(_d="$PWD"; while [ "$_d" != "/" ]; do
+			_d="$(dirname "$_d")"
+			if [ -n "$2" ]; then
+				_glob "$2" "$(basename "$_d")" && echo "$_d"
+			else
+				echo "$_d"
+			fi
+		done)"
 	else
-		# advance forwards
+		# traverse forward
 		if [ "$_depth" = '0' ]; then
 			_depth=""
 			_maxdepth=""
 		fi
-		_dirs="$(find . $_maxdepth $_depth -type d ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 1d -e 's/^\.\///'|sort)"
+		_dirs="$(find . $_maxdepth $_depth -type d -iname "*${_filter}*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e "${_delfirst}s/^\.\///"|sort)"
 	fi
+
+	# select directory and change into it
 	if [ -n "$_dirs" ]; then
-		echo $_dirs | awk "{print NR, \$0}">&2
-		echo -n "which one? " >&2
-		read d
-		[ -n "$d" ] && echo $_dirs | awk "NR==$d {print \$0}" || echo "$PWD"
-	else
-		echo "$PWD"
+		if [ "$(echo "$_dirs" | wc -l)" -eq 1 ]; then
+			cd "$_dirs"
+		else
+			echo $_dirs | awk "{print NR, \$0}">&2
+			echo -n "which one? " >&2
+			read _d
+			_d=$([ -n "$_d" ] && echo $_dirs | awk "NR==$_d {print \$0}")
+			if [ -n "$_d" ]; then
+				cd "$_d"
+			fi
+		fi
 	fi
 }
-alias cd-='cd "$(_seldir -1)"'
-alias cd+='cd "$(_seldir 0)"'
-alias cd1='cd "$(_seldir 1)"'
-alias cd2='cd "$(_seldir 2)"'
-alias cd3='cd "$(_seldir 3)"'
+alias cd-='_seldir -1'
+alias cd+='_seldir 0'
+alias cd1='_seldir 1'
+alias cd2='_seldir 2'
+alias cd3='_seldir 3'
 alias cd..='cd ..'
 
 # handy functions for searching files and directories
