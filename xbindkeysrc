@@ -36,7 +36,7 @@
 
 
 #explorer
-"x-terminal-emulator -e mc"
+"x-terminal-emulator -e ranger"
     m:0x41 + c:26
     Shift+Mod4 + e 
 

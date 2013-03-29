@@ -84,6 +84,8 @@ skin=default
 
 
 
+editor_cursor_after_inserted_block=0
+
 [Layout]
 message_visible=0
 keybar_visible=1
@@ -95,7 +97,7 @@ free_space=1
 
 horizontal_split=0
 vertical_equal=1
-left_panel_size=73
+left_panel_size=136
 horizontal_equal=1
 top_panel_size=97
 
