@@ -38,7 +38,7 @@ pwd
 alias cddeb='_ch2parentdir debian'
 
 # aliases for quickly traversing through the directory structures
-_glob () {
+_glob_match () {
 	# $1: pattern; $2: term
 	case "$2" in
 		*$1*) return 0;;
@@ -60,7 +60,7 @@ _seldir () {
 		_dirs="$(_d="$PWD"; while [ "$_d" != "/" ]; do
 			_d="$(dirname "$_d")"
 			if [ -n "$2" ]; then
-				_glob "$2" "$(basename "$_d")" && echo "$_d"
+				_glob_match "$2" "$(basename "$_d")" && echo "$_d"
 			else
 				echo "$_d"
 			fi
@@ -97,26 +97,26 @@ alias cd3='_seldir 3'
 alias cd..='cd ..'
 
 # handy functions for searching files and directories
-_find () {
+_find_objects () {
 	# $1: search directory "" or not "!"; $2: search pattern or search directory if $3 is specified; $3: if sepcified: search pattern
 	local _dir _pattern _searchdir
-	_searchdir="$1"; shift
+	_searchdir="$1"
 	_dir="."
-	_pattern="$1"
-	if [ -n "$2" ]; then
-		_dir="$1"
-		_pattern="$2"
+	_pattern="$2"
+	if [ -n "$3" ]; then
+		_dir="$2"
+		_pattern="$3"
 	fi
 	# the final grep command highlights pattern
 	find "$_dir" "$_searchdir" -type d -iname "*$_pattern*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i "$_pattern"
 }
 
 findfile () {
-	_find "!" "$@"
+	_find_objects "!" "$@"
 }
 
 finddir () {
-	_find "" "$@"
+	_find_objects "" "$@"
 }
 
 # on debian based systems this makes the use of ack a bit easier
