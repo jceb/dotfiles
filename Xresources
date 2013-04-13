@@ -13,7 +13,7 @@ yeahconsole*handleWidth		: 0
 yeahconsole*aniDelay		: 20
 yeahconsole*keyBigger		: Alt+j
 yeahconsole*keySmaller		: Alt+k
-yeahconsole*toggleKey		: Alt+y
+yeahconsole*toggleKey		: Alt+space
 yeahconsole*keyFull			: Alt+f
 yeahconsole*term			: urxvt
 !yeahconsole*xOffset			: 100
