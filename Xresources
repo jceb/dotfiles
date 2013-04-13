@@ -1,10 +1,14 @@
+! vi: commentstring=!%s
 Xcursor.theme		: DMZ-Black
 Xcursor.size		: 16
-Xft.dpi				: 96.0
 Xft.antialias		: 1
-Xft.rgba			: rgb
+Xft.autohint		: 0
+! Depend on auto-detection for the correct DPI value
+! Xft.dpi				: 96.0
 Xft.hinting			: 1
 Xft.hintstyle		: hintfull
+Xft.lcdfilter		: lcddefault
+Xft.rgba			: rgb
 
 yeahconsole*restart			: 0
 yeahconsole*stepSize		: 0
