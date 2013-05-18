@@ -241,7 +241,7 @@ set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vc
 #set xterm_title="Mutt %?b?[NEW mail in %b mailboxes]? %?n?[%n NEW]?"
 #set xterm_set_titles
 
-set print_command="iconv -f UTF-8 -t LATIN1 | a2ps -E -2 -B"
+set print_command="iconv -f UTF-8 -t LATIN1 | a2ps -E -2 -B -d"
 
 macro index,pager s "<save-message>?<toggle-mailboxes><home><search>" "open a different folder"
 macro index,pager c "<change-folder>?<toggle-mailboxes><home>" "open another folder"
