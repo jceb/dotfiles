@@ -1,5 +1,9 @@
 alias ls='ls -b -CF --file-type --color=auto'
 
+# always start vim in server mode and use the directory's name as server name
+alias vim='vim --servername "$(basename $PWD)"'
+alias gvim='gvim --servername "$(basename $PWD)"'
+
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
 	if echo "$PWD" | grep -q '/trunk/'; then
