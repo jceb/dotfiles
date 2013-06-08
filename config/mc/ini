@@ -86,6 +86,8 @@ skin=default
 
 editor_cursor_after_inserted_block=0
 
+editor_ask_filename_before_edit=0
+
 [Layout]
 message_visible=0
 keybar_visible=1
@@ -97,7 +99,7 @@ free_space=1
 
 horizontal_split=0
 vertical_equal=1
-left_panel_size=136
+left_panel_size=88
 horizontal_equal=1
 top_panel_size=97
 
@@ -122,6 +124,8 @@ linux=
 color_terminals=
 
 rxvt-unicode-256color=
+
+xterm=
 
 [Panels]
 show_mini_info=true
