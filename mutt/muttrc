@@ -210,6 +210,7 @@ macro generic,index,pager <f9> ":source ~/.mutt/account.backupunivention<enter>I
 # of the page
 bind index,pager G list-reply
 bind index L bottom-page
+bind pager \c? previous-line
 
 # avoid annoying questions
 set noconfirmappend
