@@ -201,10 +201,8 @@ folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
 folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
 
 macro generic,index,pager <f5> ":source ~/.mutt/muttrc<enter>I" "Reload muttrc"
-macro generic,index,pager <f6> ":source ~/.mutt/account.herbst<enter>I" "Open mailbox herbst"
-macro generic,index,pager <f7> ":source ~/.mutt/account.backup<enter>I" "Open mailbox herbst backup"
-macro generic,index,pager <f8> ":source ~/.mutt/account.univention<enter>I" "Open mailbox univention"
-macro generic,index,pager <f9> ":source ~/.mutt/account.backupunivention<enter>I" "Open mailbox univention backup"
+macro index <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" "notmuch: search mail"
+macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
 
 # remap list-reply to G instead of the L key which is used to jump to the bottom
 # of the page
