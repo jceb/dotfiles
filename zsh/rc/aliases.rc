@@ -1,4 +1,5 @@
 alias ls='ls -b -CF --file-type --color=auto'
+alias ltr='ls -ltr'
 
 # always start vim in server mode and use the directory's name as server name
 alias vim='vim --servername "$(basename $PWD)"'
