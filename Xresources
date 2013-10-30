@@ -46,7 +46,8 @@ URxvt*meta8				: false
 !URxvt.keysym.Control-Return	:\037\036
 !URxvt*keysym.Control-Insert		: 10.200.21.
 !URxvt*keysym.M-o				: $OLDPWD
-URxvt.perl-ext-common			: matcher,searchable-scrollback<M-s>,selection
+! URxvt.perl-ext-common			: matcher,searchable-scrollback<M-s>,selection
+URxvt.perl-ext-common			: matcher
 URxvt*url-launcher				: x-www-browser
 URxvt*urlLauncher				: x-www-browser
 URxvt*iso14755					: false
