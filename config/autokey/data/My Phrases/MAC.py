@@ -3,4 +3,4 @@
 import time
 import random
 t = str(int(time.time()))[-10:]
-keyboard.send_keys(':'.join([hex(random.randint(0, 252))[2:].rjust(2, '0')] + [ j + k for j, k in zip(t[::2], t[1::2])]))
+keyboard.send_keys(':'.join([hex(random.randint(0, 255) & 254 | 2)[2:].rjust(2, '0')] + [ j + k for j, k in zip(t[::2], t[1::2])]))
