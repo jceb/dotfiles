@@ -8,9 +8,9 @@ alias gvim='gvim --servername "$(basename $PWD)"'
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
 	if echo "$PWD" | grep -q '/trunk/'; then
-		cd "$(echo "$PWD" | sed -e "s#/trunk/#/branches/ucs-$1/#")"
+		cd "$(echo "$PWD" | sed -e "s#/trunk/#/branches/ucs-$1#")"
 	else
-		cd "$(echo "$PWD" | sed -e "s#/branches/ucs-[0-9.]*/#/branches/ucs-$1/#")"
+		cd "$(echo "$PWD" | sed -e "s#/branches/ucs-[0-9.]*#/branches/ucs-$1#")"
 	fi
 }
 alias cdt='cd $(echo $(pwd)/|sed -e "s#/branches/ucs-[^/]*/#/trunk/#")'
@@ -22,6 +22,8 @@ alias cdb24='_chdir 2.4'
 alias cdb3='_chdir 3.0'
 alias cdb31='_chdir 3.1'
 alias cdb32='_chdir 3.2'
+alias cdb33='_chdir 3.3'
+alias cdd='_chdir'
 
 # jump to the next parent directory containing a debian subdirectory
 _ch2parentdir () {

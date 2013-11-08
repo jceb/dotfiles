@@ -1,12 +1,12 @@
 {
-    "usageCount": 64, 
+    "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "MAC", 
+    "description": "ebersbach", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "Date"
+            "EB"
         ], 
         "immediate": false, 
         "ignoreCase": false, 
@@ -14,20 +14,18 @@
         "triggerInside": false
     }, 
     "hotkey": {
-        "hotKey": "m", 
-        "modifiers": [
-            "<alt>", 
-            "<shift>"
-        ]
+        "hotKey": null, 
+        "modifiers": []
     }, 
     "modes": [
-        3
+        1
     ], 
     "showInTrayMenu": false, 
+    "matchCase": false, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
-    "type": "script", 
-    "store": {}
+    "type": "phrase", 
+    "sendMode": "kb"
 }
