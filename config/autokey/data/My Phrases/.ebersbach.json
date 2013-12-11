@@ -1,5 +1,5 @@
 {
-    "usageCount": 0, 
+    "usageCount": 2, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "ebersbach", 
@@ -8,7 +8,7 @@
         "abbreviations": [
             "EB"
         ], 
-        "immediate": false, 
+        "immediate": true, 
         "ignoreCase": false, 
         "backspace": true, 
         "triggerInside": false
