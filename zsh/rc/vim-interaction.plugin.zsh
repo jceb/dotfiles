@@ -2,7 +2,7 @@
 # See README.md
 #
 # Derek Wyatt (derek@{myfirstnamemylastname}.org
-# 
+#
 
 function resolveFile
 {
@@ -29,6 +29,7 @@ EOH
     return 0
   fi
 
+  local session="$(vsession)"
   local cmd=""
   local toNormal="<c-\\><c-n>"
   local before=""
@@ -58,7 +59,8 @@ EOH
     files=':args! '"$files<cr>"
   fi
   cmd="$toNormal$before$files$after"
-  gvim --remote-send "$cmd"
+  gvim --servername "${session}" --remote-send "$cmd"
+  set +x
   if typeset -f postCallVim > /dev/null; then
     postCallVim
   fi
