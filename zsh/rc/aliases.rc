@@ -105,25 +105,38 @@ alias cd..='cd ..'
 
 # handy functions for searching files and directories
 _find_objects () {
-	# $1: search directory "" or not "!"; $2: search pattern or search directory if $3 is specified; $3: if sepcified: search pattern
-	local _dir _pattern _searchdir
-	_searchdir="$1"
-	_dir="."
-	_pattern="$2"
-	if [ -n "$3" ]; then
-		_dir="$2"
-		_pattern="$3"
+	# $1: find directories "" or not "!"; $2: search pattern or search directory if $3 is specified; $3: if sepcified: search pattern
+	local _dirs _finddirs
+	_finddirs="$1"
+	shift
+	while [[ $# != 0 ]]; do
+		if [[ -d "$1" ]]; then
+			_dirs="$_dirs '$1'"
+			shift
+			continue
+		else
+			break
+		fi
+	done
+	if [[ -z "${_dirs}" ]]; then
+		_dirs="."
 	fi
 	# the final grep command highlights pattern
-	find "$_dir" "$_searchdir" -type d -iname "*$_pattern*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i "$_pattern"
+	if [[ -z "$@" ]]; then
+		eval "find $_dirs ${_finddirs} -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort"
+		# find $_dirs "${_finddirs}" -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort
+	else
+		eval "find $_dirs ${_finddirs} -type d -iname '*$@*' ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i '$@'"
+		# find $_dirs "${_finddirs}" -type d -iname "*$@*" ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i "$@"
+	fi
 }
 
-findfile () {
-	_find_objects "!" "$@"
+findf () {
+	_find_objects  '!' "$@"
 }
 
-finddir () {
-	_find_objects "" "$@"
+findd () {
+	_find_objects '' "$@"
 }
 
 # on debian based systems this makes the use of ack a bit easier

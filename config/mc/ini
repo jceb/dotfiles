@@ -99,7 +99,7 @@ free_space=1
 
 horizontal_split=0
 vertical_equal=1
-left_panel_size=88
+left_panel_size=114
 horizontal_equal=1
 top_panel_size=97
 
@@ -126,6 +126,8 @@ color_terminals=
 rxvt-unicode-256color=
 
 xterm=
+
+screen-256color=
 
 [Panels]
 show_mini_info=true
