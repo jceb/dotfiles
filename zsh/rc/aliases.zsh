@@ -1,10 +1,6 @@
 alias ls='ls -b -CF --file-type --color=auto'
 alias ltr='ls -ltr'
 
-# always start vim in server mode and use the directory's name as server name
-alias vim='vim --servername "$(basename $PWD)"'
-alias gvim='gvim --servername "$(basename $PWD)"'
-
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
 	if echo "$PWD" | grep -q '/trunk/'; then
@@ -143,5 +139,6 @@ findd () {
 if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
+alias ag='ag -i'
 
 # vi: ft=zsh:tw=0:sw=4:ts=4

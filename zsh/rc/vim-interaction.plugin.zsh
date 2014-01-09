@@ -66,7 +66,13 @@ EOH
   fi
 }
 
-alias v=callvim
+# alias v=callvim
+alias v=vim
+# always start vim in server mode and use the directory's name as server name
+# alias vim='vim --servername "$(vsession -N)"'
+# alias gvim='gvim --servername "$(vsession -N)"'
+alias vv='/usr/bin/vim --servername "$(vsession -n)"'
+alias vvv='/usr/bin/vim --servername "$(vsession -i)"'
 alias vvsp="callvim -b':vsp'"
 alias vhsp="callvim -b':sp'"
 alias vk="callvim -b':wincmd k'"
