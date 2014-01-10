@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Synchronize cdargs directory list with mc's hotlist
 
 if [[ ! -e ~/.cdargs ]]; then
@@ -16,9 +16,16 @@ while read n l; do
 	echo "ENTRY \"${n}\" URL \"${l}\""
 done < ~/.cdargs > ~/.config/mc/hotlist
 
-while read n l; do
-	if [[ -z "${n}" ]] || [[ -z "${l}" ]]; then
-		continue
-	fi
-	echo "file://${l} ${n}"
-done < ~/.cdargs > ~/.config/spacefm/bookmarks
+if [ -d ~/.config/spacefm ]; then
+	while read n l; do
+		if [[ -z "${n}" ]] || [[ -z "${l}" ]]; then
+			continue
+		fi
+		echo "file://${l} ${n}"
+	done < ~/.cdargs > ~/.config/spacefm/bookmarks
+fi
+
+if [ -d ~/.cache/ctrlp/bkd ]; then
+	mkdir -p ~/.cache/ctrlp/bkd/
+	sed -e 's/ /\t/' < ~/.cdargs > ~/.cache/ctrlp/bkd/cache.txt
+fi

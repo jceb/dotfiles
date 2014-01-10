@@ -60,19 +60,64 @@ EOH
   fi
   cmd="$toNormal$before$files$after"
   gvim --servername "${session}" --remote-send "$cmd"
-  set +x
   if typeset -f postCallVim > /dev/null; then
     postCallVim
   fi
 }
 
+_open_vim () {
+	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
+		"${EDITOR}" "$@"
+	elif [ $# -ge 1 ]; then
+		"${EDITOR}" --servername "$(vsession)" --remote-silent "$@"
+	else
+		"${EDITOR}" --servername "$(vsession)"
+	fi
+}
+
+_gvim () {
+	EDITOR="/usr/bin/gvim" _open_vim "$@"
+}
+
+_vim () {
+	EDITOR="/usr/bin/vim" _open_vim "$@"
+}
+
+_choose_vim () {
+	vim=gvim
+	if [ -n "${TERM}" ] && [ "${TERM}" != "dumb" ]; then
+		vim=vim
+	fi
+	echo "/usr/bin/${vim}"
+}
+
+_vim_new () {
+	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
+		"$(_choose_vim)" "$@"
+	elif [ $# -ge 1 ]; then
+		"$(_choose_vim)" --servername "$(vsession -n)" "$@"
+	else
+		"$(_choose_vim)" --servername "$(vsession -n)"
+	fi
+}
+
+_vim_interactive () {
+	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
+		"$(_choose_vim)" "$@"
+	elif [ $# -ge 1 ]; then
+		"$(_choose_vim)" --servername "$(vsession -i)" "$@"
+	else
+		"$(_choose_vim)" --servername "$(vsession -i)"
+	fi
+}
+
+alias gvim='/usr/bin/gvim --servername "$(vsession -N)"'
+alias vim=_vim
 # alias v=callvim
-alias v=vim
+alias v=_vim
 # always start vim in server mode and use the directory's name as server name
-# alias vim='vim --servername "$(vsession -N)"'
-# alias gvim='gvim --servername "$(vsession -N)"'
-alias vv='/usr/bin/vim --servername "$(vsession -n)"'
-alias vvv='/usr/bin/vim --servername "$(vsession -i)"'
+alias vv=_vim_new
+alias vvv=_vim_interactive
 alias vvsp="callvim -b':vsp'"
 alias vhsp="callvim -b':sp'"
 alias vk="callvim -b':wincmd k'"
