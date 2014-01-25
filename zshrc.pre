@@ -1,2 +1,6 @@
 # prevent right prompt to be set by grmlzsh
 DONTSETRPROMPT=1
+
+if [[ -d ${HOME}/.zsh/completion ]]; then
+	fpath=( "${HOME}/.zsh/completion" ${fpath} )
+fi
