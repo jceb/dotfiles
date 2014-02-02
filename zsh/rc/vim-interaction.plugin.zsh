@@ -75,14 +75,6 @@ _open_vim () {
 	fi
 }
 
-_gvim () {
-	EDITOR="/usr/bin/gvim" _open_vim "$@"
-}
-
-_vim () {
-	EDITOR="/usr/bin/vim" _open_vim "$@"
-}
-
 _choose_vim () {
 	vim=gvim
 	if [ -n "${TERM}" ] && [ "${TERM}" != "dumb" ]; then
@@ -112,10 +104,14 @@ _vim_interactive () {
 }
 
 alias gvim='/usr/bin/gvim --servername "$(vsession -N)"'
-alias vim=_vim
-# alias v=callvim
-alias v=_vim
+# gvim () {
+# 	EDITOR="/usr/bin/gvim" _open_vim "$@"
+# }
 # always start vim in server mode and use the directory's name as server name
+vim () {
+	EDITOR="/usr/bin/vim" _open_vim "$@"
+}
+alias v=vim
 alias vv=_vim_new
 alias vvv=_vim_interactive
 alias vvsp="callvim -b':vsp'"
