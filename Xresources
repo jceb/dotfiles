@@ -29,25 +29,25 @@ yeahconsole*xrandrSupport	: 1
 !URxvt.letterSpace		: -2
 !URxvt*font				: xft:Source Code Pro:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
 !URxvt*boldFont			: xft:Source Code Pro:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
-
 !URxvt*font				: xft:Ubuntu Mono:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
 !URxvt*boldFont			: xft:Ubuntu Mono:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
-
 URxvt*font				: -windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:regular:pixelsize=16
 URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:bold:pixelsize=16
-
 URxvt*scrollBar			: false
 URxvt*reverseVideo		: false
 URxvt*saveLines			: 60000
 URxvt*cursorBlink		: false
-
 URxvt*meta8				: false
 !URxvt*modifer			: alt
 !URxvt.keysym.Control-Return	:\037\036
 !URxvt*keysym.Control-Insert		: 10.200.21.
 !URxvt*keysym.M-o				: $OLDPWD
+URxvt*keysym.C-equal			: command:\033]710;xft:Ubuntu Mono:regular:pixelsize=18\007\033]711;xft:Ubuntu Mono:bold:pixelsize=18\007
+URxvt*keysym.C-plus				: command:\033]710;xft:Ubuntu Mono:regular:pixelsize=18\007\033]711;xft:Ubuntu Mono:bold:pixelsize=18\007
+URxvt*keysym.C-minus			: command:\033]710;-windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1\007\033]711;-windows-dina-medium-r-bold-*-13-*-*-*-c-*-iso8859-1\007
 ! URxvt.perl-ext-common			: matcher,searchable-scrollback<M-s>,selection
 URxvt.perl-ext-common			: default,matcher
+URxvt.cutchars					: │
 URxvt*url-launcher				: x-www-browser
 URxvt*urlLauncher				: x-www-browser
 URxvt*iso14755					: false
