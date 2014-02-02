@@ -44,7 +44,7 @@ URxvt*meta8				: false
 !URxvt*keysym.M-o				: $OLDPWD
 URxvt*keysym.C-equal			: command:\033]710;xft:Ubuntu Mono:regular:pixelsize=18\007\033]711;xft:Ubuntu Mono:bold:pixelsize=18\007
 URxvt*keysym.C-plus				: command:\033]710;xft:Ubuntu Mono:regular:pixelsize=18\007\033]711;xft:Ubuntu Mono:bold:pixelsize=18\007
-URxvt*keysym.C-minus			: command:\033]710;-windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1\007\033]711;-windows-dina-medium-r-bold-*-13-*-*-*-c-*-iso8859-1\007
+URxvt*keysym.C-minus			: command:\033]710;-windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1\007\033]711;-windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1\007
 ! URxvt.perl-ext-common			: matcher,searchable-scrollback<M-s>,selection
 URxvt.perl-ext-common			: default,matcher
 URxvt.cutchars					: │
