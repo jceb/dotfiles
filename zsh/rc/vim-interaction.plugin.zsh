@@ -68,6 +68,8 @@ EOH
 _open_vim () {
 	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
 		"${EDITOR}" "$@"
+	elif [ "$1" = "-" ]; then
+		"${EDITOR}" --servername "$(vsession)" "$@"
 	elif [ $# -ge 1 ]; then
 		"${EDITOR}" --servername "$(vsession)" --remote-silent "$@"
 	else
@@ -96,6 +98,8 @@ _vim_new () {
 _vim_interactive () {
 	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
 		"$(_choose_vim)" "$@"
+	elif [ "$1" = "-" ]; then
+		"${EDITOR}" --servername "$(vsession)" "$@"
 	elif [ $# -ge 1 ]; then
 		"$(_choose_vim)" --servername "$(vsession -i)" "$@"
 	else
@@ -113,7 +117,9 @@ vim () {
 }
 alias v=vim
 alias vv=_vim_new
+compdef vv=vim
 alias vvv=_vim_interactive
+compdef vvv=vim
 alias vvsp="callvim -b':vsp'"
 alias vhsp="callvim -b':sp'"
 alias vk="callvim -b':wincmd k'"
