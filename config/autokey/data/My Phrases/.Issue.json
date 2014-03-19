@@ -1,27 +1,24 @@
 {
-    "usageCount": 204, 
+    "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "paedmllinux", 
+    "description": "Issue", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            null
+            "ISS"
         ], 
-        "immediate": false, 
+        "immediate": true, 
         "ignoreCase": false, 
         "backspace": true, 
         "triggerInside": false
     }, 
     "hotkey": {
-        "hotKey": "p", 
-        "modifiers": [
-            "<alt>", 
-            "<shift>"
-        ]
+        "hotKey": null, 
+        "modifiers": []
     }, 
     "modes": [
-        3
+        1
     ], 
     "showInTrayMenu": false, 
     "matchCase": false, 
