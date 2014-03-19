@@ -1,5 +1,5 @@
 {
-    "usageCount": 5, 
+    "usageCount": 6, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "date", 
@@ -16,7 +16,8 @@
     "hotkey": {
         "hotKey": "d", 
         "modifiers": [
-            "<alt>"
+            "<alt>", 
+            "<shift>"
         ]
     }, 
     "modes": [

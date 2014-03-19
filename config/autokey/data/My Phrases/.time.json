@@ -1,5 +1,5 @@
 {
-    "usageCount": 3, 
+    "usageCount": 4, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "time", 
@@ -16,7 +16,8 @@
     "hotkey": {
         "hotKey": "t", 
         "modifiers": [
-            "<alt>"
+            "<alt>", 
+            "<shift>"
         ]
     }, 
     "modes": [
