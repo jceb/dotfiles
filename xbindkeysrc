@@ -37,12 +37,7 @@
 
 #explorer
 "x-terminal-emulator -e ranger"
-    m:0x41 + c:26
-    Shift+Mod4 + e 
-
-#file manager
-"spacefm"
-    m:0x40 + c:26
+    m:0x40 + c:45
     Mod4 + e 
 
 #xkill
@@ -50,43 +45,13 @@
     m:0x4 + c:9
     Control + Escape 
 
-#vim
+#graphical editor
 "gvim"
     m:0x40 + c:55
     Mod4 + v 
 
-#terminal
-"x-terminal-emulator"
-    m:0x41 + c:36
-    Shift+Mod4 + Return 
-
-#XF86AudioMute
-"amixer -q set Master toggle"
-    m:0x0 + c:121
-    XF86AudioMute 
-
-#XF86AudioRaiseVolume
-"amixer -q set Master 5%+ unmute"
-    m:0x0 + c:123
-    XF86AudioRaiseVolume 
-
-#XF86AudioLowerVolumeor
-"amixer -q set Master 5%- unmute"
-    m:0x0 + c:122
-    XF86AudioLowerVolume 
-
-#XF86MonBrightnessDown
-"/usr/bin/xbrightness -5000"
-    m:0x0 + c:232
-    XF86MonBrightnessDown 
-
-#XF86MonBrightnessUp
-"xbrightness +5000"
-    m:0x0 + c:233
-    XF86MonBrightnessUp 
-
 #Calculator
-"gcalctool"
+"galculator"
     m:0x0 + c:148
     XF86Calculator 
 
@@ -111,14 +76,29 @@
     XF86Tools 
 
 #Lock Screensaver
-"xscreensaver-command -lock"
-    m:0xc + c:46
+"xscreensaver-command -l"
+    m:0xc + c:30
     Control+Alt + l 
 
 #Vaio
-"gcalctool"
+"galculator"
     m:0x0 + c:146
     Help 
+
+#Volume Lower
+"amixer -q set Master 5%-"
+    m:0x0 + c:122
+    XF86AudioLowerVolume 
+
+#Volume Raise
+"amixer -q set Master 5%+"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume 
+
+#Volume Raise-Copy
+"amixer -q set Master toggle"
+    m:0x0 + c:121
+    XF86AudioMute 
 
 #
 # End of xbindkeys configuration
