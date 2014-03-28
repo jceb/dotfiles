@@ -68,79 +68,6 @@ macro generic,index,pager <f12> "!zcat ~/.mutt/manual.txt.gz | sensible-pager\n"
 # If your sendmail supports the -B8BITMIME flag, enable the following
 # set use_8bitmime
 
-#source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
-
-#color normal	white		black	# normal text
-color normal	color0		color15	# normal text
-color indicator	color0		brightyellow	# actual message
-color tree		color1			color15	#	thread	arrows
-# color tree		color1			color15	#	thread	arrows
-color status	brightblue	brightyellow	# status line
-color error		brightred	color15	# errors
-color message	brightred	color15	# info messages
-color signature	brightblue	color15	# signature
-# color error		brightred	color15	# errors
-# color message	brightred	color15	# info messages
-# color signature	brightblue	color15	# signature
-color attachment	brightyellow	color15	# MIME attachments
-color search	brightyellow	color1	# search matches
-color tilde		brightmagenta	color15	# ~ at bottom of msg
-color markers	color1			color15	# + at beginning of wrapped lines
-color hdrdefault	color2	color15	# default header lines
-color bold		color1			color15	# hiliting bold patterns in body
-color underline	color2		color15	# hiliting underlined patterns in body
-color quoted	color2		color15	# quoted text
-color quoted1	color5		color15
-color quoted2	brightblue	color15
-color quoted3	brightred	color15
-color header	brightmagenta	color15	^From:
-color header	brightmagenta	color15	^Reply-To:
-color header	brightblue	color15	^To:
-color header	brightblue	color15	^Cc:
-color header	brightred	color15	^Subject:
-color header	brightyellow	color15	^Date:
-color body		brightblue	color15	"((ftp|http|https)://|news:)[^	>)\"\t]+"
-color body		brightred	color15	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
-color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
-color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
-color index		brightblue	color15	~F	# Flagged
-color index		brightred	color15	~N	# New
-color index		brightgreen	color15	~O	# Old
-color index		brightmagenta	color15	~T	# Tagged
-color index		color6		color15	~D	#	Deleted
-# color tilde		brightmagenta	color15	# ~ at bottom of msg
-#color markers	color1			color15	# + at beginning of wrapped lines
-#color hdrdefault	color4	color15	# default header lines
-#color bold		color1			color15	# hiliting bold patterns in body
-#color underline	color2		color15	# hiliting underlined patterns in body
-#color quoted	color2		color15	# quoted text
-#color quoted1	magenta		color15
-#color quoted2	brightblue	color15
-#color quoted3	brightred	color15
-#color header	brightmagenta	color15	^From:
-#color header	brightmagenta	color15	^Reply-To:
-#color header	brightblue	color15	^To:
-#color header	brightblue	color15	^Cc:
-#color header	brightred	color15	^Subject:
-#color header	brightblack	color15	^Date:
-#color body		brightblue	color15	"((ftp|http|https)://|news:)[^	>)\"\t]+"
-#color body		brightred	color15	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
-#color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-#color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
-#color body		color1			color15	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-#color body		color2		color15	"(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
-#color index		brightblue	color15	~F	# Flagged
-#color index		brightred	color15	~N	# New
-#color index		brightgreen	color15	~O	# Old
-#color index		brightmagenta	color15	~T	# Tagged
-#color index		color6		color15	~D	#	Deleted
-#color index		color2		color15	(!~N)(!~T)(!~D)(!~F)~d<1d	# < 1 days
-#color index		yellow		color15	(!~N)(!~T)(!~D)(!~F)~d>1d~d<2d	# < 2 days
-#color index		color4		color15	(!~N)(!~T)(!~D)(!~F)~d>2d~d<4d	# < 4 days
-#color index		color1			color15	(!~N)(!~T)(!~D)(!~F)~d>4d~d<8d	# < 7 days
-
 #   0      black
 #   1      red
 #   2      green
@@ -149,6 +76,61 @@ color index		color6		color15	~D	#	Deleted
 #   5      magenta
 #   6      cyan
 #   7      white
+
+#source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
+
+color   signature    brightblue      default
+color   indicator    default         color4
+color   attachment   default         color7
+color   error        brightred       default
+color   message      default         default
+color   search       brightwhite     color4
+color   status       magenta         color7
+color   tree         blue            default
+color   normal       default         default
+color   tilde        green           default
+color   underline    magenta         default
+color   markers      color4          default
+
+##color normal	white		black	# normal text
+#color normal	color0		default	# normal text
+#color indicator	default		color4	# actual message
+#color tree		color1			default	#	thread	arrows
+#color status	brightdefault	brightyellow	# status line
+#color error		brightred	default	# errors
+#color message	brightred	default	# info messages
+#color signature	brightblue	default	# signature
+## color error		brightred	default	# errors
+## color message	brightred	default	# info messages
+## color signature	brightblue	default	# signature
+#color attachment	brightyellow	default	# MIME attachments
+#color search	brightyellow	color1	# search matches
+#color tilde		brightmagenta	default	# ~ at bottom of msg
+#color markers	color1			default	# + at beginning of wrapped lines
+color hdrdefault	color2	default	# default header lines
+color bold		color1			default	# hiliting bold patterns in body
+color underline	color2		default	# hiliting underlined patterns in body
+color quoted	color2		default	# quoted text
+color quoted1	color5		default
+color quoted2	brightblue	default
+color quoted3	brightred	default
+color header	brightmagenta	default	^From:
+color header	brightmagenta	default	^Reply-To:
+color header	brightblue	default	^To:
+color header	brightblue	default	^Cc:
+color header	brightred	default	^Subject:
+color header	blue		default	^Date:
+color body		brightblue	default	"((ftp|http|https)://|news:)[^	>)\"\t]+"
+color body		brightred	default	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
+color body		color1			default	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+color body		color2		default	"(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
+color body		color1			default	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+color body		color2		default	"(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
+color index		brightblue	default	~F	# Flagged
+color index		brightred	default	~N	# New
+color index		brightgreen	default	~O	# Old
+color index		brightmagenta	default	~T	# Tagged
+color index		brightblack		default	~D	#	Deleted
 
 # GnuPG configuration
 set pgp_decode_command       = "gpg --charset utf-8 --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"

@@ -108,7 +108,8 @@ cp "$file" "$tmpfile"
 # Run the viewer in the background and delete the temporary files when done. 
 
 (
-    "$viewer" $options "$tmpfile"
+    # "$viewer" $options "$tmpfile"
+    xdg-open $options "$tmpfile"
     rm -f "$tmpfile"
     rmdir "$tmpdir"
 ) &
