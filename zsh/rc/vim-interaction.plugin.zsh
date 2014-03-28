@@ -65,18 +65,6 @@ EOH
   fi
 }
 
-_open_vim () {
-	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
-		"${EDITOR}" "$@"
-	elif [ "$1" = "-" ]; then
-		"${EDITOR}" --servername "$(vsession)" "$@"
-	elif [ $# -ge 1 ]; then
-		"${EDITOR}" --servername "$(vsession)" --remote-silent "$@"
-	else
-		"${EDITOR}" --servername "$(vsession)"
-	fi
-}
-
 _choose_vim () {
 	vim=gvim
 	if [ -n "${TERM}" ] && [ "${TERM}" != "dumb" ]; then
@@ -108,12 +96,10 @@ _vim_interactive () {
 }
 
 alias gvim='/usr/bin/gvim --servername "$(vsession -N)"'
-# gvim () {
-# 	EDITOR="/usr/bin/gvim" _open_vim "$@"
-# }
+
 # always start vim in server mode and use the directory's name as server name
 vim () {
-	EDITOR="/usr/bin/vim" _open_vim "$@"
+	viserver "$@"
 }
 alias v=vim
 alias vv=_vim_new
