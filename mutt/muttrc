@@ -88,49 +88,33 @@ color   search       brightwhite     color4
 color   status       magenta         color7
 color   tree         blue            default
 color   normal       default         default
-color   tilde        green           default
+color   tilde        color4          default
 color   underline    magenta         default
 color   markers      color4          default
-
-##color normal	white		black	# normal text
-#color normal	color0		default	# normal text
-#color indicator	default		color4	# actual message
-#color tree		color1			default	#	thread	arrows
-#color status	brightdefault	brightyellow	# status line
-#color error		brightred	default	# errors
-#color message	brightred	default	# info messages
-#color signature	brightblue	default	# signature
-## color error		brightred	default	# errors
-## color message	brightred	default	# info messages
-## color signature	brightblue	default	# signature
-#color attachment	brightyellow	default	# MIME attachments
-#color search	brightyellow	color1	# search matches
-#color tilde		brightmagenta	default	# ~ at bottom of msg
-#color markers	color1			default	# + at beginning of wrapped lines
-color hdrdefault	color2	default	# default header lines
-color bold		color1			default	# hiliting bold patterns in body
-color underline	color2		default	# hiliting underlined patterns in body
-color quoted	color2		default	# quoted text
-color quoted1	color5		default
-color quoted2	brightblue	default
-color quoted3	brightred	default
-color header	brightmagenta	default	^From:
-color header	brightmagenta	default	^Reply-To:
-color header	brightblue	default	^To:
-color header	brightblue	default	^Cc:
-color header	brightred	default	^Subject:
-color header	blue		default	^Date:
-color body		brightblue	default	"((ftp|http|https)://|news:)[^	>)\"\t]+"
-color body		brightred	default	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
-color body		color1			default	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-color body		color2		default	"(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
-color body		color1			default	"(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-color body		color2		default	"(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
-color index		brightblue	default	~F	# Flagged
-color index		brightred	default	~N	# New
-color index		brightgreen	default	~O	# Old
-color index		brightmagenta	default	~T	# Tagged
-color index		brightblack		default	~D	#	Deleted
+color   hdrdefault   color4          default  # default header lines
+color   bold         color1          default  # hiliting bold patterns in body
+color   underline    color2          default  # hiliting underlined patterns in body
+color   quoted       color2          default  # quoted text
+color   quoted1      color5          default
+color   quoted2      brightblue      default
+color   quoted3      brightred       default
+color   header       brightmagenta   default  ^From:
+color   header       brightmagenta   default  ^Reply-To:
+color   header       brightblue      default  ^To:
+color   header       brightblue      default  ^Cc:
+color   header       brightred       default  ^Subject:
+color   header       blue            default  ^Date:
+color   body         brightblue      default  "((ftp|http|https)://|news:)[^	>)\"\t]+"
+color   body         brightred       default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
+color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
+color   index        brightblue      default  ~F  # Flagged
+color   index        brightred       default  ~N  # New
+color   index        brightgreen     default  ~O  # Old
+color   index        brightmagenta   default  ~T  # Tagged
+color   index        brightblack     default  ~D   #  Deleted
 
 # GnuPG configuration
 set pgp_decode_command       = "gpg --charset utf-8 --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
