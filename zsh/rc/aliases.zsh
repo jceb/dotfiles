@@ -19,6 +19,8 @@ alias cdb3='_chdir 3.0'
 alias cdb31='_chdir 3.1'
 alias cdb32='_chdir 3.2'
 alias cdb33='_chdir 3.3'
+alias cdb4='_chdir 4.0'
+alias cdb41='_chdir 4.1'
 alias cdd='_chdir'
 
 # jump to the next parent directory containing a debian subdirectory
@@ -127,11 +129,11 @@ _find_objects () {
 	fi
 }
 
-findf () {
+f () {
 	_find_objects  '!' "$@"
 }
 
-findd () {
+fd () {
 	_find_objects '' "$@"
 }
 
