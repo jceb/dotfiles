@@ -142,5 +142,6 @@ if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
 alias ag='ag -i'
+alias t='tree'
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
