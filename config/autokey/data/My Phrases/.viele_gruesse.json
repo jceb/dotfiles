@@ -1,12 +1,12 @@
 {
-    "usageCount": 0, 
+    "usageCount": 238, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "gruesse", 
+    "description": "viele_gruesse", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "GG"
+            "VG"
         ], 
         "immediate": true, 
         "ignoreCase": false, 
