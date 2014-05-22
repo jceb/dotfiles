@@ -40,4 +40,8 @@ zle -N insert-second-last-word
 bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
+qfShow() { BUFFER="qf"; zle accept-line; }
+zle -N qfShow
+bindkey '^\' qfShow
+
 # vi: ft=zsh:tw=0:sw=4:ts=4
