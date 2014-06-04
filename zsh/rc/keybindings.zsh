@@ -17,6 +17,7 @@ bindkey '\eOF' end-of-line
 
 # emacs keybindings by default - but the escape key starts vi-cmd-mode to do the real stuff ;-)
 # btw, this is a really collegue friendly setup
+bindkey -r "^ed"
 bindkey -r "^["
 bindkey -M emacs "^[" vi-cmd-mode
 bindkey -r "^t"
@@ -43,5 +44,14 @@ bindkey -M emacs "^[," insert-second-last-word
 qfShow() { BUFFER="qf"; zle accept-line; }
 zle -N qfShow
 bindkey '^\' qfShow
+
+cdUp() { BUFFER="cd .."; zle accept-line; }
+zle -N cdUp
+bindkey -r "^u"
+bindkey '^u' cdUp
+
+cdBack() { BUFFER="cd -"; zle accept-line; }
+zle -N cdBack
+bindkey '^]' cdBack
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
