@@ -41,9 +41,14 @@ zle -N insert-second-last-word
 bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
-qfShow() { BUFFER="qf"; zle accept-line; }
-zle -N qfShow
-bindkey '^\' qfShow
+qfEdit() { BUFFER="qf"; zle accept-line; }
+zle -N qfEdit
+bindkey '^\' qfEdit
+
+qfChDir() { BUFFER='cd "$(qf -d -o)"'; zle accept-line; }
+zle -N qfChDir
+bindkey -r '^f'
+bindkey '^f' qfChDir
 
 cdUp() { BUFFER="cd .."; zle accept-line; }
 zle -N cdUp
