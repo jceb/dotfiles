@@ -146,4 +146,6 @@ alias ag='ag -i'
 alias t='tree'
 
 alias t='tree'
+
+alias c='cd "$(qf -d -o)"'
 # vi: ft=zsh:tw=0:sw=4:ts=4
