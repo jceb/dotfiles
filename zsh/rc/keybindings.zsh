@@ -41,7 +41,7 @@ zle -N insert-second-last-word
 bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
-qfEdit() { BUFFER="qf"; zle accept-line; }
+qfEdit() { BUFFER="EDITOR=viserver qf"; zle accept-line; }
 zle -N qfEdit
 bindkey '^\' qfEdit
 
