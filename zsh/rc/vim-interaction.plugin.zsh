@@ -98,9 +98,6 @@ _vim_interactive () {
 alias gvim='/usr/bin/gvim --servername "$(vsession -N)"'
 
 # always start vim in server mode and use the directory's name as server name
-vim () {
-	viserver "$@"
-}
 alias v=vim
 alias vv=_vim_new
 compdef vv=vim

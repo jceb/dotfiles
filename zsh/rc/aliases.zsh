@@ -27,21 +27,21 @@ alias cdd='_chdir'
 # jump to the next parent directory containing a debian subdirectory
 _ch2parentdir () {
 	local _dir _d
-	_dir="$1"
 	_d="$PWD"
 	while [ "$_d" != "/" ]; do
-		if [ -d "${_d}/${_dir}" ]; then
-			cd "$_d"
-			return
-		else
-			_d="$(dirname "$_d")"
-		fi
+		for _dir in "${@}"; do
+			if [ -d "${_d}/${_dir}" ]; then
+				echo "$_d"
+				return
+			fi
+		done
+		_d="$(dirname "$_d")"
 	done
-	echo "Directory not found in parent directories: ${_dir}"  >&2
+	echo "Directory not found in parent directories: ${@}"  >&2
 	return
 pwd
 }
-alias cddeb='_ch2parentdir debian'
+alias cd.='cd "$(_ch2parentdir debian .git .hg .svn)"'
 
 # aliases for quickly traversing through the directory structures
 _glob_match () {
@@ -142,10 +142,9 @@ fd () {
 if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
-alias ag='ag -i'
+alias s='sag'
+alias g='ag -i'
 alias t='tree'
-
-alias t='tree'
-
 alias c='cd "$(qf -d -o)"'
+
 # vi: ft=zsh:tw=0:sw=4:ts=4
