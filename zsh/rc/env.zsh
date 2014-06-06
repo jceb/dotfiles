@@ -18,7 +18,8 @@ BROWSER=x-www-browser;			export BROWSER
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 # add -F to automatically quit less if page fits on one screen
-LESS="--ignore-case -RSX";	export LESS
+# add -X to not initialize the terminal
+LESS="--ignore-case -rS";		export LESS
 PAGER=less;						export PAGER
 # PAGER=vimpager;						export PAGER
 
