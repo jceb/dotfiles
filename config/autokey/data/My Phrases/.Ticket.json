@@ -6,7 +6,7 @@
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "TICK"
+            "TT"
         ], 
         "immediate": true, 
         "ignoreCase": false, 
