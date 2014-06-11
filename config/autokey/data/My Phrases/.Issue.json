@@ -6,7 +6,7 @@
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "II"
+            "ISS"
         ], 
         "immediate": true, 
         "ignoreCase": false, 

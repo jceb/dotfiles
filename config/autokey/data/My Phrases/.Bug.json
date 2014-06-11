@@ -1,12 +1,12 @@
 {
-    "usageCount": 0, 
+    "usageCount": 1, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "Bug", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "BB"
+            "BG"
         ], 
         "immediate": true, 
         "ignoreCase": false, 

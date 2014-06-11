@@ -1,12 +1,12 @@
 {
-    "usageCount": 0, 
+    "usageCount": 2, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "Ticket", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "TT"
+            "TC"
         ], 
         "immediate": true, 
         "ignoreCase": false, 
