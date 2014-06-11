@@ -134,7 +134,7 @@ f () {
 	_find_objects  '!' "$@"
 }
 
-fd () {
+d () {
 	_find_objects '' "$@"
 }
 
