@@ -20,8 +20,6 @@ bindkey '\eOF' end-of-line
 bindkey -r "^ed"
 bindkey -r "^["
 bindkey -M emacs "^[" vi-cmd-mode
-bindkey -r "^t"
-bindkey -M emacs "^t" history-incremental-search-forward
 bindkey -r "^p"
 bindkey -r "^n"
 bindkey -M emacs "^p" history-search-backward
@@ -42,31 +40,31 @@ bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
 if type fzf &> /dev/null; then
-	fzChDir() { BUFFER='cd "$(FZF_DEFAULT_COMMAND="find * -type d" fzf)"'; zle accept-line; }
+	fzChDir() { cd "$(find . -type d -mindepth 1|fzf)"; zle reset-prompt; }
 	zle -N fzChDir
 	bindkey -r '^f'
 	bindkey '^f' fzChDir
 
-	fzEdit() { BUFFER='EDITOR=viserver "${EDITOR}" "$(fzf)"'; zle accept-line; }
+	fzEdit() { BUFFER='EDITOR=viserver "${EDITOR}" "$(fzf)"'; zle accept-line }
 	zle -N fzEdit
 	bindkey '^\' fzEdit
 elif type qf &> /dev/null; then
-	qfChDir() { BUFFER='cd "$(qf -d -o)"'; zle accept-line; }
+	qfChDir() { cd "$(qf -d -o)"; zle reset-prompt; }
 	zle -N qfChDir
 	bindkey -r '^f'
 	bindkey '^f' qfChDir
 
-	qfEdit() { BUFFER="EDITOR=viserver qf"; zle accept-line; }
+	qfEdit() { BUFFER='EDITOR=viserver qf'; zle accept-line }
 	zle -N qfEdit
 	bindkey '^\' qfEdit
 fi
 
-cdUp() { BUFFER="cd .."; zle accept-line; }
+cdUp() { cd ..; zle reset-prompt; }
 zle -N cdUp
 bindkey -r "^u"
 bindkey '^u' cdUp
 
-cdBack() { BUFFER="cd -"; zle accept-line; }
+cdBack() { cd - > /dev/null; zle reset-prompt; }
 zle -N cdBack
 bindkey '^]' cdBack
 

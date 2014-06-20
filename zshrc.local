@@ -1,4 +1,5 @@
 # Resource files
+source ~/.fzf.zsh
 for file in ${HOME}/.zsh/rc/*.zsh; do
 	source ${file}
 done
