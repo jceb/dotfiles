@@ -41,14 +41,25 @@ zle -N insert-second-last-word
 bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
-qfEdit() { BUFFER="EDITOR=viserver qf"; zle accept-line; }
-zle -N qfEdit
-bindkey '^\' qfEdit
+if type fzf &> /dev/null; then
+	fzChDir() { BUFFER='cd "$(FZF_DEFAULT_COMMAND="find * -type d" fzf)"'; zle accept-line; }
+	zle -N fzChDir
+	bindkey -r '^f'
+	bindkey '^f' fzChDir
 
-qfChDir() { BUFFER='cd "$(qf -d -o)"'; zle accept-line; }
-zle -N qfChDir
-bindkey -r '^f'
-bindkey '^f' qfChDir
+	fzEdit() { BUFFER='EDITOR=viserver "${EDITOR}" "$(fzf)"'; zle accept-line; }
+	zle -N fzEdit
+	bindkey '^\' fzEdit
+elif type qf &> /dev/null; then
+	qfChDir() { BUFFER='cd "$(qf -d -o)"'; zle accept-line; }
+	zle -N qfChDir
+	bindkey -r '^f'
+	bindkey '^f' qfChDir
+
+	qfEdit() { BUFFER="EDITOR=viserver qf"; zle accept-line; }
+	zle -N qfEdit
+	bindkey '^\' qfEdit
+fi
 
 cdUp() { BUFFER="cd .."; zle accept-line; }
 zle -N cdUp
