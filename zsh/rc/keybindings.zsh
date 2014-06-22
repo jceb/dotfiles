@@ -45,7 +45,7 @@ if type fzf &> /dev/null; then
 	bindkey -r '^f'
 	bindkey '^f' fzChDir
 
-	fzEdit() { BUFFER='EDITOR=viserver "${EDITOR}" "$(fzf)"'; zle accept-line }
+	fzEdit() { BUFFER='fzf -m | EDITOR=viserver xargs -x -r "${EDITOR}"'; zle accept-line }
 	zle -N fzEdit
 	bindkey '^\' fzEdit
 elif type qf &> /dev/null; then
