@@ -36,7 +36,7 @@ GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-fil
 BC_ENV_ARGS=~/.bcrc;			export BC_ENV_ARGS
 
 # set PATH so it includes user's private bin if it exists
-for i in "$HOME/.gem/ruby/1.9.1/bin" "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin"; do
+for i in "$HOME/.gem/ruby/1.9.1/bin" "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.1.0/bin"; do
 	if [ -e "$i" ]; then
 		PATH="$i:${PATH}"
 	fi
