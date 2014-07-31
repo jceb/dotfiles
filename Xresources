@@ -54,7 +54,7 @@ URxvt*keysym.C-minus			: command:\033]710;-windows-dina-medium-r-normal-*-13-*-*
 URxvt.keysym.M-Delete			: perl:matcher:list
 URxvt.keysym.C-Delete			: perl:matcher:last
 URxvt.perl-ext-common			: default,matcher
-URxvt.cutchars					: │┤├┬┴`&()*,;<=>?@[]^{|}#\042\047
+URxvt.cutchars					: │┤├┬┴`&()*,;<=>?@[]^{|}#\042\047:
 URxvt.inputMethod				: ibus
 URxvt.preeditType				: OverTheSpot
 URxvt*url-launcher				: x-www-browser
