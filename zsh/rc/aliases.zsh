@@ -145,6 +145,10 @@ fi
 alias s='sag'
 alias g='ag -i'
 alias t='tree'
-alias c='cd "$(qf -d -o)"'
+if type fzf > /dev/null; then
+	alias c='cd "$(find . -mindepth 1 -type d|fzf)"'
+else
+	alias c='cd "$(qf -d -o)"'
+fi
 
 # vi: ft=zsh:tw=0:sw=4:ts=4

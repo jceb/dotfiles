@@ -12,6 +12,7 @@ fi
 export LC_COLLATE="C"
 
 EDITOR=vim;						export EDITOR
+GIT_EDITOR=/usr/bin/vim			export GIT_EDITOR
 #EMAIL=put me in ~/.zshother;	export EMAIL
 BROWSER=x-www-browser;			export BROWSER
 

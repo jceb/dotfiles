@@ -40,7 +40,7 @@ bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
 if type fzf &> /dev/null; then
-	fzChDir() { cd "$(find . -type d -mindepth 1|fzf)"; zle reset-prompt; }
+	fzChDir() { cd "$(find . -mindepth 1 -type d|fzf)"; zle reset-prompt; }
 	zle -N fzChDir
 	bindkey -r '^f'
 	bindkey '^f' fzChDir
