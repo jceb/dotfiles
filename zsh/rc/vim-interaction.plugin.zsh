@@ -89,20 +89,17 @@ _vim_interactive () {
 	elif [ "$1" = "-" ]; then
 		"${EDITOR}" --servername "$(vsession)" "$@"
 	elif [ $# -ge 1 ]; then
-		"$(_choose_vim)" --servername "$(vsession -i)" "$@"
+		"$(_choose_vim)" --servername "$(vsession -i)" --remote-silent "$@"
 	else
 		"$(_choose_vim)" --servername "$(vsession -i)"
 	fi
 }
 
-alias gvim='/usr/bin/gvim --servername "$(vsession -N)"'
-
 # always start vim in server mode and use the directory's name as server name
-alias v=vim
+alias v=_vim_interactive
+compdef v=vim
 alias vv=_vim_new
 compdef vv=vim
-alias vvv=_vim_interactive
-compdef vvv=vim
 alias vvsp="callvim -b':vsp'"
 alias vhsp="callvim -b':sp'"
 alias vk="callvim -b':wincmd k'"
