@@ -1,3 +1,4 @@
+alias open='xdg-open'
 alias ls='ls -b -CF --file-type --color=auto'
 alias ltr='ls -ltr'
 alias l='ls -l --color=auto'
