@@ -1,0 +1,63 @@
+[user]
+	name = Jan Christoph Ebersbach
+	email = jceb@e-jc.de
+[gui]
+	fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
+	editor = gvim
+[merge]
+	tool = gvimdiff
+[color]
+	diff = auto
+	ui = auto
+[alias]
+	# list all aliases
+	aliases = "!git config -l | grep alias | cut -c 7-"
+
+	# branches
+	b = branch
+	co = checkout
+	cob = checkout -b
+
+	# commits
+	c = commit
+	ca = commit --amend -a
+	cm = commit -m
+	unstage = reset HEAD --
+	st = status -uno
+	sta = status
+	diffstat = diff --stat -r
+
+	# diff
+	d = diff --color-words
+	dc = diff --color-words --cached
+	diffc = diff --cached
+
+	# log
+
+	# history of a file
+	filelog = log -u
+	# show history
+	ls = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
+	ll = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
+	# show latest tag
+	lasttag = describe --tags --abbrev=0
+	# show latest commit
+	tip = log HEAD -1 --stat --
+	# show who contributed to the project
+	who = shortlog -n -s --no-merges
+
+	# some plumbing aliases
+	type = cat-file -t
+	dump = cat-file -p
+
+	# some git svn commands
+	up = svn rebase
+	ci = svn dcommit
+[push]
+	default = upstream
+[core]
+	pager = less -FSRX
+	editor = /usr/bin/vim
+
+# vi: ft=txt:tw=72:sw=4:ts=4:noet
