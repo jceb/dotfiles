@@ -45,10 +45,10 @@ if type fzf &> /dev/null; then
 	bindkey -r '^f'
 	bindkey '^f' fzChDir
 
-	fzChDir() { cd "$(find . -mindepth 1 -maxdepth 1 -type d|fzf)"; zle reset-prompt; }
-	zle -N fzChDir
+	fzChDirOne() { cd "$(find . -mindepth 1 -maxdepth 1 -type d|fzf)"; zle reset-prompt; }
+	zle -N fzChDirOne
 	bindkey -r '^n'
-	bindkey '^n' fzChDir
+	bindkey '^n' fzChDirOne
 
 	fzEdit() { BUFFER='FILES=($(fzf -m)) && vserver "${FILES[@]}"'; zle accept-line }
 	zle -N fzEdit
