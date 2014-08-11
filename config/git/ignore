@@ -3,3 +3,5 @@ Session.vim
 build/
 temp-*
 *~
+*.debhelper
+*.ex

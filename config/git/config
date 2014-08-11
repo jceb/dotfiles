@@ -4,7 +4,7 @@
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
-	editor = gvim
+	editor = /usr/bin/gvim
 [merge]
 	tool = gvimdiff
 [color]
@@ -54,6 +54,7 @@
 	# some git svn commands
 	up = svn rebase
 	ci = svn dcommit
+	unisvn = !gcu
 [push]
 	default = upstream
 [core]
