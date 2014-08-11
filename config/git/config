@@ -18,6 +18,7 @@
 	b = branch
 	co = checkout
 	cob = checkout -b
+	pr = pull --rebase
 
 	# commits
 	c = commit
