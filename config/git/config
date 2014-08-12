@@ -56,6 +56,11 @@
 	up = svn rebase
 	ci = svn dcommit
 	unisvn = !gcu
+
+	# submodules
+	subm = submodule foreach git checkout master
+	subpr = submodule foreach git pull --rebase
+	subup = submodule update --init --recursive
 [push]
 	default = upstream
 [core]
