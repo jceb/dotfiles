@@ -144,7 +144,7 @@ if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
 alias s='sag'
-alias g='ag -i'
+alias g='/usr/bin/ag -i'
 alias t='tree'
 if type fzf > /dev/null; then
 	alias c='cd "$(find . -mindepth 1 -type d|fzf)"'
