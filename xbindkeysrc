@@ -105,5 +105,10 @@
     m:0x0 + c:121
     XF86AudioMute 
 
+#Screenshot
+"/usr/bin/ksnapshot"
+    m:0x0 + c:107
+    Print 
+
 #
 # End of xbindkeys configuration
