@@ -22,7 +22,8 @@
 
 	# commits
 	c = commit
-	ca = commit --amend -a
+	ca = commit -a
+	cam = commit --amend -a
 	cm = commit -m
 	unstage = reset HEAD --
 	st = status -uno
