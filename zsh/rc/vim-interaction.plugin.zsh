@@ -96,9 +96,9 @@ _vim_interactive () {
 }
 
 # always start vim in server mode and use the directory's name as server name
-alias v=_vim_interactive
+alias v=/usr/bin/vim
 compdef v=vim
-alias vv=_vim_new
+alias vv=_vim_interactive
 compdef vv=vim
 alias vvsp="callvim -b':vsp'"
 alias vhsp="callvim -b':sp'"
