@@ -40,12 +40,12 @@ bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 
 if type fzf &> /dev/null; then
-	fzChDir() { cd "$(find . -mindepth 1 -type d|fzf)"; zle reset-prompt; }
+	fzChDir() { cd "$(find . -mindepth 1 -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
 	zle -N fzChDir
 	bindkey -r '^f'
 	bindkey '^f' fzChDir
 
-	fzChDirOne() { cd "$(find . -mindepth 1 -maxdepth 1 -type d|fzf)"; zle reset-prompt; }
+	fzChDirOne() { cd "$(find . -mindepth 1 -maxdepth 1 -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
 	zle -N fzChDirOne
 	bindkey -r '^n'
 	bindkey '^n' fzChDirOne
