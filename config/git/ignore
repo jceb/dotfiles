@@ -5,3 +5,8 @@ temp-*
 *~
 *.debhelper
 *.ex
+*.pyc
+*.bak
+*.egg-info
+*.egg-info/*
+.~lock*
