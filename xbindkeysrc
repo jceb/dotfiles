@@ -51,7 +51,7 @@
     Control + Escape 
 
 #graphical editor
-"$HOME/bin/gvim"
+"/usr/bin/gvim"
     m:0x40 + c:55
     Mod4 + v 
 
