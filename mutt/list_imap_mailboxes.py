@@ -13,8 +13,8 @@ import sys
 from optparse import OptionParser
 from ConfigParser import ConfigParser
 
-def extractMailboxes(l):
-	return [ m.split(' "/" ')[-1].strip('"') for m in l ]
+def extractMailboxes(l, namespace):
+	return [ m.split(namespace)[-1].strip().strip('"') for m in l ]
 
 def createOptionParser():
 	parser = OptionParser()
@@ -22,9 +22,9 @@ def createOptionParser():
 	parser.add_option("-F", "--passwdfile", dest="passwdfile", help="Password file")
 	parser.add_option("-U", "--username", dest="username", help="Username")
 	parser.add_option("-P", "--password", dest="password", help="Password")
-	parser.add_option("-p", "--port", type='int', dest="port", help="Port(default: %default)")
-	parser.add_option("-l", dest="l", help="Leading string(default: %default)")
-	parser.add_option("--ssl", action="store_true", dest="ssl", help="Enable SSL(default: %default)")
+	parser.add_option("-p", "--port", type='int', dest="port", help="Port (default: %default)")
+	parser.add_option("-l", dest="l", help="Leading string (default: %default)")
+	parser.add_option("--ssl", action="store_true", dest="ssl", help="Enable SSL (default: %default)")
 
 	parser.set_defaults(host='localhost', ssl=False, username='', password='', l='+')
 
@@ -71,6 +71,7 @@ if __name__ == '__main__':
 	if con.check()[0] != 'OK':
 		print >> sys.stderr, 'Check failed'
 		sys.exit(1)
+	namespace = con.namespace()[1][0].split(' ')[1].strip(')')
 	boxes = con.list()
 	if boxes[0] != 'OK':
 		print >> sys.stderr, 'Failed to retrieve mailboxes'
@@ -79,6 +80,6 @@ if __name__ == '__main__':
 	con.logout()
 
 	# print mailboxes
-	mailboxes = extractMailboxes(boxes[1])
+	mailboxes = extractMailboxes(boxes[1], namespace)
 	mailboxes.sort()
 	print '"%s"' % (options.l + ('" "%s' % options.l).join(mailboxes))
