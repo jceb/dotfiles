@@ -193,7 +193,7 @@ set pager_index_lines  = 5
 
 set attribution   = "On %d, %n wrote:\n"
 set date_format   = "%a %d-%m-%Y %H:%M %z"
-set index_format  = "%Z   %-35.35F   %s%*    (%?l?%4l&%4c?) %d"
+set index_format  = "%Z  %2M  %-35.35F   %s%*    (%?l?%4l&%4c?) %d"
 set status_format = "-%r- Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?] (%s/%S) %> (%P)"
 set pager_format  = "-%Z- %C/%m: %D %-28.28n %s"
 set folder_format = "%2C %5.0N %f"
