@@ -110,7 +110,7 @@ cp "$file" "$tmpfile"
 (
     set -e
     # "$viewer" $options "$tmpfile"
-    xdg-open "$tmpfile"
-    rm -f "$tmpfile"
-    rmdir "$tmpdir"
+    xdg-open "$tmpfile" > /dev/null 2>&1
+    # rm -f "$tmpfile"
+    # rmdir "$tmpdir"
 ) &

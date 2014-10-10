@@ -27,12 +27,12 @@ yeahconsole*xrandrSupport	: 1
 
 ! enable letter space in case you want to you use xft fonts
 !URxvt.letterSpace		: -2
-!URxvt*font				: xft:Source Code Pro:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
-!URxvt*boldFont			: xft:Source Code Pro:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
-!URxvt*font				: xft:Ubuntu Mono:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
-!URxvt*boldFont			: xft:Ubuntu Mono:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
-URxvt*font				: -windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:regular:pixelsize=16
-URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:AR PL UKai CN:bold:pixelsize=16
+! URxvt*font				: xft:Sauce Code Powerline:regular:pixelsize=11:antialias=true:hinting=true,xft:AR PL UKai CN:regular:pixelsize=16
+! URxvt*boldFont			: xft:Sauce Code Powerline:bold:pixelsize=11:antialias=true:hinting=true,xft:AR PL UKai CN:bold:pixelsize=16
+! URxvt*font				: xft:Ubuntu Mono:regular:pixelsize=13,xft:AR PL UKai CN:regular:pixelsize=16
+! URxvt*boldFont			: xft:Ubuntu Mono:bold:pixelsize=13,xft:AR PL UKai CN:bold:pixelsize=16
+URxvt*font				: -windows-dina-medium-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:Sauce Code Powerline:regular:pixelsize=11:antialias=true:hinting=true,xft:AR PL UKai CN:regular:pixelsize=16
+URxvt*boldFont			: -windows-dina-bold-r-normal-*-13-*-*-*-c-*-iso8859-1,-misc-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1,xft:Sauce Code Powerline:bold:pixelsize=11:antialias=true:hinting=true,xft:AR PL UKai CN:bold:pixelsize=16
 URxvt*scrollBar			: false
 ! do not scroll with output
 URxvt*scrollTtyOutput	: false
