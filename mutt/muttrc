@@ -110,11 +110,12 @@ color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]
 color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
 color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
 color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
+color   index        blue            default  ~P  # Mails from me
 color   index        brightblue      default  ~F  # Flagged
 color   index        brightred       default  ~N  # New
 color   index        brightgreen     default  ~O  # Old
 color   index        brightmagenta   default  ~T  # Tagged
-color   index        brightblack     default  ~D   #  Deleted
+color   index        brightblack     default  ~D  # Deleted
 
 # GnuPG configuration
 set pgp_decode_command       = "gpg --charset utf-8 --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
