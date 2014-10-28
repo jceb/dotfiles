@@ -47,9 +47,6 @@ for i in "$HOME/.gem/ruby/1.9.1/bin" "$HOME/Documents/toolshed/" "$HOME/.cabal/b
 done
 export PATH
 
-# for tmux: export 256color
-[ -n "${TERM}" ] && [ -n "$TMUX" ] && export TERM=screen-256color
-
 # PYTHONPATH=~/lib/python;		export PYTHONPATH
 PYTHONSTARTUP=~/.pystartup;		export PYTHONSTARTUP
 AWT_TOOLKIT=MToolkit;			export AWT_TOOLKIT

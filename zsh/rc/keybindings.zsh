@@ -38,6 +38,8 @@ autoload -Uz insert-second-last-word
 zle -N insert-second-last-word
 bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
+bindkey -M emacs "¬" insert-second-last-word
+bindkey -M emacs "®" insert-last-word
 
 if type fzf &> /dev/null; then
 	fzChDir() { cd "$(find . -mindepth 1 -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
