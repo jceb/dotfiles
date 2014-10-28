@@ -48,8 +48,7 @@ done
 export PATH
 
 # for tmux: export 256color
-# [ -n "${TERM}" ] && [ -n "$TMUX" ] && export TERM=screen-256color
-[ -n "${TERM}" ] && [ -n "$TMUX" ] && export TERM=st-meta-256color
+[ -n "${TERM}" ] && [ -n "$TMUX" ] && export TERM=screen-256color
 
 # PYTHONPATH=~/lib/python;		export PYTHONPATH
 PYTHONSTARTUP=~/.pystartup;		export PYTHONSTARTUP
