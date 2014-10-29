@@ -20,12 +20,6 @@ bindkey '\eOF' end-of-line
 bindkey -r "^ed"
 bindkey -r "^["
 bindkey -M emacs "^[" vi-cmd-mode
-bindkey -r "^p"
-bindkey -r "^n"
-bindkey -M emacs "^p" history-search-backward
-bindkey -M emacs "^n" history-search-forward
-bindkey -M vicmd "^p" history-search-backward
-bindkey -M vicmd "^n" history-search-forward
 bindkey -r "^y"
 bindkey -M emacs "^y" push-input
 bindkey -M vicmd "^h" run-help
@@ -40,39 +34,5 @@ bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
 bindkey -M emacs "¬" insert-second-last-word
 bindkey -M emacs "®" insert-last-word
-
-if type fzf &> /dev/null; then
-	fzChDir() { cd "$(find . -mindepth 1 -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
-	zle -N fzChDir
-	bindkey -r '^f'
-	bindkey '^f' fzChDir
-
-	fzChDirOne() { cd "$(find . -mindepth 1 -maxdepth 1 -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
-	zle -N fzChDirOne
-	bindkey -r '^n'
-	bindkey '^n' fzChDirOne
-
-	fzEdit() { BUFFER='FILES=($(fzf -m)) && vserver "${FILES[@]}"'; zle accept-line }
-	zle -N fzEdit
-	bindkey '^\' fzEdit
-elif type qf &> /dev/null; then
-	qfChDir() { cd "$(qf -d -o)"; zle reset-prompt; }
-	zle -N qfChDir
-	bindkey -r '^f'
-	bindkey '^f' qfChDir
-
-	qfEdit() { BUFFER='EDITOR=vserver qf'; zle accept-line }
-	zle -N qfEdit
-	bindkey '^\' qfEdit
-fi
-
-cdUp() { cd ..; zle reset-prompt; }
-zle -N cdUp
-bindkey -r "^u"
-bindkey '^u' cdUp
-
-cdBack() { cd - > /dev/null; zle reset-prompt; }
-zle -N cdBack
-bindkey '^]' cdBack
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
