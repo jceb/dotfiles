@@ -33,7 +33,9 @@
 	# diff
 	d = diff --color-words
 	dc = diff --color-words --cached
+	df = diff-index --color-words -p HEAD
 	diffc = diff --cached
+	difff = diff-index -p HEAD
 
 	# log
 
