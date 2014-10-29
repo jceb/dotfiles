@@ -1,0 +1,7 @@
+show_timezones = 1
+show_week_numbers = 1
+external_viewer = firefox https://mail.41ppl.com/tine20/
+mainwindow_skip_taskbar = 0
+mainwindow_keep_above = 1
+mainwindow_position = center
+close_on_unfocus = 1
