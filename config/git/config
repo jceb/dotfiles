@@ -19,23 +19,27 @@
 	co = checkout
 	cob = checkout -b
 	pr = pull --rebase
+	ff = merge --ff-only --no-stat --quiet
 
 	# commits
 	c = commit
 	ca = commit -a
 	cam = commit --amend -a
 	cm = commit -m
+	# take commit message from debian/changelog
+	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
 	unstage = reset HEAD --
 	st = status -uno
 	sta = status
-	diffstat = diff --stat -r
 
 	# diff
 	d = diff --color-words
 	dc = diff --color-words --cached
 	df = diff-index --color-words -p HEAD
 	diffc = diff --cached
+	# diff regardless of staged or unstaged
 	difff = diff-index -p HEAD
+	diffstat = diff --stat -r
 
 	# log
 
@@ -48,6 +52,7 @@
 	lasttag = describe --tags --abbrev=0
 	# show latest commit
 	tip = log HEAD -1 --stat --
+	head = log HEAD -1 --stat --
 	# show who contributed to the project
 	who = shortlog -n -s --no-merges
 
