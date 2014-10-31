@@ -1,0 +1,31 @@
+Index: github/zsh/wd/wd.sh
+===================================================================
+--- github.orig/zsh/wd/wd.sh
++++ github/zsh/wd/wd.sh
+@@ -161,6 +161,8 @@ wd_add()
+     else
+         wd_exit_warn "Warp point '${point}' already exists. Use 'add!' to overwrite."
+     fi
++
++    sync-warp
+ }
+ 
+ wd_remove()
+@@ -179,6 +181,8 @@ wd_remove()
+     else
+         wd_exit_fail "Warp point was not found"
+     fi
++
++    sync-warp
+ }
+ 
+ wd_list_all()
+@@ -270,6 +274,8 @@ wd_clean() {
+             wd_print_msg $WD_BLUE "Cleanup aborted"
+         fi
+     fi
++
++    sync-warp
+ }
+ 
+ local WD_CONFIG=$HOME/.warprc
