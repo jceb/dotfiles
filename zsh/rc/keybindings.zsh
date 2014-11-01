@@ -22,8 +22,9 @@ bindkey -r "^["
 bindkey -M emacs "^[" vi-cmd-mode
 bindkey -r "^y"
 bindkey -M emacs "^y" push-input
-bindkey -M vicmd "^h" run-help
-bindkey -M emacs "^h" run-help
+bindkey -M emacs "^h" backward-kill-word
+bindkey -M emacs "^[^h" slash-backward-kill-word
+bindkey -M emacs "" slash-backward-kill-word
 bindkey -M vicmd "?" vi-history-search-backward
 bindkey -M vicmd "/" vi-history-search-forward
 bindkey -M vicmd 'v' edit-command-line

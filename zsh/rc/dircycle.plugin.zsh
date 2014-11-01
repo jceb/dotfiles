@@ -14,6 +14,7 @@ bindkey 'è' insert-cycledright
 cdUp() { cd ..; zle reset-prompt; }
 zle -N cdUp
 bindkey -r "^u"
+bindkey '^u' cdUp
 # M-u
 bindkey 'õ' cdUp
 
@@ -27,6 +28,8 @@ if type fzf &> /dev/null; then
 	zle -N fzChDirOne
 	bindkey -r '^n'
 	bindkey '^n' fzChDirOne
+	# M-n
+	bindkey 'î' fzChDirOne
 
 	fzEdit() { BUFFER='FILES=($(fzf -m)) && vserver "${FILES[@]}"'; zle accept-line }
 	zle -N fzEdit
