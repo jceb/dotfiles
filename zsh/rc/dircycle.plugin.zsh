@@ -24,7 +24,7 @@ if type fzf &> /dev/null; then
 	bindkey -r '^f'
 	bindkey '^f' fzChDir
 
-	fzChDirOne() { cd "$(find . -mindepth 1 -maxdepth 1 -type d -o -type l ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
+	fzChDirOne() { cd "$(find . -mindepth 1 -maxdepth 2 -type d -o -type l ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
 	zle -N fzChDirOne
 	bindkey -r '^n'
 	bindkey '^n' fzChDirOne
