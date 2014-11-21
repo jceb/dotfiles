@@ -54,7 +54,7 @@ def highlight(words, word_eol, userdata):
     """Highlight words in extra words
     """
     for word in words[1].split():
-        if word.strip() in extrawords:
+        if word.strip().lower() in extrawords:
             hexchat.command('TRAY -b "%s" "%s"' % (words[0], words[1]))
             return
 
