@@ -30,9 +30,6 @@ GPG_TTY=$(tty);					export GPG_TTY
 QUILT_PATCHES=debian/patches;	export QUILT_PATCHES
 QUILT_DIFF_ARGS="--color=auto";	export QUILT_DIFF_ARGS
 
-# grep settings
-GREP_OPTIONS='--color=auto --exclude=\*\.svn-base --exclude=\*\.tmp --binary-files=without-match'; export GREP_OPTIONS
-
 # bc settings
 BC_ENV_ARGS=~/.bcrc;			export BC_ENV_ARGS
 

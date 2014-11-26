@@ -1,3 +1,4 @@
+alias grep='grep --color=auto --exclude=\*\.svn-base --exclude=\*\~ --exclude=\*\.tmp --binary-files=without-match'
 alias o='xdg-open'
 alias open='xdg-open'
 alias ls='ls -b -CF --file-type --color=auto'
