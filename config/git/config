@@ -18,7 +18,7 @@
 	b = branch
 	co = checkout
 	cob = checkout -b
-	pr = pull --rebase
+	pre = pull --rebase
 	ff = merge --ff-only --no-stat --quiet
 
 	# commits
@@ -67,7 +67,7 @@
 
 	# submodules
 	subm = submodule foreach git checkout master
-	subpr = submodule foreach git pull --rebase
+	subpre = submodule foreach git pull --rebase
 	subup = submodule update --init --recursive
 [push]
 	default = upstream
