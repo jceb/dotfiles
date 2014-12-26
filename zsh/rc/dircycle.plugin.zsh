@@ -44,3 +44,18 @@ elif type qf &> /dev/null; then
 	zle -N qfEdit
 	bindkey '^\' qfEdit
 fi
+
+warpDir() {
+	FILE=
+	if test -e ~/.warprc; then
+		FILE=~/.warprc
+	elif test -e ~/.cdargs; then
+		FILE=~/.cdargs
+	fi
+	if [ -n "${FILE}" ]; then
+		cd "$(sed -e "s/:/\t/" < ${FILE} | fzf | sed -ne "s/^[^\t]*\t//p")"
+	fi
+	zle reset-prompt
+}
+zle -N warpDir
+bindkey '^b' warpDir
