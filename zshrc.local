@@ -1,4 +1,5 @@
 # Resource files
+source ~/.fzf.zsh
 for file in ${HOME}/.zsh/rc/*.zsh; do
 	source ${file}
 done
@@ -8,7 +9,6 @@ wd() {
   source ~/.zsh/wd/wd.sh
 }
 
-source ~/.fzf.zsh
 # Key bindings
 # ------------
 # CTRL-T - Paste the selected file path(s) into the command line
