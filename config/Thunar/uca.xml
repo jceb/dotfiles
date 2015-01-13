@@ -3,10 +3,15 @@
 <action>
 	<icon>utilities-terminal</icon>
 	<name>Open Terminal Here</name>
-	<unique-id>1414773005575902-9</unique-id>
+	<unique-id>1420749904620344-1</unique-id>
 	<command>x-terminal-emulator</command>
 	<description></description>
 	<patterns>*</patterns>
 	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 </actions>
