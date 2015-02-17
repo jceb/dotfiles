@@ -1,10 +1,11 @@
 ! vi: commentstring=!%s
-Xcursor.theme		: DMZ-Black
+Xcursor.theme		: Adwaita
 Xcursor.size		: 16
 Xft.antialias		: 1
 Xft.autohint		: 0
 ! Depend on auto-detection for the correct DPI value
-! Xft.dpi				: 96.0
+! xdpyinfo | grep dots
+! Xft.dpi				: 97.0
 Xft.hinting			: 1
 Xft.hintstyle		: hintfull
 Xft.lcdfilter		: lcddefault
