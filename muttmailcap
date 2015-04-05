@@ -1,9 +1,9 @@
-application/*; ~/.mutt/mutt_bgrun.sh all '%s'; test=test -n "$DISPLAY"
+text/html; ~/.mutt/mutt_bgrun.sh x-www-browser '%s'; nametemplate=%s.html; test=test -n "$DISPLAY"; description=Portable
 
 # PDF-Files
-application/octetstream; ~/.mutt/mutt_bgrun.sh /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
-application/octet-stream; ~/.mutt/mutt_bgrun.sh /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
-application/pdf; ~/.mutt/mutt_bgrun.sh /usr/bin/evince '%s'; test=test "$DISPLAY" != ""; description=Portable
+application/octetstream; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+application/octet-stream; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+application/pdf; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test "$DISPLAY" != ""; description=Portable
 
 # PS-Files
 application/postscript; ~/.mutt/mutt_bgrun.sh /usr/bin/gv '%s'; test=test -n "$DISPLAY"; description=postscript

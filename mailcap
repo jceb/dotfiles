@@ -1,14 +1,14 @@
 # PDF-Files
-application/octetstream; /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
-application/octet-stream; /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
-application/pdf; /usr/bin/evince '%s'; test=test "$DISPLAY" != ""; description=Portable
+# application/octetstream; /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+# application/octet-stream; /usr/bin/evince '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+# application/pdf; /usr/bin/evince '%s'; test=test "$DISPLAY" != ""; description=Portable
 application/pdf; /usr/bin/pdftotext '%s' - | less; description=Portable; needsterminal
 
 # PS-Files
-application/postscript; /usr/bin/gv '%s'; test=test -n "$DISPLAY"; description=postscript
+# application/postscript; /usr/bin/gv '%s'; test=test -n "$DISPLAY"; description=postscript
 
 # DVI-Files
-application/x-dvi; /usr/bin/xdvi '%s'; nametemplate=%s.dvi; test=test "$DISPLAY" != ""; description=Portable
+# application/x-dvi; /usr/bin/xdvi '%s'; nametemplate=%s.dvi; test=test "$DISPLAY" != ""; description=Portable
 
 # Text-Files
 text/plain; clementine '%s'; nametemplate='%s.m3u'; edit=clementine '%s'; compose=clementine '%s'
@@ -34,7 +34,7 @@ text/x-vcard; /usr/bin/kaddressbook '%s'; description=VCard; test=test -n "$DISP
 #application/ogg; xmms -e '%s'; nametemplate=%s.ogg; test=test "$DISPLAY" != ""
 
 # Images
-image/*; geeqie '%s'; test=test -n "$DISPLAY"
+image/*; ristretto '%s'; test=test -n "$DISPLAY"
 
 # bittorrent
 #application/x-bittorrent; /home/jceb/downloads/azureus/azureus '%s'; test=test -z "$DISPLAY"; needsterminal
