@@ -5,10 +5,11 @@
 This small program lists all IMAP folders on a server and prepends them with the plus sign to used by mutt
 
 Author: Jan Christoph Ebersbach <jceb@e-jc.de>
-Last Modified: Sat 27. Jun 2009 08:41:06 +0200 CEST
+Last Modified: Tue 12. May 2015 19:56:26 +0200 CEST
 """
 
 import imaplib
+import ssl
 import sys
 from optparse import OptionParser
 from configparser import ConfigParser
@@ -27,7 +28,7 @@ def createOptionParser():
 	parser.add_option("-p", "--port", type='int', dest="port", help="Port (default: %default)")
 	parser.add_option("-l", dest="l", help="Leading string (default: %default)")
 	parser.add_option("--ssl", action="store_true", dest="ssl", help="Enable SSL (default: %default)")
-	parser.add_option("--starttls", action="store_true", dest="tls", help="Enable STARTTLS (default: %default)")
+	parser.add_option("--starttls", action="store_true", dest="starttls", help="Enable STARTTLS (default: %default)")
 
 	parser.set_defaults(host='localhost', ssl=False, username='', password='', l='+')
 
@@ -65,6 +66,11 @@ if __name__ == '__main__':
 
 	# open connection
 	con = imap(args[0], options.port)
+
+	if options.starttls:
+		ssl_context = ssl.create_default_context()
+		con.starttls(ssl_context=ssl_context)
+
 	if con.login(options.username, options.password)[0] != 'OK':
 		print('Login failed', file=sys.stderr)
 		sys.exit(1)
