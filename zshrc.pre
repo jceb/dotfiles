@@ -8,6 +8,9 @@ zle -N zle-line-init
 zle -N zle-line-finish
 tput smm
 
+# disable Ctrl-s
+stty -ixon
+
 if [[ -d ${HOME}/.zsh/completion ]]; then
 	fpath=( "${HOME}/.zsh/completion" ${fpath} )
 fi
