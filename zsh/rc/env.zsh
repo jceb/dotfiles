@@ -25,7 +25,9 @@ export PAGER=less
 
 # export TTY properly to support gnupg
 export GPG_TTY=$(tty)
-export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent"
+if [ -z "${GPG_AGENT_INFO}" ]; then
+	export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent"
+fi
 
 # quilt settings, always look for patches in the debian/patches directory
 export QUILT_PATCHES=debian/patches
