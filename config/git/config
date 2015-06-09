@@ -33,13 +33,16 @@
 	sta = status
 
 	# diff
-	d = diff --color-words
-	dc = diff --color-words --cached
-	df = diff-index --color-words -p HEAD
-	diffc = diff --cached
+	d = -p diff --color-words
+	dc = -p diff --color-words --cached
+	df = -p diff-index --color-words -p HEAD
+	diffr = -p diff --relative
+	diffc = -p diff --cached
+	diffcr = -p diff --cached --relative
 	# diff regardless of staged or unstaged
-	difff = diff-index -p HEAD
-	diffstat = diff --stat -r
+	difff = -p diff-index -p HEAD
+	difffr = -p diff-index -p HEAD --relative
+	diffstat = -p diff --stat -r
 
 	# log
 
