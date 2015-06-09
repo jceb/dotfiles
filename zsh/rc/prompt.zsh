@@ -19,26 +19,27 @@ else
     NO_COLOUR=$'%{\e[0m%}'
 fi
 
-if [[ "$TERM" == dumb ]] ; then
-    PROMPT="${EXITCODE}${debian_chroot:+($debian_chroot)}%n@%m %40<...<%B%~%b%<< "
-else
-    # only if $GRMLPROMPT is set (e.g. via 'GRMLPROMPT=1 zsh') use the extended
-    # prompt set variable identifying the chroot you work in (used in the
-    # prompt below)
-    if [[ $GRMLPROMPT -gt 0 ]] ; then
-        PROMPT="${RED}${EXITCODE}${CYAN}[%j running job(s)] ${GREEN}{history#%!} ${RED}%(3L.+.) ${BLUE}%* %D
-${BLUE}%n${NO_COLOUR}@%m %40<...<%B%~%b%<< "
-    else
-        # This assembles the primary prompt string
-        if (( EUID != 0 )); then
-            PROMPT="${RED}${EXITCODE}${NO_COLOUR}%* %80<...<%B%~%b%<< \${vcs_info_msg_0_}
-${WHITE}${debian_chroot:+($debian_chroot)}${BLUE}%B%n%b${NO_COLOUR}@%m%# "
-        else
-            PROMPT="${BLUE}${EXITCODE}${NO_COLOUR}%* %80<...<%B%~%b%<< \${vcs_info_msg_0_}
-${WHITE}${debian_chroot:+($debian_chroot)}${RED}%B%n%b${NO_COLOUR}@%m%# "
-        fi
-    fi
-fi
+# FIXME: dive into the GRML prompt configuration
+# if [[ "$TERM" == dumb ]] ; then
+#     PROMPT="${EXITCODE}${debian_chroot:+($debian_chroot)}%n@%m %40<...<%B%~%b%<< "
+# else
+#     # only if $GRMLPROMPT is set (e.g. via 'GRMLPROMPT=1 zsh') use the extended
+#     # prompt set variable identifying the chroot you work in (used in the
+#     # prompt below)
+#     if [[ $GRMLPROMPT -gt 0 ]] ; then
+#         PROMPT="${RED}${EXITCODE}${CYAN}[%j running job(s)] ${GREEN}{history#%!} ${RED}%(3L.+.) ${BLUE}%* %D
+# ${BLUE}%n${NO_COLOUR}@%m %40<...<%B%~%b%<< "
+#     else
+#         # This assembles the primary prompt string
+#         if (( EUID != 0 )); then
+#             PROMPT="${RED}${EXITCODE}${NO_COLOUR}%* %80<...<%B%~%b%<< \${vcs_info_msg_0_}
+# ${WHITE}${debian_chroot:+($debian_chroot)}${BLUE}%B%n%b${NO_COLOUR}@%m%# "
+#         else
+#             PROMPT="${BLUE}${EXITCODE}${NO_COLOUR}%* %80<...<%B%~%b%<< \${vcs_info_msg_0_}
+# ${WHITE}${debian_chroot:+($debian_chroot)}${RED}%B%n%b${NO_COLOUR}@%m%# "
+#         fi
+#     fi
+# fi
 
 zstyle ':vcs_info:*' use-quilt true
 zstyle ':vcs_info:*' quilt-standalone "always"
@@ -99,5 +100,46 @@ grml_vcs_info_set_formats () {
 }
 
 grml_vcs_info_toggle_colour
+
+# Source: http://eseth.org/2010/git-in-zsh.html
+# Show remote ref name and number of commits ahead-of or behind
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*:*' get-revision true
+zstyle ':vcs_info:git*:*' check-for-changes true
+
+function +vi-git-st() {
+    local ahead behind remote
+    local -a gitstatus
+
+    # Are we on a remote-tracking branch?
+    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+
+    if [[ -n ${remote} ]] ; then
+        # for git prior to 1.7
+        # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
+        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+        (( $ahead )) && gitstatus+=( "${GREEN}+${ahead}${NO_COLOUR}" )
+
+        # for git prior to 1.7
+        # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
+        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        (( $behind )) && gitstatus+=( "${RED}-${behind}${NO_COLOUR}" )
+
+        hook_com[branch]="${hook_com[branch]}→${remote} ${(j:/:)gitstatus}"
+    fi
+}
+
+# Show count of stashed changes
+function +vi-git-stash() {
+    local -a stashes
+
+    if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
+        stashes=$(git stash list 2>/dev/null | wc -l)
+        hook_com[misc]+=" (${stashes} stashed)"
+    fi
+}
+
+zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
 
 # vi: ft=zsh:tw=0:sw=4:ts=4:et

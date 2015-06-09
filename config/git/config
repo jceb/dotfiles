@@ -28,9 +28,11 @@
 	cm = commit -m
 	# take commit message from debian/changelog
 	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
-	unstage = reset HEAD --
 	st = status -uno
 	sta = status
+	undo = reset --soft HEAD~
+	undohard = reset --hard HEAD~
+	unstage = reset HEAD --
 
 	# diff
 	d = -p diff --color-words
