@@ -99,6 +99,9 @@ grml_vcs_info_set_formats () {
     return 0
 }
 
+zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percent
+zstyle ':prompt:grml:right:setup' items ''
+
 grml_vcs_info_toggle_colour
 
 # Source: http://eseth.org/2010/git-in-zsh.html

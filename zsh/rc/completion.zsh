@@ -1,25 +1,3 @@
-# currently not in use
-
-## case-insensitive (uppercase from lowercase) completion
-#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-#
-## process completion
-#zstyle ':completion:*:processes' command 'ps -au$USER'
-#zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
-#
-## zstyle
-#zstyle ':completion:*' completer _expand _complete _ignored _approximate
-#
-## add colors to completion
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#
-#zstyle ':completion:*' menu select=2
-##zstyle ':completion:*' menu select=long-list
-## list dirs first
-#zstyle ':completion:*' list-dirs-first 1
-### sort files by last modification
-##zstyle ':completion:*' file-sort modification follow
-#zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
-#zstyle ':completion:*:descriptions' format '%U%F{yellow}%d%f%u'
+zstyle ':completion:*' squeeze-slashes true
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
