@@ -1,6 +1,8 @@
 # global aliases that can be appended to line
 alias -g L="|less"
+alias -g LL="|& less"
 alias -g G="|g"
+alias -g GG="|& g"
 
 alias grep='grep --color=auto --exclude=\*\.svn-base --exclude=\*\~ --exclude=\*\.tmp --binary-files=without-match'
 alias o='xdg-open'
