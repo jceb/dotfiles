@@ -19,28 +19,6 @@ else
     NO_COLOUR=$'%{\e[0m%}'
 fi
 
-# FIXME: dive into the GRML prompt configuration
-# if [[ "$TERM" == dumb ]] ; then
-#     PROMPT="${EXITCODE}${debian_chroot:+($debian_chroot)}%n@%m %40<...<%B%~%b%<< "
-# else
-#     # only if $GRMLPROMPT is set (e.g. via 'GRMLPROMPT=1 zsh') use the extended
-#     # prompt set variable identifying the chroot you work in (used in the
-#     # prompt below)
-#     if [[ $GRMLPROMPT -gt 0 ]] ; then
-#         PROMPT="${RED}${EXITCODE}${CYAN}[%j running job(s)] ${GREEN}{history#%!} ${RED}%(3L.+.) ${BLUE}%* %D
-# ${BLUE}%n${NO_COLOUR}@%m %40<...<%B%~%b%<< "
-#     else
-#         # This assembles the primary prompt string
-#         if (( EUID != 0 )); then
-#             PROMPT="${RED}${EXITCODE}${NO_COLOUR}%* %80<...<%B%~%b%<< \${vcs_info_msg_0_}
-# ${WHITE}${debian_chroot:+($debian_chroot)}${BLUE}%B%n%b${NO_COLOUR}@%m%# "
-#         else
-#             PROMPT="${BLUE}${EXITCODE}${NO_COLOUR}%* %80<...<%B%~%b%<< \${vcs_info_msg_0_}
-# ${WHITE}${debian_chroot:+($debian_chroot)}${RED}%B%n%b${NO_COLOUR}@%m%# "
-#         fi
-#     fi
-# fi
-
 zstyle ':vcs_info:*' use-quilt true
 zstyle ':vcs_info:*' quilt-standalone "always"
 zstyle ':vcs_info:*' get-unapplied true
@@ -52,6 +30,28 @@ zstyle ':vcs_info:-quilt-.quilt-standalone:*' patch-format "${CYAN}%p %n/%a${NO_
 
 typeset -A grml_vcs_coloured_formats
 typeset -A grml_vcs_plain_formats
+
+# increase path length to 80 characters
+grml_prompt_token_default=(
+    at                '@'
+    battery           'GRML_BATTERY_LEVEL'
+    change-root       'debian_chroot'
+    date              '%D{%Y-%m-%d}'
+    grml-chroot       'GRML_CHROOT'
+    history           '{history#%!} '
+    host              '%m '
+    jobs              '[%j running job(s)] '
+    newline           $'\n'
+    path              '%80<..<%~%<< '
+    percent           '%# '
+    rc                '%(?..%? )'
+    rc-always         '%?'
+    sad-smiley        '%(?..:()'
+    shell-level       '%(3L.+ .)'
+    time              '%D{%H:%M:%S} '
+    user              '%n'
+    vcs               '0'
+)
 
 grml_vcs_plain_formats=(
     format "(%s%)-[%b%Q] "    "zsh: %r"
