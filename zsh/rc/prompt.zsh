@@ -19,6 +19,12 @@ else
     NO_COLOUR=$'%{\e[0m%}'
 fi
 
+# increase path length to 80 characters
+grml_prompt_token_default+=(
+    path              '%80<..<%~%<< '
+)
+
+# vcs quilt
 zstyle ':vcs_info:*' use-quilt true
 zstyle ':vcs_info:*' quilt-standalone "always"
 zstyle ':vcs_info:*' get-unapplied true
@@ -28,81 +34,13 @@ zstyle ':vcs_info:-quilt-.quilt-standalone:*' formats " ${MAGENTA}(${NO_COLOUR}%
 zstyle ':vcs_info:-quilt-.quilt-standalone:*' nopatch-format "%n/%a"
 zstyle ':vcs_info:-quilt-.quilt-standalone:*' patch-format "${CYAN}%p %n/%a${NO_COLOUR}"
 
-typeset -A grml_vcs_coloured_formats
-typeset -A grml_vcs_plain_formats
 
-# increase path length to 80 characters
-grml_prompt_token_default=(
-    at                '@'
-    battery           'GRML_BATTERY_LEVEL'
-    change-root       'debian_chroot'
-    date              '%D{%Y-%m-%d}'
-    grml-chroot       'GRML_CHROOT'
-    history           '{history#%!} '
-    host              '%m '
-    jobs              '[%j running job(s)] '
-    newline           $'\n'
-    path              '%80<..<%~%<< '
-    percent           '%# '
-    rc                '%(?..%? )'
-    rc-always         '%?'
-    sad-smiley        '%(?..:()'
-    shell-level       '%(3L.+ .)'
-    time              '%D{%H:%M:%S} '
-    user              '%n'
-    vcs               '0'
-)
-
-grml_vcs_plain_formats=(
-    format "(%s%)-[%b%Q] "    "zsh: %r"
-    actionformat "(%s%)-[%b%Q|%a] " "zsh: %r"
-    rev-branchformat "%b:%r"
-)
-
-grml_vcs_coloured_formats=(
-    format "${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${MAGENTA}]${NO_COLOR} "
-    actionformat "${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${YELLOW}|${RED}%a${MAGENTA}]${NO_COLOR} "
-    rev-branchformat "%b${RED}:${YELLOW}%r"
-)
-
-typeset GRML_VCS_COLOUR_MODE=xxx
-
-grml_vcs_info_toggle_colour () {
-    emulate -L zsh
-    if [[ $GRML_VCS_COLOUR_MODE != plain ]]; then
-        grml_vcs_info_set_formats coloured
-    else
-        grml_vcs_info_set_formats plain
-    fi
-    return 0
-}
-
-grml_vcs_info_set_formats () {
-    emulate -L zsh
-    #setopt localoptions xtrace
-    local mode=$1 AF F BF
-    if [[ $mode == coloured ]]; then
-        AF=${grml_vcs_coloured_formats[actionformat]}
-        F=${grml_vcs_coloured_formats[format]}
-        BF=${grml_vcs_coloured_formats[rev-branchformat]}
-        GRML_VCS_COLOUR_MODE=coloured
-    else
-        AF=${grml_vcs_plain_formats[actionformat]}
-        F=${grml_vcs_plain_formats[format]}
-        BF=${grml_vcs_plain_formats[rev-branchformat]}
-        GRML_VCS_COLOUR_MODE=plain
-    fi
-
-    zstyle ':vcs_info:*'              actionformats "$AF" "zsh: %r"
-    zstyle ':vcs_info:*'              formats       "$F"  "zsh: %r"
-    zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat  "$BF"
-    return 0
-}
-
-zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percent
-zstyle ':prompt:grml:right:setup' items ''
-
-grml_vcs_info_toggle_colour
+F="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${MAGENTA}]${NO_COLOR} "
+AF="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${YELLOW}|${RED}%a${MAGENTA}]${NO_COLOR} "
+BF="%b${RED}:${YELLOW}%r"
+zstyle ':vcs_info:*'              actionformats "$AF" "zsh: %r"
+zstyle ':vcs_info:*'              formats       "$F"  "zsh: %r"
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat  "$BF"
 
 # Source: http://eseth.org/2010/git-in-zsh.html
 # Show remote ref name and number of commits ahead-of or behind
@@ -129,7 +67,11 @@ function +vi-git-st() {
         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
         (( $behind )) && gitstatus+=( "${RED}-${behind}${NO_COLOUR}" )
 
-        hook_com[branch]="${hook_com[branch]}→${remote} ${(j:/:)gitstatus}"
+        if [[ ${#gitstatus} -gt 0 ]]; then
+            hook_com[branch]="${hook_com[branch]} ${MAGENTA}${remote}${NO_COLOUR} ${(j:/:)gitstatus}"
+        else
+            hook_com[branch]="${hook_com[branch]} ${MAGENTA}${remote}${NO_COLOUR}"
+        fi
     fi
 }
 
@@ -144,5 +86,9 @@ function +vi-git-stash() {
 }
 
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
+
+# prompt definition
+zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percent
+zstyle ':prompt:grml:right:setup' items ''
 
 # vi: ft=zsh:tw=0:sw=4:ts=4:et
