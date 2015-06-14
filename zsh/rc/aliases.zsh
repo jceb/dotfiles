@@ -86,7 +86,7 @@ _seldir () {
 			_depth=""
 			_maxdepth=""
 		fi
-		_dirs="$(find . $_maxdepth $_depth -type d -iname "*${_filter}*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e "${_delfirst}s/^\.\///"|sort)"
+		_dirs="$(find -L . $_maxdepth $_depth -type d -iname "*${_filter}*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e "${_delfirst}s/^\.\///"|sort)"
 	fi
 
 	# select directory and change into it
@@ -131,10 +131,10 @@ _find_objects () {
 	fi
 	# the final grep command highlights pattern
 	if [[ -z "$@" ]]; then
-		eval "find $_dirs ${_finddirs} -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort"
+		eval "find -L $_dirs ${_finddirs} -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort"
 		# find $_dirs "${_finddirs}" -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort
 	else
-		eval "find $_dirs ${_finddirs} -type d -iname '*$@*' ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i '$@'"
+		eval "find -L $_dirs ${_finddirs} -type d -iname '*$@*' ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i '$@'"
 		# find $_dirs "${_finddirs}" -type d -iname "*$@*" ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^$/d'|sort|grep --color=auto -i "$@"
 	fi
 }
@@ -154,10 +154,5 @@ fi
 alias g='/usr/bin/ag -i'
 alias t='tree'
 alias tt='tree -f'
-if type fzf > /dev/null; then
-	alias c='cd "$(find . -mindepth 1 -type d|fzf)"'
-else
-	alias c='cd "$(qf -d -o)"'
-fi
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
