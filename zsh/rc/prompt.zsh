@@ -35,8 +35,8 @@ zstyle ':vcs_info:-quilt-.quilt-standalone:*' nopatch-format "%n/%a"
 zstyle ':vcs_info:-quilt-.quilt-standalone:*' patch-format "${CYAN}%p %n/%a${NO_COLOUR}"
 
 
-F="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${MAGENTA}]${NO_COLOR} "
-AF="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${YELLOW}|${RED}%a${MAGENTA}]${NO_COLOR} "
+F="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${MAGENTA}]%m${NO_COLOR} "
+AF="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${YELLOW}|${RED}%a${MAGENTA}]%m${NO_COLOR} "
 BF="%b${RED}:${YELLOW}%r"
 zstyle ':vcs_info:*'              actionformats "$AF" "zsh: %r"
 zstyle ':vcs_info:*'              formats       "$F"  "zsh: %r"
@@ -81,7 +81,7 @@ function +vi-git-stash() {
 
     if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
         stashes=$(git stash list 2>/dev/null | wc -l)
-        hook_com[misc]+=" (${stashes} stashed)"
+        hook_com[misc]+=" ${MAGENTA}(${GREEN}${stashes} stashed${MAGENTA})"
     fi
 }
 
