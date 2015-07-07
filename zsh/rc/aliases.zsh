@@ -152,7 +152,7 @@ if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
 alias g='/usr/bin/ag -i'
-alias t='tree'
+alias t='task'
 alias tt='tree -f'
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
