@@ -4,3 +4,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "emacs.d/plugins/yasnippet"]
+	path = emacs.d/plugins/yasnippet
+	url = git@github.com:AndreaCrotti/yasnippet-snippets.git
