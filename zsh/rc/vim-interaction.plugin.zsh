@@ -6,19 +6,19 @@
 
 function resolveFile
 {
-  if [ -f "$1" ]; then
-    echo $(readlink -f "$1")
-  elif [[ "${1#/}" == "$1" ]]; then
-    echo "$(pwd)/$1"
-  else
-    echo $1
-  fi
+	if [ -f "$1" ]; then
+		echo $(readlink -f "$1")
+	elif [[ "${1#/}" == "$1" ]]; then
+		echo "$(pwd)/$1"
+	else
+		echo $1
+	fi
 }
 
-function callvim
-{
-  if [[ $# == 0 ]]; then
-    cat <<EOH
+function callvim {
+	# send commands to vim
+	if [[ $# == 0 ]]; then
+		cat <<EOH
 usage: callvim [-b cmd] [-a cmd] [file ... fileN]
 
   -b cmd     Run this command in GVIM before editing the first file
@@ -26,49 +26,55 @@ usage: callvim [-b cmd] [-a cmd] [file ... fileN]
   file       The file to edit
   ... fileN  The other files to add to the argslist
 EOH
-    return 0
-  fi
+	return 0
+	fi
 
-  local session="$(vsession)"
-  local cmd=""
-  local toNormal="<c-\\><c-n>"
-  local before=""
-  local after=""
-  while getopts ":b:a:" option
-  do
-    case $option in
-      a) after="$OPTARG"
-         ;;
-      b) before="$before$OPTARG"
-         ;;
-    esac
-  done
-  shift $((OPTIND-1))
-  if [[ ${after#:} != $after && ${after%<cr>} == $after ]]; then
-    after="$after<cr>"
-  fi
-  if [[ ${before#:} != $before && ${before%<cr>} == $before ]]; then
-    before="$before<cr>"
-  fi
-  local files=""
-  for f in $@
-  do
-    files="$files $(resolveFile $f)"
-  done
-  if [[ -n $files ]]; then
-    files=':args! '"$files<cr>"
-  fi
-  cmd="$toNormal$before$files$after"
-  gvim --servername "${session}" --remote-send "$cmd"
-  if typeset -f postCallVim > /dev/null; then
-    postCallVim
-  fi
+	local session="$(vsession)"
+	local cmd=""
+	local toNormal="<c-\\><c-n>"
+	local before=""
+	local after=""
+	while getopts ":b:a:" option
+	do
+		case $option in
+			a) after="$OPTARG"
+				;;
+			b) before="$before$OPTARG"
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+	if [[ ${after#:} != $after && ${after%<cr>} == $after ]]; then
+		after="$after<cr>"
+	fi
+	if [[ ${before#:} != $before && ${before%<cr>} == $before ]]; then
+		before="$before<cr>"
+	fi
+	local files=""
+	for f in $@
+	do
+		files="$files $(resolveFile $f)"
+	done
+	if [[ -n $files ]]; then
+		files=':args! '"$files<cr>"
+	fi
+	cmd="$toNormal$before$files$after"
+	"$(_choose_vim)" --servername "${session}" --remote-send "$cmd"
+	if typeset -f postCallVim > /dev/null; then
+		postCallVim
+	fi
 }
 
 _choose_vim () {
+	# select vim executable for execution
 	vim=gvim
 	if [ -n "${TERM}" ] && [ "${TERM}" != "dumb" ]; then
-		vim=vim
+		if false && [ -e /usr/bin/nvim ]; then
+			# neovim doesn't support servers
+			vim=nvim
+		else
+			vim=vim
+		fi
 	fi
 	echo "/usr/bin/${vim}"
 }
@@ -88,10 +94,15 @@ _vim_interactive () {
 		"$(_choose_vim)" "$@"
 	elif [ "$1" = "-" ]; then
 		"${EDITOR}" --servername "$(vsession)" "$@"
-	elif [ $# -ge 1 ]; then
-		"$(_choose_vim)" --servername "$(vsession -i)" --remote-silent "$@"
 	else
-		"$(_choose_vim)" --servername "$(vsession -i)"
+		remote=
+		if [ $# -ge 1 ]; then
+			remote="--remote-silent"
+		fi
+		session="$(vsession -i)"
+		if [ -n "${session}" ]; then
+			"$(_choose_vim)" --servername "${session}" ${remote} "$@"
+		fi
 	fi
 }
 
