@@ -11,66 +11,84 @@
 	diff = auto
 	ui = auto
 [alias]
-	# list all aliases
+	########## list all aliases
 	aliases = "!git config -l | grep alias | cut -c 7-"
 
-	# branches
+	########## branches
 	b = branch
 	co = checkout
 	cob = checkout -b
 	pre = pull --rebase
 	ff = merge --ff-only --no-stat --quiet
 
-	# commits
+	########## commits
 	c = commit
 	ca = commit -a
 	cam = commit --amend -a
 	cm = commit -m
+
 	# take commit message from debian/changelog
 	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
-	st = status -uno
-	sta = status
-	undo = reset --soft HEAD~
-	undohard = reset --hard HEAD~
+
+	# unstage changes
 	unstage = reset HEAD --
 
-	# diff
+	# undo last commit, soft and hard way
+	undo = reset --soft HEAD~
+	undohard = reset --hard HEAD~
+
+	########## diff
+	# word wise diff
 	d = -p diff --color-words
 	dc = -p diff --color-words --cached
 	df = -p diff-index --color-words -p HEAD
+
+	# some diff extensions
 	diffr = -p diff --relative
 	diffc = -p diff --cached
 	diffcr = -p diff --cached --relative
-	# diff regardless of staged or unstaged
+
+	# diff changes regardless whether they are staged or unstaged
 	difff = -p diff-index -p HEAD
 	difffr = -p diff-index -p HEAD --relative
 	diffstat = -p diff --stat -r
 
-	# log
+	# edit changed files
+	edit = "!${EDITOR} `git ls-files -m`"
+
+	# status abbreviations
+	st = status -uno
+	sta = status
+
+	########## log
 
 	# history of a file
 	filelog = log -u
+
 	# show history
 	ls = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
 	ll = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
+
 	# show latest tag
 	lasttag = describe --tags --abbrev=0
+
 	# show latest commit
 	tip = log HEAD -1 --stat --
 	head = log HEAD -1 --stat --
+
 	# show who contributed to the project
 	who = shortlog -n -s --no-merges
 
-	# some plumbing aliases
+	########## some plumbing aliases
 	type = cat-file -t
 	dump = cat-file -p
 
-	# some git svn commands
+	########## some git svn commands
 	up = svn rebase
 	ci = svn dcommit
 	unisvn = !gcu
 
-	# submodules
+	########## submodules
 	subm = submodule foreach git checkout master
 	subpre = submodule foreach git pull --rebase
 	subup = submodule update --init --recursive
