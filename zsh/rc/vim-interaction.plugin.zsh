@@ -80,20 +80,23 @@ _choose_vim () {
 }
 
 _vim_new () {
+    cmd=("$(_choose_vim)")
 	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
-		"$(_choose_vim)" "$@"
+        cmd+=("$@")
 	elif [ $# -ge 1 ]; then
-		"$(_choose_vim)" --servername "$(vsession -n)" "$@"
+        cmd+=(--servername "$(vsession -n)" "$@")
 	else
-		"$(_choose_vim)" --servername "$(vsession -n)"
+        cmd+=(--servername "$(vsession -n)")
 	fi
+    exec "${cmd[@]}"
 }
 
 _vim_interactive () {
+    cmd=("$(_choose_vim)")
 	if [ "$1" = '--help' ] || [ "$1" = '-h' ]; then
-		"$(_choose_vim)" "$@"
+        cmd=("$@")
 	elif [ "$1" = "-" ]; then
-		"${EDITOR}" --servername "$(vsession)" "$@"
+        cmd+=(--servername "$(vsession)" "$@")
 	else
 		remote=
 		if [ $# -ge 1 ]; then
@@ -101,9 +104,14 @@ _vim_interactive () {
 		fi
 		session="$(vsession -i)"
 		if [ -n "${session}" ]; then
-			"$(_choose_vim)" --servername "${session}" ${remote} "$@"
+            cmd+=(--servername "${session}" ${remote} "$@")
+        else
+            cmd=
 		fi
 	fi
+    if [ "${#cmd}" -gt 0 ]; then
+        exec "${cmd[@]}"
+    fi
 }
 
 # always start vim in server mode and use the directory's name as server name
