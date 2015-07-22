@@ -88,6 +88,10 @@ editor_cursor_after_inserted_block=0
 
 editor_ask_filename_before_edit=0
 
+editor_drop_selection_on_copy=1
+editor_filesize_threshold=64M
+editor_stop_format_chars=-+*\\,.;:&>
+
 [Layout]
 message_visible=0
 keybar_visible=1
@@ -117,6 +121,8 @@ source_codepage=Other_8_bit
 autodetect_codeset=
 clipboard_store=
 clipboard_paste=
+
+spell_language=en
 
 [Colors]
 base_color=
@@ -149,6 +155,8 @@ torben_fj_mode=false
 quick_search_mode=2
 
 simple_swap=false
+
+select_flags=6
 
 [HotlistConfig]
 expanded_view_of_groups=0
