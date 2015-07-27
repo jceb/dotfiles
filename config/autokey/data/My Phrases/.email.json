@@ -2,23 +2,24 @@
     "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "Bug", 
+    "description": "email", 
     "abbreviation": {
         "wordChars": "[\\w]", 
-        "abbreviations": [
-            "BB"
-        ], 
-        "immediate": true, 
+        "abbreviations": [], 
+        "immediate": false, 
         "ignoreCase": false, 
         "backspace": true, 
         "triggerInside": false
     }, 
     "hotkey": {
-        "hotKey": null, 
-        "modifiers": []
+        "hotKey": "e", 
+        "modifiers": [
+            "<alt>", 
+            "<shift>"
+        ]
     }, 
     "modes": [
-        1
+        3
     ], 
     "showInTrayMenu": false, 
     "matchCase": false, 

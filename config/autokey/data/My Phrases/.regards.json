@@ -2,11 +2,11 @@
     "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "Bug", 
+    "description": "regards", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [
-            "BB"
+            "KR"
         ], 
         "immediate": true, 
         "ignoreCase": false, 
