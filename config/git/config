@@ -27,6 +27,8 @@
 	cam = commit --amend -a
 	cm = commit -m
 
+	ff = merge --no-ff
+
 	# take commit message from debian/changelog
 	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
 
