@@ -6,7 +6,7 @@
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
 	editor = /usr/bin/gvim
 [merge]
-	tool = gvimdiff
+	tool = vimdiff
 [color]
 	diff = auto
 	ui = auto
@@ -19,15 +19,13 @@
 	co = checkout
 	cob = checkout -b
 	pre = pull --rebase
-	ff = merge --ff-only --no-stat --quiet
+	ff = merge --ff-only
 
 	########## commits
 	c = commit
 	ca = commit -a
 	cam = commit --amend -a
 	cm = commit -m
-
-	ff = merge --no-ff
 
 	# take commit message from debian/changelog
 	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
