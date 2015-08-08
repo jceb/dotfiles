@@ -53,9 +53,10 @@ else:
 def highlight(words, word_eol, userdata):
     """Highlight words in extra words
     """
-    for word in words[1].split():
-        if word.strip().lower() in extrawords:
-            hexchat.command('TRAY -b "%s" "%s"' % (words[0], words[1]))
-            return
+    if words:
+        for word in words[1].split():
+            if word.strip().lower() in extrawords:
+                hexchat.command('TRAY -b "%s" "%s"' % (words[0], words[1]))
+                return
 
 hexchat.hook_print('Channel Message', highlight)
