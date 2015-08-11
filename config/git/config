@@ -16,6 +16,8 @@
 
 	########## branches
 	b = branch
+	br = branch -r
+	ba = branch -a
 	co = checkout
 	cob = checkout -b
 	pre = pull --rebase
