@@ -23,11 +23,17 @@
 	pre = pull --rebase
 	ff = merge --ff-only
 
+	########## Univention specific settings
+	pb = "!b=\"$(git branch|sed -ne 's/^\\*\\s*//p')\"; git push --set-upstream origin \"${b}:${b}\""
+	mm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git merge \"origin/${m}/master\""
+	cm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git checkout \"${m}/master\""
+	cb = "!r=\"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\"; echo -n \"Enter ticket id: \"; read id; echo -n \"Enter description: \"; read d; git checkout -b \"${r}/${id}-$(echo \"${d}\"|sed -e 's/\\s\\+/_/g')/master\""
+
 	########## commits
 	c = commit
 	ca = commit -a
 	cam = commit --amend -a
-	cm = commit -m
+	# cm = commit -m
 
 	# take commit message from debian/changelog
 	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
