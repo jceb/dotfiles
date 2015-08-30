@@ -5,7 +5,7 @@ Xft.antialias		: 1
 Xft.autohint		: 0
 ! Depend on auto-detection for the correct DPI value
 ! xdpyinfo | grep dots
-! Xft.dpi				: 97.0
+Xft.dpi:        96
 Xft.hinting			: 1
 Xft.hintstyle		: hintfull
 Xft.lcdfilter		: lcddefault
@@ -22,6 +22,6 @@ yeahconsole*toggleKey		: Alt+space
 yeahconsole*keyFull			: Alt+f
 yeahconsole*term			: st
 !yeahconsole*xOffset			: 100
-yeahconsole*yOffset			: 15
+yeahconsole*yOffset			: 16
 yeahconsole*screenWidth		: 1600
 yeahconsole*xrandrSupport	: 1
