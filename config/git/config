@@ -13,15 +13,16 @@
 [alias]
 	########## list all aliases
 	aliases = "!git config -l | grep alias | cut -c 7-"
+	configedit = "!${EDITOR} ~/.config/git/config"
 
 	########## branches
 	b = branch
 	br = branch -r
 	ba = branch -a
 	co = checkout
-	cob = checkout -b
-	pre = pull --rebase
+	pre = pull --rebase --prune
 	ff = merge --ff-only
+	m = merge --no-ff
 
 	########## Univention specific settings
 	pb = "!b=\"$(git branch|sed -ne 's/^\\*\\s*//p')\"; git push --set-upstream origin \"${b}:${b}\""
@@ -100,6 +101,14 @@
 	subm = submodule foreach git checkout master
 	subpre = submodule foreach git pull --rebase
 	subup = submodule update --init --recursive
+
+	########## rebase
+	oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+	rebase-onto     = !bash -c 'git rebase -i --onto $1 $(git oldest-ancestor $2 $3) $3' -
+
+	# GUIs
+	g = !gitg --all 2>/dev/null &
+	k = !gitk --all 2>/dev/null &
 [push]
 	default = upstream
 [core]
