@@ -1,5 +1,18 @@
 fpath=($HOME/.zsh/functions $fpath)
 
+BLOCK=2
+UNDERLINE=4
+IBEAM=6
+change_cursorshape () {
+    tmux_head=
+    tmux_tail=
+    if [ -n "${TMUX}" ]; then
+        tmux_head="\ePtmux;\e"
+        tmux_tail="\e\\"
+    fi
+    printf "${tmux_head}\e[${1} q${tmux_tail}"
+}
+
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 bindkey "\e[H" beginning-of-line        # Home (xorg)
@@ -19,6 +32,12 @@ bindkey '\eOF' end-of-line
 # btw, this is a really collegue friendly setup
 bindkey -r "^ed"
 bindkey -r "^["
+set_vi_mode () {
+    change_cursorshape "${UNDERLINE}"
+    zle -K vicmd
+}
+zle -N set_vi_mode
+# bindkey -M emacs "^[" set_vi_mode
 bindkey -M emacs "^[" vi-cmd-mode
 bindkey -r "^y"
 bindkey -M emacs "^y" push-input
@@ -28,6 +47,12 @@ bindkey -M emacs "" slash-backward-kill-word
 bindkey -M vicmd "?" vi-history-search-backward
 bindkey -M vicmd "/" vi-history-search-forward
 bindkey -M vicmd 'v' edit-command-line
+set_emacs_mode () {
+    change_cursorshape "${IBEAM}"
+    zle vi-insert
+}
+zle -N set_emacs_mode
+#bindkey -M vicmd 'i' set_emacs_mode
 
 autoload -Uz insert-second-last-word
 zle -N insert-second-last-word
