@@ -20,6 +20,8 @@
 	br = branch -r
 	ba = branch -a
 	co = checkout
+	# checkout branch by taking the upstream branch and creating a local tracking copy
+	cob = !bash -c 'origin="${1#remotes/}"; branch="${origin#origin/}"; git checkout -b "${branch}" "${origin}"' -
 	pre = pull --rebase --prune
 	ff = merge --ff-only
 	m = merge --no-ff
@@ -115,4 +117,4 @@
 	pager = less -FSRX
 	editor = /usr/bin/vim
 
-# vi: ft=txt:tw=72:sw=4:ts=4:noet
+# vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
