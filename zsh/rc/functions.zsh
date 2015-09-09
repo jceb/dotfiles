@@ -1,12 +1,12 @@
 # copy files back to the system you were coming from
 function sshget () {
 	if [ -n "$SSH_CLIENT" ]; then
-		user=$USER
+		user="$USER"
 		if [ "$1" = "-l" -o "$1" = "-u" ]; then
 			user="$2"
 			shift 2
 		fi
-		scp "$@" $user@$(echo "$SSH_CLIENT"|awk '{print $1}'):
+		scp "$@" "${user}@$(echo "$SSH_CLIENT"|awk '{print $1}')":
 	else
 		echo "You are not connected with this host via SSH" 1>&2
 	fi
