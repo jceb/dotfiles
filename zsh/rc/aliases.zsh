@@ -9,6 +9,7 @@ alias o='xdg-open'
 alias open='xdg-open'
 alias ls='ls -b -CF --file-type --color=auto'
 alias ltr='ls -ltr'
+alias ltra='ls -ltra'
 alias l='ls -l --color=auto'
 
 # aliases for quickly traversing through the Univention SVN

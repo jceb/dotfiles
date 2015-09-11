@@ -113,6 +113,7 @@
 	rebase-onto     = !bash -c 'git rebase -i --onto $1 $(git oldest-ancestor $2 $3) $3' -
 
 	# GUIs
+	t = !tig --all
 	g = !gitg --all 2>/dev/null &
 	k = !gitk --all 2>/dev/null &
 [push]
