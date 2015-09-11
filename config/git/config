@@ -21,7 +21,7 @@
 	ba = branch -a
 	co = checkout
 	# checkout branch by taking the upstream branch and creating a local tracking copy
-	cob = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; echo git checkout -b \"${branch}\" \"${origin}\"' -"
+	coo = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; echo git checkout -b \"${branch}\" \"${origin}\"' -"
 	pre = pull --rebase --prune
 	ff = merge --ff-only
 	m = merge --no-ff
