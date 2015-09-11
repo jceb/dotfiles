@@ -123,3 +123,5 @@
 	editor = /usr/bin/vim
 
 # vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
+[init]
+	templatedir = /home/jceb/.config/git/template
