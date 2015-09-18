@@ -17,11 +17,19 @@
 
 	########## branches
 	b = branch
+	bc = branch --contains
+	bm = branch --merged
 	br = branch -r
+	brc = branch -r --contains
+	brm = branch -r --merged
 	ba = branch -a
+	bac = branch -a --contains
+	bam = branch -a --merged
+
 	co = checkout
 	# checkout branch by taking the upstream branch and creating a local tracking copy
-	coo = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; echo git checkout -b \"${branch}\" \"${origin}\"' -"
+	coo = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git branch \"${branch}\" \"${origin}\"' -"
+	cob = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git checkout -b \"${branch}\" \"${origin}\"' -"
 	pre = pull --rebase --prune
 	ff = merge --ff-only
 	m = merge --no-ff
