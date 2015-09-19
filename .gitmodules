@@ -7,3 +7,15 @@
 [submodule "emacs.d/plugins/yasnippet"]
 	path = emacs.d/plugins/yasnippet
 	url = git@github.com:AndreaCrotti/yasnippet-snippets.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
+[submodule "tmux/plugins/tmux-sensible"]
+	path = tmux/plugins/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
+[submodule "tmux/plugins/tmux-yank"]
+	path = tmux/plugins/tmux-yank
+	url = git@github.com:tmux-plugins/tmux-yank.git
+[submodule "tmux/plugins/tmux-copycat"]
+	path = tmux/plugins/tmux-copycat
+	url = git@github.com:tmux-plugins/tmux-copycat.git
