@@ -19,3 +19,6 @@
 [submodule "tmux/plugins/tmux-copycat"]
 	path = tmux/plugins/tmux-copycat
 	url = git@github.com:tmux-plugins/tmux-copycat.git
+[submodule "tmux/plugins/tmux-urlview"]
+	path = tmux/plugins/tmux-urlview
+	url = git@github.com:tmux-plugins/tmux-urlview.git
