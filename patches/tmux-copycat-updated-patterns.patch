@@ -1,0 +1,23 @@
+Index: github/tmux/plugins/tmux-copycat/copycat.tmux
+===================================================================
+--- github.orig/tmux/plugins/tmux-copycat/copycat.tmux
++++ github/tmux/plugins/tmux-copycat/copycat.tmux
+@@ -18,7 +18,7 @@ set_default_stored_searches() {
+ 		tmux set-option -g "${COPYCAT_VAR_PREFIX}_${url_search}" "(https?://|git@|git://|ssh://|ftp://|file:///)[[:alnum:]?=%/_.:,;~@!#$&()*+-]*"
+ 	fi
+ 	if stored_search_not_defined "$file_search"; then
+-		tmux set-option -g "${COPYCAT_VAR_PREFIX}_${file_search}" "(^|^\.|[[:space:]]|[[:space:]]\.|[[:space:]]\.\.|^\.\.)[[:alnum:]~_-]*/[][[:alnum:]_.#$%&+=/@-]*"
++        tmux set-option -g "${COPYCAT_VAR_PREFIX}_${file_search}" '((\.{1,2}|~)?/[[:alnum:]_.#$%&+=/@-]+|((\.{1,2}|~)/)?[[:alnum:]_.#$%&+=/@-]+/([[:alnum:]_.#$%&+=/@-]+)?|[[:alnum:]_.#$%&+=/@-]+\.[[:alnum:]~_-]+)'
+ 	fi
+ 	if stored_search_not_defined "$digit_search"; then
+ 		tmux set-option -g "${COPYCAT_VAR_PREFIX}_${digit_search}" "[[:digit:]]+"
+@@ -27,7 +27,8 @@ set_default_stored_searches() {
+ 		tmux set-option -g "${COPYCAT_VAR_PREFIX}_${hash_search}" "\b[0-9a-f]{7,40}\b"
+ 	fi
+ 	if stored_search_not_defined "$ip_search"; then
+-		tmux set-option -g "${COPYCAT_VAR_PREFIX}_${ip_search}" "[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}"
++        # IPv6 regex taken from https://stackoverflow.com/questions/53497/regular-expression-that-matches-valid-ipv6-addresses
++        tmux set-option -g "${COPYCAT_VAR_PREFIX}_${ip_search}" "([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}|(([[:xdigit:]]{1,4}:){7,7}[[:xdigit:]]{1,4}|([[:xdigit:]]{1,4}:){1,7}:|([[:xdigit:]]{1,4}:){1,6}:[[:xdigit:]]{1,4}|([[:xdigit:]]{1,4}:){1,5}(:[[:xdigit:]]{1,4}){1,2}|([[:xdigit:]]{1,4}:){1,4}(:[[:xdigit:]]{1,4}){1,3}|([[:xdigit:]]{1,4}:){1,3}(:[[:xdigit:]]{1,4}){1,4}|([[:xdigit:]]{1,4}:){1,2}(:[[:xdigit:]]{1,4}){1,5}|[[:xdigit:]]{1,4}:((:[[:xdigit:]]{1,4}){1,6})|:((:[[:xdigit:]]{1,4}){1,7}|:)|fe80:(:[[:xdigit:]]{0,4}){0,4}%[[:xdigit:]]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[[:digit:]]){0,1}[[:digit:]])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[[:digit:]]){0,1}[[:digit:]])|([[:xdigit:]]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[[:digit:]]){0,1}[[:digit:]])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[[:digit:]]){0,1}[[:digit:]])))"
+ 	fi
+ }
+ 
