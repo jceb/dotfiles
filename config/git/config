@@ -25,6 +25,7 @@
 	ba = branch -a
 	bac = branch -a --contains
 	bam = branch -a --merged
+	ban = branch -a --no-merged
 
 	co = checkout
 	# checkout branch by taking the upstream branch and creating a local tracking copy
