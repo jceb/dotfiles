@@ -13,6 +13,9 @@ export LC_COLLATE="C"
 
 export EDITOR=vim
 export GIT_EDITOR=/usr/bin/vim
+# change cursor shape in nvim
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 # export EMAIL=put me in ~/.zshother
 export BROWSER=x-www-browser
 
