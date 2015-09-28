@@ -1,7 +1,7 @@
-Index: dotfiles/zsh/wd/wd.sh
+Index: github/zsh/wd/wd.sh
 ===================================================================
---- dotfiles.orig/zsh/wd/wd.sh
-+++ dotfiles/zsh/wd/wd.sh
+--- github.orig/zsh/wd/wd.sh
++++ github/zsh/wd/wd.sh
 @@ -179,6 +179,8 @@ wd_add()
      else
          wd_exit_warn "Warp point '${point}' already exists. Use 'add!' to overwrite."
@@ -20,7 +20,7 @@ Index: dotfiles/zsh/wd/wd.sh
  }
  
  wd_list_all()
-@@ -300,6 +304,8 @@ wd_clean() {
+@@ -301,6 +305,8 @@ wd_clean() {
              wd_print_msg $WD_BLUE "Cleanup aborted"
          fi
      fi
