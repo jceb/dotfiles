@@ -53,13 +53,15 @@ unset bounce_delivered
 #macro index \CW T!~s\(.*source.*\)\nWn^T~A\n "Weed out binary-only announcements"
 
 # simulate the old url menu
-macro index,pager \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
-macro attach,compose \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
+# macro index,pager \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
+macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+        <enter-command> unset pipe_decode<enter>\
+        <pipe-message>~/.mutt/extracturl/extract_url.pl<enter>\
+        <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
+
+# macro attach,compose \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
 # macro index,pager \cb |urlview\n 'call urlview to extract URLs out of a message'
 # macro attach,compose \cb |urlview\n 'call urlview to extract URLs out of a message'
-
-# Show documentation when pressing F12
-macro generic,index,pager <f12> "!zcat ~/.mutt/manual.txt.gz | sensible-pager\n" "Show Mutt documentation"
 
 # If Mutt is unable to determine your site's domain name correctly, you can
 # set the default here.

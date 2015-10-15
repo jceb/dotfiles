@@ -22,3 +22,6 @@
 [submodule "tmux/plugins/tmux-urlview"]
 	path = tmux/plugins/tmux-urlview
 	url = git@github.com:tmux-plugins/tmux-urlview.git
+[submodule "mutt/extracturl"]
+	path = mutt/extracturl
+	url = git@github.com:m3m0ryh0l3/extracturl.git

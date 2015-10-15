@@ -2,7 +2,7 @@
 if [ $# -ge 1 ]; then
 	MAILDIR="$1"
 else
-	MAILDIR=~/Backup/Mail/
+	MAILDIR=~/Documents/Mail/
 fi
 
 cd "$MAILDIR"
