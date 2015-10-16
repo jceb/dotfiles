@@ -1,31 +1,31 @@
 {
-    "usageCount": 247, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "jceb", 
-    "abbreviation": {
-        "wordChars": "[\\w]", 
-        "abbreviations": [
-            "Jceb"
-        ], 
-        "immediate": true, 
-        "ignoreCase": false, 
-        "backspace": true, 
-        "triggerInside": false
-    }, 
-    "hotkey": {
-        "hotKey": null, 
-        "modifiers": []
-    }, 
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "omitTrigger": false,
+    "type": "phrase",
+    "showInTrayMenu": false,
+    "matchCase": false,
+    "sendMode": "kb",
+    "description": "jceb",
     "modes": [
         1
-    ], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
-    "filter": {
-        "regex": null, 
-        "isRecursive": false
-    }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    ],
+    "usageCount": 257,
+    "abbreviation": {
+        "ignoreCase": false,
+        "immediate": true,
+        "triggerInside": false,
+        "wordChars": "[\\w]",
+        "abbreviations": [
+            "Jceb"
+        ],
+        "backspace": true
+    },
+    "hotkey": {
+        "hotKey": null,
+        "modifiers": []
+    },
+    "prompt": false
 }
