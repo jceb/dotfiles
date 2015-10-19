@@ -1,5 +1,5 @@
-set record    = "$spoolfile.Sent"
-set postponed = "$spoolfile.Drafts"
+set record    = "$spoolfile/Sent"
+set postponed = "$spoolfile/Drafts"
 
 unmy_hdr *
 
