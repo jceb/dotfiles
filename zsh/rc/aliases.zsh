@@ -1,8 +1,8 @@
 # global aliases that can be appended to line
 alias -g L="|less"
 alias -g LL="|& less"
-alias -g G="|g"
-alias -g GG="|& g"
+alias -g G="|ag"
+alias -g GG="|& ag"
 
 alias grep='grep --color=auto --exclude=\*\.svn-base --exclude=\*\~ --exclude=\*\.tmp --binary-files=without-match'
 alias o='xdg-open'
@@ -152,7 +152,8 @@ d () {
 if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
-alias g='/usr/bin/ag -i'
+alias gr='/usr/bin/ag -i'
+alias g='git'
 alias t='task'
 alias tt='tree -f'
 
