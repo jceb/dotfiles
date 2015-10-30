@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<skin version="1.0">
+	<info>
+		<version>1.0</version>
+		<author>Ninique</author>
+		<email>ninique305@yahoo.ca</email>
+		<homepage>http://www.ninique.net</homepage>
+		<screenshot>images/preview.png</screenshot>
+		<comment>This skin was created using icons from the Tango Icon Project. It features a semi-transparent background and color-coded event categories. You can also change the colour of the weekdays bar by going into the options for the Calendar window.</comment>
+	</info>
+
+	<elements>
+		<font id="font.small" facename="DejaVu Sans" size="6" line="UNDERLINE" />
+		<font id="font.normal" facename="DejaVu Sans" size="8" />
+		<font id="font.bold" facename="DejaVu Sans" size="8" weight="bold" />
+		<font id="font.underline" facename="DejaVu Sans" size="8" line="UNDERLINE" />
+		<font id="font.large" facename="DejaVu Sans" size="10"  weight="bold" />
+		<font id="font.exdays" facename="DejaVu Sans" size="8"  style="italic" />
+
+		<bitmap id="bitmap.stroke" file="images/outlines.png" />
+		<bitmap id="bitmap.header" file="images/outlines-header.png" />
+		<bitmap id="bitmap.grey" file="images/outlines-grey.png" />
+		<bitmap id="bitmap.blue" file="images/outlines-blue.png"/>
+		<bitmap id="bitmap.green" file="images/outlines-green.png"/>
+		<bitmap id="bitmap.purple" file="images/outlines-purple.png"/>
+		<bitmap id="bitmap.red" file="images/outlines-red.png"/>
+		<bitmap id="bitmap.yellow" file="images/outlines-yellow.png"/>
+		<bitmap id="bitmap.orange" file="images/outlines-orange.png"/>
+		<bitmap id="bitmap.black" file="images/outlines-black.png"/>
+
+		<bitmap id="bitmap.dot.grey" file="images/dot-grey.png" />
+		<bitmap id="bitmap.dot.blue" file="images/dot-blue.png"/>
+		<bitmap id="bitmap.dot.green" file="images/dot-green.png"/>
+		<bitmap id="bitmap.dot.purple" file="images/dot-purple.png"/>
+		<bitmap id="bitmap.dot.red" file="images/dot-red.png"/>
+		<bitmap id="bitmap.dot.yellow" file="images/dot-yellow.png"/>
+		<bitmap id="bitmap.dot.orange" file="images/dot-orange.png"/>
+		<bitmap id="bitmap.dot.black" file="images/dot-black.png"/>
+
+		<bitmap id="bitmap.tooltip" file="images/tooltip.png" />
+
+		<!-- <gradient id="gradient.background" color1="249, 249, 249, 100" color2="239, 239, 239, 150" direction="VERTICAL" /> -->
+		<gradient id="gradient.background" color1="244, 244, 244, 125" color2="244, 244, 244, 125" direction="VERTICAL" />
+
+		<bitmap id="bitmap.button.prev" file="images/go-previous.png" frames="2"/>
+		<bitmap id="bitmap.button.next" file="images/go-next.png" frames="2"/>
+
+		<bitmap id="bitmap.button.add" file="images/button-add.png" frames="2"/>
+		<bitmap id="bitmap.icon.events" file="images/events-icon.png" />
+		<bitmap id="bitmap.icon.tasks" file="images/tasklist-icon.png" />
+
+		<bitmap id="bitmap.trayicon" file="images/trayicon.png" frames="31"/>
+	</elements>
+
+	<variables>
+		<variable name="Header_color" window="Calendar" default="blue" values="blue;green;purple;red;orange;yellow;black;grey" description="The color of the header for the days of the week"/>
+		<variable name="Header_text" window ="Calendar" default="235" values="light:235;dark:54" description="The color of the text for the days of the week"/>
+	</variables>
+
+	<trayicon element="bitmap.trayicon" />
+
+	<categories>
+		<category id="Blue">
+			<appearance target="1" layer="0" priority="1" element="bitmap.blue" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="239, 239, 239" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.blue" align="TOP-LEFT" showalways="1" />
+		</category>
+		<category id="Green">
+			<appearance target="1" layer="0" priority="1" element="bitmap.green" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="46, 52, 54" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.green" showalways="1" />
+		</category>
+		<category id="Purple">
+			<appearance target="1" layer="0" priority="1" element="bitmap.purple" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="239, 239, 239" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.purple" showalways="1" />
+		</category>
+		<category id="Red">
+			<appearance target="1" layer="0" priority="1" element="bitmap.red" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="239, 239, 239" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.red" showalways="1" />
+		</category>
+		<category id="Yellow">
+			<appearance target="1" layer="0" priority="1" element="bitmap.yellow" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="46, 52, 54" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.yellow" showalways="1" />
+		</category>
+		<category id="Orange">
+			<appearance target="1" layer="0" priority="1" element="bitmap.orange" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="46, 52, 54" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.orange" showalways="1" />
+		</category>
+		<category id="Black">
+			<appearance target="1" layer="0" priority="1" element="bitmap.black" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="1" element="font.normal" color="239, 239, 239" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.black" showalways="1" />
+		</category>
+		<category id="White">
+			<appearance target="1" layer="0" priority="-10" element="bitmap.grey" align="TOP-LEFT" offset="3,4" />
+			<appearance target="1" layer="5" priority="-10" element="font.normal" color="46, 52, 54" align="CENTER" />
+			<appearance target="6" layer="0" priority="1" element="bitmap.dot.grey" showalways="1" />
+		</category>
+	</categories>
+
+	<window id="Calendar" w="180" h="180" threshold="80" default="1">
+		<image id="Calendar.stroke" element="bitmap.stroke" x="0" y="0" w="180" h="180" scaling="STRETCH" margins="3, 3, 4, 4"/>
+		<image id="Calendar.background" element="gradient.background" x="2" y="2" w="176" h="176" />
+
+		<image id="Calendar.top.background" element="bitmap.header" x="5" y="5" w="170" h="30" scaling="STRETCH" margins="3, 3, 3, 3"/>
+		<image id="Calendar.weeks.background" element="bitmap.%Header_color%" x="5" y="34" w="170" h="20" scaling="STRETCH" margins="3, 3, 3, 3"/>
+
+
+		<time id="Calendar.date" element="font.large" x="90" y="18" color="46, 52, 54" align="CENTER"  format="%B %Y" showmonth="0" />
+		<button id="Calendar.button.prev" element="bitmap.button.prev" x="12" y="8" action="Global_ShowMonth(-1)" />
+		<button id="Calendar.button.next" element="bitmap.button.next" origin="TOP-RIGHT" x="-32" y="8" action="Global_ShowMonth(+1)" />
+
+		<calendar id="Calendar.calendar" x="5" y="33" w="170" h="140" layout="GRID">
+			<exdays>
+				<appearance element="font.exdays" color="32, 32, 32" align="CENTER" />
+			</exdays>
+			<weekdays abbreviate="2">
+				<appearance element="font.bold" color="%Header_text%, %Header_text%, %Header_text%"  align="CENTER" />
+			</weekdays>
+			<days>
+				<appearance layer="0" priority="0" element="font.normal" color="0, 0, 0" align="CENTER" />
+			</days>
+			<today>
+				<appearance layer="5" priority="100" element="font.bold" color="0, 0, 0" align="CENTER" />
+			</today>
+			<events>
+				<appearance layer="0" priority="1" element="font.normal" color="32, 74, 135" align="CENTER" />
+			</events>
+			<weeknums>
+				<appearance element="font.small" color="0, 0, 0" align="CENTER" />
+			</weeknums>
+		</calendar>
+	</window>
+
+	<window id="Event List" w="240" threshold="80" default="1">
+		<image id="Event List.stroke" element="bitmap.stroke" origin1="TOP-LEFT" x1="0" y1="0" origin2="BOTTOM-RIGHT" x2="0" y2="0"  scaling="STRETCH" margins="3, 3, 4, 4" />
+		<image id="Event List.background" element="gradient.background" origin1="TOP-LEFT" x1="2" y1="2" origin2="BOTTOM-RIGHT" x2="-2" y2="-2" minsizefromimage="0"/>
+
+		<image id="Event List.top.background" element="bitmap.header" x="5" y="5" w="230" h="30" scaling="STRETCH" margins="3, 3, 3, 3"/>
+
+		<image id="Event List.icon" element="bitmap.icon.events" x="12" y="8" />
+		<button id="Event List.add" element="bitmap.button.add" origin="TOP-RIGHT" x="-32" y="8" action="Global_ShowEventDialog()" />
+
+		<text id="Event List.header" element="font.large" x="90" y="18" color="46, 52, 54" align="CENTER" text="Event List" />
+		<scrollgroup id="Event List.scrollgroup" origin1="TOP-LEFT" x1="10" y1="45" origin2="TOP-RIGHT" x2="-10" y2="360" barscaling="TILE" shrinktofit="1" thumbscaling="TILE" thumbmargins="0,5,0,5" barmargins="0,5,0,5">
+			<eventlist id="Event List.eventlist" origin1="TOP-LEFT" x1="0" y1="0" origin2="BOTTOM-RIGHT" x2="0" y2="0">
+				<empty>
+					<appearance element="font.normal" indent="-10" color="100, 100, 100" align="TOP-LEFT" />
+				</empty>
+				<header>
+					<appearance element="font.bold" color="32, 74, 135" align="TOP-LEFT" />
+				</header>
+				<item>
+					<appearance element="font.normal" color="0, 0, 0" align="TOP-LEFT" indent="2"/>
+				</item>
+				<pastheader>
+					<appearance element="font.bold" color="100, 100, 100" align="TOP-LEFT" />
+				</pastheader>
+				<pastitem>
+					<appearance element="font.normal" color="100, 100, 100" align="TOP-LEFT" indent="2"/>
+				</pastitem>
+				<separator id="Event List.separator" padding="0, 10, 0, 0" />
+			</eventlist>
+		</scrollgroup>
+	</window>
+
+	<window id="Todo List" w="180" threshold="80" default="1">
+		<image id="Todo List.stroke" element="bitmap.stroke" origin1="TOP-LEFT" x1="0" y1="0" origin2="BOTTOM-RIGHT" x2="0" y2="0"  scaling="STRETCH" margins="3, 3, 4, 4" />
+		<image id="Todo List.background" element="gradient.background" origin1="TOP-LEFT" x1="2" y1="2" origin2="BOTTOM-RIGHT" x2="-2" y2="-2" minsizefromimage="0"/>
+
+		<image id="Todo List.top.background" element="bitmap.header" x="5" y="5" w="170" h="30" scaling="STRETCH" margins="3, 3, 3, 3"/>
+
+		<image id="Todo List.icon" element="bitmap.icon.tasks" x="12" y="8" />
+		<button id="Todo List.add" element="bitmap.button.add" origin="TOP-RIGHT" x="-32" y="8" action="Global_ShowTodoDialog()" />
+
+		<text id="Todo List.header" element="font.large" x="90" y="18" color="46, 52, 54" align="CENTER" text="Todo List" />
+		<todolist id="Todo List.todolist" origin1="TOP-LEFT" x1="10" y1="40" origin2="BOTTOM-RIGHT" x2="-10" y2="-10">
+			<header>
+				<appearance element="font.bold" color="32, 74, 135" align="TOP-LEFT" />
+			</header>
+			<item>
+				<appearance element="font.normal" color="0, 0, 0" align="TOP-LEFT" />
+			</item>
+			<completeditem>
+				<appearance element="font.normal" color="46, 52, 54, 90" align="TOP-LEFT" />
+			</completeditem>
+			<overdueitem>
+				<appearance element="font.underline" color="204, 0, 0" align="TOP-LEFT" />
+			</overdueitem>
+			<separator id="Todo List.separator" padding="0, 10, 0, 0" />
+		</todolist>
+	</window>
+
+
+	<tooltip id="Tooltip" threshold="48" textmargins="10, 7, 10, 15" offset="0, 0">   <image id="Tooltip.background1" element="gradient.background1" origin1="TOP-LEFT" x1="0" y1="0" origin2="BOTTOM-RIGHT" x2="0" y2="0" color="249, 237, 204" minsizefromimage="0" />
+		<image id="Tooltip.background2" element="bitmap.tooltip" origin1="TOP-LEFT" x1="3" y1="3" origin2="BOTTOM-RIGHT" x2="-3" y2="-3" color="249, 237, 204" minsizefromimage="0" margins="15, 10, 10, 20"/>
+		<header>
+			<appearance element="font.normal" color="46, 52, 54" align="TOP-LEFT" />
+		</header>
+		<item>
+			<appearance element="font.normal" color="46, 52, 54" align="TOP-LEFT" />
+		</item>
+		<separator id="Tooltip.separator" padding="0, 5, 0, 0" />
+	</tooltip>
+</skin>
