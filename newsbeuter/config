@@ -1,0 +1,4 @@
+include "~/.newsbeuter/colors"
+auto-reload yes
+reload-time 15
+reload-threads 3

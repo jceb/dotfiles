@@ -1,0 +1,7 @@
+color background          black   default
+color listnormal          black   default
+color listfocus           black  blue
+color listnormal_unread   red default bold
+color listfocus_unread    white red bold
+color info                magenta  white
+color article             black   default
