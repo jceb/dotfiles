@@ -1,0 +1,33 @@
+# this binding doesn't work since 0 can't be used as number anymore!
+# map global normal 0 gh
+map global normal $ gl
+map global insert <tab> <c-n>
+map global insert <backtab> <c-p>
+map global normal <c-6> ga
+
+hook global WinCreate .* %{
+    addhl regex [\t\ ]+$ 0:error
+    addhl number_lines -hlcursor -separator \ 
+    addhl show_matching
+    addhl search
+}
+
+%sh{
+    autoload() {
+        dir=$1
+        for rcfile in ${dir}/*.kak; do
+            echo "try %{ source '${rcfile}' } catch %{ }";
+        done
+        for subdir in ${dir}/*; do
+            if [ -d "$subdir" ]; then
+                autoload $subdir
+            fi
+        done
+    }
+
+    localconfdir=${XDG_CONFIG_HOME:-${HOME}/.config}/kak
+
+    if [ -d "${localconfdir}/myautoload" ]; then
+        autoload ${localconfdir}/myautoload
+    fi
+}
