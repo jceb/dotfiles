@@ -20,7 +20,7 @@ Index: github/zsh/wd/wd.sh
  }
  
  wd_list_all()
-@@ -301,6 +305,8 @@ wd_clean() {
+@@ -316,6 +320,8 @@ wd_clean() {
              wd_print_msg $WD_BLUE "Cleanup aborted"
          fi
      fi
