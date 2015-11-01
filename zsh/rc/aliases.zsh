@@ -152,8 +152,7 @@ d () {
 if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
-alias gr='/usr/bin/ag -i'
-alias g='git'
+alias g='/usr/bin/ag -i'
 alias t='task'
 alias tt='tree -f'
 
