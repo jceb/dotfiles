@@ -40,7 +40,7 @@
 		<bitmap id="bitmap.tooltip" file="images/tooltip.png" />
 
 		<!-- <gradient id="gradient.background" color1="249, 249, 249, 100" color2="239, 239, 239, 150" direction="VERTICAL" /> -->
-		<gradient id="gradient.background" color1="244, 244, 244, 125" color2="244, 244, 244, 125" direction="VERTICAL" />
+		<gradient id="gradient.background" color1="239, 239, 239, 255" color2="249, 249, 249, 255" direction="VERTICAL" />
 
 		<bitmap id="bitmap.button.prev" file="images/go-previous.png" frames="2"/>
 		<bitmap id="bitmap.button.next" file="images/go-next.png" frames="2"/>
