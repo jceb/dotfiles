@@ -1,32 +1,31 @@
 {
-    "usageCount": 0, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "email", 
+    "filter": {
+        "isRecursive": false,
+        "regex": null
+    },
+    "showInTrayMenu": false,
     "abbreviation": {
-        "wordChars": "[\\w]", 
-        "abbreviations": [], 
-        "immediate": false, 
-        "ignoreCase": false, 
-        "backspace": true, 
+        "wordChars": "[\\w]",
+        "immediate": false,
+        "backspace": true,
+        "ignoreCase": false,
+        "abbreviations": [],
         "triggerInside": false
-    }, 
+    },
+    "omitTrigger": false,
+    "prompt": false,
+    "store": {},
     "hotkey": {
-        "hotKey": "e", 
         "modifiers": [
-            "<alt>", 
-            "<shift>"
-        ]
-    }, 
+            "<alt>",
+            "<ctrl>"
+        ],
+        "hotKey": "e"
+    },
     "modes": [
         3
-    ], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
-    "filter": {
-        "regex": null, 
-        "isRecursive": false
-    }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    ],
+    "usageCount": 1,
+    "type": "script",
+    "description": "email"
 }

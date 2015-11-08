@@ -1,33 +1,33 @@
 {
-    "usageCount": 6, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "date", 
-    "abbreviation": {
-        "wordChars": "[\\w]", 
-        "abbreviations": [
-            "Date"
-        ], 
-        "immediate": false, 
-        "ignoreCase": false, 
-        "backspace": true, 
-        "triggerInside": false
-    }, 
+    "description": "date",
+    "showInTrayMenu": false,
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "omitTrigger": false,
     "hotkey": {
-        "hotKey": "d", 
+        "hotKey": "d",
         "modifiers": [
-            "<alt>", 
-            "<shift>"
+            "<alt>",
+            "<ctrl>"
         ]
-    }, 
+    },
     "modes": [
         3
-    ], 
-    "showInTrayMenu": false, 
-    "filter": {
-        "regex": null, 
-        "isRecursive": false
-    }, 
-    "type": "script", 
+    ],
+    "type": "script",
+    "prompt": false,
+    "abbreviation": {
+        "ignoreCase": false,
+        "backspace": true,
+        "triggerInside": false,
+        "immediate": false,
+        "wordChars": "[\\w]",
+        "abbreviations": [
+            "Date"
+        ]
+    },
+    "usageCount": 6,
     "store": {}
 }

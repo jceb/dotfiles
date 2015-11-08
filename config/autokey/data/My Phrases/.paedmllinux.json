@@ -1,34 +1,34 @@
 {
-    "usageCount": 204, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "paedmllinux", 
-    "abbreviation": {
-        "wordChars": "[\\w]", 
-        "abbreviations": [
-            null
-        ], 
-        "immediate": false, 
-        "ignoreCase": false, 
-        "backspace": true, 
-        "triggerInside": false
-    }, 
-    "hotkey": {
-        "hotKey": "p", 
-        "modifiers": [
-            "<alt>", 
-            "<shift>"
-        ]
-    }, 
+    "showInTrayMenu": false,
+    "omitTrigger": false,
     "modes": [
         3
-    ], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
+    ],
+    "prompt": false,
+    "sendMode": "kb",
+    "matchCase": false,
+    "description": "paedmllinux",
     "filter": {
-        "regex": null, 
+        "regex": null,
         "isRecursive": false
-    }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    },
+    "usageCount": 204,
+    "hotkey": {
+        "hotKey": "p",
+        "modifiers": [
+            "<alt>",
+            "<ctrl>"
+        ]
+    },
+    "abbreviation": {
+        "ignoreCase": false,
+        "backspace": true,
+        "triggerInside": false,
+        "immediate": false,
+        "wordChars": "[\\w]",
+        "abbreviations": [
+            null
+        ]
+    },
+    "type": "phrase"
 }

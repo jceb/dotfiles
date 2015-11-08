@@ -1,32 +1,32 @@
 {
-    "usageCount": 3, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "Administrator", 
+    "filter": {
+        "isRecursive": false,
+        "regex": null
+    },
     "abbreviation": {
-        "wordChars": "[\\w]", 
-        "abbreviations": [], 
-        "immediate": false, 
-        "ignoreCase": false, 
-        "backspace": true, 
+        "wordChars": "[\\w]",
+        "immediate": false,
+        "backspace": true,
+        "ignoreCase": false,
+        "abbreviations": [],
         "triggerInside": false
-    }, 
-    "hotkey": {
-        "hotKey": "a", 
-        "modifiers": [
-            "<alt>", 
-            "<shift>"
-        ]
-    }, 
+    },
+    "matchCase": false,
+    "prompt": false,
     "modes": [
         3
-    ], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
-    "filter": {
-        "regex": null, 
-        "isRecursive": false
-    }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    ],
+    "type": "phrase",
+    "description": "Administrator",
+    "omitTrigger": false,
+    "sendMode": "kb",
+    "hotkey": {
+        "modifiers": [
+            "<alt>",
+            "<ctrl>"
+        ],
+        "hotKey": "a"
+    },
+    "usageCount": 9,
+    "showInTrayMenu": false
 }
