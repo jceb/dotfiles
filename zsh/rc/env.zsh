@@ -15,6 +15,8 @@ export EDITOR=vim
 export GIT_EDITOR=/usr/bin/vim
 # change cursor shape in nvim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+# use true colors in the terminal
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # export EMAIL=put me in ~/.zshother
 export BROWSER=x-www-browser
