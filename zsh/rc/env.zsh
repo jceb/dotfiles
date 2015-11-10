@@ -11,8 +11,8 @@ fi
 # to get around sorting issues, define differently
 export LC_COLLATE="C"
 
-export EDITOR=vim
-export GIT_EDITOR=/usr/bin/vim
+export EDITOR=nvim
+export GIT_EDITOR=~/.local/bin/nvim
 # change cursor shape in nvim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 # use true colors in the terminal
