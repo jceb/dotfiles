@@ -17,11 +17,11 @@ set fcc_clear
 
 # default list of header fields to weed when displaying
 ignore *
-# ignore Received References Message-Id Delivered-To X-Original-To X-Spam-Level X-Spam-Status X-Spam-Checker-Version Envelope-to X-Gmail-Received X-VirusChecked X-Env-Sender X-Msg-Ref X-StarScan-Version X-Originating-IP X-Virus-Scanned X-CheckCompat X-Originating-Email X-Sender Return-Path Content-Disposition In-Reply-To X-Priority X-Abuse X-Received-before X-Authenticated X-MSMail-Priority X-MimeOLE X-GMX-Antispam X-UID X-RZG-CLASS-ID X-Sasl-enc X-Provags-ID X-GMX-UID X-FuHaFi DomainKey-Status X-VirtualServer X-VirtualServerGroup X-MailingID X-SMHeaderMap X-SMFBL X-OriginalArrivalTime X-RZG-AUTH
-unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent X-Spam-Status Mailing-List Message-Id
+# ignore Received References Message-Id Delivered-To X-Original-To X-Spam-Level X-Spam-Status X-Spam-Checker-Version Envelope-to X-Gmail-Received X-VirusChecked X-Env-Sender X-Msg-Ref X-StarScan-Version X-Originating-IP X-Virus-Scanned X-CheckCompat X-Originating-Email X-Sender Return-Path Content-Disposition In-Reply-To X-Abuse X-Received-before X-Authenticated X-MSMail-Priority X-MimeOLE X-GMX-Antispam X-UID X-RZG-CLASS-ID X-Sasl-enc X-Provags-ID X-GMX-UID X-FuHaFi DomainKey-Status X-VirtualServer X-VirtualServerGroup X-MailingID X-SMHeaderMap X-SMFBL X-OriginalArrivalTime X-RZG-AUTH
+unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent X-Spam-Status Mailing-List Message-Id X-Priority Importance
 
 # Order to display the headers in
-hdr_order From Reply-To To Cc Subject Date X-Mailer User-Agent
+hdr_order From Reply-To To Cc Subject Date X-Mailer User-Agent X-Priority Importance
 
 # restore the behaviour of mutt versions up to 1.5.7
 #set menu_move_off
@@ -82,11 +82,11 @@ macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
 #source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
 
 color   signature    brightblue      default
-color   indicator    default         color4
+color   indicator    default         blue
 color   attachment   default         color7
 color   error        brightred       default
 color   message      default         default
-color   search       brightwhite     color4
+color   search       brightwhite     blue
 color   status       magenta         color7
 color   tree         blue            default
 color   normal       default         default
@@ -106,6 +106,8 @@ color   header       brightblue      default  ^To:
 color   header       brightblue      default  ^Cc:
 color   header       brightred       default  ^Subject:
 color   header       blue            default  ^Date:
+color   header       green           default  ^Importance:
+color   header       green           default  ^X-Priority:
 color   body         brightblue      default  "((ftp|http|https)://|news:)[^	>)\"\t]+"
 color   body         brightred       default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
 color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
@@ -204,7 +206,7 @@ set folder_format = "%2C %5.0N %f"
 
 # special editor-command to wrap signatures
 #set editor        = "/usr/bin/vim \"+set filetype=mail\" -c 'silent! /^> --[\t ]*$/,/^-- $/-2d' -c 'silent! 1,/^-- $/-1!par gql'"
-set editor = "/usr/bin/vim"
+# set editor = "/usr/bin/vim"
 set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vcf"
 
 #set xterm_title="Mutt %?b?[NEW mail in %b mailboxes]? %?n?[%n NEW]?"

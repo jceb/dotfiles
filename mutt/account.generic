@@ -2,6 +2,8 @@ set record    = "$spoolfile/Sent"
 set postponed = "$spoolfile/Drafts"
 
 unmy_hdr *
+my_hdr X-Priority: 3
+my_hdr Importance: Normal
 
 unhook send-hook
 send-hook . 'my_hdr From: $from'
