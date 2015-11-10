@@ -129,7 +129,7 @@
 	default = upstream
 [core]
 	pager = less -FSRX
-	editor = /usr/bin/vim
+	editor = /usr/bin/nvim
 
 # vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
 [init]
