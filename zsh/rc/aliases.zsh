@@ -3,6 +3,7 @@ alias -g L="|less"
 alias -g LL="|& less"
 alias -g G="|ag"
 alias -g GG="|& ag"
+alias -g B="&>/dev/null & disown"
 
 alias grep='grep --color=auto --exclude=\*\.svn-base --exclude=\*\~ --exclude=\*\.tmp --binary-files=without-match'
 alias o='xdg-open'
