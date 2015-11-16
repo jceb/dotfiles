@@ -22,6 +22,6 @@ yeahconsole*toggleKey		: Alt+space
 yeahconsole*keyFull			: Alt+f
 yeahconsole*term			: st
 !yeahconsole*xOffset			: 100
-yeahconsole*yOffset			: 16
+yeahconsole*yOffset			: 15
 yeahconsole*screenWidth		: 1600
 yeahconsole*xrandrSupport	: 1
