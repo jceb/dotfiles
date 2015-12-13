@@ -206,7 +206,7 @@ set folder_format = "%2C %5.0N %f"
 
 # special editor-command to wrap signatures
 #set editor        = "/usr/bin/vim \"+set filetype=mail\" -c 'silent! /^> --[\t ]*$/,/^-- $/-2d' -c 'silent! 1,/^-- $/-1!par gql'"
-# set editor = "/usr/bin/vim"
+set editor = "~/.local/bin/nvim"
 set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vcf"
 
 #set xterm_title="Mutt %?b?[NEW mail in %b mailboxes]? %?n?[%n NEW]?"
