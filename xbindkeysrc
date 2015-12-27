@@ -115,5 +115,10 @@
     m:0x0 + c:107
     Print 
 
+#dmenu_duckduckgo
+"dmenu_duckduckgo"
+    m:0x80 + c:40
+    Mod5 + s 
+
 #
 # End of xbindkeys configuration
