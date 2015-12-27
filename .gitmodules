@@ -4,9 +4,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = git@github.com:junegunn/fzf.git
-[submodule "emacs.d/plugins/yasnippet"]
-	path = emacs.d/plugins/yasnippet
-	url = git@github.com:AndreaCrotti/yasnippet-snippets.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
