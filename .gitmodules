@@ -22,3 +22,6 @@
 [submodule "mutt/extracturl"]
 	path = mutt/extracturl
 	url = git@github.com:m3m0ryh0l3/extracturl.git
+[submodule "emacs.d"]
+	path = emacs.d
+	url = git@github.com:syl20bnr/spacemacs.git
