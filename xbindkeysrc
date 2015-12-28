@@ -35,17 +35,17 @@
 
 
 
-#explorer
-"x-terminal-emulator -e ranger"
+#x-terminal-emulator tmux
+"x-terminal-emulator"
+    m:0x41 + c:36
+    Shift+Mod4 + Return 
+
+#ranger
+"x-terminal-emulator ranger"
     m:0x40 + c:45
     Mod4 + e 
 
-#calendar
-"gsimplecal"
-    m:0x40 + c:52
-    Mod4 + z 
-
-#explorer graphical
+#thunar
 "thunar"
     m:0x41 + c:45
     Shift+Mod4 + e 
@@ -55,15 +55,20 @@
     m:0x4 + c:9
     Control + Escape 
 
-#graphical editor
+#gvim
 "/usr/bin/gvim"
     m:0x40 + c:55
     Mod4 + v 
 
-#Calculator
-"gnome-calculator"
-    m:0x0 + c:148
-    XF86Calculator 
+#Show Kaze
+"kaze"
+    m:0x9 + c:57
+    Shift+Alt + k 
+
+#xscreensaver lock
+"xscreensaver-command -lock"
+    m:0xc + c:30
+    Control+Alt + l 
 
 #Browser
 "x-www-browser"
@@ -85,15 +90,10 @@
     m:0x0 + c:179
     XF86Tools 
 
-#Lock Screensaver
-"xscreensaver-command -l"
-    m:0xc + c:30
-    Control+Alt + l 
-
-#Vaio
+#Calculator
 "gnome-calculator"
-    m:0x0 + c:146
-    Help 
+    m:0x0 + c:148
+    XF86Calculator 
 
 #Volume Lower
 "amixer -q set Master 5%-"
@@ -110,8 +110,23 @@
     m:0x0 + c:121
     XF86AudioMute 
 
-#Screenshot
-"/usr/bin/ksnapshot"
+#Audio Previous
+"clementine --previous"
+    m:0x0 + c:173
+    XF86AudioPrev 
+
+#Audio Play
+"clementine --play-pause"
+    m:0x0 + c:172
+    XF86AudioPlay 
+
+#Audio Next
+"clementine --next"
+    m:0x0 + c:171
+    XF86AudioNext 
+
+#Snapshot
+"ksnapshot"
     m:0x0 + c:107
     Print 
 
@@ -122,3 +137,4 @@
 
 #
 # End of xbindkeys configuration
+
