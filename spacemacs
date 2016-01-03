@@ -210,4 +210,21 @@ layers configuration. You are free to put any user code."
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-highlight-current-line-globally-off)
   ;; (cursor ((t (:background "LightBlue"))))
+
+  (setq org-default-notes-file "~/Seafile/work/todo/wiki.org")
+  (define-key global-map "\C-cc" 'org-capture)
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fringe-mode (quote (1 . 1)) nil (fringe))
+ '(org-agenda-files (quote ("~/Seafile/work/todo/wiki.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
