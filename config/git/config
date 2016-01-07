@@ -134,3 +134,5 @@
 # vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
 [init]
 	templatedir = ~/.config/git/template
+[rebase]
+	autostash = true
