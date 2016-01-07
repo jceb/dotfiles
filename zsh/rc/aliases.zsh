@@ -12,6 +12,11 @@ alias ls='ls -b -CF --file-type --color=auto'
 alias ltr='ls -ltr'
 alias ltra='ls -ltra'
 alias l='ls -l --color=auto'
+alias qp='quilt push -a'
+alias qP='quilt push'
+alias qo='quilt pop -a'
+alias qO='quilt pop'
+alias qr='quilt refresh'
 
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
