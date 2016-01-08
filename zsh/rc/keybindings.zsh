@@ -58,7 +58,7 @@ autoload -Uz insert-second-last-word
 zle -N insert-second-last-word
 bindkey -r "^[,"
 bindkey -M emacs "^[," insert-second-last-word
-bindkey -M emacs "¬" insert-second-last-word
-bindkey -M emacs "®" insert-last-word
+# bindkey -M emacs "¬" insert-second-last-word
+# bindkey -M emacs "®" insert-last-word
 
 # vi: ft=zsh:tw=0:sw=4:ts=4

@@ -6,18 +6,18 @@ insert-cycledleft () { pushd -q +1; zle reset-prompt; }
 zle -N insert-cycledleft
 # M-l
 bindkey '^[l' insert-cycledleft
-bindkey 'ì' insert-cycledleft
+# bindkey 'ì' insert-cycledleft
 insert-cycledright () { pushd -q -1; zle reset-prompt; }
 zle -N insert-cycledright
 # M-h
 bindkey '^[h' insert-cycledright
-bindkey 'è' insert-cycledright
+# bindkey 'è' insert-cycledright
 
 cdUp() { cd ..; zle reset-prompt; }
 zle -N cdUp
 # M-u 7 and 8 bit
 bindkey '^[u' cdUp
-bindkey 'õ' cdUp
+# bindkey 'õ' cdUp
 
 if type fzf &> /dev/null; then
 	fzChDir() { cd "$(find -L . -mindepth 1 -type d -o -type l ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* | fzf)"; zle reset-prompt; }
@@ -28,7 +28,7 @@ if type fzf &> /dev/null; then
 	zle -N fzChDirOne
 	# M-n
 	bindkey '^[n' fzChDirOne
-	bindkey 'î' fzChDirOne
+	# bindkey 'î' fzChDirOne
 
 	fzEdit() { BUFFER='FILES=($(fzf -m)) && vserver "${FILES[@]}"'; zle accept-line }
 	zle -N fzEdit
