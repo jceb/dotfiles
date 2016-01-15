@@ -5,18 +5,34 @@ alias -g G="|ag"
 alias -g GG="|& ag"
 alias -g B="&>/dev/null & disown"
 
+# defaults
 alias grep='grep --color=auto --exclude=\*\.svn-base --exclude=\*\~ --exclude=\*\.tmp --binary-files=without-match'
 alias o='xdg-open'
 alias open='xdg-open'
+# on debian based systems this makes the use of ack a bit easier
+if [ -e /usr/bin/ack-grep ]; then
+	alias ack=ack-grep
+fi
+alias g='/usr/bin/ag -i'
+alias t='tree -f'
+
+# ls
 alias ls='ls -b -CF --file-type --color=auto'
 alias ltr='ls -ltr'
 alias ltra='ls -ltra'
 alias l='ls -l --color=auto'
-alias qp='quilt push -a'
-alias qP='quilt push'
-alias qo='quilt pop -a'
-alias qO='quilt pop'
+
+# quilt
+alias q+='quilt push -a'
+alias qp='quilt push'
+alias q-='quilt pop -a'
+alias qP='quilt pop'
 alias qr='quilt refresh'
+
+# git
+alias gst='git st'
+alias gd='git diff'
+alias gc='git commit'
 
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
@@ -153,13 +169,5 @@ f () {
 d () {
 	_find_objects '' "$@"
 }
-
-# on debian based systems this makes the use of ack a bit easier
-if [ -e /usr/bin/ack-grep ]; then
-	alias ack=ack-grep
-fi
-alias g='/usr/bin/ag -i'
-alias t='task'
-alias tt='tree -f'
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
