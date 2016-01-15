@@ -31,7 +31,7 @@ alias qP='quilt pop'
 alias qr='quilt refresh'
 
 # git
-alias gs='git st'
+alias gst='git st'
 alias gd='git diff'
 alias gc='git commit'
 alias gca='git commit -a'
