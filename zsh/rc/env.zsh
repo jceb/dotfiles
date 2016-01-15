@@ -1,7 +1,7 @@
-HISTFILE=~/.historyzsh
-HISTSIZE=1000
-SAVEHIST=1000
-DIRSTACKSIZE=11
+export HISTFILE=~/.historyzsh
+export HISTSIZE=1000
+export SAVEHIST=1000
+export DIRSTACKSIZE=11
 
 if $(locale -a|grep -q en_US.utf8); then
 	export LANG=en_US.UTF-8
@@ -26,7 +26,6 @@ export BROWSER=x-www-browser
 # add -F to automatically quit less if page fits on one screen
 export LESS="--ignore-case -rSX"
 export PAGER=less
-# export PAGER=vimpager
 
 # export TTY properly to support gnupg
 export GPG_TTY=$(tty)
@@ -45,7 +44,7 @@ export BC_ENV_ARGS=~/.bcrc
 export GOPATH="${HOME}/.local/go"
 
 # set PATH so it includes user's private bin if it exists
-for i in ${HOME}/.gem/ruby/*/bin "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.1.0/bin" "${GOPATH}/bin" "${HOME}/node_modules/ttystudio/bin"; do
+for i in ${HOME}/.gem/ruby/*/bin "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.3.0/bin" "${GOPATH}/bin" "${HOME}/node_modules/ttystudio/bin"; do
 	if [ -e "$i" ]; then
 		PATH="$i:${PATH}"
 	fi
