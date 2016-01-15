@@ -54,8 +54,8 @@
 	unstage = reset HEAD --
 
 	# undo last commit, soft and hard way
-	undo = reset --soft HEAD~
-	undohard = reset --hard HEAD~
+	# undo = reset --soft HEAD~
+	# undohard = reset --hard HEAD~
 
 	########## diff
 	# word wise diff
