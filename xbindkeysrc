@@ -126,7 +126,7 @@
     XF86AudioNext 
 
 #Snapshot
-"ksnapshot"
+"spectacle"
     m:0x0 + c:107
     Print 
 
@@ -137,4 +137,3 @@
 
 #
 # End of xbindkeys configuration
-
