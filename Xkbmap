@@ -1,1 +1,1 @@
--option compose:ralt,shift:both_capslock_cancel,caps:backspace us,de colemak,
+-option grp:ctrls_toggle,compose:ralt,shift:both_capslock_cancel,caps:backspace us,de colemak,
