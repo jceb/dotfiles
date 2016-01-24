@@ -32,12 +32,17 @@ alias qr='quilt refresh'
 
 # git
 alias gst='git st'
+alias gsta='git sta'
 alias gd='git diff'
+alias gdd='git difff'
+alias gdc='git diffc'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gp='git push'
-alias gpr='git pre'
+alias gpre='git pre'
 alias gps='git subpre'
+alias gup='git up'
+alias gci='git ci'
 
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
