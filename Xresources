@@ -1,6 +1,6 @@
 ! vi: commentstring=!%s
 Xcursor.theme		: Adwaita
-Xcursor.size		: 16
+Xcursor.size		: 24
 Xft.antialias		: 1
 Xft.autohint		: 0
 ! Depend on auto-detection for the correct DPI value
