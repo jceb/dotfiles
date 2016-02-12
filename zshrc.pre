@@ -14,3 +14,6 @@ stty -ixon
 if [[ -d ${HOME}/.zsh/completion ]]; then
 	fpath=( "${HOME}/.zsh/completion" ${fpath} )
 fi
+
+# starting off in insert mode with an insert mode cursor
+# printf '\e[6 q'
