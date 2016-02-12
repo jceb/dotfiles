@@ -42,7 +42,7 @@ alias gco='git checkout'
 alias gp='git push'
 alias gpre='git pre'
 alias gsubpre='git subpre'
-alias gsup='git subup'
+alias gsupup='git subup'
 alias gup='git up'
 alias gci='git ci'
 
