@@ -45,7 +45,7 @@ alias gpre='git pre'
 alias gst='git st'
 alias gsta='git sta'
 alias gsubpre='git subpre'
-alias gsupup='git subup'
+alias gsubup='git subup'
 alias gci='git ci'
 alias gup='git up'
 
