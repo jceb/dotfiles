@@ -13,12 +13,6 @@
 [submodule "tmux/plugins/tmux-yank"]
 	path = tmux/plugins/tmux-yank
 	url = git@github.com:tmux-plugins/tmux-yank.git
-[submodule "tmux/plugins/tmux-copycat"]
-	path = tmux/plugins/tmux-copycat
-	url = git@github.com:tmux-plugins/tmux-copycat.git
-[submodule "tmux/plugins/tmux-urlview"]
-	path = tmux/plugins/tmux-urlview
-	url = git@github.com:tmux-plugins/tmux-urlview.git
 [submodule "mutt/extracturl"]
 	path = mutt/extracturl
 	url = git@github.com:m3m0ryh0l3/extracturl.git
