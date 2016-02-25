@@ -120,6 +120,11 @@
     m:0x0 + c:172
     XF86AudioPlay 
 
+#Audio Play
+"clementine --play-pause"
+    m:0x0 + c:208
+    XF86AudioPlay 
+
 #Audio Next
 "clementine --next"
     m:0x0 + c:171
