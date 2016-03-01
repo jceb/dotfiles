@@ -137,8 +137,8 @@
 
 #dmenu_duckduckgo
 "dmenu_duckduckgo"
-    m:0x80 + c:40
-    Mod5 + s 
+    m:0x40 + c:53
+    Mod4 + x 
 
 #
 # End of xbindkeys configuration
