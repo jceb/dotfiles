@@ -61,4 +61,11 @@ bindkey -M emacs "^[," insert-second-last-word
 # bindkey -M emacs "¬" insert-second-last-word
 # bindkey -M emacs "®" insert-last-word
 
+_fg () {
+    fg
+}
+zle -N _fg
+bindkey -r "^f"
+bindkey -M emacs "^f" _fg
+
 # vi: ft=zsh:tw=0:sw=4:ts=4
