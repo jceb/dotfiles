@@ -88,6 +88,8 @@
 	# show history
 	ls = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
 	ll = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
+	# show deleted files only
+	lsd = log --diff-filter=D --summary
 	# show file names and commits only
 	ln = log --name-only --pretty=oneline
 	# show unique file names only
