@@ -3,3 +3,7 @@ pointer = 1 2 3 5 4 6 7 8 9 10 11 12
 
 ! Required to allow key repeat for caps lock key
 clear Lock
+
+! swap Esc and ` key
+keycode 49 = Escape NoSymbol Escape
+keycode 9 = grave asciitilde grave asciitilde dead_tilde asciitilde dead_tilde
