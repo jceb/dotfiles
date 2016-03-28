@@ -41,7 +41,7 @@ zle -N set_vi_mode
 bindkey -M emacs "^[" vi-cmd-mode
 bindkey -r "^y"
 bindkey -M emacs "^y" push-input
-bindkey -M emacs "^h" backward-kill-word
+# bindkey -M emacs "^h" backward-kill-word
 bindkey -M emacs "^[^h" slash-backward-kill-word
 bindkey -M emacs "" slash-backward-kill-word
 bindkey -M vicmd "?" vi-history-search-backward
