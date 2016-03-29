@@ -32,6 +32,7 @@ alias qp='quilt push'
 alias q-='quilt pop -a'
 alias qP='quilt pop'
 alias qr='quilt refresh'
+alias qs='quilt series'
 
 # git
 alias g+='git stash pop'
