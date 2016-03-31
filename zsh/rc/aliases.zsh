@@ -55,6 +55,7 @@ alias gsubm='git subm'
 alias gsubup='git subup'
 alias gci='git ci'
 alias gup='git up'
+alias guc='git commit -m "Update changelogs"'
 
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
