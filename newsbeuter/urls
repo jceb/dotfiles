@@ -1,0 +1,8 @@
+http://bygga.knut.univention.de/blog/?feed=comments-rss2
+http://bygga.knut.univention.de/blog/?feed=rss2
+#http://jenkins.knut.univention.de:8080/job/Customers/job/01997_oxin8/job/OXIN8%20-%20Generic%20AutoTest%20Env%20Cluster%20-%20ACL%20-%205.2.2/rssAll
+#http://xen4.knut.univention.de:8080/view/Test/rssAll
+#https://univention.plan.io/projects/ox_in8/activity.atom?key=84dae803e64778134ee829bdeccc098981cc5728
+https://univention.plan.io/projects/presales/issues.atom?key=84dae803e64778134ee829bdeccc098981cc5728&set_filter=1
+https://www.univention.com/news/blog-en/feed/
+https://www.univention.de/news/univention-app-center/feed/
