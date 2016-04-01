@@ -1,0 +1,17 @@
+reload_plus
+zoom_in plus equal
+reload_minus
+zoom_out minus
+scroll_left H
+scroll_right L
+scroll_up K
+scroll_down J
+menu_up k
+menu_down j
+menu_parent h
+menu_child l
+toggle_info
+next_img j n
+toggle_keep_vp
+prev_img k p
+toggle_fullscreen v F11
