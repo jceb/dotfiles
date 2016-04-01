@@ -1,2 +1,2 @@
-feh --quiet --scale-down
-fehs --magick-timeout 2 --quiet --scale-down
+feh --quiet --scale-down --action1 fhunar %f
+fehs --magick-timeout 2 --quiet --scale-down --action1 fhunar %f
