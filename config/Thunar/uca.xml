@@ -14,4 +14,22 @@
 	<text-files/>
 	<video-files/>
 </action>
+<action>
+	<icon>object-rotate-left</icon>
+	<name>Rotate left</name>
+	<unique-id>1459318235883248-1</unique-id>
+	<command>rotate-left %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>object-rotate-right</icon>
+	<name>Rotate right</name>
+	<unique-id>1459318277332256-3</unique-id>
+	<command>rotate-right %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
 </actions>
