@@ -1,7 +1,8 @@
 reload_plus
-zoom_in plus equal
+zoom_in plus
 reload_minus
 zoom_out minus
+zoom_fit equal slash
 scroll_left H
 scroll_right L
 scroll_up K
@@ -15,3 +16,5 @@ next_img j n
 toggle_keep_vp
 prev_img k p
 toggle_fullscreen v F11
+quit q Escape C-q
+close x C-w

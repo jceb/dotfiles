@@ -1,0 +1,2 @@
+feh --quiet --scale-down
+fehs --magick-timeout 2 --quiet --scale-down
