@@ -40,7 +40,8 @@ alias g-='git stash'
 alias ga='git add'
 alias gc='git commit'
 alias gca='git commit -a'
-alias gcm='git commit --amend'
+alias guc='git commit -m "Update changelogs"'
+alias gcmsg='git commit --amend'
 alias gco='git checkout'
 alias gd='git diff'
 alias gdc='git diffc'
@@ -55,7 +56,6 @@ alias gsubm='git subm'
 alias gsubup='git subup'
 alias gci='git ci'
 alias gup='git up'
-alias guc='git commit -m "Update changelogs"'
 
 # aliases for quickly traversing through the Univention SVN
 _chdir () {
