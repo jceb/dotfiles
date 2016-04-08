@@ -130,10 +130,10 @@
     m:0x0 + c:171
     XF86AudioNext 
 
-#Snapshot
-"spectacle"
-    m:0x0 + c:107
-    Print 
+# #Snapshot
+# "spectacle"
+#     m:0x0 + c:107
+#     Print 
 
 #dmenu_duckduckgo
 "dmenu_duckduckgo"

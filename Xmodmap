@@ -1,3 +1,6 @@
+! Retrieve current keymap: xmodmap -pk
+! Retrieve modifier keymap: xmodmap -pm
+
 ! enable natural scrolling
 pointer = 1 2 3 5 4 6 7 8 9 10 11 12
 
@@ -8,3 +11,8 @@ clear Lock
 ! keycode 49 = Escape NoSymbol Escape
 ! disable Esc key in preparation for UHK
 keycode 9 = grave asciitilde grave asciitilde dead_tilde asciitilde dead_tilde
+
+! use print key as right windows key since my keyboard doesn't have a right
+! windows key
+keycode 107 = Super_R
+keycode 218 = Super_R
