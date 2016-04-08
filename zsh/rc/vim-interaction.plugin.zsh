@@ -114,10 +114,6 @@ _vim_interactive () {
     fi
 }
 
-compdef vs=exec
-compdef sp=exec
-compdef tabe=exec
-
 # always start vim in server mode and use the directory's name as server name
 alias v=/usr/bin/vim
 compdef v=vim
