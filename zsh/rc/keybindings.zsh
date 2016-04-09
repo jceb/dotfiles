@@ -67,10 +67,10 @@ bindkey -M emacs -r "^[G" # get-line
 bindkey -M emacs -r "^[H" # run-help
 bindkey -M emacs -r "^[L" # down-case-word
 # bindkey -M emacs -r "^[N" # fzChDir
-bindkey -M emacs -r "^[OA" # up-line-or-search
-bindkey -M emacs -r "^[OB" # down-line-or-search
-bindkey -M emacs -r "^[OC" # forward-char
-bindkey -M emacs -r "^[OD" # backward-char
+# bindkey -M emacs -r "^[OA" # up-line-or-search
+# bindkey -M emacs -r "^[OB" # down-line-or-search
+# bindkey -M emacs -r "^[OC" # forward-char
+# bindkey -M emacs -r "^[OD" # backward-char
 bindkey -M emacs -r "^[OF" # end-of-line
 bindkey -M emacs -r "^[OH" # beginning-of-line
 bindkey -M emacs -r "^[Oc" # forward-word
@@ -85,11 +85,11 @@ bindkey -M emacs -r "^[[1;3C" # forward-word
 bindkey -M emacs -r "^[[1;3D" # backward-word
 bindkey -M emacs -r "^[[1;5C" # forward-word
 bindkey -M emacs -r "^[[1;5D" # backward-word
-bindkey -M emacs -r "^[[1~" # beginning-of-line
+# bindkey -M emacs -r "^[[1~" # beginning-of-line
 bindkey -M emacs -r "^[[200~" # bracketed-paste
 bindkey -M emacs -r "^[[2~" # overwrite-mode
 bindkey -M emacs -r "^[[3~" # delete-char
-bindkey -M emacs -r "^[[4~" # end-of-line
+# bindkey -M emacs -r "^[[4~" # end-of-line
 bindkey -M emacs -r "^[[5~" # history-beginning-search-backward-end
 bindkey -M emacs -r "^[[6~" # history-beginning-search-forward-end
 bindkey -M emacs -r "^[[A" # history-search-backward
