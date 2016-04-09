@@ -88,7 +88,8 @@ function +vi-git-stash() {
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
 
 # prompt definition
-zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percent
+# zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percent
+zstyle ':prompt:grml:left:setup' items rc vcs newline user at host percent
 zstyle ':prompt:grml:right:setup' items ''
 
 # vi: ft=zsh:tw=0:sw=4:ts=4:et
