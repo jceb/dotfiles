@@ -27,6 +27,7 @@ alias l='ls -l --color=auto'
 
 # quilt
 alias q='quilt'
+alias qd='quilt diff'
 alias q+='quilt push -a'
 alias qp='quilt push'
 alias q-='quilt pop -a'
