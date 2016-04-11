@@ -28,10 +28,10 @@ bindkey '\eOF' end-of-line
 bindkey -M emacs -r "^[^D" # list-choices
 bindkey -M emacs -r "^[^G" # send-break
 # bindkey -M emacs -r "^[^H" # slash-backward-kill-word
-bindkey -M emacs -r "^[^I" # self-insert-unmeta
-bindkey -M emacs -r "^[^J" # self-insert-unmeta
+# bindkey -M emacs -r "^[^I" # self-insert-unmeta
+# bindkey -M emacs -r "^[^J" # self-insert-unmeta
 bindkey -M emacs -r "^[^L" # clear-screen
-bindkey -M emacs -r "^[^M" # self-insert-unmeta
+# bindkey -M emacs -r "^[^M" # self-insert-unmeta
 bindkey -M emacs -r "^[^[OC" # forward-word
 bindkey -M emacs -r "^[^[OD" # backward-word
 bindkey -M emacs -r "^[^[[C" # forward-word
@@ -86,7 +86,7 @@ bindkey -M emacs -r "^[[1;3D" # backward-word
 bindkey -M emacs -r "^[[1;5C" # forward-word
 bindkey -M emacs -r "^[[1;5D" # backward-word
 # bindkey -M emacs -r "^[[1~" # beginning-of-line
-bindkey -M emacs -r "^[[200~" # bracketed-paste
+# bindkey -M emacs -r "^[[200~" # bracketed-paste
 bindkey -M emacs -r "^[[2~" # overwrite-mode
 bindkey -M emacs -r "^[[3~" # delete-char
 # bindkey -M emacs -r "^[[4~" # end-of-line
