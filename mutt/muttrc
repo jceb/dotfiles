@@ -178,8 +178,14 @@ macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt
 # remap list-reply to G instead of the L key which is used to jump to the bottom
 # of the page
 bind index,pager  sidebar-toggle-visible
-# bind index,pager   sidebar-next
-# bind index,pager  sidebar-prev
+set sidebar_divider_char = "│"
+set sidebar_width = 35
+set sidebar_folder_indent = yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N"
+bind index,pager  sidebar-prev-new
+bind index,pager  sidebar-next-new
+bind index,pager  sidebar-open
+bind index,pager x vfolder-from-query
 bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
