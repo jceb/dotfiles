@@ -1,5 +1,6 @@
 set record    = "$spoolfile/Sent"
 set postponed = "$spoolfile/Drafts"
+set trash = "$spoolfile/Trash"
 
 unmy_hdr *
 my_hdr X-Priority: 3

@@ -177,6 +177,9 @@ macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt
 
 # remap list-reply to G instead of the L key which is used to jump to the bottom
 # of the page
+bind index,pager  sidebar-toggle-visible
+# bind index,pager   sidebar-next
+# bind index,pager  sidebar-prev
 bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
