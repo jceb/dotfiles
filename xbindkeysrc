@@ -56,7 +56,7 @@
     Control + Escape 
 
 #gvim
-"/usr/bin/gvim"
+"x-terminal-emulator -e vim"
     m:0x40 + c:55
     Mod4 + v 
 
@@ -129,11 +129,6 @@
 "clementine --next"
     m:0x0 + c:171
     XF86AudioNext 
-
-# #Snapshot
-# "spectacle"
-#     m:0x0 + c:107
-#     Print 
 
 #dmenu_duckduckgo
 "dmenu_duckduckgo"
