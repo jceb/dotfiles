@@ -7,3 +7,4 @@ set tree-view	= line-number:no,interval=5 mode author:full file-size date:local 
 bind main	<Space>	enter
 bind generic	H	move-first-line
 bind generic	L	move-last-line
+bind status	P	!git push
