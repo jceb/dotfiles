@@ -8,3 +8,5 @@ bind main	<Space>	enter
 bind generic	H	move-first-line
 bind generic	L	move-last-line
 bind status	P	!git push
+# show log view for an individual file
+bind generic	<C-g>	:!git log %(file)
