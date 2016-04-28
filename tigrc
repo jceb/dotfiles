@@ -10,3 +10,4 @@ bind generic	L	move-last-line
 bind status	P	!git push
 # show log view for an individual file
 bind generic	<C-g>	:!git log %(file)
+bind main	T	?!git tag -s "%(prompt)" %(commit)

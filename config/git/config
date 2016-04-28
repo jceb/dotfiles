@@ -127,6 +127,7 @@
 	t = !tig --all
 	g = !gitg --all 2>/dev/null &
 	k = !gitk --all 2>/dev/null &
+	releases = log --decorate --oneline --simplify-by-decoration --all
 [push]
 	default = upstream
 [core]
