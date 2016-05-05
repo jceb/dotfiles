@@ -5,9 +5,10 @@ set stash-view	= line-number:no,interval=5 id:no date:local author:full commit-t
 set tree-view	= line-number:no,interval=5 mode author:full file-size date:local id:no file-name
 
 bind main	<Space>	enter
+bind main	T	?!git tag -s "%(prompt)" %(commit)
+# show log view for an individual file
+bind generic	<C-g>	:!git log %(file)
 bind generic	H	move-first-line
 bind generic	L	move-last-line
 bind status	P	!git push
-# show log view for an individual file
-bind generic	<C-g>	:!git log %(file)
-bind main	T	?!git tag -s "%(prompt)" %(commit)
+bind status	A	!git commit --amend

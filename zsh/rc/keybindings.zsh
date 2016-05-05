@@ -87,8 +87,8 @@ bindkey -M emacs -r "^[[1;5C" # forward-word
 bindkey -M emacs -r "^[[1;5D" # backward-word
 # bindkey -M emacs -r "^[[1~" # beginning-of-line
 # bindkey -M emacs -r "^[[200~" # bracketed-paste
-bindkey -M emacs -r "^[[2~" # overwrite-mode
-bindkey -M emacs -r "^[[3~" # delete-char
+# bindkey -M emacs -r "^[[2~" # overwrite-mode
+# bindkey -M emacs -r "^[[3~" # delete-char
 # bindkey -M emacs -r "^[[4~" # end-of-line
 bindkey -M emacs -r "^[[5~" # history-beginning-search-backward-end
 bindkey -M emacs -r "^[[6~" # history-beginning-search-forward-end
@@ -96,7 +96,7 @@ bindkey -M emacs -r "^[[A" # history-search-backward
 bindkey -M emacs -r "^[[B" # history-search-forward
 bindkey -M emacs -r "^[[C" # forward-char
 bindkey -M emacs -r "^[[D" # backward-char
-bindkey -M emacs -r "^[[F" # end-of-line
+# bindkey -M emacs -r "^[[F" # end-of-line
 bindkey -M emacs -r "^[[H" # beginning-of-line
 bindkey -M emacs -r "^[a" # accept-and-hold
 bindkey -M emacs -r "^[b" # backward-word
