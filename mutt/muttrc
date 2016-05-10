@@ -190,6 +190,8 @@ bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
 
+mime_lookup application/octet-stream
+
 # avoid annoying questions
 set noconfirmappend
 set nomove # never ask for "move mail out of spoolbox"
