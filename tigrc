@@ -12,3 +12,4 @@ bind generic	H	move-first-line
 bind generic	L	move-last-line
 bind status	P	!git push
 bind status	A	!git commit --amend
+bind main	R	!git rebase -i %(commit)~
