@@ -10,3 +10,6 @@ temp-*
 *.egg-info
 *.egg-info/*
 .~lock*
+*.deb
+*.orig
+*.rej
