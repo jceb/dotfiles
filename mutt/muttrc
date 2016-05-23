@@ -191,6 +191,7 @@ bind index L bottom-page
 bind pager \c? previous-line
 
 mime_lookup application/octet-stream
+set mime_forward = yes
 
 # avoid annoying questions
 set noconfirmappend
