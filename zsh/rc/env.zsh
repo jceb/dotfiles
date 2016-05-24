@@ -12,7 +12,7 @@ fi
 export LC_COLLATE="C"
 
 export EDITOR=nvim
-export GIT_EDITOR=~/.local/bin/nvim
+# export GIT_EDITOR=~/.local/bin/nvim
 # change cursor shape in nvim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 # use true colors in the terminal - seems to produce weird colors
