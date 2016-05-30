@@ -1,2 +1,2 @@
-feh --quiet --scale-down --action1 "fhunar %F" --action2 "gimp %F"
-fehs --magick-timeout 2 --quiet --scale-down --action1 "fhunar %F" --action2 "gimp %F"
+feh --quiet --image-bg white --scale-down --action1 "fhunar %F" --action2 "gimp %F"
+fehs --magick-timeout 0.5 --quiet --image-bg white --scale-down --action1 "fhunar %F" --action2 "gimp %F"
