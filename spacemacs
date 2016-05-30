@@ -204,7 +204,7 @@ layers configuration. You are free to put any user code."
 
   (setq user-full-name "Jan Christoph Ebersbach")
   (setq user-mail-address "jceb@e-jc.de")
-  (set-cursor-color "LightBlue")
+  (set-cursor-color "Red")
   (spacemacs/toggle-line-numbers-on)
   (setq linum-format "%d ")
   (spacemacs/toggle-fill-column-indicator-on)
