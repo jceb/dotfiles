@@ -50,6 +50,12 @@ for i in ${HOME}/.gem/ruby/*/bin "${HOME}/Documents/toolshed/" "${HOME}/.cabal/b
 	fi
 done
 export PATH
+for i in ${HOME}/.local/share/man "/"; do
+	if [ -e "$i" ]; then
+		MANPATH="$i:${MANPATH}"
+	fi
+done
+export MANPATH
 
 # PYTHONPATH=~/lib/python;		export PYTHONPATH
 export PYTHONSTARTUP=~/.pystartup
