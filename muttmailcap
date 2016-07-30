@@ -1,4 +1,5 @@
 text/html; ~/.mutt/mutt_bgrun.sh x-www-browser '%s'; nametemplate=%s.html; test=test -n "$DISPLAY"; description=Portable
+text/html; w3m -dump %s; nametemplate=%s.html; copiousoutput
 
 # PDF-Files
 application/octetstream; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
