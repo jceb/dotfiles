@@ -3,23 +3,27 @@
         "regex": null,
         "isRecursive": false
     },
-    "type": "folder",
-    "title": "My Phrases",
-    "modes": [],
+    "modes": [
+        1
+    ],
     "hotkey": {
-        "hotKey": "<f7>",
-        "modifiers": [
-            "<ctrl>"
-        ]
+        "hotKey": null,
+        "modifiers": []
     },
-    "usageCount": 992,
+    "usageCount": 0,
+    "prompt": false,
+    "type": "phrase",
+    "description": "bespr1",
+    "sendMode": "kb",
+    "matchCase": false,
     "showInTrayMenu": false,
+    "omitTrigger": false,
     "abbreviation": {
         "triggerInside": false,
         "backspace": true,
         "wordChars": "[\\w]",
         "abbreviations": [
-            null
+            "BG1"
         ],
         "ignoreCase": false,
         "immediate": false
