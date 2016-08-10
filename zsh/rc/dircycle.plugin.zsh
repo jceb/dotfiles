@@ -30,15 +30,19 @@ if type fzf &> /dev/null; then
 	bindkey '^[n' fzChDirOne
 	# bindkey 'î' fzChDirOne
 
-	fzEdit() { BUFFER='FILES=($(fzf -m)) && vserver "${FILES[@]}"'; zle accept-line }
+	fzEdit() { BUFFER='FILES=($(fzf -m)) && "${EDITOR}" "${FILES[@]}"'; zle accept-line }
 	zle -N fzEdit
 	bindkey '^\' fzEdit
+
+	fzOpen() { BUFFER='FILES=($(fzf -m)) && xdg-open "${FILES[@]}"'; zle accept-line }
+	zle -N fzOpen
+	bindkey "^]" fzOpen
 elif type qf &> /dev/null; then
 	qfChDir() { cd "$(qf -d -o)"; zle reset-prompt; }
 	zle -N qfChDir
 	bindkey '^[n' qfChDir
 
-	qfEdit() { BUFFER='EDITOR=vserver qf'; zle accept-line }
+	qfEdit() { BUFFER='qf'; zle accept-line }
 	zle -N qfEdit
 	bindkey '^\' qfEdit
 fi
