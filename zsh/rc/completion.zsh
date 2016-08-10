@@ -1,4 +1,5 @@
 zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion::complete:*' cache-path ~/.cache/zcompcache/
 
 compdef vs=exec
 compdef sp=exec
