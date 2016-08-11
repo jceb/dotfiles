@@ -1,0 +1,2 @@
+#!/bin/bash
+khard email -p -d first_name "${@}" | sed -e 1d | awk -F\\t '{print $2 " <" $1 ">"}'
