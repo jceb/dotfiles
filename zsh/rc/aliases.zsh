@@ -19,6 +19,10 @@ fi
 alias g='/usr/bin/ag -i'
 alias t='tree -f'
 
+alias cal='khal'
+alias agenda='khal agenda'
+alias contacts='khard'
+
 # ls
 alias ls='ls -b -CF --file-type --color=auto'
 alias ltr='ls -ltr'
