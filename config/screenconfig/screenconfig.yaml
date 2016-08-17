@@ -20,7 +20,7 @@ iiyama: &iiyama
 benq: &benq
   edid: [D109801B00005445]
   wallpaper: ~/wallpaper1920x1200.png
-  position: {crtc: *laptop, position: above}
+  position: {crtc: *laptop, position: left-of}
 samsung: &samsung
   edid: [2D4C03E800000000, 2D4C03E654573236]
   wallpaper: ~/wallpaper1920x1200.png
