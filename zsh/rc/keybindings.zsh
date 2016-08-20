@@ -59,10 +59,10 @@ bindkey -M emacs -r "^[<" # beginning-of-buffer-or-history
 bindkey -M emacs -r "^[>" # end-of-buffer-or-history
 bindkey -M emacs -r "^[?" # which-command
 bindkey -M emacs -r "^[A" # accept-and-hold
-bindkey -M emacs -r "^[B" # backward-word
+# bindkey -M emacs -r "^[B" # backward-word
 bindkey -M emacs -r "^[C" # capitalize-word
-bindkey -M emacs -r "^[D" # kill-word
-bindkey -M emacs -r "^[F" # forward-word
+# bindkey -M emacs -r "^[D" # kill-word
+# bindkey -M emacs -r "^[F" # forward-word
 bindkey -M emacs -r "^[G" # get-line
 bindkey -M emacs -r "^[H" # run-help
 bindkey -M emacs -r "^[L" # down-case-word
@@ -73,18 +73,18 @@ bindkey -M emacs -r "^[L" # down-case-word
 # bindkey -M emacs -r "^[OD" # backward-char
 bindkey -M emacs -r "^[OF" # end-of-line
 bindkey -M emacs -r "^[OH" # beginning-of-line
-bindkey -M emacs -r "^[Oc" # forward-word
-bindkey -M emacs -r "^[Od" # backward-word
+# bindkey -M emacs -r "^[Oc" # forward-word
+# bindkey -M emacs -r "^[Od" # backward-word
 bindkey -M emacs -r "^[P" # history-search-backward
 bindkey -M emacs -r "^[Q" # push-line
 bindkey -M emacs -r "^[S" # spell-word
 bindkey -M emacs -r "^[T" # transpose-words
 bindkey -M emacs -r "^[U" # up-case-word
 bindkey -M emacs -r "^[W" # copy-region-as-kill
-bindkey -M emacs -r "^[[1;3C" # forward-word
-bindkey -M emacs -r "^[[1;3D" # backward-word
-bindkey -M emacs -r "^[[1;5C" # forward-word
-bindkey -M emacs -r "^[[1;5D" # backward-word
+# bindkey -M emacs -r "^[[1;3C" # forward-word
+# bindkey -M emacs -r "^[[1;3D" # backward-word
+# bindkey -M emacs -r "^[[1;5C" # forward-word
+# bindkey -M emacs -r "^[[1;5D" # backward-word
 # bindkey -M emacs -r "^[[1~" # beginning-of-line
 # bindkey -M emacs -r "^[[200~" # bracketed-paste
 # bindkey -M emacs -r "^[[2~" # overwrite-mode
@@ -99,11 +99,11 @@ bindkey -M emacs -r "^[[D" # backward-char
 # bindkey -M emacs -r "^[[F" # end-of-line
 bindkey -M emacs -r "^[[H" # beginning-of-line
 bindkey -M emacs -r "^[a" # accept-and-hold
-bindkey -M emacs -r "^[b" # backward-word
+# bindkey -M emacs -r "^[b" # backward-word
 # bindkey -M emacs -r "^[c" # fzf-cd-widget
-bindkey -M emacs -r "^[d" # kill-word
+# bindkey -M emacs -r "^[d" # kill-word
 bindkey -M emacs -r "^[e" # edit-command-line
-bindkey -M emacs -r "^[f" # forward-word
+# bindkey -M emacs -r "^[f" # forward-word
 bindkey -M emacs -r "^[g" # get-line
 # bindkey -M emacs -r "^[h" # insert-cycledright
 bindkey -M emacs -r "^[i" # menu-complete
@@ -113,7 +113,7 @@ bindkey -M emacs -r "^[m" # insert-last-typed-word
 bindkey -M emacs -r "^[p" # history-search-backward
 bindkey -M emacs -r "^[q" # push-line
 bindkey -M emacs -r "^[s" # spell-word
-bindkey -M emacs -r "^[t" # transpose-words
+# bindkey -M emacs -r "^[t" # transpose-words
 # bindkey -M emacs -r "^[u" # cdUp
 bindkey -M emacs -r "^[v" # slash-backward-kill-word
 bindkey -M emacs -r "^[w" # copy-region-as-kill
