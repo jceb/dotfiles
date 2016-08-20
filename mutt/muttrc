@@ -150,6 +150,8 @@ set header_cache    = "~/.cache/mutt"
 lists     `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
 subscribe `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
 
+set reply_regexp    = "^((aw|antw.?|antwort|re|r e|r?f|sv):[ \t]*)*"
+set autoedit        = yes
 set edit_headers    = yes
 set collapse_unread = no
 #set wrap            = 120
