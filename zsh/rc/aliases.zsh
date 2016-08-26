@@ -89,6 +89,9 @@ alias cdb32='_chdir 3.2'
 alias cdb33='_chdir 3.3'
 alias cdb4='_chdir 4.0'
 alias cdb41='_chdir 4.1'
+alias cdb42='_chdir 4.2'
+alias cdb43='_chdir 4.3'
+alias cdb5='_chdir 5.0'
 alias cdd='_chdir'
 
 # jump to the next parent directory containing a debian subdirectory
