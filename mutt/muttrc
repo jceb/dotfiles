@@ -82,12 +82,12 @@ macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
 #source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
 
 color   signature    brightblue      default
-color   indicator    default         blue
+color   indicator    color15         color4
 color   attachment   default         color7
 color   error        brightred       default
 color   message      default         default
 color   search       brightwhite     blue
-color   status       magenta         color7
+color   status       color15         color7
 color   tree         blue            default
 color   normal       default         default
 color   tilde        color4          default
@@ -151,7 +151,7 @@ lists     `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists
 subscribe `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
 
 set reply_regexp    = "^((aw|antw.?|antwort|re|r e|r?f|sv):[ \t]*)*"
-set autoedit        = yes
+set autoedit        = no
 set edit_headers    = yes
 set collapse_unread = no
 #set wrap            = 120
@@ -162,6 +162,8 @@ folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collap
 macro generic,index,pager <f5> ":source ~/.mutt/muttrc<enter>I" "Reload muttrc"
 macro index <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" "notmuch: search mail"
 macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
+
+set simple_search = "~f %s | ~s %s | ~t %s | ~c %s"
 
 # remap list-reply to G instead of the L key which is used to jump to the bottom
 # of the page
@@ -197,10 +199,10 @@ set pager_context      = 3
 set pager_index_lines  = 5
 
 set attribution   = "On %d, %n wrote:\n"
-set date_format   = "%a %d-%m-%Y %H:%M %z"
-set index_format  = "%Z  %2M  %-35.35F   %s%*    (%?l?%4l&%4c?) %d"
-set status_format = "-%r- Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?] (%s/%S) %> (%P)"
-set pager_format  = "-%Z- %C/%m: %D %-28.28n %s"
+set date_format   = "%a %d-%m-%Y %k:%M %z"
+set index_format  = "%Z  %2M  %-35.35F   %s%*    (%?l?%4l&%4c?) %D"
+set status_format = "-%r- %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? %l?] (%s/%S) %> (%P)"
+set pager_format  = "-%Z- %C/%m: %d %-28.28n %s"
 set folder_format = "%2C %5.0N %f"
 #set folder_format = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
 
@@ -222,6 +224,3 @@ macro index,pager C "<copy-message>?<toggle-mailboxes><home><search>" "copy mess
 macro index,pager i "<change-newsgroup>?" "open a different folder"
 macro attach s "<save-entry><home>"
 # macro index,pager ? "<search-reverse>"
-
-#macro pager o |"/home/jceb/bin/add2kaddressbook<enter>" "added sender to addressbook"
-#macro pager o |"abook --add-email<enter>" "added sender to addressbook"
