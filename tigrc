@@ -1,8 +1,8 @@
-set blame-view	= date:local author:full file-name:auto id:yes,color line-number:no,interval=5 text
-set main-view	= line-number:no,interval=5 id:no date:local author:full commit-title:yes,graph,refs,overflow=no
-set refs-view	= date:local author:full ref commit-title
-set stash-view	= line-number:no,interval=5 id:no date:local author:full commit-title
-set tree-view	= line-number:no,interval=5 mode author:full file-size date:local id:no file-name
+set blame-view	= date:default,local author:full file-name:auto id:yes,color line-number:no,interval=5 text
+set main-view	= line-number:no,interval=5 id:no date:default,local author:full commit-title:yes,graph,refs,overflow=no
+set refs-view	= date:default,local author:full ref commit-title
+set stash-view	= line-number:no,interval=5 id:no date:default,local author:full commit-title
+set tree-view	= line-number:no,interval=5 mode author:full file-size date:default,local id:no file-name
 
 bind main	<Space>	enter
 bind main	T	?!git tag -s "%(prompt)" %(commit)
