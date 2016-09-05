@@ -28,7 +28,7 @@ samsung: &samsung
 dell: &dell
   edid: [AC1040613239334C]
   wallpaper: ~/wallpaper1920x1080.png
-  position: {crtc: *laptop, position: left-of}
+  position: {crtc: *laptop, position: right-of}
 
 # The default configuration that's applied if no other configuration matches.  A
 # different section can be selected by setting the environment variable
