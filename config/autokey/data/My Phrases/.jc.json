@@ -1,31 +1,31 @@
 {
-    "usageCount": 114, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "jc", 
+    "type": "phrase",
+    "matchCase": false,
+    "description": "jc",
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "omitTrigger": false,
+    "showInTrayMenu": false,
+    "sendMode": "<shift>+<insert>",
     "abbreviation": {
-        "wordChars": "[\\w]", 
+        "wordChars": "[\\w]",
+        "triggerInside": false,
+        "ignoreCase": false,
+        "backspace": true,
+        "immediate": true,
         "abbreviations": [
             "JC"
-        ], 
-        "immediate": true, 
-        "ignoreCase": false, 
-        "backspace": true, 
-        "triggerInside": false
-    }, 
-    "hotkey": {
-        "hotKey": null, 
-        "modifiers": []
-    }, 
+        ]
+    },
+    "prompt": false,
     "modes": [
         1
-    ], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
-    "filter": {
-        "regex": null, 
-        "isRecursive": false
-    }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    ],
+    "usageCount": 123,
+    "hotkey": {
+        "modifiers": [],
+        "hotKey": null
+    }
 }

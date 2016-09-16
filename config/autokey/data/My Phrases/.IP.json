@@ -1,33 +1,33 @@
 {
-    "usageCount": 100, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "IP", 
+    "type": "phrase",
+    "matchCase": false,
+    "description": "IP",
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "omitTrigger": false,
+    "showInTrayMenu": false,
+    "sendMode": "<shift>+<insert>",
     "abbreviation": {
-        "wordChars": "[\\w]", 
+        "wordChars": "[\\w]",
+        "triggerInside": false,
+        "ignoreCase": false,
+        "backspace": true,
+        "immediate": false,
         "abbreviations": [
             null
-        ], 
-        "immediate": false, 
-        "ignoreCase": false, 
-        "backspace": true, 
-        "triggerInside": false
-    }, 
-    "hotkey": {
-        "hotKey": "<insert>", 
-        "modifiers": [
-            "<ctrl>"
         ]
-    }, 
+    },
+    "prompt": false,
     "modes": [
         3
-    ], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
-    "filter": {
-        "regex": null, 
-        "isRecursive": false
-    }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    ],
+    "usageCount": 100,
+    "hotkey": {
+        "modifiers": [
+            "<ctrl>"
+        ],
+        "hotKey": "<insert>"
+    }
 }

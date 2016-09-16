@@ -1,31 +1,31 @@
 {
+    "type": "phrase",
+    "matchCase": false,
+    "description": "jceb",
     "filter": {
         "regex": null,
         "isRecursive": false
     },
     "omitTrigger": false,
-    "type": "phrase",
     "showInTrayMenu": false,
-    "matchCase": false,
-    "sendMode": "kb",
-    "description": "jceb",
+    "sendMode": "<shift>+<insert>",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "triggerInside": false,
+        "ignoreCase": false,
+        "backspace": true,
+        "immediate": true,
+        "abbreviations": [
+            "Jceb"
+        ]
+    },
+    "prompt": false,
     "modes": [
         1
     ],
-    "usageCount": 257,
-    "abbreviation": {
-        "ignoreCase": false,
-        "immediate": true,
-        "triggerInside": false,
-        "wordChars": "[\\w]",
-        "abbreviations": [
-            "Jceb"
-        ],
-        "backspace": true
-    },
+    "usageCount": 258,
     "hotkey": {
-        "hotKey": null,
-        "modifiers": []
-    },
-    "prompt": false
+        "modifiers": [],
+        "hotKey": null
+    }
 }

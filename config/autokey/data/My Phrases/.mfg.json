@@ -1,34 +1,34 @@
 {
+    "type": "phrase",
+    "matchCase": false,
+    "description": "mfg",
     "filter": {
         "regex": null,
         "isRecursive": false
+    },
+    "omitTrigger": false,
+    "showInTrayMenu": false,
+    "sendMode": "<shift>+<insert>",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "triggerInside": false,
+        "ignoreCase": false,
+        "backspace": true,
+        "immediate": false,
+        "abbreviations": [
+            "Mfg"
+        ]
     },
     "prompt": false,
     "modes": [
         1
     ],
-    "sendMode": "kb",
-    "abbreviation": {
-        "abbreviations": [
-            "Mfg"
-        ],
-        "backspace": true,
-        "ignoreCase": false,
-        "wordChars": "[\\w]",
-        "triggerInside": false,
-        "immediate": false
-    },
-    "type": "phrase",
-    "matchCase": false,
     "usageCount": 273,
     "hotkey": {
-        "hotKey": "m",
         "modifiers": [
             "<ctrl>",
             "<shift>"
-        ]
-    },
-    "description": "mfg",
-    "omitTrigger": false,
-    "showInTrayMenu": false
+        ],
+        "hotKey": "m"
+    }
 }
