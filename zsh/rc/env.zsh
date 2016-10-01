@@ -34,6 +34,9 @@ if [ -z "${GPG_AGENT_INFO}" ]; then
 	export GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent"
 fi
 
+export FZF_DEFAULT_COMMAND='rg -i --files --hidden --follow'
+export FZF_DEFAULT_OPTS='--bind ctrl-z:toggle-all'
+
 # quilt settings, always look for patches in the debian/patches directory
 export QUILT_PATCHES="debian/patches"
 export QUILT_DIFF_ARGS="--color=auto"
@@ -45,7 +48,7 @@ export BC_ENV_ARGS="${HOME}/.bcrc"
 export GOPATH="${HOME}/.local/go"
 
 # set PATH so it includes user's private bin if it exists
-for i in "${HOME}/.gem/ruby/*/bin" "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.3.0/bin" "${GOPATH}/bin" "${HOME}/node_modules/ttystudio/bin"; do
+for i in "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.3.0/bin" "${GOPATH}/bin" "${HOME}/node_modules/ttystudio/bin" "${HOME}/.cargo/bin"; do
 	if [ -e "$i" ]; then
 		PATH="$i:${PATH}"
 	fi

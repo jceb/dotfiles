@@ -1,8 +1,8 @@
 # global aliases that can be appended to line
 alias -g L="|less"
 alias -g LL="|& less"
-alias -g G="|ag"
-alias -g GG="|& ag"
+alias -g G="|rg"
+alias -g GG="|& rg"
 alias -g B="&>/dev/null & disown"
 
 alias dockeri="docker run --rm -i -t"
@@ -16,7 +16,6 @@ alias open='xdg-open'
 if [ -e /usr/bin/ack-grep ]; then
 	alias ack=ack-grep
 fi
-alias g='/usr/bin/ag -i'
 alias t='tree -f'
 
 alias cal='khal'
@@ -40,6 +39,7 @@ alias qr='quilt refresh'
 alias qs='quilt series'
 
 # git
+alias g='git'
 alias g+='git stash pop'
 alias g-='git stash'
 alias ga='git add'
@@ -200,12 +200,16 @@ _find_objects () {
 	fi
 }
 
+r () {
+	rg -S --hidden -n -H "$@" | fzf -m
+}
+
 f () {
-	_find_objects  '!' "$@"
+	_find_objects  '!' "$@" | fzf -m
 }
 
 d () {
-	_find_objects '' "$@"
+	_find_objects '' "$@" | fzf -m
 }
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
