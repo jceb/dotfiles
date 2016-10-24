@@ -35,7 +35,7 @@ if [ -z "${GPG_AGENT_INFO}" ]; then
 fi
 
 export FZF_DEFAULT_COMMAND='rg -i --files --hidden --follow'
-export FZF_DEFAULT_OPTS='--bind ctrl-z:toggle-all'
+export FZF_DEFAULT_OPTS='--bind ctrl-z:toggle-all --color=light'
 
 # quilt settings, always look for patches in the debian/patches directory
 export QUILT_PATCHES="debian/patches"
