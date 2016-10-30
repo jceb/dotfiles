@@ -17,7 +17,7 @@ export EDITOR="nvim"
 # change cursor shape in nvim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE="1"
 # use true colors in the terminal - seems to produce weird colors
-# export NVIM_TUI_ENABLE_TRUE_COLOR="1"
+export NVIM_TUI_ENABLE_TRUE_COLOR="1"
 
 # export EMAIL=put me in ~/.zshother
 export BROWSER="x-www-browser"
