@@ -7,7 +7,7 @@ Xft.autohint		: 0
 ! xdpyinfo | grep dots
 ! Xft.dpi:        96
 Xft.hinting			: 1
-Xft.hintstyle		: hintfull
+Xft.hintstyle		: hintslight
 Xft.lcdfilter		: lcddefault
 Xft.rgba			: rgb
 
