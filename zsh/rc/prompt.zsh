@@ -34,7 +34,6 @@ zstyle ':vcs_info:-quilt-.quilt-standalone:*' formats " ${MAGENTA}(${NO_COLOUR}%
 zstyle ':vcs_info:-quilt-.quilt-standalone:*' nopatch-format "%n/%a"
 zstyle ':vcs_info:-quilt-.quilt-standalone:*' patch-format "${CYAN}%p %n/%a${NO_COLOUR}"
 
-
 F="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${MAGENTA}]%m${NO_COLOR} "
 AF="${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${CYAN}%Q${YELLOW}|${RED}%a${MAGENTA}]%m${NO_COLOR} "
 BF="%b${RED}:${YELLOW}%r"
@@ -88,7 +87,8 @@ function +vi-git-stash() {
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
 
 # prompt definition
-zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percent
+grml_theme_add_token percentnbsp '%# '
+zstyle ':prompt:grml:left:setup' items rc path vcs newline user at host percentnbsp
 zstyle ':prompt:grml:right:setup' items ''
 
 # vi: ft=zsh:tw=0:sw=4:ts=4:et
