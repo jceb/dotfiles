@@ -59,6 +59,7 @@ macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
         <pipe-message>~/.mutt/extracturl/extract_url.pl<enter>\
         <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
 
+set rfc2047_parameters=yes
 # macro attach,compose \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
 # macro index,pager \cb |urlview\n 'call urlview to extract URLs out of a message'
 # macro attach,compose \cb |urlview\n 'call urlview to extract URLs out of a message'
