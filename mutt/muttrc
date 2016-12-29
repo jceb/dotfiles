@@ -83,18 +83,18 @@ set rfc2047_parameters=yes
 #source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
 
 color   signature    brightblue      default
-color   indicator    color15         color4
+color   indicator    color15         blue
 color   attachment   default         color7
 color   error        brightred       default
 color   message      default         default
 color   search       brightwhite     blue
-color   status       color15         color7
+color   status       color15         black
 color   tree         blue            default
 color   normal       default         default
-color   tilde        color4          default
+color   tilde        blue            default
 color   underline    magenta         default
-color   markers      color4          default
-color   hdrdefault   color4          default  # default header lines
+color   markers      blue            default
+color   hdrdefault   blue            default  # default header lines
 color   bold         color1          default  # hiliting bold patterns in body
 color   underline    color2          default  # hiliting underlined patterns in body
 color   quoted       color2          default  # quoted text
