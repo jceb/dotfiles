@@ -60,19 +60,19 @@
 
 	########## diff
 	# word wise diff
-	d = -p diff --color-words
-	dc = -p diff --color-words --cached
-	df = -p diff-index --color-words -p HEAD
+	d = -p diff --color-words --no-prefix
+	dc = -p diff --color-words --cached --no-prefix
+	df = -p diff-index --color-words -p HEAD --no-prefix
 
 	# some diff extensions
-	diffr = -p diff --relative
-	diffc = -p diff --cached
-	diffcr = -p diff --cached --relative
+	diffr = -p diff --relative --no-prefix
+	diffc = -p diff --cached --no-prefix
+	diffcr = -p diff --cached --relative --no-prefix
 
 	# diff changes regardless whether they are staged or unstaged
-	difff = -p diff-index -p HEAD
-	difffr = -p diff-index -p HEAD --relative
-	diffstat = -p diff --stat -r
+	difff = -p diff-index -p HEAD --no-prefix
+	difffr = -p diff-index -p HEAD --relative --no-prefix
+	diffstat = -p diff --stat -r --no-prefix
 
 	# edit changed files
 	edit = "!${EDITOR} `git ls-files -m`"
