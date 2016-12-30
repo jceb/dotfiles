@@ -80,10 +80,8 @@ set rfc2047_parameters=yes
 #   6      cyan
 #   7      white
 
-#source ~/.mutt/solarized/mutt-colors-solarized-dark-256.muttrc
-
 color   signature    brightblue      default
-color   indicator    color15         blue
+color   indicator    color15         brightblue
 color   attachment   default         color7
 color   error        brightred       default
 color   message      default         default
