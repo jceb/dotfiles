@@ -1,34 +1,34 @@
 {
     "type": "phrase",
-    "matchCase": false,
-    "description": "univention",
-    "filter": {
-        "regex": null,
-        "isRecursive": false
-    },
-    "omitTrigger": false,
-    "showInTrayMenu": false,
-    "sendMode": "<shift>+<insert>",
-    "abbreviation": {
-        "wordChars": "[\\w]",
-        "triggerInside": false,
-        "ignoreCase": false,
-        "backspace": true,
-        "immediate": false,
-        "abbreviations": [
-            "MAC"
-        ]
-    },
-    "prompt": false,
     "modes": [
         3
     ],
+    "omitTrigger": false,
     "usageCount": 3,
+    "sendMode": "kb",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "abbreviations": [
+            "MAC"
+        ],
+        "triggerInside": false,
+        "backspace": true,
+        "immediate": false,
+        "ignoreCase": false
+    },
+    "prompt": false,
+    "showInTrayMenu": false,
+    "matchCase": false,
+    "filter": {
+        "isRecursive": false,
+        "regex": null
+    },
     "hotkey": {
         "modifiers": [
             "<alt>",
             "<ctrl>"
         ],
         "hotKey": "u"
-    }
+    },
+    "description": "univention"
 }
