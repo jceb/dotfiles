@@ -3,8 +3,3 @@ source ~/.fzf.zsh
 for file in ${HOME}/.zsh/rc/*.zsh; do
 	source ${file}
 done
-
-# wd integration
-wd() {
-  source ~/.zsh/wd/wd.sh
-}
