@@ -2,7 +2,7 @@ Index: github/mutt/extracturl/extract_url.pl
 ===================================================================
 --- github.orig/mutt/extracturl/extract_url.pl
 +++ github/mutt/extracturl/extract_url.pl
-@@ -261,6 +261,7 @@ sub renderuri {
+@@ -278,6 +278,7 @@ sub renderuri {
  }
  sub sanitizeuri {
  	my($uri) = @_;
