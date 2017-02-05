@@ -8,7 +8,7 @@ application/octet-stream; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametempla
 application/pdf; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test "$DISPLAY" != ""; description=Portable
 
 # PS-Files
-application/postscript; ~/.mutt/mutt_bgrun.sh /usr/bin/gv '%s'; test=test -n "$DISPLAY"; description=postscript
+application/postscript; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test -n "$DISPLAY"; description=postscript
 
 # Images
 image/*; ~/.mutt/mutt_bgrun.sh geeqie '%s'; test=test -n "$DISPLAY"
