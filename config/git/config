@@ -9,6 +9,7 @@
 	tool = vimdiff
 [color]
 	diff = auto
+	status = auto
 	ui = auto
 [alias]
 	########## list all aliases
@@ -140,3 +141,5 @@
 	templatedir = ~/.config/git/template
 [rebase]
 	autostash = true
+[mergetool "vimdiff"]
+	cmd = /usr/bin/nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
