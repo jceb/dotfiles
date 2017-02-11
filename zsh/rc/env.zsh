@@ -46,11 +46,12 @@ export BC_ENV_ARGS="${HOME}/.bcrc"
 
 # go lang settings
 export GOPATH="${HOME}/.local/go"
+export GOBIN="${HOME}/.local/bin"
 
 export ANDROID_HOME="${HOME}/Android/Sdk"
 
 # set PATH so it includes user's private bin if it exists
-for i in "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.3.0/bin" "${GOPATH}/bin" "${HOME}/node_modules/.bin" "${HOME}/.cargo/bin" "${ANDROID_HOME}/tools"; do
+for i in "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.3.0/bin" "${GOBIN}" "${HOME}/node_modules/.bin" "${HOME}/.cargo/bin" "${ANDROID_HOME}/tools"; do
 	if [ -e "$i" ]; then
 		PATH="$i:${PATH}"
 	fi
