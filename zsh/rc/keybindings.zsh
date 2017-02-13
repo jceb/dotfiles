@@ -24,6 +24,12 @@ bindkey "\e[3~" delete-char             # Delete
 bindkey '\eOH' beginning-of-line
 bindkey '\eOF' end-of-line
 
+# use the vi navigation keys (hjkl) besides cursor keys in menu completion
+bindkey -M menuselect 'h' vi-backward-char        # left
+bindkey -M menuselect 'k' vi-up-line-or-history   # up
+bindkey -M menuselect 'l' vi-forward-char         # right
+bindkey -M menuselect 'j' vi-down-line-or-history # bottom
+
 # disable most Esc bindings to reduce interference with vim mode
 bindkey -M emacs -r "^[^D" # list-choices
 bindkey -M emacs -r "^[^G" # send-break
