@@ -27,7 +27,7 @@ samsung: &samsung
   position: {crtc: *benq, position: left-of}
 dell: &dell
   edid: [AC1040613239334C]
-  wallpaper: ~/wallpaper1920x1080.png
+  wallpaper: ~/wallpaper_dell_1920x1080.png
   position: {crtc: *laptop, position: right-of}
 univentionbeamer: &univentionbeamer
   edid: ["7204870100001893"]
