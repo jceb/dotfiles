@@ -1,9 +1,17 @@
 # global aliases that can be appended to line
-alias -g L="|less"
-alias -g LL="|& less"
+alias -g B="&>/dev/null & disown"
 alias -g G="|rg"
 alias -g GG="|& rg"
-alias -g B="&>/dev/null & disown"
+alias -g H='|head'
+alias -g L="|less"
+alias -g LL="|& less"
+alias -g S='| sort'
+alias -g SL='| sort | less'
+alias -g T='|tail'
+alias -g V='| vim -'
+
+# ignore ~/.ssh/known_hosts entries
+alias issh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
 
 alias dockeri="docker run --rm -i -t"
 compdef dockeri=docker
