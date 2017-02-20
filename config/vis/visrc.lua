@@ -1,0 +1,1 @@
+vis:command('set theme papercolor')
