@@ -2,7 +2,7 @@
 # dircycle plugin: enables cycling through the directory
 # stack using Ctrl+Shift+Left/Right
 
-insert-cycledleft () { pushd -q +1; zle reset-prompt; }
+insert-cycledleft () { pushd -q +0; zle reset-prompt; }
 zle -N insert-cycledleft
 # M-l
 bindkey '^[l' insert-cycledleft
