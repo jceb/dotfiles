@@ -7,7 +7,7 @@ map global normal <c-6> ga
 
 hook global WinCreate .* %{
     addhl regex [\t\ ]+$ 0:error
-    addhl number_lines -hlcursor -separator \ 
+    addhl number_lines -hlcursor -relative -separator \ 
     addhl show_matching
     addhl search
 }
