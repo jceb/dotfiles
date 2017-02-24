@@ -54,10 +54,10 @@ lexers.STYLE_TAG = 'fore:'..colors.green
 lexers.STYLE_TYPE = 'fore:'..colors.pink..',bold'
 lexers.STYLE_VARIABLE = 'fore:'..colors.blue
 lexers.STYLE_WHITESPACE = ''
-lexers.STYLE_EMBEDDED = 'back:'..colors.blue
+lexers.STYLE_EMBEDDED = 'fore:'..colors.blue
 lexers.STYLE_IDENTIFIER = fg
 
-lexers.STYLE_LINENUMBER = fg
+lexers.STYLE_LINENUMBER = 'fore:'..colors.selection
 lexers.STYLE_CURSOR = 'fore:'..colors.cursorforeground..',back:'..colors.cursorbackground
 lexers.STYLE_CURSOR_LINE = 'back:'..colors.cursorline
 lexers.STYLE_COLOR_COLUMN = 'back:'..colors.cursorline
