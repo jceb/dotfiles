@@ -59,7 +59,7 @@ for i in "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin"
 	fi
 done
 export PATH
-for i in "${HOME}/.local/share/man" "/"; do
+for i in "${HOME}/.local/share/man" '/usr/share/man'; do
 	if [ -e "$i" ]; then
 		MANPATH="$i:${MANPATH}"
 	fi
