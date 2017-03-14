@@ -13,5 +13,8 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	vis:command('set autoindent')
 	vis:command('set colorcolumn 80')
 	vis:command('set show-tabs')
+	vis:command('set cursorcolumn')
+	vis:command('set cursorline')
+	vis:command('set tabwidth 4')
 end)
 
