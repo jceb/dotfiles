@@ -51,16 +51,16 @@ bindkey -M emacs -r "^['" # quote-line
 # bindkey -M emacs -r "^[," # insert-second-last-word
 bindkey -M emacs -r "^[-" # neg-argument
 # bindkey -M emacs -r "^[." # insert-last-word
-bindkey -M emacs -r "^[0" # digit-argument
-bindkey -M emacs -r "^[1" # digit-argument
-bindkey -M emacs -r "^[2" # digit-argument
-bindkey -M emacs -r "^[3" # digit-argument
-bindkey -M emacs -r "^[4" # digit-argument
-bindkey -M emacs -r "^[5" # digit-argument
-bindkey -M emacs -r "^[6" # digit-argument
-bindkey -M emacs -r "^[7" # digit-argument
-bindkey -M emacs -r "^[8" # digit-argument
-bindkey -M emacs -r "^[9" # digit-argument
+# bindkey -M emacs -r "^[0" # digit-argument
+# bindkey -M emacs -r "^[1" # digit-argument
+# bindkey -M emacs -r "^[2" # digit-argument
+# bindkey -M emacs -r "^[3" # digit-argument
+# bindkey -M emacs -r "^[4" # digit-argument
+# bindkey -M emacs -r "^[5" # digit-argument
+# bindkey -M emacs -r "^[6" # digit-argument
+# bindkey -M emacs -r "^[7" # digit-argument
+# bindkey -M emacs -r "^[8" # digit-argument
+# bindkey -M emacs -r "^[9" # digit-argument
 bindkey -M emacs -r "^[<" # beginning-of-buffer-or-history
 bindkey -M emacs -r "^[>" # end-of-buffer-or-history
 bindkey -M emacs -r "^[?" # which-command
@@ -159,10 +159,13 @@ set_emacs_mode () {
 zle -N set_emacs_mode
 #bindkey -M vicmd 'i' set_emacs_mode
 
-autoload -Uz insert-second-last-word
-zle -N insert-second-last-word
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+# autoload -Uz insert-second-last-word
+# zle -N insert-second-last-word
 bindkey -r "^[,"
-bindkey -M emacs "^[," insert-second-last-word
+# bindkey -M emacs "^[," insert-second-last-word
+bindkey -M emacs "^[," copy-earlier-word
 # bindkey -M emacs "¬" insert-second-last-word
 # bindkey -M emacs "®" insert-last-word
 
