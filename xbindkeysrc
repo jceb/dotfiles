@@ -62,8 +62,8 @@
 
 #screensaver lock
 "xset s activate"
-    m:0xc + c:29
-    Control+Alt + j 
+    m:0xc + c:30
+    Control+Alt + l 
 
 #Browser
 "x-www-browser"
