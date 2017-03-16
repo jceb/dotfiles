@@ -11,7 +11,7 @@ menu_up k
 menu_down j
 menu_parent h
 menu_child l
-toggle_info
+toggle_info i
 next_img j n
 toggle_keep_vp
 prev_img k p

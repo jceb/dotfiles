@@ -1,2 +1,2 @@
-feh --quiet --image-bg white --scale-down --action1 "thunar %F" --action2 "gimp %F" --action3 "shutter %F" --action4 "inkscape %F" --info ";identify %F"
-fehs --magick-timeout 0.5 --quiet --image-bg white --scale-down --action1 "thunar %F" --action2 "gimp %F" --action3 "shutter %F" --action4 "inkscape %F" --info ";identify %F"
+feh --quiet --image-bg white --scale-down --action1 "thunar %F/.." --action2 "gimp %F" --action3 "shutter %F" --action4 "inkscape %F" --info ";identify %F"
+fehs --magick-timeout 0.5 --quiet --image-bg white --scale-down --action1 "thunar %F/.." --action2 "gimp %F" --action3 "shutter %F" --action4 "inkscape %F" --info ";identify %F"
