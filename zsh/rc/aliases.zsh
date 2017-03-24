@@ -31,10 +31,10 @@ alias agenda='khal agenda'
 alias contacts='khard'
 
 # ls
-alias ls='ls -b -CF --file-type --color=auto'
+alias ls='ls -b -CF --file-type --color=auto --group-directories-first'
 alias ltr='ls -ltr'
 alias ltra='ls -ltra'
-alias l='ls -l --color=auto'
+alias l='ls -l'
 
 # quilt
 alias q='quilt'
