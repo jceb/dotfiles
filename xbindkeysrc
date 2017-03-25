@@ -91,19 +91,24 @@
     XF86Calculator 
 
 #Volume Lower
-"amixer -q set Master 5%-"
+"pulseaudio-ctl down 5"
     m:0x0 + c:122
     XF86AudioLowerVolume 
 
 #Volume Raise
-"amixer -q set Master 5%+"
+"pulseaudio-ctl up 5"
     m:0x0 + c:123
     XF86AudioRaiseVolume 
 
-#Volume Raise-Copy
-"amixer -q set Master toggle"
+#Volume Mute
+"pulseaudio-ctl mute"
     m:0x0 + c:121
     XF86AudioMute 
+
+#Volume Mute-Mic
+"pulseaudio-ctl mute-input"
+    m:0x0 + c:198
+    XF86AudioMicMute 
 
 #Audio Previous
 "clementine --previous"
