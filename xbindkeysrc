@@ -111,24 +111,29 @@
     XF86AudioMicMute 
 
 #Audio Previous
-"clementine --previous"
+"playerctl previous"
     m:0x0 + c:173
     XF86AudioPrev 
 
 #Audio Play
-"clementine --play-pause"
+"playerctl play-pause"
     m:0x0 + c:172
     XF86AudioPlay 
 
 #Audio Play
-"clementine --play-pause"
+"playerctl play-pause"
     m:0x0 + c:208
     XF86AudioPlay 
 
 #Audio Next
-"clementine --next"
+"playerctl next"
     m:0x0 + c:171
     XF86AudioNext 
+
+#Audio Stop
+"playerctl stop"
+    m:0x0 + c:174
+    XF86AudioStop 
 
 #dmenu_duckduckgo
 "dmenu_duckduckgo"
