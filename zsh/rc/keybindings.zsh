@@ -114,8 +114,7 @@ bindkey -M emacs -r "^[g" # get-line
 # bindkey -M emacs -r "^[h" # insert-cycledright
 bindkey -M emacs -r "^[i" # menu-complete
 # bindkey -M emacs -r "^[l" # insert-cycledleft
-bindkey -M emacs -r "^[m" # insert-last-typed-word
-# bindkey -M emacs -r "^[n" # fzChDirOne
+# bindkey -M emacs -r "^[m" # insert-last-typed-word
 bindkey -M emacs -r "^[p" # history-search-backward
 bindkey -M emacs -r "^[q" # push-line
 bindkey -M emacs -r "^[s" # spell-word
@@ -161,11 +160,12 @@ zle -N set_emacs_mode
 
 autoload -Uz copy-earlier-word
 zle -N copy-earlier-word
+bindkey -r "^[,"
+bindkey -M emacs "^[," copy-earlier-word
+
 # autoload -Uz insert-second-last-word
 # zle -N insert-second-last-word
-bindkey -r "^[,"
 # bindkey -M emacs "^[," insert-second-last-word
-bindkey -M emacs "^[," copy-earlier-word
 # bindkey -M emacs "¬" insert-second-last-word
 # bindkey -M emacs "®" insert-last-word
 
