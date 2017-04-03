@@ -67,6 +67,7 @@ try:
     import os
     import weechat
     import notify2 as pynotify
+    pynotify.init("wee-notifier")
     IMPORT_OK = True
 except ImportError as error:
     IMPORT_OK = False
@@ -413,7 +414,6 @@ def a_notify(notification, title, description, priority=pynotify.URGENCY_LOW):
     if weechat.config_get_plugin('sticky_away') == 'on' and is_away:
         time_out = 0
     try:
-        pynotify.init("wee-notifier")
         wn = pynotify.Notification(title, description, icon)
         wn.set_urgency(priority)
         wn.set_timeout(time_out)
