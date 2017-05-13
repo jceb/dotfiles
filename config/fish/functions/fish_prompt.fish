@@ -25,7 +25,8 @@ function fish_prompt --description 'Write out the prompt'
     set -l pwd (string replace -r '^'"$realhome"'($|/)' '~$1' $PWD)
 
     # git prompt configuration
-    set __fish_git_prompt_showupstream 'yes'
+    set __fish_git_prompt_showupstream 'informative name'
+    set __fish_git_prompt_showstashstate 'yes'
 
     switch $USER
 
