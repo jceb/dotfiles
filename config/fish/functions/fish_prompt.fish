@@ -6,6 +6,14 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_prompt_normal (set_color normal)
     end
 
+    if not set -q __fish_color_red
+        set -g __fish_color_red (set_color -o red)
+    end
+
+    if not set -q __fish_color_green
+        set -g __fish_color_green (set_color -o green)
+    end
+
     if not set -q __fish_color_blue
         set -g __fish_color_blue (set_color -o blue)
     end
@@ -27,6 +35,9 @@ function fish_prompt --description 'Write out the prompt'
     # git prompt configuration
     set __fish_git_prompt_showupstream informative name
     set __fish_git_prompt_showstashstate 'yes'
+    set __fish_git_prompt_color_branch yellow
+    set __fish_git_prompt_color_upstream_ahead $__fish_color_green
+    set __fish_git_prompt_color_upstream_behind $__fish_color_red
 
     switch $USER
 
