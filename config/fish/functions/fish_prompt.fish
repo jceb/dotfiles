@@ -11,7 +11,11 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     if not set -q __fish_color_green
-        set -g __fish_color_green (set_color -o green)
+        set -g __fish_color_green (set_color green)
+    end
+
+    if not set -q __fish_color_yellow
+        set -g __fish_color_yellow (set_color yellow)
     end
 
     if not set -q __fish_color_blue
@@ -19,7 +23,7 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     if not set -q __fish_color_magenta
-        set -g __fish_color_magenta (set_color -o magenta)
+        set -g __fish_color_magenta (set_color magenta)
     end
 
     #Set the color for the status depending on the value
@@ -33,11 +37,17 @@ function fish_prompt --description 'Write out the prompt'
     set -l pwd (string replace -r '^'"$realhome"'($|/)' '~$1' $PWD)
 
     # git prompt configuration
-    set __fish_git_prompt_showupstream informative name
-    set __fish_git_prompt_showstashstate 'yes'
-    set __fish_git_prompt_color_branch yellow
-    set __fish_git_prompt_color_upstream_ahead $__fish_color_green
-    set __fish_git_prompt_color_upstream_behind $__fish_color_red
+    set -U __fish_git_prompt_showupstream 'verbose' 'name'
+    set -U __fish_git_prompt_showstashstate 'yes'
+    set -U __fish_git_prompt_color_upstream_ahead $__fish_color_green
+    set -U __fish_git_prompt_color_upstream_behind $__fish_color_red
+    set -U __fish_git_prompt_char_dirtystate '⚡'
+    set -U __fish_git_prompt_char_stagedstate '→'
+    set -U __fish_git_prompt_char_untrackedfiles '☡'
+    set -U __fish_git_prompt_char_stashstate '↩'
+    set -U __fish_git_prompt_char_upstream_ahead '+'
+    set -U __fish_git_prompt_char_upstream_behind '-'
+    # set -U __fish_git_prompt_color_branch $__fish_color_yellow
 
     switch $USER
 
