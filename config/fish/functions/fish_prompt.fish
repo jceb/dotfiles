@@ -25,7 +25,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l pwd (string replace -r '^'"$realhome"'($|/)' '~$1' $PWD)
 
     # git prompt configuration
-    set __fish_git_prompt_showupstream 'informative name'
+    set __fish_git_prompt_showupstream informative name
     set __fish_git_prompt_showstashstate 'yes'
 
     switch $USER
@@ -49,9 +49,9 @@ function fish_prompt --description 'Write out the prompt'
             end
 
             if test "$stat" -ne 0
-                printf '%s(%s) %s%s%s %s%s\f\r%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" (__fish_git_prompt) "$__fish_color_blue" $USER "$__fish_prompt_normal" (prompt_hostname)
+                printf '%s(%s) %s%s%s%s%s\f\r%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" (__fish_git_prompt) "$__fish_color_blue" $USER "$__fish_prompt_normal" (prompt_hostname)
             else
-                printf '%s%s%s %s%s\f\r%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" (__fish_git_prompt) "$__fish_color_blue" $USER "$__fish_prompt_normal" (prompt_hostname)
+                printf '%s%s%s%s%s\f\r%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" (__fish_git_prompt) "$__fish_color_blue" $USER "$__fish_prompt_normal" (prompt_hostname)
             end
     end
 end
