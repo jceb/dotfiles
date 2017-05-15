@@ -1,4 +1,23 @@
 function fish_user_key_bindings
+    # Execute this once per mode that emacs bindings should be used in
+    fish_default_key_bindings -M insert
+    # Without an argument, fish_vi_key_bindings will default to
+    # resetting all bindings.
+    # The argument specifies the initial mode (insert, "default" or visual).
+    fish_vi_key_bindings --no-erase
+
+    bind -M insert \eu __fish_dir_cycle_up
+
+    bind -M insert \eh __fish_dir_cycle_prev
+    bind -M insert \el __fish_dir_cycle_next
+
+    bind -M insert \ed __fish_list_current_token
+    bind -M insert \em __fish_man_page
+
+    bind -M insert \cb __fish_dir_cycle_warpDir
+
+    bind -M insert \en __fish_dir_cycle_fzChDir
+
     ### fzf ###
     set -q FZF_LEGACY_KEYBINDINGS
     or set -l FZF_LEGACY_KEYBINDINGS 1
@@ -30,23 +49,4 @@ function fish_user_key_bindings
         end
     end
     ### fzf ###
-
-    # Execute this once per mode that emacs bindings should be used in
-    fish_default_key_bindings -M insert
-    # Without an argument, fish_vi_key_bindings will default to
-    # resetting all bindings.
-    # The argument specifies the initial mode (insert, "default" or visual).
-    fish_vi_key_bindings --no-erase
-
-    bind -M insert \eu __fish_dir_cycle_up
-
-    bind -M insert \eh __fish_dir_cycle_prev
-    bind -M insert \el __fish_dir_cycle_next
-
-    bind -M insert \ed __fish_list_current_token
-    bind -M insert \em __fish_man_page
-
-    bind -M insert \cb __fish_dir_cycle_warpDir
-
-    bind -M insert \en __fish_dir_cycle_fzChDir
 end

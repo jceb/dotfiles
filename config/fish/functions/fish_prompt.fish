@@ -7,7 +7,7 @@ if not set -q __fish_color_red
 end
 
 if not set -q __fish_color_green
-    set -g __fish_color_green (set_color green)
+    set -g __fish_color_green (set_color -o green)
 end
 
 if not set -q __fish_color_yellow
