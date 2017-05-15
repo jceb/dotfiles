@@ -70,4 +70,6 @@ set -x PYTHONSTARTUP "$HOME/.pystartup"
 set -x AWT_TOOLKIT "MToolkit"
 set -x _JAVA_AWT_WM_NONREPARENTING "1"
 
+set -x XTERM_VERSION 'XTerm(327)'
+
 # vi: ft=fish:tw=0:sw=4:ts=4
