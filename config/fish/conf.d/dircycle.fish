@@ -1,23 +1,20 @@
 function __fish_dir_cycle_prev
     if test (count $dirprev) -gt 0
-        set ret (prevd)
+        prevd
         commandline -f repaint
-        return $ret
     end
 end
 
 function __fish_dir_cycle_next
     if test (count $dirnext) -gt 0
-        set ret (nextd)
+        nextd
         commandline -f repaint
-        return $ret
     end
 end
 
 function __fish_dir_cycle_up
-    set ret (cd ..)
+    cd ..
     commandline -f repaint
-    return $ret
 end
 
 function __fish_dir_cycle_warpDir
@@ -35,8 +32,7 @@ function __fish_dir_cycle_warpDir
             set FZF_TMUX_HEIGHT "40%"
         end
         set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
-        set cmd (__fzfcmd)
-        sed -ne 's/:/\\t/p' < "$FILE" | eval $cmd | sed -ne "s/^[^\t]*\t//p" | read -l select
+        sed -ne 's/:/\\t/p' < "$FILE" | __fzfcmd | sed -ne "s/^[^\t]*\t//p" | read -l select
         if test -d "$select"
             cd "$select"
         end
@@ -49,8 +45,7 @@ function __fish_dir_cycle_fzChDir
         set FZF_TMUX_HEIGHT "40%"
     end
     set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
-    set cmd (__fzfcmd)
-    find -L . -mindepth 1 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null | eval $cmd | read -l select
+    find -L . -mindepth 1 -maxdepth 3 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null | fzf | read -l select
     if test -d "$select"
         cd "$select"
     end

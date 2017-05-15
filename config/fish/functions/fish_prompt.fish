@@ -73,10 +73,11 @@ function fish_prompt --description 'Write out the prompt'
             set -g __fish_prompt_cwd (set_color $fish_color_cwd)
         end
 
+        set git_prompt (__fish_git_prompt)
         if test "$stat" -ne 0
-            printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" (__fish_git_prompt) "$__fish_color_blue" $USER "$__fish_prompt_normal" (prompt_hostname)
+            printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$git_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
         else
-            printf '%s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" (__fish_git_prompt) "$__fish_color_blue" $USER "$__fish_prompt_normal" (prompt_hostname)
+            printf '%s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$git_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
         end
     end
 end
