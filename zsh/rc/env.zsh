@@ -70,8 +70,6 @@ export MANPATH
 
 # PYTHONPATH=~/lib/python;		export PYTHONPATH
 export PYTHONSTARTUP="${HOME}/.pystartup"
-export AWT_TOOLKIT="MToolkit"
-export _JAVA_AWT_WM_NONREPARENTING="1"
 
 # source personal settings from .zshother
 [ -e $HOME/.zshother ] && . ~/.zshother
