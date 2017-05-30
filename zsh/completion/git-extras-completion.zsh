@@ -342,6 +342,18 @@ _git-stamp() {
          '(--replace -r)'{--replace,-r}'[replace stamps with same id]'
 }
 
+_git-standup() {
+    _arguments -C \
+        '-a[Specify the author of commits. Use "all" to specify all authors.]' \
+        '-d[Show history since N days ago]' \
+        '-D[Specify the date format displayed in commit history]' \
+        '-f[Fetch commits before showing history]' \
+        '-g[Display GPG signed info]' \
+        '-h[Display help message]' \
+        '-L[Enable the inclusion of symbolic links]' \
+        '-m[The depth of recursive directory search]'
+}
+
 _git-summary() {
     _arguments '--line[summarize with lines rather than commits]'
     __gitex_commits
@@ -360,6 +372,7 @@ zstyle ':completion:*:*:git:*' user-commands \
     authors:'generate authors report' \
     back:'undo and stage latest commits' \
     bug:'create bug branch' \
+    bulk:'run bulk commands' \
     changelog:'generate a changelog report' \
     chore:'create chore branch' \
     clear-soft:'soft clean up a repository' \
