@@ -41,13 +41,14 @@ function ll
 end
 
 # quilt
-abbr --add 'q=quilt'
-abbr --add 'qa=quilt add'
-abbr --add 'qd=quilt diff'
 abbr --add 'q++=quilt push -a'
 abbr --add 'q+=quilt push'
 abbr --add 'q--=quilt pop -a'
 abbr --add 'q-=quilt pop'
+abbr --add 'q=quilt'
+abbr --add 'qD=quilt delete -r'
+abbr --add 'qa=quilt add'
+abbr --add 'qd=quilt diff'
 abbr --add 'qr=quilt refresh'
 abbr --add 'qs=quilt series'
 
