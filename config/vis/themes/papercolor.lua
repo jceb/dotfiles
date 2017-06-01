@@ -3,7 +3,7 @@ local lexers = vis.lexers
 
 local colors = {
 	['foreground']       = '#444444',
-	['background']       = '#f5f5f5',
+	['background']       = '#EDEDED',
 
 	['red']              = '#df0000', -- Include/Exception
 	['green']            = '#008700', -- Boolean/Special
