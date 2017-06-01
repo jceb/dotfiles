@@ -9,6 +9,11 @@ abbr --add dockeri="docker run --rm -i -t"
 function grep
     command grep --color=auto --exclude=\*.svn-base --exclude=\*\~ --exclude=\*.tmp --binary-files=without-match $argv
 end
+
+function rg
+    command rg -i $argv
+end
+
 abbr --add 'o=xdg-open'
 abbr --add 'open=xdg-open'
 
@@ -37,6 +42,7 @@ end
 
 # quilt
 abbr --add 'q=quilt'
+abbr --add 'qa=quilt add'
 abbr --add 'qd=quilt diff'
 abbr --add 'q++=quilt push -a'
 abbr --add 'q+=quilt push'
@@ -106,7 +112,7 @@ function _ch2parentdir --description 'jump to the next parent directory containi
     while test $_d != "/"
         for _dir in $argv
             if test -d {$_d}/{$_dir}
-                echo "Found '$_dir' directory." >&2
+                echo "Found '$_dir' directory at: $_d" >&2
                 echo $_d
                 return
             end
