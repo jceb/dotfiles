@@ -51,6 +51,7 @@ abbr --add 'qa=quilt add'
 abbr --add 'qd=quilt diff'
 abbr --add 'qr=quilt refresh'
 abbr --add 'qs=quilt series'
+abbr --add 'qt=quilt top'
 
 # git
 abbr --add 'g=git'
