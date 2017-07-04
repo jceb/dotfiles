@@ -58,6 +58,7 @@ lexers.STYLE_EMBEDDED       = 'fore:'..colors.blue
 lexers.STYLE_IDENTIFIER     = fg
 
 lexers.STYLE_LINENUMBER     = 'fore:'..colors.selection
+lexers.STYLE_LINENUMBER_CURSOR = 'back:'..colors.cursorline
 lexers.STYLE_CURSOR         = 'fore:'..colors.cursorforeground..',back:'..colors.cursorbackground
 lexers.STYLE_CURSOR_PRIMARY = lexers.STYLE_CURSOR..',back:'..colors.magenta
 lexers.STYLE_CURSOR_LINE    = 'back:'..colors.cursorline
