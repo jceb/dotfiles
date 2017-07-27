@@ -5,6 +5,7 @@ require('plugins/textobject-lexer')
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command('set theme papercolor')
+	vis:command('set change-256colors false')
 end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
