@@ -35,8 +35,11 @@ lexers.colors = colors
 local fg = ',fore:'..colors.foreground..','
 local bg = ',back:'..colors.background..','
 
-lexers.STYLE_DEFAULT        = bg..fg
-lexers.STYLE_NOTHING        = bg
+-- use background color of terminal instead of defining it here
+lexers.STYLE_DEFAULT        = ''..fg
+lexers.STYLE_NOTHING        = ''
+-- lexers.STYLE_DEFAULT        = bg..fg
+-- lexers.STYLE_NOTHING        = bg
 lexers.STYLE_CLASS          = 'fore:'..colors.navy
 lexers.STYLE_COMMENT        = 'fore:'..colors.comment
 lexers.STYLE_CONSTANT       = 'fore:'..colors.orange
