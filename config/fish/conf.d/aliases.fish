@@ -14,6 +14,10 @@ function rg
     command rg -i $argv
 end
 
+function any
+    command ps aux | rg $argv
+end
+
 abbr --add 'o=xdg-open'
 abbr --add 'open=xdg-open'
 
@@ -49,6 +53,7 @@ abbr --add 'q=quilt'
 abbr --add 'qD=quilt delete -r'
 abbr --add 'qa=quilt add'
 abbr --add 'qd=quilt diff'
+abbr --add 'qe=quilt new'
 abbr --add 'qr=quilt refresh'
 abbr --add 'qs=quilt series'
 abbr --add 'qt=quilt top'
