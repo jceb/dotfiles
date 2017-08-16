@@ -1,16 +1,17 @@
 {
     "store": {},
     "hotkey": {
-        "hotKey": "m",
+        "hotKey": "d",
         "modifiers": [
             "<alt>",
-            "<ctrl>"
+            "<ctrl>",
+            "<shift>"
         ]
     },
     "modes": [
         3
     ],
-    "description": "MAC",
+    "description": "date short",
     "abbreviation": {
         "abbreviations": [
             "Date"
@@ -25,7 +26,7 @@
     "type": "script",
     "prompt": false,
     "omitTrigger": false,
-    "usageCount": 65,
+    "usageCount": 2,
     "filter": {
         "isRecursive": false,
         "regex": null
