@@ -34,7 +34,7 @@ if test -z "$GPG_AGENT_INFO"
 	set -x GPG_AGENT_INFO "$HOME/.gnupg/S.gpg-agent"
 end
 
-set -x FZF_DEFAULT_COMMAND 'rg -i --files --no-ignore --hidden --follow --glob "!.git/*"'
+set -x FZF_DEFAULT_COMMAND 'command rg -i --files --no-ignore --hidden --follow --glob "!.git/*"'
 set -x FZF_DEFAULT_OPTS '--bind ctrl-z:toggle-all --color=light'
 
 # quilt settings, always look for patches in the debian/patches directory
