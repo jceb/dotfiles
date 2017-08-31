@@ -153,7 +153,7 @@ set reply_regexp    = "^((aw|antw.?|antwort|re|r e|r?f|sv):[ \t]*)*"
 set autoedit        = no
 set edit_headers    = yes
 set collapse_unread = no
-# set wrap            = 90
+set wrap            = 90
 
 folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
 folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
