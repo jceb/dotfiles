@@ -1,23 +1,23 @@
 unmailboxes *
 # direct IMAP connection
 #set folder    = "{MAILSERVER/ssl}"
-#set imap_user = "`[ -e ~/.mutt/auth.ACCOUNT ] && sed -ne 's/username=//p' < ~/.mutt/auth.ACCOUNT`"
-#set imap_pass = "`[ -e ~/.mutt/auth.ACCOUNT ] && sed -ne 's/password=//p' < ~/.mutt/auth.ACCOUNT`"
+#set imap_user = "`[ -e ~/.config/mutt/auth.ACCOUNT ] && sed -ne 's/username=//p' < ~/.config/mutt/auth.ACCOUNT`"
+#set imap_pass = "`[ -e ~/.config/mutt/auth.ACCOUNT ] && sed -ne 's/password=//p' < ~/.config/mutt/auth.ACCOUNT`"
 #set imap_idle = yes
-#set smtp_pass = "`[ -e ~/.mutt/auth.ACCOUNT ] && sed -ne 's/password=//p' < ~/.mutt/auth.ACCOUNT`"
-#set smtp_url = 'smtps://'`[ -e ~/.mutt/auth.ACCOUNT ] && sed -ne 's/username_enc=//p' < ~/.mutt/auth.ACCOUNT`'@MAILSERVER'
-#mailboxes `~/.mutt/list_imap_mailboxes.py -F ~/.mutt/auth.ACCOUNT --ssl MAILSERVER`
+#set smtp_pass = "`[ -e ~/.config/mutt/auth.ACCOUNT ] && sed -ne 's/password=//p' < ~/.config/mutt/auth.ACCOUNT`"
+#set smtp_url = 'smtps://'`[ -e ~/.config/mutt/auth.ACCOUNT ] && sed -ne 's/username_enc=//p' < ~/.config/mutt/auth.ACCOUNT`'@MAILSERVER'
+#mailboxes `~/.config/mutt/list_imap_mailboxes.py -F ~/.config/mutt/auth.ACCOUNT --ssl MAILSERVER`
 
 # local Maildirs (created by offlineimap)
 #set folder    = "PATH_TO_MAILDIR_FOLDERS"
 #set mbox_type = Maildir
-#set sendmail = ~/.mutt/msmtpq
+#set sendmail = ~/.config/mutt/msmtpq
 #set sendmail_wait = -1
 #set envelope_from = yes
-#mailboxes `~/.mutt/scan_mailfolder $folder`
+#mailboxes `~/.config/mutt/scan_mailfolder $folder`
 
 set spoolfile = "+INBOX"
 
 set from      = "MAILADDRESS"
 
-source ~/.mutt/account.generic
+source ~/.config/mutt/account.generic

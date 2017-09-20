@@ -1,7 +1,7 @@
 # Muttrc
 # Maintained by: Jan Christoph Ebersbach <jceb@e-jc.de>
 # default account
-source ~/.mutt/account.default
+source ~/.config/mutt/account.default
 
 set mask      = "!^\\.[^.]"
 
@@ -56,7 +56,7 @@ unset bounce_delivered
 # macro index,pager \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
 macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
         <enter-command> unset pipe_decode<enter>\
-        <pipe-message>~/.mutt/extracturl/extract_url.pl<enter>\
+        <pipe-message>~/.config/mutt/extracturl/extract_url.pl<enter>\
         <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
 
 set rfc2047_parameters=yes
@@ -121,7 +121,7 @@ color   index        brightmagenta   default  ~T  # Tagged
 color   index        brightblack     default  ~D  # Deleted
 
 # S/MIME configuration
-source ~/.mutt/smime.rc
+source ~/.config/mutt/smime.rc
 set smime_default_key              = "30a9f1c3.0"
 
 # GPG-Encryption
@@ -158,7 +158,7 @@ set wrap            = 90
 folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
 folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
 
-macro generic,index,pager <f5> ":source ~/.mutt/muttrc<enter>I" "Reload muttrc"
+macro generic,index,pager <f5> ":source ~/.config/mutt/muttrc<enter>I" "Reload muttrc"
 macro index <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" "notmuch: search mail"
 macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
 
@@ -207,7 +207,7 @@ set folder_format = "%2C %5.0N %f"
 
 # special editor-command to wrap signatures
 set editor = "/usr/bin/nvim"
-# set query_command = "~/.mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vcf"
+# set query_command = "~/.config/mutt/vcardquery.py --mutt_query='%s' -f ~/addressbook.vcf"
 set query_command = "khard email -d first_name -p"
 bind editor <Tab> complete-query
 bind editor ^T    complete
