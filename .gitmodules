@@ -11,7 +11,7 @@
 	path = tmux/plugins/tmux-yank
 	url = git@github.com:tmux-plugins/tmux-yank.git
 [submodule "mutt/extracturl"]
-	path = mutt/extracturl
+	path = config/mutt/extracturl
 	url = git@github.com:m3m0ryh0l3/extracturl.git
 [submodule "emacs.d"]
 	path = emacs.d
