@@ -1,59 +1,59 @@
-text/html; ~/.mutt/mutt_bgrun.sh x-www-browser '%s'; nametemplate=%s.html; test=test -n "$DISPLAY"; description=Portable
+text/html; ~/.config/mutt/mutt_bgrun.sh x-www-browser '%s'; nametemplate=%s.html; test=test -n "$DISPLAY"; description=Portable
 # text/html; w3m -I %{charset} -T text/html -dump %s; nametemplate=%s.html; copiousoutput
 text/html; elinks -dump -dump-charset utf-8 %s; nametemplate=%s.html; copiousoutput
 
 # PDF-Files
-application/octetstream; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
-application/octet-stream; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
-application/pdf; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test "$DISPLAY" != ""; description=Portable
+application/octetstream; ~/.config/mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+application/octet-stream; ~/.config/mutt/mutt_bgrun.sh /usr/bin/okular '%s'; nametemplate=%s.pdf; test=test "$DISPLAY" != ""; description=Portable
+application/pdf; ~/.config/mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test "$DISPLAY" != ""; description=Portable
 
 # PS-Files
-application/postscript; ~/.mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test -n "$DISPLAY"; description=postscript
+application/postscript; ~/.config/mutt/mutt_bgrun.sh /usr/bin/okular '%s'; test=test -n "$DISPLAY"; description=postscript
 
 # Images
-image/*; ~/.mutt/mutt_bgrun.sh geeqie '%s'; test=test -n "$DISPLAY"
+image/*; ~/.config/mutt/mutt_bgrun.sh geeqie '%s'; test=test -n "$DISPLAY"
 
 # office
-application/vnd.sun.xml.calc; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Spreadsheet"; nametemplate=%s.sxc
-application/vnd.sun.xml.calc.template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Spreadsheet Template"; nametemplate=%s.stc
-application/vnd.sun.xml.draw; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Drawing"; nametemplate=%s.sxd
-application/vnd.sun.xml.draw.template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Drawing Template"; nametemplate=%s.std
-application/vnd.sun.xml.impress; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Presentation"; nametemplate=%s.sxi
-application/vnd.sun.xml.impress.template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Presentation Template"; nametemplate=%s.sti
-application/vnd.sun.xml.writer; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Text Document"; nametemplate=%s.sxw
-application/vnd.sun.xml.writer.global; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Master Document"; nametemplate=%s.sxg
-application/vnd.sun.xml.writer.template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Text Document Template"; nametemplate=%s.stw
-application/vnd.oasis.opendocument.database; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Database"; nametemplate=%s.odb
-application/vnd.oasis.opendocument.spreadsheet; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Spreadsheet"; nametemplate=%s.ods
-application/vnd.oasis.opendocument.spreadsheet-template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Spreadsheet Template"; nametemplate=%s.ots
-application/vnd.oasis.opendocument.chart; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Chart"; nametemplate=%s.odc
-application/vnd.stardivision.calc; ~/.mutt/mutt_bgrun.sh soffice '%s';edit=soffice '%s';test=test "$DISPLAY" != "" ;description="StarCalc 5.0"; nametemplate=%s.sdc
-application/vnd.stardivision.chart; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarChart 5.0"; nametemplate=%s.sds
-application/vnd.oasis.opendocument.graphics; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Drawing"; nametemplate=%s.odg
-application/vnd.oasis.opendocument.graphics-template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Drawing Template"; nametemplate=%s.otg
-application/vnd.stardivision.draw; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarDraw 5.0"; nametemplate=%s.sda
-application/vnd.oasis.opendocument.presentation; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Presentation"; nametemplate=%s.odp
-application/vnd.oasis.opendocument.presentation-template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Presentation Template"; nametemplate=%s.otp
-application/vnd.stardivision.impress; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarImpress 5.0"; nametemplate=%s.sdd
-application/vnd.oasis.opendocument.formula; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Formula"; nametemplate=%s.odf
-application/vnd.stardivision.math; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarMath 5.0"; nametemplate=%s.sdf
-application/vnd.oasis.opendocument.text; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Text"; nametemplate=%s.odt
-application/vnd.oasis.opendocument.text-template; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Text Template"; nametemplate=%s.ott
-application/vnd.oasis.opendocument.text-web; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument HTML Document Template"; nametemplate=%s.oth
-application/vnd.oasis.opendocument.text-master; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Master Document"; nametemplate=%s.odm
-application/vnd.stardivision.writer-global; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarWriter 5.0 Master Document"; nametemplate=%s.sgl
-application/vnd.stardivision.writer; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarWriter 5.0"; nametemplate=%s.sdw
-application/msexcel; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.xls; description="Microsoft Excel Document"
-application/vnd.ms-excel; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.xls; description="Microsoft Excel Document"
-application/x-msexcel; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.xls; description="Microsoft Excel Document"
-application/mspowerpoint; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.ppt; description="Microsoft PowerPoint Document"
-application/vnd.ms-powerpoint; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.ppt; description="Microsoft PowerPoint Document"
-application/x-mspowerpoint; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.ppt; description="Microsoft PowerPoint Document"
-application/msword; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.doc; description="Microsoft Word Document"
-application/vnd.ms-word; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.doc; description="Microsoft Word Document"
-application/rtf; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.rtf; description="Rich Text Format"
-text/rtf; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.rtf; description="Rich Text Format"
-application/x-msword; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.doc; description="Microsoft Word Document"
-application/wordperfect; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.wpd; description="WordPerfect Document"
-application/wordperfect5.1; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.wpd; description="WordPerfect Document"
-application/vnd.wordperfect; ~/.mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.wpd; description="WordPerfect Document"
+application/vnd.sun.xml.calc; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Spreadsheet"; nametemplate=%s.sxc
+application/vnd.sun.xml.calc.template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Spreadsheet Template"; nametemplate=%s.stc
+application/vnd.sun.xml.draw; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Drawing"; nametemplate=%s.sxd
+application/vnd.sun.xml.draw.template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Drawing Template"; nametemplate=%s.std
+application/vnd.sun.xml.impress; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Presentation"; nametemplate=%s.sxi
+application/vnd.sun.xml.impress.template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Presentation Template"; nametemplate=%s.sti
+application/vnd.sun.xml.writer; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Text Document"; nametemplate=%s.sxw
+application/vnd.sun.xml.writer.global; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Master Document"; nametemplate=%s.sxg
+application/vnd.sun.xml.writer.template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="OpenOffice.org Text Document Template"; nametemplate=%s.stw
+application/vnd.oasis.opendocument.database; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Database"; nametemplate=%s.odb
+application/vnd.oasis.opendocument.spreadsheet; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Spreadsheet"; nametemplate=%s.ods
+application/vnd.oasis.opendocument.spreadsheet-template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Spreadsheet Template"; nametemplate=%s.ots
+application/vnd.oasis.opendocument.chart; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Chart"; nametemplate=%s.odc
+application/vnd.stardivision.calc; ~/.config/mutt/mutt_bgrun.sh soffice '%s';edit=soffice '%s';test=test "$DISPLAY" != "" ;description="StarCalc 5.0"; nametemplate=%s.sdc
+application/vnd.stardivision.chart; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarChart 5.0"; nametemplate=%s.sds
+application/vnd.oasis.opendocument.graphics; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Drawing"; nametemplate=%s.odg
+application/vnd.oasis.opendocument.graphics-template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Drawing Template"; nametemplate=%s.otg
+application/vnd.stardivision.draw; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarDraw 5.0"; nametemplate=%s.sda
+application/vnd.oasis.opendocument.presentation; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Presentation"; nametemplate=%s.odp
+application/vnd.oasis.opendocument.presentation-template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Presentation Template"; nametemplate=%s.otp
+application/vnd.stardivision.impress; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarImpress 5.0"; nametemplate=%s.sdd
+application/vnd.oasis.opendocument.formula; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Formula"; nametemplate=%s.odf
+application/vnd.stardivision.math; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarMath 5.0"; nametemplate=%s.sdf
+application/vnd.oasis.opendocument.text; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Text"; nametemplate=%s.odt
+application/vnd.oasis.opendocument.text-template; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Text Template"; nametemplate=%s.ott
+application/vnd.oasis.opendocument.text-web; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument HTML Document Template"; nametemplate=%s.oth
+application/vnd.oasis.opendocument.text-master; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ;description="OpenDocument Master Document"; nametemplate=%s.odm
+application/vnd.stardivision.writer-global; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarWriter 5.0 Master Document"; nametemplate=%s.sgl
+application/vnd.stardivision.writer; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != "" ; description="StarWriter 5.0"; nametemplate=%s.sdw
+application/msexcel; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.xls; description="Microsoft Excel Document"
+application/vnd.ms-excel; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.xls; description="Microsoft Excel Document"
+application/x-msexcel; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.xls; description="Microsoft Excel Document"
+application/mspowerpoint; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.ppt; description="Microsoft PowerPoint Document"
+application/vnd.ms-powerpoint; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.ppt; description="Microsoft PowerPoint Document"
+application/x-mspowerpoint; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.ppt; description="Microsoft PowerPoint Document"
+application/msword; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.doc; description="Microsoft Word Document"
+application/vnd.ms-word; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.doc; description="Microsoft Word Document"
+application/rtf; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.rtf; description="Rich Text Format"
+text/rtf; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.rtf; description="Rich Text Format"
+application/x-msword; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.doc; description="Microsoft Word Document"
+application/wordperfect; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.wpd; description="WordPerfect Document"
+application/wordperfect5.1; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.wpd; description="WordPerfect Document"
+application/vnd.wordperfect; ~/.config/mutt/mutt_bgrun.sh soffice '%s'; edit=soffice '%s'; test=test "$DISPLAY" != ""; nametemplate=%s.wpd; description="WordPerfect Document"
