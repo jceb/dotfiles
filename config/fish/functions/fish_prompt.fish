@@ -47,7 +47,7 @@ function fish_prompt --description 'Write out the prompt'
     set realhome ~
     set -l pwd (string replace -r '^'"$realhome"'($|/)' '~$1' $PWD)
 
-    #Set the color for the status depending on the value
+    # Set the color for the status depending on the value
     set __fish_color_status (set_color -o green)
     if test $stat -gt 0
         set __fish_color_status (set_color -o red)
@@ -73,11 +73,20 @@ function fish_prompt --description 'Write out the prompt'
             set -g __fish_prompt_cwd (set_color $fish_color_cwd)
         end
 
-        set git_prompt (__fish_git_prompt)
+        set git_prompt (__fish_git_prompt "%s")
+        set quilt_prompt (__fish_quilt_prompt "%s")
+        set -l vcs_prompt
+        if test -n "$git_prompt"; and test -n "$quilt_prompt"
+            set vcs_prompt "($git_prompt $quilt_prompt)"
+        else if  test -n "$git_prompt"
+            set vcs_prompt "($git_prompt)"
+        else if  test -n "$quilt_prompt"
+            set vcs_prompt "($quilt_prompt)"
+        end
         if test "$stat" -ne 0
-            printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$git_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
+            printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
         else
-            printf '%s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$git_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
+            printf '%s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
         end
     end
 end
