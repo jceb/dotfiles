@@ -77,11 +77,11 @@ function fish_prompt --description 'Write out the prompt'
         set quilt_prompt (__fish_quilt_prompt "%s")
         set -l vcs_prompt
         if test -n "$git_prompt"; and test -n "$quilt_prompt"
-            set vcs_prompt "($git_prompt $quilt_prompt)"
+            set vcs_prompt " ($git_prompt $quilt_prompt)"
         else if  test -n "$git_prompt"
-            set vcs_prompt "($git_prompt)"
+            set vcs_prompt " ($git_prompt)"
         else if  test -n "$quilt_prompt"
-            set vcs_prompt "($quilt_prompt)"
+            set vcs_prompt " ($quilt_prompt)"
         end
         if test "$stat" -ne 0
             printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
