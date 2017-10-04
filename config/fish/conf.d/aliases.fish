@@ -27,9 +27,10 @@ if test -e /usr/bin/ack-grep
 end
 abbr --add 't=tree -f'
 
+# calendar and contacts abbreviations
 abbr --add 'cal=khal'
 abbr --add 'agenda=khal agenda'
-abbr --add 'contacts=khard'
+abbr --add 'c=khard'
 
 # ls
 function ls
@@ -54,68 +55,46 @@ abbr --add 'qD=quilt delete -r'
 abbr --add 'qa=quilt add'
 abbr --add 'qd=quilt diff'
 abbr --add 'qe=quilt new'
+abbr --add 'qp=quilt pop'
 abbr --add 'qr=quilt refresh'
 abbr --add 'qs=quilt series'
 abbr --add 'qt=quilt top'
 
 # git
-abbr --add 'g=git'
 abbr --add 'g+=git stash pop'
 abbr --add 'g-=git stash'
+abbr --add 'g=git'
 abbr --add 'ga=git add'
 abbr --add 'gau=git add -u'
 abbr --add 'gb=git branch'
 abbr --add 'gba=git ba'
+abbr --add 'gbam=git bam'
 abbr --add 'gbc=git bc'
 abbr --add 'gbm=git bm'
-abbr --add 'gbam=git bam'
 abbr --add 'gbr=git bc'
 abbr --add 'gc=git commit'
 abbr --add 'gca=git commit -a'
-abbr --add 'guc=git commit -m "Update changelogs"'
+abbr --add 'gci=git ci'
 abbr --add 'gcmsg=git commit --amend'
 abbr --add 'gco=git checkout'
 abbr --add 'gd=git diff --no-prefix'
-abbr --add 'gdw=git diff --no-prefix --word-diff'
 abbr --add 'gdc=git diffc'
 abbr --add 'gdd=git difff'
+abbr --add 'gdw=git diff --no-prefix --word-diff'
 abbr --add 'ge=git edit'
 abbr --add 'gp=git push'
 abbr --add 'gpre=git pre'
+abbr --add 'gr=git rm'
 abbr --add 'gst=git st'
 abbr --add 'gsta=git sta'
-abbr --add 'gsubpre=git subpre'
+abbr --add 'gsuba=git submodule add'
 abbr --add 'gsubm=git subm'
+abbr --add 'gsubpre=git subpre'
 abbr --add 'gsubup=git subup'
-abbr --add 'gci=git ci'
+abbr --add 'guc=git commit -m "Update changelogs"'
 abbr --add 'gup=git up'
 
-function _chdir --description 'aliases for quickly traversing through the Univention SVN'
-    if echo $PWD | grep -q '/trunk/'
-        cd (echo $PWD | sed -e "s#/trunk/#/branches/ucs-"$argv[1]"#")
-    else
-        cd (echo $PWD | sed -e "s#/branches/ucs-[0-9.]*#/branches/ucs-"$argv[1]"#")
-    end
-end
-
-abbr --add 'cdt=cd $(echo $(pwd)/|sed -e "s#/branches/ucs-[^/]*/#/trunk/#")'
-abbr --add 'cdb2=_chdir 2.0'
-abbr --add 'cdb21=_chdir 2.1'
-abbr --add 'cdb22=_chdir 2.2'
-abbr --add 'cdb23=_chdir 2.3'
-abbr --add 'cdb24=_chdir 2.4'
-abbr --add 'cdb3=_chdir 3.0'
-abbr --add 'cdb31=_chdir 3.1'
-abbr --add 'cdb32=_chdir 3.2'
-abbr --add 'cdb33=_chdir 3.3'
-abbr --add 'cdb4=_chdir 4.0'
-abbr --add 'cdb41=_chdir 4.1'
-abbr --add 'cdb42=_chdir 4.2'
-abbr --add 'cdb43=_chdir 4.3'
-abbr --add 'cdb5=_chdir 5.0'
-abbr --add 'cdd=_chdir'
-
-function _ch2parentdir --description 'jump to the next parent directory containing a subdirectory that\'s passed via $argv'
+function _ch2root --description "jump to the next parent directory containing a subdirectory that's passed via argv"
     set _d $PWD
     while test $_d != "/"
         for _dir in $argv
@@ -131,7 +110,7 @@ function _ch2parentdir --description 'jump to the next parent directory containi
     return
 end
 
-abbr --add 'cd.=cd (_ch2parentdir debian .git .hg .svn)'
+abbr --add 'cd.=cd (_ch2root debian .git .hg .svn)'
 
 function _glob_match --description 'aliases for quickly traversing through the directory structures'
     # $1: pattern; $2: term
