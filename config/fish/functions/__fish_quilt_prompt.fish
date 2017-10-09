@@ -1,3 +1,27 @@
+function __fish_quilt_is_quiltdir -d "Return true if there is a quilt series file somewhere in the path"
+    set -l currentdir "$argv[1]"
+    if test -z "$currentdir"
+        set currentdir "$PWD"
+    end
+    set -l patchdir "patches"
+    set -l seriesfile "series"
+    if test -n "$QUILT_PATCHES"
+        set patchdir "$QUILT_PATCHES"
+    end
+    if test -n "$QUILT_SERIES"
+        set seriesfile "$QUILT_SERIES"
+    end
+    if test -e "$currentdir/$patchdir/$seriesfile"
+        return 0
+    else
+        if test "$currentdir" = "/"
+            return 1
+        else
+            __fish_quilt_is_quiltdir (dirname $currentdir)
+        end
+    end
+end
+
 function __fish_quilt_set_color -d "Initialize variable with a default value"
     set -l user_variable_name "$argv[1]"
     set -l default $argv[2]
@@ -13,7 +37,7 @@ function __fish_quilt_prompt -d "Write out the quilt prompt"
     if not command -sq quilt
         return 1
     end
-    if not command quilt series > /dev/null ^ /dev/null
+    if not __fish_quilt_is_quiltdir
         return 1
     end
     set -l patches
