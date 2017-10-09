@@ -1,0 +1,574 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator
+
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty it self.
+env:
+  # TERM env customization.
+  #
+  # If this property is not set, alacritty will set it to xterm-256color.
+  #
+  # Note that some xterm terminfo databases don't declare support for italics.
+  # You can verify this by checking for the presence of `smso` and `sitm` in
+  # `infocmp xterm-256color`.
+  TERM: xterm-256color
+
+# Window dimensions in character columns and lines
+# (changes require restart)
+dimensions:
+  columns: 80
+  lines: 24
+
+# Adds this many blank pixels of padding around the window
+# Units are physical pixels; this is not DPI aware.
+# (change requires restart)
+padding:
+  x: 2
+  y: 2
+
+# The FreeType rasterizer needs to know the device DPI for best results
+# (changes require restart)
+dpi:
+  x: 96.0
+  y: 96.0
+
+# Display tabs using this many cells (changes require restart)
+tabspaces: 4
+
+# When true, bold text is drawn using the bright variant of colors.
+draw_bold_text_with_bright_colors: true
+
+# Font configuration (changes require restart)
+font:
+  # The normal (roman) font face to use.
+  normal:
+    family: Hack # should be "Menlo" or something on macOS.
+    # Style can be specified to pick a specific face.
+    # style: Regular
+
+  # The bold font face
+  bold:
+    family: Hack # should be "Menlo" or something on macOS.
+    # Style can be specified to pick a specific face.
+    # style: Bold
+
+  # The italic font face
+  italic:
+    family: Hack # should be "Menlo" or something on macOS.
+    # Style can be specified to pick a specific face.
+    # style: Italic
+
+  # Point size of the font
+  size: 8.5
+
+  # Offset is the extra space around each character. offset.y can be thought of
+  # as modifying the linespacing, and offset.x as modifying the letter spacing.
+  offset:
+    x: 0.0
+    y: 1.0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increase the x offset to move the glyph to
+  # the right, increase the y offset to move the glyph upward.
+  glyph_offset:
+    x: 0.0
+    y: 0.0
+
+  # OS X only: use thin stroke font rendering. Thin strokes are suitable
+  # for retina displays, but for non-retina you probably want this set to
+  # false.
+  use_thin_strokes: true
+
+# Should display the render timer
+render_timer: false
+
+# Use custom cursor colors. If true, display the cursor in the cursor.foreground
+# and cursor.background colors, otherwise invert the colors of the cursor.
+custom_cursor_colors: true
+
+# Colors (Tomorrow Night Bright)
+colors:
+  # Default colors
+  primary:
+    background: '0xEDEDED'
+    foreground: '0x4D4D4C'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x000000'
+    cursor: '0x87afd7'
+
+  # Normal colors
+  normal:
+    black:   '0x4D4D4C'
+    red:     '0xD7005F'
+    green:   '0x718C00'
+    yellow:  '0xD75F00'
+    blue:    '0x005f87'
+    magenta: '0x8959A8'
+    cyan:    '0x3E999F'
+    white:   '0xEDEDED'
+
+  # Bright colors
+  bright:
+    black:   '0x969694'
+    red:     '0xD7005F'
+    green:   '0x718C00'
+    yellow:  '0xD75F00'
+    blue:    '0x4271AE'
+    magenta: '0x8959A8'
+    cyan:    '0x3E999F'
+    white:   '0xF5F5F5'
+
+  # Dim colors (Optional)
+  dim:
+    black:   '0x333333'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xdddddd'
+
+# Visual Bell
+#
+# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
+# rung, the terminal background will be set to white and transition back to the
+# default background color. You can control the rate of this transition by
+# setting the `duration` property (represented in milliseconds). You can also
+# configure the transition function by setting the `animation` property.
+#
+# Possible values for `animation`
+# `Ease`
+# `EaseOut`
+# `EaseOutSine`
+# `EaseOutQuad`
+# `EaseOutCubic`
+# `EaseOutQuart`
+# `EaseOutQuint`
+# `EaseOutExpo`
+# `EaseOutCirc`
+# `Linear`
+#
+# To completely disable the visual bell, set its duration to 0.
+#
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+
+# Background opacity
+background_opacity: 1.0
+
+# Key bindings
+#
+# Each binding is defined as an object with some properties. Most of the
+# properties are optional. All of the alphabetical keys should have a letter for
+# the `key` value such as `V`. Function keys are probably what you would expect
+# as well (F1, F2, ..). The number keys above the main keyboard are encoded as
+# `Key1`, `Key2`, etc. Keys on the number pad are encoded `Number1`, `Number2`,
+# etc.  These all match the glutin::VirtualKeyCode variants.
+#
+# Possible values for `mods`
+# `Command`, `Super` refer to the super/command/windows key
+# `Control` for the control key
+# `Shift` for the Shift key
+# `Alt` and `Option` refer to alt/option
+#
+# mods may be combined with a `|`. For example, requiring control and shift
+# looks like:
+#
+# mods: Control|Shift
+#
+# The parser is currently quite sensitive to whitespace and capitalization -
+# capitalization must match exactly, and piped items must not have whitespace
+# around them.
+#
+# Either an `action`, `chars`, or `command` field must be present.
+#   `action` must be one of `Paste`, `PasteSelection`, `Copy`, or `Quit`.
+#   `chars` writes the specified string every time that binding is activated.
+#     These should generally be escape sequences, but they can be configured to
+#     send arbitrary strings of bytes.
+#   `command` must be a map containing a `program` string, and `args` array of
+#     strings. For example:
+#     - { ... , command: { program: "alacritty", args: ["-e", "vttest"] } }
+#
+# Want to add a binding (e.g. "PageUp") but are unsure what the X sequence
+# (e.g. "\x1b[5~") is? Open another terminal (like xterm) without tmux,
+# then run `showkey -a` to get the sequence associated to a key combination.
+key_bindings:
+  - { key: V,        mods: Control|Shift,     action: Paste                     }
+  - { key: C,        mods: Control|Shift,     action: Copy                      }
+  # - { key: Q,        mods: Command, action: Quit                              }
+  # - { key: W,        mods: Command, action: Quit                              }
+  - { key: Insert,   mods: Shift,             action: PasteSelection            }
+  - { key: Home,     mods:,                   chars: "\x1bOH", mode: AppCursor  }
+  - { key: Home,     mods:,                   chars: "\x1b[H", mode: ~AppCursor }
+  - { key: Home,     mods: Control,           chars: "\x1b[80;5u"               }
+  - { key: Home,     mods: Control|Shift,     chars: "\x1b[80;6u"               }
+  - { key: Home,     mods: Alt,               chars: "\x1b[80;3u"               }
+  - { key: Home,     mods: Alt|Control,       chars: "\x1b[80;7u"               }
+  - { key: Home,     mods: Alt|Control|Shift, chars: "\x1b[80;8u"               }
+  - { key: Home,     mods: Alt|Shift,         chars: "\x1b[80;4u"               }
+  - { key: Home,     mods: Shift,             chars: "\x1b[80;2u"               }
+  - { key: End,      mods:,                   chars: "\x1bOF", mode: AppCursor  }
+  - { key: End,      mods:,                   chars: "\x1b[F", mode: ~AppCursor }
+  - { key: End,      mods: Control,           chars: "\x1b[87;5u"               }
+  - { key: End,      mods: Control|Shift,     chars: "\x1b[87;6u"               }
+  - { key: End,      mods: Alt,               chars: "\x1b[87;3u"               }
+  - { key: End,      mods: Alt|Control,       chars: "\x1b[87;7u"               }
+  - { key: End,      mods: Alt|Control|Shift, chars: "\x1b[87;8u"               }
+  - { key: End,      mods: Alt|Shift,         chars: "\x1b[87;4u"               }
+  - { key: End,      mods: Shift,             chars: "\x1b[87;2u"               }
+  - { key: PageUp,   mods: Shift,             chars: "\x1b[5;2~"                }
+  - { key: PageUp,   mods: Control,           chars: "\x1b[5;5~"                }
+  - { key: PageUp,   mods:,                   chars: "\x1b[5~"                  }
+  - { key: PageUp,   mods: Control|Shift,     chars: "\x1b[85;6u"               }
+  - { key: PageUp,   mods: Alt,               chars: "\x1b[85;3u"               }
+  - { key: PageUp,   mods: Alt|Control,       chars: "\x1b[85;7u"               }
+  - { key: PageUp,   mods: Alt|Control|Shift, chars: "\x1b[85;8u"               }
+  - { key: PageUp,   mods: Alt|Shift,         chars: "\x1b[85;4u"               }
+  - { key: PageDown, mods: Shift,             chars: "\x1b[6;2~"                }
+  - { key: PageDown, mods: Control,           chars: "\x1b[6;5~"                }
+  - { key: PageDown, mods:,                   chars: "\x1b[6~"                  }
+  - { key: PageUp,   mods: Control|Shift,     chars: "\x1b[86;6u"               }
+  - { key: PageUp,   mods: Alt,               chars: "\x1b[86;3u"               }
+  - { key: PageUp,   mods: Alt|Control,       chars: "\x1b[86;7u"               }
+  - { key: PageUp,   mods: Alt|Control|Shift, chars: "\x1b[86;8u"               }
+  - { key: PageUp,   mods: Alt|Shift,         chars: "\x1b[86;4u"               }
+  - { key: Left,     mods: Shift,             chars: "\x1b[1;2D"                }
+  - { key: Left,     mods: Control,           chars: "\x1b[1;5D"                }
+  - { key: Left,     mods: Alt,               chars: "\x1b[1;3D"                }
+  - { key: Left,     mods:,                   chars: "\x1b[D", mode: ~AppCursor }
+  - { key: Left,     mods:,                   chars: "\x1bOD", mode: AppCursor  }
+  - { key: Right,    mods: Shift,             chars: "\x1b[1;2C"                }
+  - { key: Right,    mods: Control,           chars: "\x1b[1;5C"                }
+  - { key: Right,    mods: Alt,               chars: "\x1b[1;3C"                }
+  - { key: Right,    mods:,                   chars: "\x1b[C", mode: ~AppCursor }
+  - { key: Right,    mods:,                   chars: "\x1bOC", mode: AppCursor  }
+  - { key: Up,       mods: Shift,             chars: "\x1b[1;2A"                }
+  - { key: Up,       mods: Control,           chars: "\x1b[1;5A"                }
+  - { key: Up,       mods: Alt,               chars: "\x1b[1;3A"                }
+  - { key: Up,       mods:,                   chars: "\x1b[A", mode: ~AppCursor }
+  - { key: Up,       mods:,                   chars: "\x1bOA", mode: AppCursor  }
+  - { key: Down,     mods: Shift,             chars: "\x1b[1;2B"                }
+  - { key: Down,     mods: Control,           chars: "\x1b[1;5B"                }
+  - { key: Down,     mods: Alt,               chars: "\x1b[1;3B"                }
+  - { key: Down,     mods:,                   chars: "\x1b[B", mode: ~AppCursor }
+  - { key: Down,     mods:,                   chars: "\x1bOB", mode: AppCursor  }
+  - { key: Space,    mods: Control,           chars: "\x1b[32;5u"               }
+  - { key: Space,    mods: Control|Shift,     chars: "\x1b[32;6u"               }
+  - { key: Space,    mods: Alt,               chars: "\x1b[32;3u"               }
+  - { key: Space,    mods: Alt|Control,       chars: "\x1b[32;7u"               }
+  - { key: Space,    mods: Alt|Control|Shift, chars: "\x1b[32;8u"               }
+  - { key: Space,    mods: Alt|Shift,         chars: "\x1b[32;4u"               }
+  # - { key: Space,     mods: Shift,             chars: "\x1b[32;2u"            }
+  - { key: Space,    mods: Shift,             chars: "\x1b[1;2P"                }
+  - { key: Tab,      mods: Shift,             chars: "\x1b[Z"                   }
+  - { key: Tab,      mods: Control,           chars: "\x1b[9;5u"                }
+  - { key: Tab,      mods: Control|Shift,     chars: "\x1b[1;6Z"                }
+  - { key: Tab,      mods: Alt,               chars: "\x1b[1;3Z"                }
+  - { key: Tab,      mods: Alt|Control,       chars: "\x1b[1;7Z"                }
+  - { key: Tab,      mods: Alt|Control|Shift, chars: "\x1b[1;8Z"                }
+  - { key: Tab,      mods: Alt|Shift,         chars: "\x1b[1;4Z"                }
+  - { key: Tab,      mods: Shift,             chars: "\x1b[1;2Z"                }
+  - { key: Return,   mods: Control,           chars: "\x1b[13;5u"               }
+  - { key: Return,   mods: Control|Shift,     chars: "\x1b[13;6u"               }
+  - { key: Return,   mods: Alt,               chars: "\x1b[13;3u"               }
+  - { key: Return,   mods: Alt|Control,       chars: "\x1b[13;7u"               }
+  - { key: Return,   mods: Alt|Control|Shift, chars: "\x1b[13;8u"               }
+  - { key: Return,   mods: Alt|Shift,         chars: "\x1b[13;4u"               }
+  - { key: Return,   mods: Shift,             chars: "\x1b[13;2u"               }
+  - { key: Pause,    mods: Control,           chars: "\x1b[18;5u"               }
+  - { key: Pause,    mods: Control|Shift,     chars: "\x1b[18;6u"               }
+  - { key: Pause,    mods: Alt,               chars: "\x1b[18;3u"               }
+  - { key: Pause,    mods: Alt|Control,       chars: "\x1b[18;7u"               }
+  - { key: Pause,    mods: Alt|Control|Shift, chars: "\x1b[18;8u"               }
+  - { key: Pause,    mods: Alt|Shift,         chars: "\x1b[18;4u"               }
+  - { key: Pause,    mods: Shift,             chars: "\x1b[18;2u"               }
+  - { key: Scroll,   mods: Control,           chars: "\x1b[20;5u"               }
+  - { key: Scroll,   mods: Control|Shift,     chars: "\x1b[20;6u"               }
+  - { key: Scroll,   mods: Alt,               chars: "\x1b[20;3u"               }
+  - { key: Scroll,   mods: Alt|Control,       chars: "\x1b[20;7u"               }
+  - { key: Scroll,   mods: Alt|Control|Shift, chars: "\x1b[20;8u"               }
+  - { key: Scroll,   mods: Alt|Shift,         chars: "\x1b[20;4u"               }
+  - { key: Scroll,   mods: Shift,             chars: "\x1b[20;2u"               }
+  - { key: Escape,   mods: Control,           chars: "\x1b[27;5u"               }
+  - { key: Escape,   mods: Control|Shift,     chars: "\x1b[27;6u"               }
+  - { key: Escape,   mods: Alt,               chars: "\x1b[27;3u"               }
+  - { key: Escape,   mods: Alt|Control,       chars: "\x1b[27;7u"               }
+  - { key: Escape,   mods: Alt|Control|Shift, chars: "\x1b[27;8u"               }
+  - { key: Escape,   mods: Alt|Shift,         chars: "\x1b[27;4u"               }
+  - { key: Escape,   mods: Shift,             chars: "\x1b[27;2u"               }
+  - { key: F1,       mods:,                   chars: "\x1bOP"                   }
+  - { key: F2,       mods:,                   chars: "\x1bOQ"                   }
+  - { key: F3,       mods:,                   chars: "\x1bOR"                   }
+  - { key: F4,       mods:,                   chars: "\x1bOS"                   }
+  - { key: F5,       mods:,                   chars: "\x1b[15~"                 }
+  - { key: F6,       mods:,                   chars: "\x1b[17~"                 }
+  - { key: F7,       mods:,                   chars: "\x1b[18~"                 }
+  - { key: F8,       mods:,                   chars: "\x1b[19~"                 }
+  - { key: F9,       mods:,                   chars: "\x1b[20~"                 }
+  - { key: F10,      mods:,                   chars: "\x1b[21~"                 }
+  - { key: F11,      mods:,                   chars: "\x1b[23~"                 }
+  - { key: F12,      mods:,                   chars: "\x1b[24~"                 }
+  - { key: Back,     mods:,                   chars: "\x7f"                     }
+  - { key: Back,     mods: Alt,               chars: "\x1b\x7f"                 }
+  - { key: Back,     mods: Control,           chars: "\x1b[127;5u"              }
+  - { key: Back,     mods: Control|Shift,     chars: "\x1b[127;6u"              }
+  - { key: Back,     mods: Alt|Control,       chars: "\x1b[127;7u"              }
+  - { key: Back,     mods: Alt|Control|Shift, chars: "\x1b[127;8u"              }
+  - { key: Back,     mods: Alt|Shift,         chars: "\x1b[127;4u"              }
+  - { key: Back,     mods: Shift,             chars: "\x1b[127;2u"              }
+  - { key: Insert,   mods:,                   chars: "\x1b[2~"                  }
+  - { key: Insert,   mods: Control,           chars: "\x1b[99;5u"               }
+  - { key: Insert,   mods: Control|Shift,     chars: "\x1b[99;6u"               }
+  - { key: Insert,   mods: Alt,               chars: "\x1b[99;3u"               }
+  - { key: Insert,   mods: Alt|Control,       chars: "\x1b[99;7u"               }
+  - { key: Insert,   mods: Alt|Control|Shift, chars: "\x1b[99;8u"               }
+  - { key: Insert,   mods: Alt|Shift,         chars: "\x1b[99;4u"               }
+  # - { key: Insert,     mods: Shift,             chars: "\x1b[99;2u"           }
+  - { key: Delete,   mods:,                   chars: "\x1b[3~"                  }
+  - { key: Delete,   mods: Control,           chars: "\x1b[255;5u"              }
+  - { key: Delete,   mods: Control|Shift,     chars: "\x1b[255;6u"              }
+  - { key: Delete,   mods: Alt,               chars: "\x1b[255;3u"              }
+  - { key: Delete,   mods: Alt|Control,       chars: "\x1b[255;7u"              }
+  - { key: Delete,   mods: Alt|Control|Shift, chars: "\x1b[255;8u"              }
+  - { key: Delete,   mods: Alt|Shift,         chars: "\x1b[255;4u"              }
+  - { key: Delete,   mods: Shift,             chars: "\x1b[255;2u"              }
+  - { key: A,        mods: Control|Shift,     chars: "\x1b[65;6u"               }
+  - { key: A,        mods: Alt|Control,       chars: "\x1b[65;7u"               }
+  - { key: A,        mods: Alt|Control|Shift, chars: "\x1b[65;8u"               }
+  - { key: A,        mods: Alt|Shift,         chars: "\x1b[65;4u"               }
+  - { key: B,        mods: Control|Shift,     chars: "\x1b[66;6u"               }
+  - { key: B,        mods: Alt|Control,       chars: "\x1b[66;7u"               }
+  - { key: B,        mods: Alt|Control|Shift, chars: "\x1b[66;8u"               }
+  - { key: B,        mods: Alt|Shift,         chars: "\x1b[66;4u"               }
+  # - { key: C,     mods: Control|Shift,     chars: "\x1b[67;6u"                }
+  - { key: C,        mods: Alt|Control,       chars: "\x1b[67;7u"               }
+  - { key: C,        mods: Alt|Control|Shift, chars: "\x1b[67;8u"               }
+  - { key: C,        mods: Alt|Shift,         chars: "\x1b[67;4u"               }
+  - { key: D,        mods: Control|Shift,     chars: "\x1b[68;6u"               }
+  - { key: D,        mods: Alt|Control,       chars: "\x1b[68;7u"               }
+  - { key: D,        mods: Alt|Control|Shift, chars: "\x1b[68;8u"               }
+  - { key: D,        mods: Alt|Shift,         chars: "\x1b[68;4u"               }
+  - { key: E,        mods: Control|Shift,     chars: "\x1b[69;6u"               }
+  - { key: E,        mods: Alt|Control,       chars: "\x1b[69;7u"               }
+  - { key: E,        mods: Alt|Control|Shift, chars: "\x1b[69;8u"               }
+  - { key: E,        mods: Alt|Shift,         chars: "\x1b[69;4u"               }
+  - { key: F,        mods: Control|Shift,     chars: "\x1b[70;6u"               }
+  - { key: F,        mods: Alt|Control,       chars: "\x1b[70;7u"               }
+  - { key: F,        mods: Alt|Control|Shift, chars: "\x1b[70;8u"               }
+  - { key: F,        mods: Alt|Shift,         chars: "\x1b[70;4u"               }
+  - { key: G,        mods: Control|Shift,     chars: "\x1b[71;6u"               }
+  - { key: G,        mods: Alt|Control,       chars: "\x1b[71;7u"               }
+  - { key: G,        mods: Alt|Control|Shift, chars: "\x1b[71;8u"               }
+  - { key: G,        mods: Alt|Shift,         chars: "\x1b[71;4u"               }
+  - { key: H,        mods: Control|Shift,     chars: "\x1b[72;6u"               }
+  - { key: H,        mods: Alt|Control,       chars: "\x1b[72;7u"               }
+  - { key: H,        mods: Alt|Control|Shift, chars: "\x1b[72;8u"               }
+  - { key: H,        mods: Alt|Shift,         chars: "\x1b[72;4u"               }
+  - { key: I,        mods: Control,           chars: "\x1b[73;5u"               }
+  - { key: I,        mods: Control|Shift,     chars: "\x1b[73;6u"               }
+  - { key: I,        mods: Alt|Control,       chars: "\x1b[73;7u"               }
+  - { key: I,        mods: Alt|Control|Shift, chars: "\x1b[73;8u"               }
+  - { key: I,        mods: Alt|Shift,         chars: "\x1b[73;4u"               }
+  - { key: J,        mods: Control|Shift,     chars: "\x1b[74;6u"               }
+  - { key: J,        mods: Alt|Control,       chars: "\x1b[74;7u"               }
+  - { key: J,        mods: Alt|Control|Shift, chars: "\x1b[74;8u"               }
+  - { key: J,        mods: Alt|Shift,         chars: "\x1b[74;4u"               }
+  # - { key: K,     mods: Alt,               chars: "\x1b[75;3u"                }
+  - { key: K,        mods: Control|Shift,     chars: "\x1b[75;6u"               }
+  - { key: K,        mods: Alt|Control,       chars: "\x1b[75;7u"               }
+  - { key: K,        mods: Alt|Control|Shift, chars: "\x1b[75;8u"               }
+  - { key: K,        mods: Alt|Shift,         chars: "\x1b[75;4u"               }
+  - { key: L,        mods: Control|Shift,     chars: "\x1b[76;6u"               }
+  - { key: L,        mods: Alt|Control,       chars: "\x1b[76;7u"               }
+  - { key: L,        mods: Alt|Control|Shift, chars: "\x1b[76;8u"               }
+  - { key: L,        mods: Alt|Shift,         chars: "\x1b[76;4u"               }
+  - { key: M,        mods: Control,           chars: "\x1b[77;5u"               }
+  - { key: M,        mods: Control|Shift,     chars: "\x1b[77;6u"               }
+  - { key: M,        mods: Alt|Control,       chars: "\x1b[77;7u"               }
+  - { key: M,        mods: Alt|Control|Shift, chars: "\x1b[77;8u"               }
+  - { key: M,        mods: Alt|Shift,         chars: "\x1b[77;4u"               }
+  - { key: N,        mods: Control|Shift,     chars: "\x1b[78;6u"               }
+  - { key: N,        mods: Alt|Control,       chars: "\x1b[78;7u"               }
+  - { key: N,        mods: Alt|Control|Shift, chars: "\x1b[78;8u"               }
+  - { key: N,        mods: Alt|Shift,         chars: "\x1b[78;4u"               }
+  # - { key: O,     mods: Alt,               chars: "\x1b[79;3u"                }
+  - { key: O,        mods: Control|Shift,     chars: "\x1b[79;6u"               }
+  - { key: O,        mods: Alt|Control,       chars: "\x1b[79;7u"               }
+  - { key: O,        mods: Alt|Control|Shift, chars: "\x1b[79;8u"               }
+  - { key: O,        mods: Alt|Shift,         chars: "\x1b[79;4u"               }
+  - { key: P,        mods: Control|Shift,     chars: "\x1b[80;6u"               }
+  - { key: P,        mods: Alt|Control,       chars: "\x1b[80;7u"               }
+  - { key: P,        mods: Alt|Control|Shift, chars: "\x1b[80;8u"               }
+  - { key: P,        mods: Alt|Shift,         chars: "\x1b[80;4u"               }
+  - { key: Q,        mods: Control|Shift,     chars: "\x1b[81;6u"               }
+  - { key: Q,        mods: Alt|Control,       chars: "\x1b[81;7u"               }
+  - { key: Q,        mods: Alt|Control|Shift, chars: "\x1b[81;8u"               }
+  - { key: Q,        mods: Alt|Shift,         chars: "\x1b[81;4u"               }
+  - { key: R,        mods: Control|Shift,     chars: "\x1b[82;6u"               }
+  - { key: R,        mods: Alt|Control,       chars: "\x1b[82;7u"               }
+  - { key: R,        mods: Alt|Control|Shift, chars: "\x1b[82;8u"               }
+  - { key: R,        mods: Alt|Shift,         chars: "\x1b[82;4u"               }
+  - { key: S,        mods: Control|Shift,     chars: "\x1b[83;6u"               }
+  - { key: S,        mods: Alt|Control,       chars: "\x1b[83;7u"               }
+  - { key: S,        mods: Alt|Control|Shift, chars: "\x1b[83;8u"               }
+  - { key: S,        mods: Alt|Shift,         chars: "\x1b[83;4u"               }
+  - { key: T,        mods: Control|Shift,     chars: "\x1b[84;6u"               }
+  - { key: T,        mods: Alt|Control,       chars: "\x1b[84;7u"               }
+  - { key: T,        mods: Alt|Control|Shift, chars: "\x1b[84;8u"               }
+  - { key: T,        mods: Alt|Shift,         chars: "\x1b[84;4u"               }
+  - { key: U,        mods: Control|Shift,     chars: "\x1b[85;6u"               }
+  - { key: U,        mods: Alt|Control,       chars: "\x1b[85;7u"               }
+  - { key: U,        mods: Alt|Control|Shift, chars: "\x1b[85;8u"               }
+  - { key: U,        mods: Alt|Shift,         chars: "\x1b[85;4u"               }
+  # - { key: V,     mods: Control|Shift,     chars: "\x1b[86;6u"                }
+  - { key: V,        mods: Alt|Control,       chars: "\x1b[86;7u"               }
+  - { key: V,        mods: Alt|Control|Shift, chars: "\x1b[86;8u"               }
+  - { key: V,        mods: Alt|Shift,         chars: "\x1b[86;4u"               }
+  - { key: W,        mods: Control|Shift,     chars: "\x1b[87;6u"               }
+  - { key: W,        mods: Alt|Control,       chars: "\x1b[87;7u"               }
+  - { key: W,        mods: Alt|Control|Shift, chars: "\x1b[87;8u"               }
+  - { key: W,        mods: Alt|Shift,         chars: "\x1b[87;4u"               }
+  - { key: X,        mods: Control|Shift,     chars: "\x1b[88;6u"               }
+  - { key: X,        mods: Alt|Control,       chars: "\x1b[88;7u"               }
+  - { key: X,        mods: Alt|Control|Shift, chars: "\x1b[88;8u"               }
+  - { key: X,        mods: Alt|Shift,         chars: "\x1b[88;4u"               }
+  - { key: Y,        mods: Control|Shift,     chars: "\x1b[89;6u"               }
+  - { key: Y,        mods: Alt|Control,       chars: "\x1b[89;7u"               }
+  - { key: Y,        mods: Alt|Control|Shift, chars: "\x1b[89;8u"               }
+  - { key: Y,        mods: Alt|Shift,         chars: "\x1b[89;4u"               }
+  - { key: Z,        mods: Control|Shift,     chars: "\x1b[90;6u"               }
+  - { key: Z,        mods: Alt|Control,       chars: "\x1b[90;7u"               }
+  - { key: Z,        mods: Alt|Control|Shift, chars: "\x1b[90;8u"               }
+  - { key: Z,        mods: Alt|Shift,         chars: "\x1b[90;4u"               }
+  - { key: Key0,     mods: Control,           chars: "\x1b[48;5u"               }
+  - { key: Key0,     mods: Control|Shift,     chars: "\x1b[48;6u"               }
+  - { key: Key0,     mods: Alt,               chars: "\x1b[48;3u"               }
+  - { key: Key0,     mods: Alt|Control,       chars: "\x1b[48;7u"               }
+  - { key: Key0,     mods: Alt|Control|Shift, chars: "\x1b[48;8u"               }
+  - { key: Key0,     mods: Alt|Shift,         chars: "\x1b[48;4u"               }
+  - { key: Key1,     mods: Control,           chars: "\x1b[49;5u"               }
+  - { key: Key1,     mods: Control|Shift,     chars: "\x1b[49;6u"               }
+  - { key: Key1,     mods: Alt,               chars: "\x1b[49;3u"               }
+  - { key: Key1,     mods: Alt|Control,       chars: "\x1b[49;7u"               }
+  - { key: Key1,     mods: Alt|Control|Shift, chars: "\x1b[49;8u"               }
+  - { key: Key1,     mods: Alt|Shift,         chars: "\x1b[49;4u"               }
+  - { key: Key2,     mods: Control,           chars: "\x1b[50;5u"               }
+  - { key: Key2,     mods: Control|Shift,     chars: "\x1b[50;6u"               }
+  - { key: Key2,     mods: Alt,               chars: "\x1b[50;3u"               }
+  - { key: Key2,     mods: Alt|Control,       chars: "\x1b[50;7u"               }
+  - { key: Key2,     mods: Alt|Control|Shift, chars: "\x1b[50;8u"               }
+  - { key: Key2,     mods: Alt|Shift,         chars: "\x1b[50;4u"               }
+  - { key: Key3,     mods: Control,           chars: "\x1b[51;5u"               }
+  - { key: Key3,     mods: Control|Shift,     chars: "\x1b[51;6u"               }
+  - { key: Key3,     mods: Alt,               chars: "\x1b[51;3u"               }
+  - { key: Key3,     mods: Alt|Control,       chars: "\x1b[51;7u"               }
+  - { key: Key3,     mods: Alt|Control|Shift, chars: "\x1b[51;8u"               }
+  - { key: Key3,     mods: Alt|Shift,         chars: "\x1b[51;4u"               }
+  - { key: Key4,     mods: Control,           chars: "\x1b[52;5u"               }
+  - { key: Key4,     mods: Control|Shift,     chars: "\x1b[52;6u"               }
+  - { key: Key4,     mods: Alt,               chars: "\x1b[52;3u"               }
+  - { key: Key4,     mods: Alt|Control,       chars: "\x1b[52;7u"               }
+  - { key: Key4,     mods: Alt|Control|Shift, chars: "\x1b[52;8u"               }
+  - { key: Key4,     mods: Alt|Shift,         chars: "\x1b[52;4u"               }
+  - { key: Key5,     mods: Control,           chars: "\x1b[53;5u"               }
+  - { key: Key5,     mods: Control|Shift,     chars: "\x1b[53;6u"               }
+  - { key: Key5,     mods: Alt,               chars: "\x1b[53;3u"               }
+  - { key: Key5,     mods: Alt|Control,       chars: "\x1b[53;7u"               }
+  - { key: Key5,     mods: Alt|Control|Shift, chars: "\x1b[53;8u"               }
+  - { key: Key5,     mods: Alt|Shift,         chars: "\x1b[53;4u"               }
+  - { key: Key6,     mods: Control,           chars: "\x1b[54;5u"               }
+  - { key: Key6,     mods: Control|Shift,     chars: "\x1b[54;6u"               }
+  - { key: Key6,     mods: Alt,               chars: "\x1b[54;3u"               }
+  - { key: Key6,     mods: Alt|Control,       chars: "\x1b[54;7u"               }
+  - { key: Key6,     mods: Alt|Control|Shift, chars: "\x1b[54;8u"               }
+  - { key: Key6,     mods: Alt|Shift,         chars: "\x1b[54;4u"               }
+  - { key: Key7,     mods: Control,           chars: "\x1b[55;5u"               }
+  - { key: Key7,     mods: Control|Shift,     chars: "\x1b[55;6u"               }
+  - { key: Key7,     mods: Alt,               chars: "\x1b[55;3u"               }
+  - { key: Key7,     mods: Alt|Control,       chars: "\x1b[55;7u"               }
+  - { key: Key7,     mods: Alt|Control|Shift, chars: "\x1b[55;8u"               }
+  - { key: Key7,     mods: Alt|Shift,         chars: "\x1b[55;4u"               }
+  - { key: Key8,     mods: Control,           chars: "\x1b[56;5u"               }
+  - { key: Key8,     mods: Control|Shift,     chars: "\x1b[56;6u"               }
+  - { key: Key8,     mods: Alt,               chars: "\x1b[56;3u"               }
+  - { key: Key8,     mods: Alt|Control,       chars: "\x1b[56;7u"               }
+  - { key: Key8,     mods: Alt|Control|Shift, chars: "\x1b[56;8u"               }
+  - { key: Key8,     mods: Alt|Shift,         chars: "\x1b[56;4u"               }
+  - { key: Key9,     mods: Control,           chars: "\x1b[57;5u"               }
+  - { key: Key9,     mods: Control|Shift,     chars: "\x1b[57;6u"               }
+  - { key: Key9,     mods: Alt,               chars: "\x1b[57;3u"               }
+  - { key: Key9,     mods: Alt|Control,       chars: "\x1b[57;7u"               }
+  - { key: Key9,     mods: Alt|Control|Shift, chars: "\x1b[57;8u"               }
+  - { key: Key9,     mods: Alt|Shift,         chars: "\x1b[57;4u"               }
+  - { key: Colon,    mods: Control,           chars: "\x1b[58;5u"               }
+  - { key: Colon,    mods: Control|Shift,     chars: "\x1b[58;6u"               }
+  - { key: Colon,    mods: Alt,               chars: "\x1b[58;3u"               }
+  - { key: Colon,    mods: Alt|Control,       chars: "\x1b[58;7u"               }
+  - { key: Colon,    mods: Alt|Control|Shift, chars: "\x1b[58;8u"               }
+  - { key: Colon,    mods: Alt|Shift,         chars: "\x1b[58;4u"               }
+  - { key: Colon,    mods: Shift,             chars: "\x1b[58;2u"               }
+  - { key: Comma,    mods: Control,           chars: "\x1b[44;5u"               }
+  # - { key: Comma,     mods: Control|Shift,     chars: "\x1b[44;6u"            }
+  - { key: Comma,    mods: Alt,               chars: "\x1b[44;3u"               }
+  - { key: Comma,    mods: Alt|Control,       chars: "\x1b[44;7u"               }
+  # - { key: Comma,     mods: Alt|Control|Shift, chars: "\x1b[44;8u"            }
+  # - { key: Comma,     mods: Alt|Shift,         chars: "\x1b[44;4u"            }
+  # - { key: Comma,     mods: Shift,             chars: "\x1b[44;2u"            }
+  - { key: Period,   mods: Control,           chars: "\x1b[46;5u"               }
+  # - { key: Period,     mods: Control|Shift,     chars: "\x1b[46;6u"           }
+  - { key: Period,   mods: Alt,               chars: "\x1b[46;3u"               }
+  - { key: Period,   mods: Alt|Control,       chars: "\x1b[46;7u"               }
+  # - { key: Period,     mods: Alt|Control|Shift, chars: "\x1b[46;8u"           }
+  # - { key: Period,     mods: Alt|Shift,         chars: "\x1b[46;4u"           }
+  # - { key: Period,     mods: Shift,             chars: "\x1b[46;2u"           }
+  - { key: Period,   mods: Control,           chars: "\x1b[46;5u"               }
+  # - { key: Period,     mods: Control|Shift,     chars: "\x1b[46;6u"           }
+  - { key: Period,   mods: Alt,               chars: "\x1b[46;3u"               }
+  - { key: Period,   mods: Alt|Control,       chars: "\x1b[46;7u"               }
+  # - { key: Period,     mods: Alt|Control|Shift, chars: "\x1b[46;8u"           }
+  # - { key: Period,     mods: Alt|Shift,         chars: "\x1b[46;4u"           }
+  # - { key: Period,     mods: Shift,             chars: "\x1b[46;2u"           }
+
+# Mouse bindings
+#
+# Currently doesn't support modifiers. Both the `mouse` and `action` fields must
+# be specified.
+#
+# Values for `mouse`:
+# - Middle
+# - Left
+# - Right
+# - Numeric identifier such as `5`
+#
+# Values for `action`:
+# - Paste
+# - PasteSelection
+# - Copy (TODO)
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+
+selection:
+  semantic_escape_chars: " |│┤├┬┴\"`'„“«»&()[]{}*,;<>=?@^#\042\047:"
+
+hide_cursor_when_typing: false
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Shell
+#
+# You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
+# Entries in shell.args are passed unmodified as arguments to the shell.
+#shell:
+#  program: /bin/bash
+#  args:
+#    - --login
