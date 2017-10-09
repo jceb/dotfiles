@@ -257,7 +257,7 @@ key_bindings:
   - { key: Down,     mods: Alt,               chars: "\x1b[1;3B"                }
   - { key: Down,     mods:,                   chars: "\x1b[B", mode: ~AppCursor }
   - { key: Down,     mods:,                   chars: "\x1bOB", mode: AppCursor  }
-  - { key: Space,    mods: Control,           chars: "\x1b[32;5u"               }
+  # - { key: Space,    mods: Control,           chars: "\x1b[32;5u"               }
   - { key: Space,    mods: Control|Shift,     chars: "\x1b[32;6u"               }
   - { key: Space,    mods: Alt,               chars: "\x1b[32;3u"               }
   - { key: Space,    mods: Alt|Control,       chars: "\x1b[32;7u"               }
