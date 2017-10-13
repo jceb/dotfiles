@@ -54,13 +54,13 @@ set -x LD_LIBRARY_PATH "$HOME/.local/lib"
 
 # set PATH so it includes user's private bin if it exists
 for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOBIN" "$HOME/node_modules/.bin" "$HOME/.cargo/bin" "$ANDROID_HOME/tools"
-	if test -d "$i" and not contains $i $PATh
+	if test -d "$i"; and not contains $i $PATh
 		set -x PATH $i $PATH
 	end
 end
 
 for i in "$HOME/.local/share/man" '/usr/share/man'
-	if test -d "$i" and not contains $i $MANPATH
+	if test -d "$i"; and not contains $i $MANPATH
 		set -x MANPATH "$i:$MANPATH"
 	end
 end
