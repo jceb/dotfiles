@@ -263,8 +263,7 @@ key_bindings:
   - { key: Space,    mods: Alt|Control,       chars: "\x1b[32;7u"               }
   - { key: Space,    mods: Alt|Control|Shift, chars: "\x1b[32;8u"               }
   - { key: Space,    mods: Alt|Shift,         chars: "\x1b[32;4u"               }
-  # - { key: Space,     mods: Shift,             chars: "\x1b[32;2u"            }
-  - { key: Space,    mods: Shift,             chars: "\x1b[1;2P"                }
+  - { key: Space,    mods: Shift,             chars: "\x1b[32;2u"               }
   - { key: Tab,      mods: Shift,             chars: "\x1b[Z"                   }
   - { key: Tab,      mods: Control,           chars: "\x1b[9;5u"                }
   - { key: Tab,      mods: Control|Shift,     chars: "\x1b[1;6Z"                }
