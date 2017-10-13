@@ -41,17 +41,17 @@ function __fish_quilt_prompt -d "Write out the quilt prompt"
         return 1
     end
     set -l patches
-    command quilt series | while read p
+    command quilt series ^/dev/null | while read p
         set patches $patches $p
     end
     set -l npatches (count $patches)
-    set -l current_patch (command quilt top)
+    set -l current_patch (command quilt top ^/dev/null)
     set -l idx_patch "0"
     if test -n "$current_patch"
         set idx_patch (contains -i $current_patch $patches)
         set current_patch (basename $current_patch)
     else
-        set current_patch "No patch applied"
+        set current_patch "No patches applied"
     end
     __fish_quilt_set_color __fish_quilt_prompt_color (set_color blue)
     set -l format $argv[1]
