@@ -27,12 +27,6 @@ padding:
   x: 2
   y: 2
 
-# The FreeType rasterizer needs to know the device DPI for best results
-# (changes require restart)
-dpi:
-  x: 96.0
-  y: 96.0
-
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
 
@@ -40,6 +34,24 @@ tabspaces: 4
 draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
+#
+# Important font attributes like antialiasing, subpixel aa, and hinting can be
+# controlled through fontconfig. Specifically, the following attributes should
+# have an effect:
+#
+# * hintstyle
+# * antialias
+# * lcdfilter
+# * rgba
+#
+# For instance, if you wish to disable subpixel antialiasing, you might set the
+# rgba property to "none". If you wish to completely disable antialiasing, you
+# can set antialias to false.
+#
+# Please see these resources for more information on how to use fontconfig
+#
+# * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
+# * file:///usr/share/doc/fontconfig/fontconfig-user.html
 font:
   # The normal (roman) font face to use.
   normal:
@@ -203,6 +215,9 @@ key_bindings:
   # - { key: Q,        mods: Command, action: Quit                              }
   # - { key: W,        mods: Command, action: Quit                              }
   - { key: Insert,   mods: Shift,             action: PasteSelection            }
+  - { key: Key0,     mods: Control,           action: ResetFontSize             }
+  - { key: Equals,   mods: Control,           action: IncreaseFontSize          }
+  - { key: Subtract, mods: Control,           action: DecreaseFontSize          }
   - { key: Home,     mods:,                   chars: "\x1bOH", mode: AppCursor  }
   - { key: Home,     mods:,                   chars: "\x1b[H", mode: ~AppCursor }
   - { key: Home,     mods: Control,           chars: "\x1b[80;5u"               }
@@ -257,7 +272,7 @@ key_bindings:
   - { key: Down,     mods: Alt,               chars: "\x1b[1;3B"                }
   - { key: Down,     mods:,                   chars: "\x1b[B", mode: ~AppCursor }
   - { key: Down,     mods:,                   chars: "\x1bOB", mode: AppCursor  }
-  # - { key: Space,    mods: Control,           chars: "\x1b[32;5u"               }
+  # - { key: Space,    mods: Control,           chars: "\x1b[32;5u"             }
   - { key: Space,    mods: Control|Shift,     chars: "\x1b[32;6u"               }
   - { key: Space,    mods: Alt,               chars: "\x1b[32;3u"               }
   - { key: Space,    mods: Alt|Control,       chars: "\x1b[32;7u"               }
