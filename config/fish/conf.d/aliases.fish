@@ -25,6 +25,7 @@ abbr --add 'open=xdg-open'
 if test -e /usr/bin/ack-grep
     abbr --add ack=ack-grep
 end
+
 abbr --add 't=tree -f'
 
 # calendar and contacts abbreviations
@@ -112,109 +113,22 @@ end
 
 abbr --add 'cd.=cd (_ch2root debian .git .hg .svn)'
 
-function _glob_match --description 'aliases for quickly traversing through the directory structures'
-    # $1: pattern; $2: term
-    switch "$2"
-        case '*'$1'*'
-            return 0
-        case '*'
-            return 1
-    end
-end
-
-function _seldir
-    # $1 direction: -1: backward, 0: unlimited forward: >0: limited forward; $2 filter
-    set _depth $argv[1]
-    if test (count $argv) -eq 1
-        set _filter ''
-        set _delfirst "1d;"
-    else
-        set _filter $argv[2]
-        set _delfirst ""
-    end
-    set _maxdepth "-maxdepth"
-
-    # find directories
-    if test $_depth -eq -1
-        # traverse backward
-        set _dirs
-        set _d $PWD
-        while test $_d != "/"
-            set _d (dirname $_d)
-            if string match -q '*'$_filter'*' (basename $_d)
-                set _dirs $_dirs $_d
-            end
-        end
-    else
-        # traverse forward
-        if test $_depth -eq 0
-            set _depth ""
-            set _maxdepth ""
-        end
-        set _dirs (find -L . $_maxdepth $_depth -type d -iname "*"$_filter"*" ! -wholename \*/debian/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e $_delfirst"s/^\.\///"|sort)
-    end
-
-    # select directory and change into it
-    if test (count $_dirs) -ge 1
-        if test (count $_dirs) -eq 1
-            cd $_dirs
-        else
-            for i in (seq (count $_dirs))
-                echo "$i $_dirs[$i]"
-            end
-            echo -n "which one? " >&2
-            read _d
-            if test $_d -le (count $_dirs); and test $_d -ge 1
-                cd "$_dirs[$_d]"
-            end
-        end
-    end
-end
-
-abbr --add 'cd-=_seldir -1'
-abbr --add 'cd+=_seldir 0'
-abbr --add 'cd1=_seldir 1'
-abbr --add 'cd2=_seldir 2'
-abbr --add 'cd3=_seldir 3'
 abbr --add 'cd..=cd ..'
 
-# handy functions for searching files and directories
-function _find_objects
-    # $1: find directories "" or not "!"; $2: search pattern or search directory if $3 is specified; $3: if sepcified: search pattern
-    set _finddirs $argv[1]
-    set -e argv[1]
-    set _dirs
-    while test (count $argv) -ne 0
-        if test -d $argv[1]
-            set _dirs $_dirs $argv[1]
-            set -e argv[1]
-            continue
-        else
-            break
-        end
-    end
-    if test (count $_dirs) -eq 0
-        set _dirs "."
-    end
-
-    # the final grep command highlights pattern
-    if test (count $argv) -eq 0
-        find -L $_dirs $_finddirs -type d ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^\$/d'|sort
-    else
-        find -L $_dirs $_finddirs -type d -iname '*'$argv[1]'*' ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null|sed -e 's/^\.\///' -e '/^\$/d'|sort|grep --color=auto -i $argv[1]
-    end
-end
-
-function r
+function r -d 'grep replacement'
     rg -S --hidden -n -H $argv | fzf -m
 end
 
-function f
-    _find_objects '!' $argv | fzf -m
+function f -d 'find for files'
+    fd -tf $argv | fzf -m
 end
 
-function d
-    _find_objects '' $argv | fzf -m
+function d -d 'find for directories'
+    fd -td $argv | fzf -m
+end
+
+function = -d 'zsh like shortcut to the which command'
+    which $argv
 end
 
 # vi: ft=fish:tw=0:sw=4:ts=4

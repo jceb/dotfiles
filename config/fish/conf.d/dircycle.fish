@@ -45,7 +45,11 @@ function __fish_dir_cycle_fzChDir
         set FZF_TMUX_HEIGHT "40%"
     end
     set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
-    find -L . -mindepth 1 -maxdepth 3 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null | fzf | read -l select
+    if type fd > /dev/null
+        command fd -td -HI | fzf | read -l select
+    else
+        command find -L . -mindepth 1 -maxdepth 3 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null | fzf | read -l select
+    end
     if test -d "$select"
         cd "$select"
     end
