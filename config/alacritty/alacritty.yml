@@ -535,14 +535,7 @@ key_bindings:
   # - { key: Comma,     mods: Shift,             chars: "\x1b[44;2u"            }
   - { key: Period,   mods: Control,           chars: "\x1b[46;5u"               }
   # - { key: Period,     mods: Control|Shift,     chars: "\x1b[46;6u"           }
-  - { key: Period,   mods: Alt,               chars: "\x1b[46;3u"               }
-  - { key: Period,   mods: Alt|Control,       chars: "\x1b[46;7u"               }
-  # - { key: Period,     mods: Alt|Control|Shift, chars: "\x1b[46;8u"           }
-  # - { key: Period,     mods: Alt|Shift,         chars: "\x1b[46;4u"           }
-  # - { key: Period,     mods: Shift,             chars: "\x1b[46;2u"           }
-  - { key: Period,   mods: Control,           chars: "\x1b[46;5u"               }
-  # - { key: Period,     mods: Control|Shift,     chars: "\x1b[46;6u"           }
-  - { key: Period,   mods: Alt,               chars: "\x1b[46;3u"               }
+  # - { key: Period,   mods: Alt,               chars: "\x1b[46;3u"               }
   - { key: Period,   mods: Alt|Control,       chars: "\x1b[46;7u"               }
   # - { key: Period,     mods: Alt|Control|Shift, chars: "\x1b[46;8u"           }
   # - { key: Period,     mods: Alt|Shift,         chars: "\x1b[46;4u"           }
