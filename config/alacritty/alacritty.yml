@@ -564,7 +564,7 @@ mouse:
   triple_click: { threshold: 300 }
 
 selection:
-  semantic_escape_chars: " |│┤├┬┴\"`'„“«»&()[]{}*,;<>=?@^#\042\047:"
+  semantic_escape_chars: " |│┤├┬┴\"`'„“«»&()[]{}*,;<>=?@^#\042\047:."
 
 hide_cursor_when_typing: false
 
