@@ -47,7 +47,7 @@ function __fish_dir_cycle_fzChDir
     set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
     set -l selection
     if type fd > /dev/null
-        set -x FZF_DEFAULT_COMMAND 'command fd -td -HIL'
+        set -x FZF_DEFAULT_COMMAND 'command fd -d 4 -td -HIL'
         command fzf | read selection
     else
         command find -L . -mindepth 1 -maxdepth 3 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/objects/\* ! -wholename \*/.hg/\* 2>/dev/null | command fzf | read selection
