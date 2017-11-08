@@ -459,61 +459,61 @@ key_bindings:
   - { key: Z,        mods: Alt|Control,       chars: "\x1b[90;7u"               }
   - { key: Z,        mods: Alt|Control|Shift, chars: "\x1b[90;8u"               }
   - { key: Z,        mods: Alt|Shift,         chars: "\x1b[90;4u"               }
-  - { key: Key0,     mods: Control,           chars: "\x1b[48;5u"               }
+  # - { key: Key0,     mods: Control,           chars: "\x1b[48;5u"               }
   - { key: Key0,     mods: Control|Shift,     chars: "\x1b[48;6u"               }
   - { key: Key0,     mods: Alt,               chars: "\x1b[48;3u"               }
   - { key: Key0,     mods: Alt|Control,       chars: "\x1b[48;7u"               }
   - { key: Key0,     mods: Alt|Control|Shift, chars: "\x1b[48;8u"               }
   - { key: Key0,     mods: Alt|Shift,         chars: "\x1b[48;4u"               }
-  - { key: Key1,     mods: Control,           chars: "\x1b[49;5u"               }
+  # - { key: Key1,     mods: Control,           chars: "\x1b[49;5u"               }
   - { key: Key1,     mods: Control|Shift,     chars: "\x1b[49;6u"               }
   - { key: Key1,     mods: Alt,               chars: "\x1b[49;3u"               }
   - { key: Key1,     mods: Alt|Control,       chars: "\x1b[49;7u"               }
   - { key: Key1,     mods: Alt|Control|Shift, chars: "\x1b[49;8u"               }
   - { key: Key1,     mods: Alt|Shift,         chars: "\x1b[49;4u"               }
-  - { key: Key2,     mods: Control,           chars: "\x1b[50;5u"               }
+  # - { key: Key2,     mods: Control,           chars: "\x1b[50;5u"               }
   - { key: Key2,     mods: Control|Shift,     chars: "\x1b[50;6u"               }
   - { key: Key2,     mods: Alt,               chars: "\x1b[50;3u"               }
   - { key: Key2,     mods: Alt|Control,       chars: "\x1b[50;7u"               }
   - { key: Key2,     mods: Alt|Control|Shift, chars: "\x1b[50;8u"               }
   - { key: Key2,     mods: Alt|Shift,         chars: "\x1b[50;4u"               }
-  - { key: Key3,     mods: Control,           chars: "\x1b[51;5u"               }
+  # - { key: Key3,     mods: Control,           chars: "\x1b[51;5u"               }
   - { key: Key3,     mods: Control|Shift,     chars: "\x1b[51;6u"               }
   - { key: Key3,     mods: Alt,               chars: "\x1b[51;3u"               }
   - { key: Key3,     mods: Alt|Control,       chars: "\x1b[51;7u"               }
   - { key: Key3,     mods: Alt|Control|Shift, chars: "\x1b[51;8u"               }
   - { key: Key3,     mods: Alt|Shift,         chars: "\x1b[51;4u"               }
-  - { key: Key4,     mods: Control,           chars: "\x1b[52;5u"               }
+  # - { key: Key4,     mods: Control,           chars: "\x1b[52;5u"               }
   - { key: Key4,     mods: Control|Shift,     chars: "\x1b[52;6u"               }
   - { key: Key4,     mods: Alt,               chars: "\x1b[52;3u"               }
   - { key: Key4,     mods: Alt|Control,       chars: "\x1b[52;7u"               }
   - { key: Key4,     mods: Alt|Control|Shift, chars: "\x1b[52;8u"               }
   - { key: Key4,     mods: Alt|Shift,         chars: "\x1b[52;4u"               }
-  - { key: Key5,     mods: Control,           chars: "\x1b[53;5u"               }
+  # - { key: Key5,     mods: Control,           chars: "\x1b[53;5u"               }
   - { key: Key5,     mods: Control|Shift,     chars: "\x1b[53;6u"               }
   - { key: Key5,     mods: Alt,               chars: "\x1b[53;3u"               }
   - { key: Key5,     mods: Alt|Control,       chars: "\x1b[53;7u"               }
   - { key: Key5,     mods: Alt|Control|Shift, chars: "\x1b[53;8u"               }
   - { key: Key5,     mods: Alt|Shift,         chars: "\x1b[53;4u"               }
-  - { key: Key6,     mods: Control,           chars: "\x1b[54;5u"               }
+  # - { key: Key6,     mods: Control,           chars: "\x1b[54;5u"               }
   - { key: Key6,     mods: Control|Shift,     chars: "\x1b[54;6u"               }
   - { key: Key6,     mods: Alt,               chars: "\x1b[54;3u"               }
   - { key: Key6,     mods: Alt|Control,       chars: "\x1b[54;7u"               }
   - { key: Key6,     mods: Alt|Control|Shift, chars: "\x1b[54;8u"               }
   - { key: Key6,     mods: Alt|Shift,         chars: "\x1b[54;4u"               }
-  - { key: Key7,     mods: Control,           chars: "\x1b[55;5u"               }
+  # - { key: Key7,     mods: Control,           chars: "\x1b[55;5u"               }
   - { key: Key7,     mods: Control|Shift,     chars: "\x1b[55;6u"               }
   - { key: Key7,     mods: Alt,               chars: "\x1b[55;3u"               }
   - { key: Key7,     mods: Alt|Control,       chars: "\x1b[55;7u"               }
   - { key: Key7,     mods: Alt|Control|Shift, chars: "\x1b[55;8u"               }
   - { key: Key7,     mods: Alt|Shift,         chars: "\x1b[55;4u"               }
-  - { key: Key8,     mods: Control,           chars: "\x1b[56;5u"               }
+  # - { key: Key8,     mods: Control,           chars: "\x1b[56;5u"               }
   - { key: Key8,     mods: Control|Shift,     chars: "\x1b[56;6u"               }
   - { key: Key8,     mods: Alt,               chars: "\x1b[56;3u"               }
   - { key: Key8,     mods: Alt|Control,       chars: "\x1b[56;7u"               }
   - { key: Key8,     mods: Alt|Control|Shift, chars: "\x1b[56;8u"               }
   - { key: Key8,     mods: Alt|Shift,         chars: "\x1b[56;4u"               }
-  - { key: Key9,     mods: Control,           chars: "\x1b[57;5u"               }
+  # - { key: Key9,     mods: Control,           chars: "\x1b[57;5u"               }
   - { key: Key9,     mods: Control|Shift,     chars: "\x1b[57;6u"               }
   - { key: Key9,     mods: Alt,               chars: "\x1b[57;3u"               }
   - { key: Key9,     mods: Alt|Control,       chars: "\x1b[57;7u"               }
