@@ -120,11 +120,11 @@ function r -d 'grep replacement'
 end
 
 function f -d 'find for files'
-    fd -d 4 -tf $argv | fzf -m
+    fd -tf $argv | fzf -m
 end
 
 function d -d 'find for directories'
-    fd -d 4 -td $argv | fzf -m
+    fd -td $argv | fzf -m
 end
 
 function = -d 'zsh like shortcut to the which command'
