@@ -149,6 +149,8 @@ set header_cache    = "~/.cache/mutt"
 lists     `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
 subscribe `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists`
 
+set attach_keyword  = "\\<(attach|attached|attachments?|anbei|Anhang|Anhänge|angehängt)\\>"
+set abort_noattach  = "ask-yes"
 set reply_regexp    = "^((aw|antw.?|antwort|re|r e|r?f|sv):[ \t]*)*"
 set autoedit        = no
 set edit_headers    = yes
@@ -199,7 +201,7 @@ set pager_index_lines  = 5
 
 set attribution   = "On %d, %n wrote:\n"
 set date_format   = "%a %d-%m-%Y %k:%M %z"
-set index_format  = "%3C  %Z  %2M  %-35.35F   %s%*    (%?l?%4l&%4c?) %D"
+set index_format  = "%3C  %Z  %2M  %<[y?%<[m?%<[d?%6[%H:%M]&%6[%a %d]>&%6[%b %d]>&%[%m/%Y]>  %-35.35F  %s%*    (%?l?%4l&%4c?)"
 set status_format = "-%r- %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? %l?] (%s/%S) %> (%P)"
 set pager_format  = "-%Z- %C/%m: %d %-28.28n %s"
 set folder_format = "%2C %5.0N %f"
