@@ -42,6 +42,7 @@ unset use_domain
 
 # Specifies how to sort messages in the index menu.
 set sort = threads
+set sort_aux = last-date
 
 # Exim does not remove Bcc headers
 unset write_bcc
