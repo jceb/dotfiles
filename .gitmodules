@@ -16,3 +16,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
 	url = git@github.com:syl20bnr/spacemacs.git
+[submodule "tmux/plugins/tmux-open"]
+	path = tmux/plugins/tmux-open
+	url = git@github.com:tmux-plugins/tmux-open.git
