@@ -181,6 +181,8 @@ bind index,pager x vfolder-from-query
 bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
+# find out about keys
+# exec what-key
 
 mime_lookup application/octet-stream
 set mime_forward = yes
