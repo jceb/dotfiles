@@ -14,19 +14,24 @@ env:
   # `infocmp xterm-256color`.
   TERM: xterm-256color
 
-# Window dimensions in character columns and lines
-# Falls back to size specified by window manager if set to 0x0.
-# (changes require restart)
-dimensions:
-  columns: 80
-  lines: 24
+window:
+  # Window dimensions in character columns and lines
+  # Falls back to size specified by window manager if set to 0x0.
+  # (changes require restart)
+  dimensions:
+    columns: 80
+    lines: 24
 
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
-padding:
-  x: 2
-  y: 2
+  # Adds this many blank pixels of padding around the window
+  # Units are physical pixels; this is not DPI aware.
+  # (change requires restart)
+  padding:
+    x: 2
+    y: 2
+
+  # Window decorations
+  # Setting this to false will result in window without borders and title bar.
+  decorations: true
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
@@ -193,13 +198,38 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+
+  # Faux Scrollback
+  #
+  # The `faux_scrollback_lines` setting controls the number
+  # of lines the terminal should scroll when the alternate
+  # screen buffer is active. This is used to allow mouse
+  # scrolling for applications like `man`.
+  #
+  # To disable this completely, set `faux_scrollback_lines` to 0.
+  faux_scrollback_lines: 1
 
 selection:
   semantic_escape_chars: " |│┤├┬┴\"`'„“«»&()[]{}<>*,;=?@^#:."
 
+dynamic_title: true
+
 hide_cursor_when_typing: false
+
+# Style of the cursor
+#
+# Values for 'cursor_style':
+# - Block
+# - Underline
+# - Beam
+cursor_style: Block
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -259,8 +289,8 @@ key_bindings:
   - { key: Key0,     mods: Control,           action: ResetFontSize             }
   - { key: Equals,   mods: Control,           action: IncreaseFontSize          }
   - { key: Subtract, mods: Control,           action: DecreaseFontSize          }
-  - { key: Home,     mods:,                   chars: "\x1bOH", mode: AppCursor  }
-  - { key: Home,     mods:,                   chars: "\x1b[H", mode: ~AppCursor }
+  - { key: Home,                              chars: "\x1bOH", mode: AppCursor  }
+  - { key: Home,                              chars: "\x1b[H", mode: ~AppCursor }
   - { key: Home,     mods: Control,           chars: "\x1b[80;5u"               }
   - { key: Home,     mods: Control|Shift,     chars: "\x1b[80;6u"               }
   - { key: Home,     mods: Alt,               chars: "\x1b[80;3u"               }
@@ -268,8 +298,8 @@ key_bindings:
   - { key: Home,     mods: Alt|Control|Shift, chars: "\x1b[80;8u"               }
   - { key: Home,     mods: Alt|Shift,         chars: "\x1b[80;4u"               }
   - { key: Home,     mods: Shift,             chars: "\x1b[80;2u"               }
-  - { key: End,      mods:,                   chars: "\x1bOF", mode: AppCursor  }
-  - { key: End,      mods:,                   chars: "\x1b[F", mode: ~AppCursor }
+  - { key: End,                               chars: "\x1bOF", mode: AppCursor  }
+  - { key: End,                               chars: "\x1b[F", mode: ~AppCursor }
   - { key: End,      mods: Control,           chars: "\x1b[87;5u"               }
   - { key: End,      mods: Control|Shift,     chars: "\x1b[87;6u"               }
   - { key: End,      mods: Alt,               chars: "\x1b[87;3u"               }
@@ -279,7 +309,7 @@ key_bindings:
   - { key: End,      mods: Shift,             chars: "\x1b[87;2u"               }
   - { key: PageUp,   mods: Shift,             chars: "\x1b[5;2~"                }
   - { key: PageUp,   mods: Control,           chars: "\x1b[5;5~"                }
-  - { key: PageUp,   mods:,                   chars: "\x1b[5~"                  }
+  - { key: PageUp,                            chars: "\x1b[5~"                  }
   - { key: PageUp,   mods: Control|Shift,     chars: "\x1b[85;6u"               }
   - { key: PageUp,   mods: Alt,               chars: "\x1b[85;3u"               }
   - { key: PageUp,   mods: Alt|Control,       chars: "\x1b[85;7u"               }
@@ -287,7 +317,7 @@ key_bindings:
   - { key: PageUp,   mods: Alt|Shift,         chars: "\x1b[85;4u"               }
   - { key: PageDown, mods: Shift,             chars: "\x1b[6;2~"                }
   - { key: PageDown, mods: Control,           chars: "\x1b[6;5~"                }
-  - { key: PageDown, mods:,                   chars: "\x1b[6~"                  }
+  - { key: PageDown,                          chars: "\x1b[6~"                  }
   - { key: PageUp,   mods: Control|Shift,     chars: "\x1b[86;6u"               }
   - { key: PageUp,   mods: Alt,               chars: "\x1b[86;3u"               }
   - { key: PageUp,   mods: Alt|Control,       chars: "\x1b[86;7u"               }
@@ -296,23 +326,23 @@ key_bindings:
   - { key: Left,     mods: Shift,             chars: "\x1b[1;2D"                }
   - { key: Left,     mods: Control,           chars: "\x1b[1;5D"                }
   - { key: Left,     mods: Alt,               chars: "\x1b[1;3D"                }
-  - { key: Left,     mods:,                   chars: "\x1b[D", mode: ~AppCursor }
-  - { key: Left,     mods:,                   chars: "\x1bOD", mode: AppCursor  }
+  - { key: Left,                              chars: "\x1b[D", mode: ~AppCursor }
+  - { key: Left,                              chars: "\x1bOD", mode: AppCursor  }
   - { key: Right,    mods: Shift,             chars: "\x1b[1;2C"                }
   - { key: Right,    mods: Control,           chars: "\x1b[1;5C"                }
   - { key: Right,    mods: Alt,               chars: "\x1b[1;3C"                }
-  - { key: Right,    mods:,                   chars: "\x1b[C", mode: ~AppCursor }
-  - { key: Right,    mods:,                   chars: "\x1bOC", mode: AppCursor  }
+  - { key: Right,                             chars: "\x1b[C", mode: ~AppCursor }
+  - { key: Right,                             chars: "\x1bOC", mode: AppCursor  }
   - { key: Up,       mods: Shift,             chars: "\x1b[1;2A"                }
   - { key: Up,       mods: Control,           chars: "\x1b[1;5A"                }
   - { key: Up,       mods: Alt,               chars: "\x1b[1;3A"                }
-  - { key: Up,       mods:,                   chars: "\x1b[A", mode: ~AppCursor }
-  - { key: Up,       mods:,                   chars: "\x1bOA", mode: AppCursor  }
+  - { key: Up,                                chars: "\x1b[A", mode: ~AppCursor }
+  - { key: Up,                                chars: "\x1bOA", mode: AppCursor  }
   - { key: Down,     mods: Shift,             chars: "\x1b[1;2B"                }
   - { key: Down,     mods: Control,           chars: "\x1b[1;5B"                }
   - { key: Down,     mods: Alt,               chars: "\x1b[1;3B"                }
-  - { key: Down,     mods:,                   chars: "\x1b[B", mode: ~AppCursor }
-  - { key: Down,     mods:,                   chars: "\x1bOB", mode: AppCursor  }
+  - { key: Down,                              chars: "\x1b[B", mode: ~AppCursor }
+  - { key: Down,                              chars: "\x1bOB", mode: AppCursor  }
   # - { key: Space,    mods: Control,           chars: "\x1b[32;5u"             }
   - { key: Space,    mods: Control|Shift,     chars: "\x1b[32;6u"               }
   - { key: Space,    mods: Alt,               chars: "\x1b[32;3u"               }
@@ -356,19 +386,19 @@ key_bindings:
   - { key: Escape,   mods: Alt|Control|Shift, chars: "\x1b[27;8u"               }
   - { key: Escape,   mods: Alt|Shift,         chars: "\x1b[27;4u"               }
   - { key: Escape,   mods: Shift,             chars: "\x1b[27;2u"               }
-  - { key: F1,       mods:,                   chars: "\x1bOP"                   }
-  - { key: F2,       mods:,                   chars: "\x1bOQ"                   }
-  - { key: F3,       mods:,                   chars: "\x1bOR"                   }
-  - { key: F4,       mods:,                   chars: "\x1bOS"                   }
-  - { key: F5,       mods:,                   chars: "\x1b[15~"                 }
-  - { key: F6,       mods:,                   chars: "\x1b[17~"                 }
-  - { key: F7,       mods:,                   chars: "\x1b[18~"                 }
-  - { key: F8,       mods:,                   chars: "\x1b[19~"                 }
-  - { key: F9,       mods:,                   chars: "\x1b[20~"                 }
-  - { key: F10,      mods:,                   chars: "\x1b[21~"                 }
-  - { key: F11,      mods:,                   chars: "\x1b[23~"                 }
-  - { key: F12,      mods:,                   chars: "\x1b[24~"                 }
-  - { key: Back,     mods:,                   chars: "\x7f"                     }
+  - { key: F1,                                chars: "\x1bOP"                   }
+  - { key: F2,                                chars: "\x1bOQ"                   }
+  - { key: F3,                                chars: "\x1bOR"                   }
+  - { key: F4,                                chars: "\x1bOS"                   }
+  - { key: F5,                                chars: "\x1b[15~"                 }
+  - { key: F6,                                chars: "\x1b[17~"                 }
+  - { key: F7,                                chars: "\x1b[18~"                 }
+  - { key: F8,                                chars: "\x1b[19~"                 }
+  - { key: F9,                                chars: "\x1b[20~"                 }
+  - { key: F10,                               chars: "\x1b[21~"                 }
+  - { key: F11,                               chars: "\x1b[23~"                 }
+  - { key: F12,                               chars: "\x1b[24~"                 }
+  - { key: Back,                              chars: "\x7f"                     }
   - { key: Back,     mods: Alt,               chars: "\x1b\x7f"                 }
   - { key: Back,     mods: Control,           chars: "\x1b[127;5u"              }
   - { key: Back,     mods: Control|Shift,     chars: "\x1b[127;6u"              }
@@ -376,7 +406,7 @@ key_bindings:
   - { key: Back,     mods: Alt|Control|Shift, chars: "\x1b[127;8u"              }
   - { key: Back,     mods: Alt|Shift,         chars: "\x1b[127;4u"              }
   - { key: Back,     mods: Shift,             chars: "\x1b[127;2u"              }
-  - { key: Insert,   mods:,                   chars: "\x1b[2~"                  }
+  - { key: Insert,                            chars: "\x1b[2~"                  }
   - { key: Insert,   mods: Control,           chars: "\x1b[99;5u"               }
   - { key: Insert,   mods: Control|Shift,     chars: "\x1b[99;6u"               }
   - { key: Insert,   mods: Alt,               chars: "\x1b[99;3u"               }
@@ -384,7 +414,7 @@ key_bindings:
   - { key: Insert,   mods: Alt|Control|Shift, chars: "\x1b[99;8u"               }
   - { key: Insert,   mods: Alt|Shift,         chars: "\x1b[99;4u"               }
   # - { key: Insert,     mods: Shift,             chars: "\x1b[99;2u"           }
-  - { key: Delete,   mods:,                   chars: "\x1b[3~"                  }
+  - { key: Delete,                            chars: "\x1b[3~"                  }
   - { key: Delete,   mods: Control,           chars: "\x1b[255;5u"              }
   - { key: Delete,   mods: Control|Shift,     chars: "\x1b[255;6u"              }
   - { key: Delete,   mods: Alt,               chars: "\x1b[255;3u"              }
@@ -566,7 +596,7 @@ key_bindings:
   - { key: Colon,    mods: Alt|Control,       chars: "\x1b[58;7u"               }
   - { key: Colon,    mods: Alt|Control|Shift, chars: "\x1b[58;8u"               }
   - { key: Colon,    mods: Alt|Shift,         chars: "\x1b[58;4u"               }
-  - { key: Colon,    mods: Shift,             chars: "\x1b[58;2u"               }
+    #- { key: Colon,    mods: Shift,             chars: "\x1b[58;2u"               }
   - { key: Comma,    mods: Control,           chars: "\x1b[44;5u"               }
   # - { key: Comma,     mods: Control|Shift,     chars: "\x1b[44;6u"            }
   - { key: Comma,    mods: Alt,               chars: "\x1b[44;3u"               }
