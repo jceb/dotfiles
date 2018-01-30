@@ -6,3 +6,7 @@ set -g fish_cursor_default block
 set -g fish_cursor_insert block
 set -g fish_cursor_visual block
 set -g fish_escape_delay_ms 10
+
+# hide greeting
+set fish_greeting ""
+
