@@ -31,7 +31,7 @@ hdr_order From Reply-To To Cc Subject Date X-Mailer User-Agent X-Priority Import
 #auto_view text/html application/x-pgp-message
 auto_view text/html
 alternative_order text/enriched text/plain text application/postscript image/*
-set mailcap_path="~/.muttmailcap:~/.mailcap:/etc/mailcap"
+set mailcap_path="~/.config/mutt/mailcap:~/.mailcap:/etc/mailcap"
 set mailcap_sanitize=yes
 
 # set Return-Path according to the From-Field
@@ -222,9 +222,9 @@ bind editor ^T    complete
 
 set print_command="muttprint -2 -p TO_FILE:/tmp/print.ps"
 
-macro index,pager s "<save-message>?<toggle-mailboxes><home><search>" "open a different folder"
-macro index,pager c "<change-folder>?<toggle-mailboxes><home>" "open another folder"
-macro index,pager C "<copy-message>?<toggle-mailboxes><home><search>" "copy message to another folder"
+macro index,pager s "<save-message>?" "open a different folder"
+macro index,pager c "<change-folder>?" "open another folder"
+macro index,pager C "<copy-message>?" "copy message to another folder"
 macro index,pager i "<change-newsgroup>?" "open a different folder"
 macro attach s "<save-entry><home>"
 # macro index,pager ? "<search-reverse>"

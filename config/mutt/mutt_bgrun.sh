@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # @(#) mutt_bgrun $Revision: 1.4 $
 
 #   mutt_bgrun - run an attachment viewer from mutt in the background
@@ -27,26 +27,26 @@
 #	for that attachment type in the mailcap file, waiting for the
 #	pipeline to terminate, writing nulls over the temporary file,
 #	then deleting it.  This causes problems when using graphical
-#	viewers such as qvpview and acroread to view attachments. 
+#	viewers such as qvpview and acroread to view attachments.
 #
 #	If qvpview, for example, is executed in the foreground, the mutt
 #	user interface is hung until qvpview exits, so the user can't do
 #	anything else with mutt until he or she finishes reading the
 #	attachment and exits qvpview.  This is especially annoying when
 #	a message contains several MS Office attachments--one would like
-#	to have them all open at once. 
+#	to have them all open at once.
 #
 #	If qvpview is executed in the background, it must be given
 #	enough time to completely read the file before returning control
 #	to mutt, since mutt will then obliterate the file.  Qvpview is
 #	so slow that this time can exceed 20 seconds, and the bound is
-#	unknown.  So this is again annoying. 
+#	unknown.  So this is again annoying.
 #
 #	The solution provided here is to invoke the specified viewer
 #	from this script after first copying mutt's temporary file to
 #	another temporary file.  This script can then quickly return
 #	control to mutt while the viewer can take as much time as it
-#	needs to read and render the attachment. 
+#	needs to read and render the attachment.
 #
 # EXAMPLE
 #	To use qvpview to view MS Office attachments from mutt, add the
@@ -79,12 +79,12 @@ fi
 # Separate the arguments.  Assume the first is the viewer, the last is
 # the file, and all in between are options to the viewer.
 
-viewer="$1"
+viewer=("$1")
 shift
 
 while [ "$#" -gt "1" ]
 do
-    options="$options $1"
+    viewer+=("$1")
     shift
 done
 
@@ -94,23 +94,25 @@ file="$1"
 #
 # This is more secure than creating a temporary file in an existing
 # directory.
-
-tmpdir=/tmp/$LOGNAME$$
+tmpdir="${TMPDIR:=/tmp}/mutt/$LOGNAME$$"
 umask 077
-mkdir "$tmpdir" || exit 1
+mkdir -p "$tmpdir" || exit 1
 tmpfile="$tmpdir/${file##*/}"
 
 # Copy mutt's temporary file to our temporary directory so that we can
 # let mutt overwrite and delete it when we exit.
-
 cp "$file" "$tmpfile"
 
-# Run the viewer in the background and delete the temporary files when done. 
-
+# Run the viewer in the background and delete the temporary files when done.
 (
-    set -e
     # "$viewer" $options "$tmpfile"
-    xdg-open "$tmpfile" > /dev/null 2>&1
-    # rm -f "$tmpfile"
-    # rmdir "$tmpdir"
+    starttime=$(date +%s)
+    "${viewer[@]}" "$tmpfile" >/dev/null 2>&1
+    endtime=$(date +%s)
+    if [ $(($starttime + 2)) -ge $endtime ]; then
+        # the application probably forked into background .. we might never know
+        # when it quits.  Let's wait for some seconds and then delete the files
+        sleep 2
+    fi
+    rm -rf "$tmpdir"
 ) &
