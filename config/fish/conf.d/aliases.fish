@@ -45,6 +45,9 @@ end
 function ll
     ls -l $argv
 end
+function lh
+    ls -lh $argv
+end
 
 # quilt
 abbr --add 'q++=quilt push -a'
