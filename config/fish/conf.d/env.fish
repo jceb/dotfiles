@@ -44,14 +44,13 @@ set -x BC_ENV_ARGS "$HOME/.bcrc"
 
 # go lang settings
 set -x GOPATH "$HOME/.local/go"
-set -x GOBIN "$HOME/.local/bin"
 
 set -x ANDROID_HOME "$HOME/Android/Sdk"
 
 set -x LD_LIBRARY_PATH "$HOME/.local/lib"
 
 # set PATH so it includes user's private bin if it exists
-for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$GOBIN" "$HOME/node_modules/.bin" "$HOME/.cargo/bin" "$ANDROID_HOME/tools"
+for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$HOME/node_modules/.bin" "$HOME/.cargo/bin" "$ANDROID_HOME/tools"
 	if test -d "$i"; and not contains $i $PATH
 		set -x PATH $i $PATH
 	end
