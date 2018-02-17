@@ -1,0 +1,7 @@
+text/html; ~/.config/mutt/mutt_bgrun.sh x-www-browser '%s'; nametemplate=%s.html; test=test -n "$DISPLAY"; description=Portable
+text/html; elinks -dump -dump-charset utf-8 %s; nametemplate=%s.html; copiousoutput
+
+# Images
+image/*; ~/.config/mutt/mutt_bgrun.sh xdg-open '%s'; test=test -n "$DISPLAY"
+video/*; ~/.config/mutt/mutt_bgrun.sh xdg-open '%s'; test=test -n "$DISPLAY"
+application/*; ~/.config/mutt/mutt_bgrun.sh xdg-open '%s'; test=test -n "$DISPLAY"
