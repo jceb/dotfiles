@@ -67,4 +67,6 @@ set -x PYTHONSTARTUP "$HOME/.pystartup"
 
 set -x XTERM_VERSION 'XTerm(327)'
 
+set -x HIGHLIGHT_OPTIONS '--style=seashell'
+
 # vi: ft=fish:tw=0:sw=4:ts=4
