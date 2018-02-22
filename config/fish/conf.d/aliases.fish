@@ -123,15 +123,15 @@ abbr --add 'cd.=cd (_ch2root debian .git .hg .svn)'
 abbr --add 'cd..=cd ..'
 
 function r -d 'grep replacement'
-    rg -S --hidden -n -H $argv | fzf -m
+    rg -S --hidden -n -H $argv | fzf -0 -m
 end
 
 function f -d 'find for files'
-    fd -tf $argv | fzf -m
+    fd -tf $argv | fzf -0 -m
 end
 
 function d -d 'find for directories'
-    fd -td $argv | fzf -m
+    fd -td $argv | fzf -0 -m
 end
 
 function = -d 'zsh like shortcut to the which command'
