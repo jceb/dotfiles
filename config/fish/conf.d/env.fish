@@ -10,7 +10,7 @@ end
 # to get around sorting issues, define differently
 set -x LC_COLLATE "C"
 
-set -x EDITOR "nvim"
+set -x EDITOR "vim"
 # set -x GIT_EDITOR ~/.local/bin/nvim
 # use true colors in the terminal - seems to produce weird colors
 set -x NVIM_TUI_ENABLE_TRUE_COLOR "1"
