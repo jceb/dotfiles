@@ -25,3 +25,27 @@ yeahconsole*term			: st
 yeahconsole*yOffset			: 16
 yeahconsole*screenWidth		: 1600
 yeahconsole*xrandrSupport	: 1
+
+XTerm*scaleHeight:      1.00
+XTerm*faceName:         Hack
+XTerm*faceSize:         9
+XTerm.termName:         xterm-256color
+XTerm*cursorColor:      rgb:87/af/d7
+XTerm.vt100.foreground: rgb:4D/4D/4C
+XTerm.vt100.background: rgb:ED/ED/ED
+XTerm.vt100.color0:     rgb:4D/4D/4C
+XTerm.vt100.color1:     rgb:D7/00/5F
+XTerm.vt100.color2:     rgb:71/8C/00
+XTerm.vt100.color3:     rgb:D7/5F/00
+XTerm.vt100.color4:     rgb:00/5f/87
+XTerm.vt100.color5:     rgb:89/59/A8
+XTerm.vt100.color6:     rgb:3E/99/9F
+XTerm.vt100.color7:     rgb:ED/ED/ED
+XTerm.vt100.color8:     rgb:96/96/94
+XTerm.vt100.color9:     rgb:D7/00/5F
+XTerm.vt100.color10:    rgb:71/8C/00
+XTerm.vt100.color11:    rgb:D7/5F/00
+XTerm.vt100.color12:    rgb:42/71/AE
+XTerm.vt100.color13:    rgb:89/59/A8
+XTerm.vt100.color14:    rgb:3E/99/9F
+XTerm.vt100.color15:    rgb:F5/F5/F5
