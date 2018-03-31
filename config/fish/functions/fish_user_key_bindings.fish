@@ -30,7 +30,7 @@ function fish_user_key_bindings
             bind -M insert \ct '__fzf_find_file'
             bind -M insert \cr '__fzf_reverse_isearch'
             bind -M insert \ec '__fzf_cd'
-            bind -M insert \eC '__fzf_cd_with_hidden'
+            bind -M insert \eC '__fzf_cd --hidden'
         end
     else
         bind \cf '__fzf_find_file'
