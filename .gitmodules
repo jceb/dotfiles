@@ -19,3 +19,12 @@
 [submodule "tmux/plugins/tmux-open"]
 	path = tmux/plugins/tmux-open
 	url = https://github.com/tmux-plugins/tmux-open.git
+[submodule "config/vis/plugins/surround"]
+	path = config/vis/plugins/surround
+	url = https://github.com/Two-Finger/vis-surround.git
+[submodule "config/vis/plugins/commentary"]
+	path = config/vis/plugins/commentary
+	url = https://github.com/lutobler/vis-commentary.git
+[submodule "config/vis/plugins/editorconfig"]
+	path = config/vis/plugins/editorconfig
+	url = https://github.com/vktec/vis-editorconfig.git
