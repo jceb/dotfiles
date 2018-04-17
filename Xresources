@@ -1,5 +1,5 @@
 ! vi: commentstring=!%s
-Xcursor.theme		: Adwaita
+Xcursor.theme		: DMZ-Black
 Xcursor.size		: 24
 Xft.antialias		: 1
 Xft.autohint		: 0
