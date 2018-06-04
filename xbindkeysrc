@@ -51,14 +51,9 @@
     Shift+Mod4 + e 
 
 #gvim
-"x-terminal-emulator -e vim"
+"nvim-qt"
     m:0x40 + c:55
     Mod4 + v 
-
-#Show Kaze
-"kaze"
-    m:0x9 + c:57
-    Shift+Alt + k 
 
 #screensaver lock
 "xset s activate"
@@ -71,7 +66,7 @@
     XF86HomePage 
 
 #Mail
-"x-terminal-emulator -e mutt"
+"x-terminal-emulator -e neomutt"
     m:0x0 + c:163
     XF86Mail 
 
