@@ -153,7 +153,7 @@ subscribe `[ -e ~/.mailinglists ] && sed -e ':a; N; s/\n/ /; ta' ~/.mailinglists
 set attach_keyword  = "\\<(attach|attached|attachments?|anbei|Anhang|Anhänge|angehängt)\\>"
 set abort_noattach  = "ask-yes"
 set reply_regexp    = "^((aw|antw.?|antwort|re|r e|r?f|sv):[ \t]*)*"
-set autoedit        = no
+set autoedit        = yes
 set edit_headers    = yes
 set collapse_unread = no
 set wrap            = 90
