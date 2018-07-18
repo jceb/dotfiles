@@ -40,7 +40,7 @@ border_color_hpressed = #777777 100
 
 # Background 4: Urgent task
 rounded = 4
-border_width = 1
+border_width = 0
 border_sides = TBLR
 background_color = #aa4400 100
 border_color = #aa7733 100
@@ -60,6 +60,17 @@ border_color_hover = #000000 30
 background_color_pressed = #000000 60
 border_color_pressed = #000000 30
 
+# Background 6: Current selected workspace
+rounded = 1
+border_width = 0
+border_sides = TBLR
+background_color = #005f87 60
+border_color = #000000 30
+background_color_hover = #000000 60
+border_color_hover = #000000 30
+background_color_pressed = #000000 60
+border_color_pressed = #000000 30
+
 #-------------------------------------
 # Panel
 panel_items = TSC
@@ -70,10 +81,10 @@ panel_background_id = 1
 wm_menu = 1
 panel_dock = 0
 panel_position = top center horizontal
-panel_layer = top
+panel_layer = bottom
 panel_monitor = all
 panel_shrink = 0
-autohide = 1
+autohide = 0
 autohide_show_timeout = 0
 autohide_hide_timeout = 0.5
 autohide_height = 2
@@ -93,14 +104,14 @@ taskbar_mode = multi_desktop
 taskbar_hide_if_empty = 0
 taskbar_padding = 0 0 0
 taskbar_background_id = 0
-taskbar_active_background_id = 0
+taskbar_active_background_id = 6
 taskbar_name = 1
 taskbar_hide_inactive_tasks = 0
 taskbar_hide_different_monitor = 0
 taskbar_hide_different_desktop = 0
 taskbar_always_show_all_desktop_tasks = 0
 taskbar_name_font = Hack 8.5
-taskbar_name_padding = 4 2
+taskbar_name_padding = 4 4
 taskbar_name_background_id = 0
 taskbar_name_active_background_id = 0
 taskbar_name_font_color = #e3e3e3 100
@@ -167,7 +178,7 @@ time2_timezone =
 time1_font = Hack 8.5
 time2_font = Hack 6.5
 clock_font_color = #ffffff 100
-clock_padding = 2 0
+clock_padding = 4 0
 clock_background_id = 0
 clock_tooltip = 
 clock_tooltip_timezone = 
@@ -204,4 +215,4 @@ tooltip_hide_timeout = 0.1
 tooltip_padding = 2 2
 tooltip_background_id = 5
 tooltip_font = Hack 7.5
-tooltip_font_color = #dddddd 100
+tooltip_font_color = #EDEDED 100
