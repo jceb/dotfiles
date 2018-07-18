@@ -41,7 +41,7 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
     W.Stack t ls rs -> W.Stack t [] (xs ++ x : rs) where (x:xs) = reverse ls
 
 scratchpads = [
-  NS "default" "nvim-qt" (className =? "nvim-qt") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  NS "default" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
 
 main = do
@@ -50,13 +50,15 @@ main = do
     , layoutHook = myLayoutHook
     , handleEventHook =  myHandleEventHook <+> handleEventHook def
     , startupHook = setWMName "LG3D"
-    , logHook = workspaceHistoryHook <+> logHook def
+    , logHook = myLogHook <+> logHook def
     , borderWidth = 1
     , focusedBorderColor = "#D7005F"
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
     , terminal = "x-terminal-emulator"
     } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period)] `additionalKeys` myAdditionalKeys
+
+myLogHook = workspaceHistoryHook
 
 myHandleEventHook = fullscreenEventHook
 
