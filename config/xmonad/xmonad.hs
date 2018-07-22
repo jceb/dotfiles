@@ -37,8 +37,8 @@ toggleFloat w = do
 swapMasterOrSlave :: W.StackSet i l a s sd -> W.StackSet i l a s sd
 swapMasterOrSlave = W.modify' $ \c -> case c of
     W.Stack _ [] []  -> c    -- already master.
-    W.Stack t [] rs -> W.Stack x [] (t : xs) where (x:xs) = rs  -- swap master with next window - optimum would be to swap it with a previously swapped window
-    W.Stack t ls rs -> W.Stack t [] (xs ++ x : rs) where (x:xs) = reverse ls
+    W.Stack t [] rs -> W.Stack x [] (t:xs) where (x:xs) = rs  -- swap master with next window - optimum would be to swap it with a previously swapped window
+    W.Stack t ls rs -> W.Stack t [] (x:xs ++ rs) where (x:xs) = reverse ls
 
 scratchpads = [
   NS "default" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
