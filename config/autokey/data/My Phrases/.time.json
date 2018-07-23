@@ -1,33 +1,34 @@
 {
+    "type": "script",
     "description": "time",
-    "showInTrayMenu": false,
-    "filter": {
-        "regex": null,
-        "isRecursive": false
-    },
-    "omitTrigger": false,
-    "hotkey": {
-        "hotKey": "t",
-        "modifiers": [
-            "<alt>",
-            "<ctrl>"
-        ]
-    },
+    "store": {},
     "modes": [
         3
     ],
-    "type": "script",
+    "usageCount": 6,
     "prompt": false,
+    "omitTrigger": false,
+    "showInTrayMenu": false,
     "abbreviation": {
-        "ignoreCase": false,
-        "backspace": true,
-        "triggerInside": false,
-        "immediate": false,
-        "wordChars": "[\\w]",
         "abbreviations": [
             "Date"
-        ]
+        ],
+        "backspace": true,
+        "ignoreCase": false,
+        "immediate": false,
+        "triggerInside": false,
+        "wordChars": "[\\w]"
     },
-    "usageCount": 4,
-    "store": {}
+    "hotkey": {
+        "modifiers": [
+            "<alt>",
+            "<ctrl>",
+            "<shift>"
+        ],
+        "hotKey": "n"
+    },
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    }
 }

@@ -1,17 +1,14 @@
 {
+    "type": "script",
+    "description": "date short",
     "store": {},
-    "hotkey": {
-        "hotKey": "d",
-        "modifiers": [
-            "<alt>",
-            "<ctrl>",
-            "<shift>"
-        ]
-    },
     "modes": [
         3
     ],
-    "description": "date short",
+    "usageCount": 3,
+    "prompt": false,
+    "omitTrigger": false,
+    "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
             "Date"
@@ -22,13 +19,15 @@
         "triggerInside": false,
         "wordChars": "[\\w]"
     },
-    "showInTrayMenu": false,
-    "type": "script",
-    "prompt": false,
-    "omitTrigger": false,
-    "usageCount": 2,
+    "hotkey": {
+        "modifiers": [
+            "<alt>",
+            "<ctrl>"
+        ],
+        "hotKey": "h"
+    },
     "filter": {
-        "isRecursive": false,
-        "regex": null
+        "regex": null,
+        "isRecursive": false
     }
 }
