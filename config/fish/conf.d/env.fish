@@ -15,7 +15,8 @@ set -x EDITOR "vim"
 # use true colors in the terminal - seems to produce weird colors
 set -x NVIM_TUI_ENABLE_TRUE_COLOR "1"
 
-# set -x EMAIL put me in ~/.zshother
+# set -x EMAIL put me in ~/.config/fish/conf.d/other.fish
+# set -x EMAIL "jceb@e-jc.de"
 set -x BROWSER "x-www-browser"
 
 # make less more friendly for non-text input files, see lesspipe(1)
