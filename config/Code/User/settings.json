@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "Quiet Light",
+    "editor.fontSize": 12,
+    "editor.fontFamily": "'Hack'",
+    "vim.enableNeovim": true,
+    "vim.visualstar": true,
+    "vim.sneak": true,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "vim.easymotionMarkerFontFamily": "Hack",
+    "vim.easymotionMarkerHeight": 12
+}
