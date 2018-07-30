@@ -56,7 +56,7 @@ main = do
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
     , terminal = "x-terminal-emulator"
-    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period)] `additionalKeys` myAdditionalKeys
+    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r)] `additionalKeys` myAdditionalKeys
 
 myLogHook = workspaceHistoryHook
 
