@@ -135,5 +135,10 @@
     m:0x40 + c:53
     Mod4 + x 
 
+#calendar
+"gsimplecal"
+    m:0x40 + c:52
+    Mod4 + z 
+
 #
 # End of xbindkeys configuration
