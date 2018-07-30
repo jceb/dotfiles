@@ -12,3 +12,6 @@ datetimeformat = '%A %Y-%m-%d %H:%M'
 longdatetimeformat = '%A %Y-%m-%d %H:%M'
 weeknumbers = 'left'
 firstweekday = '0'
+
+[view]
+theme = 'dark'
