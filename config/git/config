@@ -1,6 +1,6 @@
 [user]
 	name = Jan Christoph Ebersbach
-	email = jceb@e-jc.de
+	email = jan-christoph.ebersbach@chainstep.com
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
@@ -142,6 +142,9 @@
 	k = !gitk --all 2>/dev/null &
 	releases = log --decorate --oneline --simplify-by-decoration --all
 
-# vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
 [rerere]
 	enabled = true
+[cola]
+	spellcheck = false
+
+# vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
