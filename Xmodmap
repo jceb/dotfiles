@@ -3,8 +3,8 @@
 
 ! Required to allow key repeat for caps lock key
 clear Lock
-remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
+! set caps lock to control
+keycode 66 = Control_L
 
 ! swap Esc and ` key
 ! keycode 49 = Escape
