@@ -12,7 +12,9 @@ keycode 66 = Control_L
 ! keycode 9 = grave asciitilde grave asciitilde dead_tilde asciitilde dead_tilde
 ! keycode 9 = Escape
 
-! use print key as right windows key since my keyboard doesn't have a right
-! windows key
+! use print key as right windows key
 keycode 107 = Super_R
 keycode 218 = Super_R
+
+! use print key as right windows key
+keycode 135 = Super_R
