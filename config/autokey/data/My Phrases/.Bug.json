@@ -1,31 +1,33 @@
 {
     "type": "phrase",
+    "description": "Bug",
     "modes": [
         1
     ],
+    "usageCount": 9,
+    "prompt": false,
     "omitTrigger": false,
-    "usageCount": 3,
-    "sendMode": "kb",
+    "matchCase": false,
+    "showInTrayMenu": false,
     "abbreviation": {
-        "wordChars": "[\\w]",
         "abbreviations": [
             "Bg"
         ],
-        "triggerInside": false,
         "backspace": true,
+        "ignoreCase": false,
         "immediate": true,
-        "ignoreCase": false
-    },
-    "prompt": false,
-    "showInTrayMenu": false,
-    "matchCase": false,
-    "filter": {
-        "isRecursive": false,
-        "regex": null
+        "triggerInside": false,
+        "wordChars": "[\\w]"
     },
     "hotkey": {
-        "modifiers": [],
-        "hotKey": null
+        "modifiers": [
+            "<super>"
+        ],
+        "hotKey": "a"
     },
-    "description": "Bug"
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "sendMode": "kb"
 }
