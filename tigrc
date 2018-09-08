@@ -11,5 +11,8 @@ bind generic	<C-g>	:!git log %(file)
 bind generic	H	move-first-line
 bind generic	L	move-last-line
 bind status	P	!git push
+bind status	U	!git pull
 bind status	A	!git commit --amend
-bind main	R	!git rebase -i %(commit)~
+bind main	<C-r>	!git rebase -i %(commit)~
+bind main	P	!git push
+bind main	U	!git pull
