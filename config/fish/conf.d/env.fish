@@ -8,7 +8,8 @@ else
 	set -x LANG "C"
 end
 # to get around sorting issues, define differently
-set -x LC_COLLATE "C"
+set -x LC_COLLATE "en_US.UTF-8"
+# set -x LC_COLLATE "C"
 
 set -x EDITOR "vim"
 # set -x GIT_EDITOR ~/.local/bin/nvim

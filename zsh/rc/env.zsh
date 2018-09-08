@@ -12,7 +12,8 @@ else
 	export LANG="C"
 fi
 # to get around sorting issues, define differently
-export LC_COLLATE="C"
+export LC_COLLATE="en_US.UTF-8"
+# export LC_COLLATE="C"
 
 export EDITOR="nvim"
 # export GIT_EDITOR=~/.local/bin/nvim
