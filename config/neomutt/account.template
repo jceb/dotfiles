@@ -21,3 +21,5 @@ set spoolfile = "+INBOX"
 set from      = "MAILADDRESS"
 
 source ~/.config/neomutt/account.generic
+
+# vi: ft=muttrc:tw=80:sw=4:ts=4:sts=4:et

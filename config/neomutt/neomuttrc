@@ -5,6 +5,9 @@ source ~/.config/neomutt/account.default
 
 set mask      = "!^\\.[^.]"
 
+# speed up folder switch
+set sleep_time = 0
+
 # no markers for wrapped long long lines
 set markers   = no
 
@@ -44,6 +47,9 @@ unset use_domain
 set sort = threads
 set sort_aux = last-date
 
+# decode message before piping it to a command via |
+set pipe_decode = yes
+
 # Exim does not remove Bcc headers
 unset write_bcc
 
@@ -55,14 +61,20 @@ unset bounce_delivered
 
 # simulate the old url menu
 # macro index,pager \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
-macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
-        <enter-command> unset pipe_decode<enter>\
-        <pipe-message>~/.config/neomutt/extracturl/extract_url.pl<enter>\
-        <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
+# macro index,pager \cb "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+#         <enter-command> unset pipe_decode<enter>\
+#         <pipe-message>~/.config/neomutt/extracturl/extract_url.pl<enter>\
+#         <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
 
 set rfc2047_parameters=yes
 # macro attach,compose \cb "<pipe-message> urlscan --compact<Enter>" 'call urlscan to extract URLs out of a message'
-# macro index,pager \cb |urlview\n 'call urlview to extract URLs out of a message'
+macro pager \cb "\
+    <enter-command>set my_tmp_pipe_decode=\$pipe_decode<enter>\
+    <enter-command>set pipe_decode<enter>\
+    <pipe-message>urlview<enter>\
+    <enter-command>set pipe_decode=\$my_tmp_pipe_decode<enter>\
+    <enter-command>unset my_tmp_pipe_decode<enter>" \
+    'View and open URLs in message'
 # macro attach,compose \cb |urlview\n 'call urlview to extract URLs out of a message'
 
 # If Mutt is unable to determine your site's domain name correctly, you can
@@ -162,8 +174,9 @@ folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
 folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
 
 macro generic,index,pager <f5> ":source ~/.config/neomutt/neomuttrc<enter>I" "Reload muttrc"
-macro index <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/neomutt/results<enter>" "notmuch: search mail"
-macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/neomutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
+# replaced by x
+# macro index <F3> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" "notmuch: search mail"
+macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
 
 set simple_search = "~f %s | ~s %s | ~t %s | ~c %s"
 
@@ -178,6 +191,11 @@ set simple_search = "~f %s | ~s %s | ~t %s | ~c %s"
 # bind index,pager  sidebar-next-new
 # bind index,pager  sidebar-open
 bind index,pager x vfolder-from-query
+# TODO implement a binding that 1. retrieves the current message ID, 2. runs
+# notmuch to extract the thread ID, 3. runs vfolder-from-query
+# thread:<thread_ID> to open thread in mutt and get rid of F9 macro
+# https://neomutt.org/2017/04/29/lua
+# bind index,pager + entire-thread
 bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
@@ -222,9 +240,10 @@ bind editor ^T    complete
 
 set print_command="muttprint -2 -p TO_FILE:/tmp/print.ps"
 
-macro index,pager s "<save-message>?<toggle-mailboxes><Home>" "open a different folder"
-macro index,pager c "<change-folder>?<Home>" "open another folder"
-macro index,pager C "<copy-message>?<toggle-mailboxes><Home>" "copy message to another folder"
+macro index,pager A "<save-message>=Archive<enter>" "Archive message"
+macro index,pager s "<save-message>?<toggle-mailboxes><Home>" "Save message in folder"
+macro index,pager c "<change-folder>?<Home>" "Change folder"
+macro index,pager C "<copy-message>?<toggle-mailboxes><Home>" "Copy message to folder"
 macro index,pager i "<change-newsgroup>?<Home>" "open a different folder"
 macro attach s "<save-entry><Home>"
 # macro index,pager ? "<search-reverse>"

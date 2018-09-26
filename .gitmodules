@@ -10,9 +10,6 @@
 [submodule "tmux/plugins/tmux-yank"]
 	path = tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
-[submodule "mutt/extracturl"]
-	path = config/neomutt/extracturl
-	url = https://github.com/m3m0ryh0l3/extracturl.git
 [submodule "emacs.d"]
 	path = emacs.d
 	url = https://github.com/syl20bnr/spacemacs.git

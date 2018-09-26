@@ -96,4 +96,5 @@ openssl smime -verify -inform DER -in %s -noverify 2>/dev/null"
 #
 # set smime_verify_command="openssl smime -verify -inform DER -in %s -content %f -noverify"
 # set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s -noverify"
-#
+
+# vi: ft=muttrc:tw=80:sw=4:ts=4:sts=4:et
