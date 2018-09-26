@@ -240,11 +240,10 @@ bind editor ^T    complete
 
 set print_command="muttprint -2 -p TO_FILE:/tmp/print.ps"
 
-macro index,pager A "<save-message>=Archive<enter>" "Archive message"
 macro index,pager s "<save-message>?<toggle-mailboxes><Home>" "Save message in folder"
 macro index,pager c "<change-folder>?<Home>" "Change folder"
 macro index,pager C "<copy-message>?<toggle-mailboxes><Home>" "Copy message to folder"
-macro index,pager i "<change-newsgroup>?<Home>" "open a different folder"
+# macro index,pager i "<change-newsgroup>?<Home>" "open a different folder"
 macro attach s "<save-entry><Home>"
 # macro index,pager ? "<search-reverse>"
 
