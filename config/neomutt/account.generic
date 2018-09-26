@@ -13,8 +13,8 @@ send-hook .  'my_hdr X-Bcc: $from'
 send-hook ~l 'my_hdr X-Bcc:'
 
 macro index,pager I "<change-folder>$spoolfile<enter>" "Change to inbox"
-macro index,pager 1 "<change-folder>=1<quote-char> Next<quote-char> Action<enter>" "Change to inbox"
-macro index,pager 2 "<change-folder>=2<quote-char> Waiting<quote-char> For<enter>" "Change to inbox"
-macro index,pager 3 "<change-folder>=3<quote-char> Someday<enter>" "Change to inbox"
+macro index,pager 1 "<change-folder>=1_Next_Action<enter>" "Change to inbox"
+macro index,pager 2 "<change-folder>=2_Waiting_For<enter>" "Change to inbox"
+macro index,pager 3 "<change-folder>=3_Someday<enter>" "Change to inbox"
 
 # vi: ft=muttrc:tw=80:sw=4:ts=4:sts=4:et
