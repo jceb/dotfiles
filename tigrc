@@ -4,15 +4,21 @@ set refs-view	= date:default,local author:full ref commit-title
 set stash-view	= line-number:no,interval=5 id:no date:default,local author:full commit-title
 set tree-view	= line-number:no,interval=5 mode author:full file-size date:default,local id:no file-name
 
-bind main	<Space>	enter
-bind main	T	?!git tag -s "%(prompt)" %(commit)
-# show log view for an individual file
-bind generic	<C-g>	:!git log %(file)
-bind generic	H	move-first-line
-bind generic	L	move-last-line
-bind status	P	!git push
-bind status	U	!git pull
-bind status	A	!git commit --amend
-bind main	<C-r>	!git rebase -i %(commit)~
-bind main	P	!git push
-bind main	U	!git pull
+bind main	<Space>	enter						# Make space behave like enter
+bind main	<C-k>	?git cherry-pick %(commit)	# Cherry-pick commit
+bind main	<C-r>	?git rebase -i %(commit)~	# Rebase starting at the selected commit
+bind main	<C-t>	?git tag -s %(commit)		# Tag selected commit
+bind main	A		!git commit --amend			# Amend changes
+bind main	C		!git commit					# Commit changes
+bind main	P		!git push					# Push changes
+bind main	U		!git pull					# Pull changes
+bind main	M		?git merge %(commit)		# Merge commit
+bind refs	M		?git merge %(commit)		# Merge commit
+
+bind generic	<C-g>	:!git log %(file)		# Show log information for select file
+bind generic	H	move-first-line				# Vim-like movement binding
+bind generic	L	move-last-line				# Vim-like movement binding
+
+bind status	A		!git commit --amend			# Amend changes
+bind status	P		!git push					# Push changes
+bind status	U		!git pull					# Pull changes
