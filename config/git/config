@@ -27,6 +27,7 @@
 	aliases = "!git config -l | grep alias | cut -c 7-"
 	configedit = "!${EDITOR} ~/.config/git/config"
 	url = "!git config remote.$(git remote).url"
+	appraise = !git-appraise
 
 	########## branches
 	b = branch
