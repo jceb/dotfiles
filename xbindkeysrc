@@ -51,7 +51,7 @@
     Shift+Mod4 + e 
 
 #gvim
-"nvim-qt"
+"gvim"
     m:0x40 + c:55
     Mod4 + v 
 
