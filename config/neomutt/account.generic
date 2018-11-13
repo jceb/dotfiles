@@ -23,5 +23,7 @@ macro index,pager 2 "<change-folder>=2_Waiting_For<enter>" "Change to waiting fo
 macro index,pager @ "<save-message>=2_Waiting_For<enter>" "Save message in waiting for"
 macro index,pager 3 "<change-folder>=3_Someday<enter>" "Change to someday"
 macro index,pager \# "<save-message>=3_Someday<enter>" "Save message in someday"
+macro index,pager 4 "<change-folder>=4_Reference<enter>" "Change to reference"
+# macro index,pager $ "<save-message>=4_Reference<enter>" "Save message in reference"
 
 # vi: ft=muttrc:tw=80:sw=4:ts=4:sts=4:et
