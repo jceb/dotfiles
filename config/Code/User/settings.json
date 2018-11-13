@@ -9,5 +9,6 @@
         "suppressShowKeyBindingsNotice": true
     },
     "vim.easymotionMarkerFontFamily": "Hack",
-    "vim.easymotionMarkerHeight": 12
+    "vim.easymotionMarkerHeight": 12,
+    "git.autofetch": true
 }
