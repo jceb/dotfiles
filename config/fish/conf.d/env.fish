@@ -71,4 +71,6 @@ set -x XTERM_VERSION 'XTerm(327)'
 
 set -x HIGHLIGHT_OPTIONS '--style=seashell'
 
+set -x WINIT_HIDPI_FACTOR '1.0'
+
 # vi: ft=fish:tw=0:sw=4:ts=4
