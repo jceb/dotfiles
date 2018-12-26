@@ -15,7 +15,7 @@ fi
 export LC_COLLATE="en_US.UTF-8"
 # export LC_COLLATE="C"
 
-export EDITOR="nvim"
+export EDITOR="vim"
 # export GIT_EDITOR=~/.local/bin/nvim
 # use true colors in the terminal - seems to produce weird colors
 export NVIM_TUI_ENABLE_TRUE_COLOR="1"
@@ -53,12 +53,13 @@ export ANDROID_HOME="${HOME}/Android/Sdk"
 export LD_LIBRARY_PATH="${HOME}/.local/lib"
 
 # set PATH so it includes user's private bin if it exists
-for i in "${HOME}/Documents/toolshed/" "${HOME}/.cabal/bin" "${HOME}/.local/bin" "${HOME}/bin" "${HOME}/.gem/ruby/2.3.0/bin" "${GOPATH}/bin" "${HOME}/node_modules/.bin" "${HOME}/.cargo/bin" "${ANDROID_HOME}/tools"; do
+for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$HOME/.yarn/bin" "$HOME/.npm-global/bin" "$HOME/.cargo/bin" "$ANDROID_HOME/tools"
 	if [ -e "$i" ]; then
 		PATH="$i:${PATH}"
 	fi
 done
 export PATH
+
 for i in "${HOME}/.local/share/man" '/usr/share/man'; do
 	if [ -e "$i" ]; then
 		MANPATH="$i:${MANPATH}"
@@ -71,5 +72,11 @@ export PYTHONSTARTUP="${HOME}/.pystartup"
 
 # source personal settings from .zshother
 [ -e $HOME/.zshother ] && . ~/.zshother
+
+export XTERM_VERSION='XTerm(327)'
+
+export HIGHLIGHT_OPTIONS-'--style=seashell'
+
+export WINIT_HIDPI_FACTOR='1.0'
 
 # vi: ft=zsh:tw=0:sw=4:ts=4
