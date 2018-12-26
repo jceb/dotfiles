@@ -24,4 +24,4 @@
 	url = https://github.com/vktec/vis-editorconfig.git
 [submodule "config/vis/plugins/surround"]
 	path = config/vis/plugins/surround
-	url = https://gitlab.com/TwoFinger/vis-surround.git
+	url = https://repo.or.cz/vis-surround.git
