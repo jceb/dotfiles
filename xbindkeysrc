@@ -140,5 +140,10 @@
     m:0x40 + c:52
     Mod4 + z 
 
+#Screenshot
+"flameshot gui"
+    m:0x0 + c:107
+    Print 
+
 #
 # End of xbindkeys configuration
