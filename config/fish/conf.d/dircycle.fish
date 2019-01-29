@@ -32,9 +32,9 @@ function __fish_dir_cycle_warpDir
             set FZF_TMUX_HEIGHT "40%"
         end
         set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
-        command sed -ne 's/:/\\t/p' < "$FILE" | command fzf | command sed -ne "s/^[^\t]*\t//p" | read -l select
-        if test -d "$select"
-            cd "$select"
+        command sed -ne 's/:/\\t/p' < "$FILE" | command fzf | command sed -ne "s/^[^\t]*\t//p" | read -l selection
+        if test -d "$selection"
+            cd "$selection"
         end
     end
     commandline -f repaint
