@@ -142,8 +142,8 @@
 
 #Screenshot
 "flameshot gui"
-    m:0x0 + c:107
-    Print 
+    # m:0x0 + c:107
+    Print
 
 #
 # End of xbindkeys configuration
