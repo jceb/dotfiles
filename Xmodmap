@@ -15,6 +15,4 @@ keycode 66 = Control_L
 ! use print key as right windows key
 keycode 107 = Super_R
 keycode 218 = Super_R
-
-! use print key as right windows key
 keycode 135 = Super_R
