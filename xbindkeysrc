@@ -142,16 +142,16 @@
 
 #Screenshot
 "flameshot gui"
-    # m:0x0 + c:107
-    Print 
+    m:0x44 + c:27
+    Control+Mod4 + p 
 
 #Screensaver on
-"screensaver on"
+"screensaver-on"
     m:0xd + c:30
     Control+Shift+Alt + l 
 
 #Screensaver off
-"screensaver off"
+"screensaver-off"
     m:0x45 + c:30
     Control+Shift+Mod4 + l 
 
