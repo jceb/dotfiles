@@ -49,6 +49,8 @@
 	ff = merge --ff-only
 	m = merge --no-ff
 
+	rbc = rebase --continue
+
 	########## Univention specific settings
 	pb = "!b=\"$(git branch|sed -ne 's/^\\*\\s*//p')\"; git push --set-upstream origin \"${b}:${b}\""
 	mm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git merge \"origin/${m}/master\""
