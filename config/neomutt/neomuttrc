@@ -33,7 +33,7 @@ hdr_order From Reply-To To Cc Subject Date X-Mailer User-Agent X-Priority Import
 #set implicit_autoview
 #auto_view text/html application/x-pgp-message
 auto_view text/html
-alternative_order text/enriched text/plain text application/postscript image/*
+alternative_order text/plain text/html
 set mailcap_path="~/.config/neomutt/mailcap:~/.mailcap:/etc/mailcap"
 set mailcap_sanitize=yes
 
