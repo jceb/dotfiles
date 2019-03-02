@@ -86,12 +86,12 @@
     XF86Calculator 
 
 #Volume Lower
-"pulseaudio-ctl down 5"
+"pulseaudio-ctl down 2"
     m:0x0 + c:122
     XF86AudioLowerVolume 
 
 #Volume Raise
-"pulseaudio-ctl up 5"
+"pulseaudio-ctl up 2"
     m:0x0 + c:123
     XF86AudioRaiseVolume 
 
