@@ -46,7 +46,7 @@ position = ["--left-of", "laptop"]
 [monitors.benq]
 description = "Benq BL1152"
 edids = ["D109801B00005445"]
-position = ["--left-of", "laptop"]
+position = ["--right-of", "laptop"]
 wallpaper = "~/wallpaper2560x1440.png"
 
 # It is possible to provide specific configuration details depending on the
@@ -66,17 +66,17 @@ wallpaper = "~/wallpaper2560x1440.png"
 # If you have multiple monitors with the same EDID that are connected at the
 # same time add the name of the output as the last element of the position to
 # set this monitor relative to it
-position = ["--left-of", "benq", "HDMI1"]
+position = ["--right-of", "benq", "HDMI1"]
 xrandr_args = ["--rotate", "left"]
 wallpaper = "~/wallpaper1440x2560.png"
 
 [monitors.benq.outputs.DP1-2]
-position = ["--left-of", "benq", "DP1-1"]
+position = ["--right-of", "benq", "DP1-1"]
 xrandr_args = ["--rotate", "left"]
 wallpaper = "~/wallpaper1440x2560.png"
 
 [monitors.benq.outputs.DP-1-2]
-position = ["--left-of", "benq", "DP-1-1"]
+position = ["--right-of", "benq", "DP-1-1"]
 xrandr_args = ["--rotate", "left"]
 wallpaper = "~/wallpaper1440x2560.png"
 
