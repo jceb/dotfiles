@@ -18,3 +18,4 @@ prev_img k p
 toggle_fullscreen v F11
 quit q Escape C-q
 close x C-w
+action_5 R
