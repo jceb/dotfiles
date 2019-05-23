@@ -6,9 +6,18 @@
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
 	editor = terminal-gvim
 [merge]
-	tool = vimdiff
+    tool = nfugitive
 [mergetool "vimdiff"]
 	cmd = "{$VMUX_REALEDITOR_NVIM}" -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "nvimdiff4"]
+    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "nfugitive"]
+    cmd = nvim -f -c "Gdiff" "$MERGED"
+[diff]
+	# if I want to use vim for git diffs
+    # tool = nvimdiff2
+[difftool "nvimdiff2"]
+    cmd = nvim -d $LOCAL $REMOTE
 [core]
 	pager = less -FSRX
 	editor = /usr/bin/nvim
