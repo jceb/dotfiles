@@ -86,6 +86,18 @@ edids = ["2D4C03E800000000", "2D4C03E654573236"]
 position = ["--left-of", "laptop"]
 wallpaper = "~/wallpaper1920x1200.png"
 
+[monitors.dellhubhaw]
+description = "Dell"
+wallpaper = "~/wallpaper1920x1080.png"
+
+[monitors.dellhubhaw.outputs.HDMI1]
+edids = ['AC10418539383053']
+position = ["--right-of", "laptop"]
+
+[monitors.dellhubhaw.outputs.HDMI2]
+edids = ['AC10418541553153']
+position = ["--right-of", "dellhubhaw", "HDMI1"]
+
 [monitors.dell]
 description = "Dell"
 edids = ["AC1040613239334C"]
