@@ -174,9 +174,6 @@ folder-hook . 'set sort=threads; push <collapse-all><collapse-thread>'
 folder-hook Backup|Spam|Drafts|Sent|Trash|Templates 'set sort=date; push <collapse-all><collapse-thread>'
 
 macro generic,index,pager <f5> ":source ~/.config/neomutt/neomuttrc<enter>I" "Reload muttrc"
-# replaced by x
-# macro index <F3> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" "notmuch: search mail"
-macro index <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
 
 set simple_search = "~f %s | ~s %s | ~t %s | ~c %s"
 
@@ -191,11 +188,8 @@ set simple_search = "~f %s | ~s %s | ~t %s | ~c %s"
 # bind index,pager  sidebar-next-new
 # bind index,pager  sidebar-open
 bind index,pager x vfolder-from-query
-# TODO implement a binding that 1. retrieves the current message ID, 2. runs
-# notmuch to extract the thread ID, 3. runs vfolder-from-query
-# thread:<thread_ID> to open thread in mutt and get rid of F9 macro
-# https://neomutt.org/2017/04/29/lua
-# bind index,pager + entire-thread
+# read entire thread of the current message
+bind index,pager X entire-thread
 bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
