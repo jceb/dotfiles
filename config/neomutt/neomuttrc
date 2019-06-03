@@ -190,6 +190,7 @@ set simple_search = "~f %s | ~s %s | ~t %s | ~c %s"
 bind index,pager x vfolder-from-query
 # read entire thread of the current message
 bind index,pager X entire-thread
+# bind index,pager ?? sidebar-toggle-virtual
 bind index,pager G list-reply
 bind index L bottom-page
 bind pager \c? previous-line
