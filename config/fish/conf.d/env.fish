@@ -1,6 +1,7 @@
 set -x TMPDIR "$HOME/.cache/tmp"
 # speed up certain system calls: https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
-set -x TZ :/etc/localtime
+# WARNING this advice seems to break Thunderbird's time display
+# set -x TZ :/etc/localtime
 
 if locale -a|grep -q en_US.utf8
 	set -x LANG "en_US.UTF-8"

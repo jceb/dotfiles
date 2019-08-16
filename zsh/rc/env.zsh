@@ -4,7 +4,8 @@ export SAVEHIST="1000"
 export DIRSTACKSIZE="11"
 export TMPDIR="${HOME}/.cache/tmp"
 # speed up certain system calls: https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
-export TZ=:/etc/localtime
+# WARNING this advice seems to break Thunderbird's time display
+# export TZ=:/etc/localtime
 
 if $(locale -a|grep -q en_US.utf8); then
 	export LANG="en_US.UTF-8"
