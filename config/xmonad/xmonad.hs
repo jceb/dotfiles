@@ -82,6 +82,9 @@ myManageHook = manageDocks <+> composeAll
                , className =? "copyq" --> doFloat
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
+               , className =? "Riot" --> doFloat
+               , className =? "Rambox" --> doFloat
+               , className =? "Standard Notes" --> doFloat
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts (renamed [Replace "tiled"] (smartBorders $ Tall 1 (3/100) (2/3)))
