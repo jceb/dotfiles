@@ -90,7 +90,8 @@ myManageHook = manageDocks <+> composeAll
 myLayoutHook = avoidStruts (renamed [Replace "tiled"] (smartBorders $ Tall 1 (3/100) (2/3)))
                ||| avoidStruts (renamed [Replace "grid"] (smartBorders Grid))
                ||| avoidStruts (renamed [Replace "master"] (centerMaster $ smartBorders Grid))
-               ||| renamed [Replace "full"] (fullscreenFull $ noBorders Full)
+               ||| renamed [Replace "full"] (noBorders Full)
+               -- ||| renamed [Replace "full"] (fullscreenFull $ noBorders Full)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
 
 myAdditionalKeys =
