@@ -155,5 +155,10 @@
     m:0x45 + c:30
     Control+Shift+Mod4 + l 
 
+#Volume Control
+"pavucontrol"
+    m:0x40 + c:38
+    Mod4 + a 
+
 #
 # End of xbindkeys configuration
