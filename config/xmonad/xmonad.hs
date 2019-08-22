@@ -12,11 +12,12 @@ import XMonad.Layout.CenteredMaster
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutCombinators
--- import XMonad.Layout.Maximize
 -- http://hackage.haskell.org/package/xmonad-contrib-0.13/docs/XMonad-Layout-Maximize.html
+import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.SimplestFloat
+import XMonad.Layout.StateFull
 import XMonad.Util.EZConfig (additionalKeys, removeKeys)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.NamedScratchpad
@@ -87,18 +88,19 @@ myManageHook = manageDocks <+> composeAll
                , className =? "Standard Notes" --> doFloat
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
-myLayoutHook = avoidStruts (renamed [Replace "tiled"] (smartBorders $ Tall 1 (3/100) (2/3)))
-               ||| avoidStruts (renamed [Replace "grid"] (smartBorders Grid))
-               ||| avoidStruts (renamed [Replace "master"] (centerMaster $ smartBorders Grid))
-               ||| renamed [Replace "full"] (noBorders Full)
-               -- ||| renamed [Replace "full"] (fullscreenFull $ noBorders Full)
+myLayoutHook = avoidStruts $ (renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3)))
+               ||| avoidStruts (renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders Grid))
+               ||| avoidStruts (renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders Grid))
+               -- ||| renamed [Replace "full"] (noBorders StateFull)
+               ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
 
 myAdditionalKeys =
   -- dwm style layout bindings
-  [ ((mod4Mask, xK_m ), sendMessage $ JumpToLayout "full")
+  [ ((mod4Mask, xK_f ), sendMessage $ JumpToLayout "full")
+  , ((mod4Mask, xK_m ), withFocused (sendMessage . maximizeRestore))
   , ((mod4Mask, xK_t ), sendMessage $ JumpToLayout "tiled")
-  , ((mod4Mask, xK_f ), sendMessage $ JumpToLayout "float")
+  -- , ((mod4Mask, xK_f ), sendMessage $ JumpToLayout "float")
   , ((mod4Mask, xK_g ), sendMessage $ JumpToLayout "grid")
   , ((mod4Mask, xK_y ), sendMessage $ JumpToLayout "master")
   , ((mod4Mask, xK_Return), windows swapMasterOrSlave)
