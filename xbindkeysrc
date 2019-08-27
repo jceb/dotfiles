@@ -135,6 +135,11 @@
     m:0x40 + c:53
     Mod4 + x 
 
+#dmenu_run
+"dmenu_run"
+    m:0x40 + c:39
+    Mod4 + r 
+
 #calendar
 "gsimplecal"
     m:0x40 + c:52
@@ -142,8 +147,8 @@
 
 #Screenshot
 "flameshot gui"
-    m:0x44 + c:27
-    Control+Mod4 + p 
+    m:0x40 + c:27
+    Mod4 + p 
 
 #Screensaver on
 "screensaver-on"
