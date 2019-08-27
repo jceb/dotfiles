@@ -57,7 +57,7 @@ main = do
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
     , terminal = "x-terminal-emulator"
-    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r)] `additionalKeys` myAdditionalKeys
+    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask . |. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
 
 myLogHook = workspaceHistoryHook
 
@@ -115,6 +115,8 @@ myAdditionalKeys =
   , ((mod4Mask, xK_period), nextScreen)
   , ((mod4Mask .|. shiftMask, xK_Down), shiftPrevScreen)
   , ((mod4Mask .|. shiftMask, xK_Up), shiftNextScreen)
+  , ((mod4Mask .|. shiftMask, xK_comma), shiftPrevScreen)
+  , ((mod4Mask .|. shiftMask, xK_period), shiftNextScreen)
   , ((mod4Mask, xK_Tab), toggleWS)
   , ((mod4Mask, xK_i), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
   , ((mod4Mask, xK_o), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
