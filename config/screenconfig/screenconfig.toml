@@ -87,15 +87,20 @@ position = ["--left-of", "laptop"]
 wallpaper = "~/wallpaper1920x1200.png"
 
 [monitors.dellhubhaw]
-edids = ['AC10418539383053']
 description = "Dell"
 wallpaper = "~/wallpaper1920x1080.png"
 
-[monitors.dellhubhaw.outputs.HDMI2]
+[monitors.dellhubhaw.outputs.HDMI1]
+edids = ['AC10418539383053']
 position = ["--above", "laptop"]
 
+[monitors.dellhubhaw.outputs.HDMI2]
+edids = ['AC10418541553153']
+position = ["--right-of", "dellhubhaw", "HDMI1"]
+
 [monitors.dellhubhaw.outputs.DP1]
-position = ["--right-of", "dellhubhaw", "HDMI2"]
+edids = ['AC10418541553153']
+position = ["--right-of", "dellhubhaw", "HDMI1"]
 
 [monitors.dell]
 description = "Dell"
