@@ -91,7 +91,6 @@ myManageHook = manageDocks <+> composeAll
 myLayoutHook = avoidStruts $ (renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3)))
                ||| avoidStruts (renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders Grid))
                ||| avoidStruts (renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders Grid))
-               -- ||| renamed [Replace "full"] (noBorders StateFull)
                ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
 
