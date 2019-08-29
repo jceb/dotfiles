@@ -57,7 +57,7 @@ main = do
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
     , terminal = "x-terminal-emulator"
-    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask . |. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
+    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
 
 myLogHook = workspaceHistoryHook
 
@@ -96,12 +96,13 @@ myLayoutHook = avoidStruts $ (renamed [Replace "tiled"] (focusTracking $ maximiz
 
 myAdditionalKeys =
   -- dwm style layout bindings
-  [ ((mod4Mask, xK_f ), sendMessage $ JumpToLayout "full")
-  , ((mod4Mask, xK_m ), withFocused (sendMessage . maximizeRestore))
+  [ ((mod4Mask, xK_m ), sendMessage $ JumpToLayout "full")
+  -- , ((mod4Mask, xK_m ), withFocused (sendMessage . maximizeRestore))
   , ((mod4Mask, xK_t ), sendMessage $ JumpToLayout "tiled")
-  -- , ((mod4Mask, xK_f ), sendMessage $ JumpToLayout "float")
+  , ((mod4Mask, xK_f ), sendMessage $ JumpToLayout "float")
   , ((mod4Mask, xK_g ), sendMessage $ JumpToLayout "grid")
   , ((mod4Mask, xK_y ), sendMessage $ JumpToLayout "master")
+  , ((mod4Mask, xK_b ), sendMessage $ ToggleStrut U)
   , ((mod4Mask, xK_Return), windows swapMasterOrSlave)
   , ((mod4Mask .|. shiftMask, xK_space), withFocused toggleFloat)
   , ((mod4Mask, xK_Left), prevWS)
