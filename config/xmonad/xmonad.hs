@@ -12,7 +12,7 @@ import XMonad.Layout.CenteredMaster
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutCombinators
--- http://hackage.haskell.org/package/xmonad-contrib-0.13/docs/XMonad-Layout-Maximize.html
+-- http://hackage.haskell.org/package/xmonad-contrib/docs/XMonad-Layout-Maximize.html
 import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
