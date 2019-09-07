@@ -1,21 +1,23 @@
-reload_plus
-zoom_in plus
+action_5 R
+close x C-w
+menu_child l
+menu_down j
+menu_parent h
+menu_up k
+next_img j n
+prev_img k p
+quit q Escape C-q
 reload_minus
-zoom_out minus
-zoom_fit equal slash
+reload_plus
+scroll_down J
 scroll_left H
 scroll_right L
 scroll_up K
-scroll_down J
-menu_up k
-menu_down j
-menu_parent h
-menu_child l
-toggle_info i
-next_img j n
-toggle_keep_vp
-prev_img k p
 toggle_fullscreen v F11
-quit q Escape C-q
-close x C-w
-action_5 R
+toggle_info i
+jump_random
+toggle_keep_vp z
+zoom_default 0
+zoom_fit equal slash
+zoom_in plus
+zoom_out minus

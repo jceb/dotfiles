@@ -1,5 +1,5 @@
-prev
-next
+prev_img
+next_img
 blur
-zoom_in C-4
-zoom_out C-5
+zoom_in 4 C-4
+zoom_out 5 C-5
