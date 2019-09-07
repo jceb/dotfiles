@@ -67,7 +67,6 @@ myManageHook = manageDocks <+> composeAll
                [ className =? "Copyq" --> doFloat
                , className =? "Empathy" --> doFloat
                , className =? "Gajim" --> doFloat
-               , className =? "Gimp" --> doFloat
                , className =? "Hexchat" --> doFloat
                , className =? "Jitsi" --> doFloat
                , className =? "Kio_uiserver" --> doFloat
@@ -86,11 +85,12 @@ myManageHook = manageDocks <+> composeAll
                , className =? "Riot" --> doFloat
                , className =? "Rambox" --> doFloat
                , className =? "Standard Notes" --> doFloat
+               , className =? "Calendar" --> doFloat
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
-myLayoutHook = avoidStruts $ (renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3)))
-               ||| avoidStruts (renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders Grid))
-               ||| avoidStruts (renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders Grid))
+myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
+               ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders Grid)
+               ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders Grid)
                ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
 
