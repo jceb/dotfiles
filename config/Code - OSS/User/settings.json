@@ -1,5 +1,4 @@
 {
-    "workbench.colorTheme": "Quiet Light",
     "editor.fontSize": 12,
     "editor.fontFamily": "'Hack'",
     "vim.enableNeovim": true,
@@ -10,5 +9,8 @@
     },
     "vim.easymotionMarkerFontFamily": "Hack",
     "vim.easymotionMarkerHeight": 12,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "vscode-icons"
 }
