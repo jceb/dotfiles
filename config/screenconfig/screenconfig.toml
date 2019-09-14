@@ -110,7 +110,7 @@ wallpaper = "~/wallpaper1920x1080.png"
 [monitors.dellhub]
 position = ["--right-of", "laptop"]
 description = "Dell Hub"
-edids = ["AC10A0A23157574C"]
+edids = ["AC10A0A23157574C", "AC10A0A23055414C"]
 wallpaper = "~/wallpaper1920x1080.png"
 
 [monitors.univentionbeamer]
