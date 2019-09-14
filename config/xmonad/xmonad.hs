@@ -86,6 +86,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "Rambox" --> doFloat
                , className =? "Standard Notes" --> doFloat
                , className =? "Calendar" --> doFloat
+               , className =? "Pavucontrol" --> doFloat
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
@@ -103,6 +104,7 @@ myAdditionalKeys =
   , ((mod4Mask, xK_g ), sendMessage $ JumpToLayout "grid")
   , ((mod4Mask, xK_y ), sendMessage $ JumpToLayout "master")
   , ((mod4Mask, xK_b ), sendMessage $ ToggleStrut U)
+  , ((mod4Mask, xK_c ), kill)
   , ((mod4Mask, xK_Return), windows swapMasterOrSlave)
   , ((mod4Mask .|. shiftMask, xK_space), withFocused toggleFloat)
   , ((mod4Mask, xK_Left), prevWS)
