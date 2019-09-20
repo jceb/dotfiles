@@ -113,6 +113,11 @@ description = "Dell Hub"
 edids = ["AC10A0A23157574C", "AC10A0A23055414C"]
 wallpaper = "~/wallpaper1920x1080.png"
 
+[monitors.ingolf]
+position = ["--right-of", "laptop"]
+description = "LG"
+edids = ["6D1E57FB00060852"]
+
 [monitors.univentionbeamer]
 description = "Acer"
 edids = ["7204870100001893"]
