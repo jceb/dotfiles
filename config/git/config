@@ -7,6 +7,7 @@
 	editor = terminal-gvim
 [merge]
     tool = nfugitive
+    ff = false
 [mergetool "vimdiff"]
 	cmd = "{$VMUX_REALEDITOR_NVIM}" -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [mergetool "nvimdiff4"]
@@ -58,7 +59,7 @@
 	coo = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git branch \"${branch}\" \"${origin}\"' -"
 	cob = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git checkout -b \"${branch}\" \"${origin}\"' -"
 	pre = pull --rebase --prune
-	ff = merge --ff-only
+	mf = merge --ff-only
 	m = merge --no-ff
 
 	rbc = rebase --continue
