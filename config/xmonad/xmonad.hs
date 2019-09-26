@@ -49,7 +49,7 @@ main = do
   xmonad $ docks $ ewmh def
     { manageHook =  myManageHook <+> manageHook def
     , layoutHook = myLayoutHook
-    , handleEventHook =  myHandleEventHook <+> handleEventHook def
+    , handleEventHook = myHandleEventHook <+> handleEventHook def
     , startupHook = setWMName "LG3D"
     , logHook = myLogHook <+> logHook def
     , borderWidth = 1
@@ -83,7 +83,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
                , className =? "Riot" --> doFloat
-               , className =? "Rambox" --> doFloat
+               -- , className =? "Rambox" --> doFloat
                , className =? "Standard Notes" --> doFloat
                , className =? "Calendar" --> doFloat
                , className =? "Pavucontrol" --> doFloat
