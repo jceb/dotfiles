@@ -270,6 +270,7 @@ schemes:
       background: '0x282c34'
       foreground: '0xabb2bf'
 
+
       # Bright and dim foreground colors
       #
       # The dimmed foreground color is calculated automatically if it is not present.
@@ -297,8 +298,10 @@ schemes:
 
     # Normal colors
     normal:
+      # NOTE: Use '0x131613' for the `black` color if you'd like to see
+      # black text on the background.
       black:   '0x282c34'
-      red:     '0xbe5046'
+      red:     '0xe06c75'
       green:   '0x98c379'
       yellow:  '0xd19a66'
       blue:    '0x61afef'
@@ -308,28 +311,14 @@ schemes:
 
     # Bright colors
     bright:
-      black:   '0x282c34'
+      black:   '0x5c6370'
       red:     '0xe06c75'
       green:   '0x98c379'
-      yellow:  '0xe5c07b'
+      yellow:  '0xd19a66'
       blue:    '0x61afef'
       magenta: '0xc678dd'
       cyan:    '0x56b6c2'
-      white:   '0xabb2bf'
-
-    # Dim colors
-    #
-    # If the dim colors are not set, they will be calculated automatically based
-    # on the `normal` colors.
-    # dim:
-    #   black:   '0x333333'
-    #   red:     '0xf2777a'
-    #   green:   '0x99cc99'
-    #   yellow:  '0xffcc66'
-    #   blue:    '0x6699cc'
-    #   magenta: '0xcc99cc'
-    #   cyan:    '0x66cccc'
-    #   white:   '0xdddddd'
+      white:   '0xffffff'
 
     # Indexed Colors
     #
