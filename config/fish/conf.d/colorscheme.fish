@@ -12,6 +12,4 @@
 #     set_onedark $onedark_options
 # end
 
-# execute
-# set_onedark -b
-# to set the colorscheme
+set_onedark -b
