@@ -76,7 +76,7 @@ export PYTHONSTARTUP="${HOME}/.pystartup"
 
 export XTERM_VERSION='XTerm(327)'
 
-export HIGHLIGHT_OPTIONS-'--style=seashell'
+export HIGHLIGHT_OPTIONS='--style=seashell'
 
 export WINIT_HIDPI_FACTOR='1.0'
 
