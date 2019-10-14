@@ -22,6 +22,9 @@ if not set -q __fish_color_magenta
     set -g __fish_color_magenta (set_color magenta)
 end
 
+# set -g fish_prompt_pwd_dir_length 20
+
+
 # git prompt configuration
 set -U __fish_git_prompt_char_dirtystate '⚡'
 set -U __fish_git_prompt_char_stagedstate '→'
@@ -83,12 +86,13 @@ function fish_prompt --description 'Write out the prompt'
         else if  test -n "$quilt_prompt"
             set vcs_prompt " ($quilt_prompt)"
         end
+
         # Fixes redraw issues when changing the directory with a keybinding https://github.com/fish-shell/fish-shell/issues/717
         echo -ne '\033[K'
         if test "$stat" -ne 0
-            printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
+            printf '%s(%s) %s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_color_status" "$stat" "$__fish_prompt_normal" "$__fish_prompt_cwd" (prompt_pwd) "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
         else
-            printf '%s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" "$pwd" "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
+            printf '%s%s%s%s%s\n%s%s%s@%s %% ' "$__fish_prompt_normal" "$__fish_prompt_cwd" (prompt_pwd) "$__fish_color_magenta" "$vcs_prompt" "$__fish_color_blue" "$USER" "$__fish_prompt_normal" (prompt_hostname)
         end
     end
 end
