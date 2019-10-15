@@ -4,12 +4,13 @@ import XMonad hiding ( (|||) )
 -- import XMonad.Layout hiding ( (|||) )
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (ewmh)
+import XMonad.Layout.Fullscreen (fullscreenManageHook, fullscreenFull)
+import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.WorkspaceHistory (workspaceHistoryHook)
 import XMonad.Layout.CenteredMaster
-import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutCombinators
 -- http://hackage.haskell.org/package/xmonad-contrib/docs/XMonad-Layout-Maximize.html
@@ -49,7 +50,7 @@ main = do
   xmonad $ docks $ ewmh def
     { manageHook =  myManageHook <+> manageHook def
     , layoutHook = myLayoutHook
-    , handleEventHook = myHandleEventHook <+> handleEventHook def
+    , handleEventHook =  myHandleEventHook <+> handleEventHook def
     , startupHook = setWMName "LG3D"
     , logHook = myLogHook <+> logHook def
     , borderWidth = 1
@@ -64,7 +65,9 @@ myLogHook = workspaceHistoryHook
 myHandleEventHook = fullscreenEventHook
 
 myManageHook = manageDocks <+> composeAll
-               [ className =? "Copyq" --> doFloat
+               [
+               isFullscreen --> doFullFloat
+               , className =? "Copyq" --> doFloat
                , className =? "Empathy" --> doFloat
                , className =? "Gajim" --> doFloat
                , className =? "Hexchat" --> doFloat
