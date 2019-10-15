@@ -67,6 +67,7 @@ myHandleEventHook = fullscreenEventHook
 myManageHook = manageDocks <+> composeAll
                [
                isFullscreen --> doFullFloat
+               , isDialog --> doCenterFloat
                , className =? "Copyq" --> doFloat
                , className =? "Empathy" --> doFloat
                , className =? "Gajim" --> doFloat
