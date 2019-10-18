@@ -1,12 +1,13 @@
 
 fzf_key_bindings
 function fish_user_key_bindings
+    fish_vi_key_bindings
     # Execute this once per mode that emacs bindings should be used in
     fish_default_key_bindings -M insert
     # Without an argument, fish_vi_key_bindings will default to
     # resetting all bindings.
     # The argument specifies the initial mode (insert, "default" or visual).
-    fish_vi_key_bindings --no-erase
+    # fish_vi_key_bindings --no-erase
 
     bind -M insert \eu __fish_dir_cycle_up
 
