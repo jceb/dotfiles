@@ -104,7 +104,7 @@ function fish_prompt --description 'Write out the prompt'
             printf '%s%s%s@%s %s%s%s%s\n%s➤ ' \
             "$__fish_color_blue" "$user" "$__fish_prompt_normal"  (prompt_hostname) \
             "$__fish_prompt_cwd" (prompt_pwd) "$__fish_color_magenta" "$vcs_prompt" \
-            "$__fish_color_yellow"
+            "$__fish_color_blue"
         end
     end
 end
