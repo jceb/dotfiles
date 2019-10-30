@@ -12,7 +12,6 @@ description = "Laptop"
 edids = ["E430044600000000", "7038000000000000", "AF06203600000000"]
 # The path to a wallpaper can be specified for each screen.  The wallpaper is
 # set through the tool "feh"
-wallpaper = "~/wallpaper1920x1080.png"
 # List of commands that are executed when a monitor is connected or disconnected
 # - All SRANDRD_* environment variables of the event are available to the
 #   command and can be used by it.  If the command is prefixed with
@@ -84,11 +83,9 @@ wallpaper = "~/wallpaper1440x2560.png"
 description = "Samsung"
 edids = ["2D4C03E800000000", "2D4C03E654573236"]
 position = ["--left-of", "laptop"]
-wallpaper = "~/wallpaper1920x1200.png"
 
 [monitors.dellhubhaw]
 description = "Dell"
-wallpaper = "~/wallpaper1920x1080.png"
 
 [monitors.dellhubhaw.outputs.HDMI1]
 edids = ['AC10418539383053']
@@ -104,14 +101,7 @@ position = ["--right-of", "dellhubhaw", "HDMI1"]
 
 [monitors.dell]
 description = "Dell"
-edids = ["AC1040613239334C"]
-wallpaper = "~/wallpaper1920x1080.png"
-
-[monitors.dellhub]
-position = ["--right-of", "laptop"]
-description = "Dell Hub"
-edids = ["AC10A0A23157574C", "AC10A0A23055414C"]
-wallpaper = "~/wallpaper1920x1080.png"
+edids = ["AC1040613239334C", "AC10A0A23157574C", "AC10A0A23055414C"]
 
 [monitors.ingolf]
 position = ["--right-of", "laptop"]
