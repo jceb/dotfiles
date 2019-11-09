@@ -21,6 +21,7 @@ yeahconsole*keySmaller		: Alt+k
 yeahconsole*toggleKey		: Alt+space
 yeahconsole*keyFull			: Alt+o
 yeahconsole*term			: alacritty
+yeahconsole*heightIncrease	: 13
 !yeahconsole*xOffset			: 100
 yeahconsole*yOffset			: 0
 yeahconsole*screenWidth		: 1600
