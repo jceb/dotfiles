@@ -68,29 +68,27 @@ myManageHook = manageDocks <+> composeAll
                [
                isFullscreen --> doFullFloat
                , isDialog --> doCenterFloat
+               , className =? "Calendar" --> doFloat
                , className =? "Copyq" --> doFloat
                , className =? "Empathy" --> doFloat
                , className =? "Gajim" --> doFloat
                , className =? "Hexchat" --> doFloat
                , className =? "Jitsi" --> doFloat
                , className =? "Kio_uiserver" --> doFloat
+               , className =? "Pavucontrol" --> doFloat
                , className =? "Pidgin" --> doFloat
                , className =? "Psi-plus" --> doFloat
                , className =? "Rainlendar2" --> doFloat
-               , className =? "Rambox" --> doFloat
+               -- , className =? "Rambox" --> doFloat
                , className =? "Riot" --> doFloat
                , className =? "Scratchpad" --> doFloat
                , className =? "Skype" --> doFloat
+               , className =? "Standard Notes" --> doFloat
                , className =? "Turpial" --> doFloat
                , className =? "Xchat" --> doFloat
                , className =? "copyq" --> doFloat
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
-               , className =? "Riot" --> doFloat
-               -- , className =? "Rambox" --> doFloat
-               , className =? "Standard Notes" --> doFloat
-               , className =? "Calendar" --> doFloat
-               , className =? "Pavucontrol" --> doFloat
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
