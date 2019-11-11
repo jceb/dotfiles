@@ -89,7 +89,7 @@ description = "Dell"
 
 [monitors.dellhubhaw.outputs.HDMI1]
 edids = ['AC10418539383053']
-position = ["--above", "laptop"]
+position = ["--right-of", "laptop"]
 
 [monitors.dellhubhaw.outputs.HDMI2]
 edids = ['AC10418541553153']
