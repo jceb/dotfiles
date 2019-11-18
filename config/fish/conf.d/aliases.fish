@@ -28,10 +28,9 @@ end
 
 abbr --add t 'tree -f'
 
-# calendar and contacts abbreviations
-abbr --add cal 'khal'
-abbr --add agenda 'khal agenda'
-abbr --add c 'khard'
+# # calendar and contacts abbreviations
+# abbr --add cal 'khal'
+# abbr --add agenda 'khal agenda'
 
 # ls
 function ls
