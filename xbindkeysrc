@@ -136,7 +136,7 @@
     Mod4 + x 
 
 #dmenu_run
-"dmenu_run"
+"dmenu_run -i"
     m:0x40 + c:39
     Mod4 + r 
 
