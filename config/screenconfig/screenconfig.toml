@@ -53,31 +53,18 @@ wallpaper = "~/wallpaper2560x1440.png"
 # name of the output (run xrandr to get the name) is appended to the monitor
 # configuration section.  All configurations options can be used in this
 # subsection
-[monitors.benq.outputs.DP-1]
 
-[monitors.benq.outputs.DP1-1]
-
-[monitors.benq.outputs.DP-1-1]
-
-[monitors.benq.outputs.HDMI1]
-
-[monitors.benq.outputs.HDMI2]
 # If you have multiple monitors with the same EDID that are connected at the
 # same time add the name of the output as the last element of the position to
 # set this monitor relative to it
-position = ["--right-of", "benq", "HDMI1"]
-# xrandr_args = ["--rotate", "left"]
-wallpaper = "~/wallpaper1440x2560.png"
-
 [monitors.benq.outputs.DP1-2]
 position = ["--right-of", "benq", "DP1-1"]
-# xrandr_args = ["--rotate", "left"]
-wallpaper = "~/wallpaper1440x2560.png"
 
 [monitors.benq.outputs.DP-1-2]
 position = ["--right-of", "benq", "DP-1-1"]
-# xrandr_args = ["--rotate", "left"]
-wallpaper = "~/wallpaper1440x2560.png"
+
+[monitors.benq.outputs.HDMI-1]
+position = ["--right-of", "benq", "DP-2"]
 
 [monitors.samsung]
 description = "Samsung"
