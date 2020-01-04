@@ -12,5 +12,7 @@
     "git.autofetch": true,
     "vim.neovimPath": "/usr/bin/nvim",
     "window.zoomLevel": 0,
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true,
+    "liveshare.featureSet": "stable"
 }
