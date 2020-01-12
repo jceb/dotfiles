@@ -31,6 +31,7 @@ edids = ["E430044600000000", "7038000000000000", "AF06203600000000"]
 # because EDID is not available!
 # ["touch", "/tmp/test/{.output}"]
 # ]
+wallpaper = "~/wallpaper2560x1440.png"
 
 [monitors.iiyama]
 description = "Iiyama"
@@ -46,7 +47,6 @@ position = ["--left-of", "laptop"]
 description = "Benq BL1152"
 edids = ["D109801B00005445"]
 position = ["--right-of", "laptop"]
-wallpaper = "~/wallpaper2560x1440.png"
 
 # It is possible to provide specific configuration details depending on the
 # output that the monitor is connected to.  The string ".outputs." followed
@@ -59,12 +59,15 @@ wallpaper = "~/wallpaper2560x1440.png"
 # set this monitor relative to it
 [monitors.benq.outputs.DP1-2]
 position = ["--right-of", "benq", "DP1-1"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.benq.outputs.DP-1-2]
 position = ["--right-of", "benq", "DP-1-1"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.benq.outputs.HDMI-1]
 position = ["--right-of", "benq", "DP-2"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.samsung]
 description = "Samsung"
@@ -81,10 +84,12 @@ position = ["--right-of", "laptop"]
 [monitors.dellhubhaw.outputs.HDMI2]
 edids = ['AC10418541553153']
 position = ["--right-of", "dellhubhaw", "HDMI1"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.dellhubhaw.outputs.DP1]
 edids = ['AC10418541553153']
 position = ["--right-of", "dellhubhaw", "HDMI1"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.dell]
 description = "Dell"
@@ -113,7 +118,7 @@ wallpaper = "~/wallpaper1280x1024.png"
 [monitors.default]
 position = ["--above", "laptop"]
 resolution = "auto"
-wallpaper = "~/wallpaper1920x1200.png"
+wallpaper = "~/wallpaper2560x1440_2.png"
 # exec_on_connect = [
 # ["touch", "/tmp/test/file"],
 # ["sh", "-x", "-c", "touch /tmp/test/$SRANDRD_EVENT"],
