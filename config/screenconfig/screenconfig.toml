@@ -74,6 +74,17 @@ description = "Samsung"
 edids = ["2D4C03E800000000", "2D4C03E654573236"]
 position = ["--left-of", "laptop"]
 
+[monitors.dellkraftwerk]
+description = "Dell"
+
+[monitors.dellkraftwerk.outputs.HDMI1]
+edids = ['AC10D0C230504354']
+position = ["--right-of", "laptop"]
+
+[monitors.dellkraftwerk.outputs.HDMI2]
+edids = ['AC10D0C230504354']
+position = ["--right-of", "HDMI1"]
+
 [monitors.dellhubhaw]
 description = "Dell"
 
