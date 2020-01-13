@@ -76,14 +76,11 @@ position = ["--left-of", "laptop"]
 
 [monitors.dellkraftwerk]
 description = "Dell"
-
-[monitors.dellkraftwerk.outputs.HDMI1]
-edids = ['AC10D0C230504354']
+edids = ['AC10D0C230504354', 'AC10D0C231345954']
 position = ["--right-of", "laptop"]
 
 [monitors.dellkraftwerk.outputs.HDMI2]
-edids = ['AC10D0C230504354']
-position = ["--right-of", "HDMI1"]
+position = ["--right-of", "dellkraftwerk", "HDMI1"]
 
 [monitors.dellhubhaw]
 description = "Dell"
