@@ -22,3 +22,6 @@
 [submodule "config/vis/plugins/surround"]
 	path = config/vis/plugins/surround
 	url = https://repo.or.cz/vis-surround.git
+[submodule "emacs.d"]
+	path = emacs.d
+	url = https://github.com/hlissner/doom-emacs
