@@ -1,27 +1,21 @@
 {
     "type": "phrase",
-    "modes": [
-        3
-    ],
+    "description": "IP",
+    "modes": [],
+    "usageCount": 101,
+    "prompt": false,
     "omitTrigger": false,
-    "usageCount": 100,
-    "sendMode": "kb",
+    "matchCase": false,
+    "showInTrayMenu": false,
     "abbreviation": {
-        "wordChars": "[\\w]",
         "abbreviations": [
             null
         ],
-        "triggerInside": false,
         "backspace": true,
+        "ignoreCase": false,
         "immediate": false,
-        "ignoreCase": false
-    },
-    "prompt": false,
-    "showInTrayMenu": false,
-    "matchCase": false,
-    "filter": {
-        "isRecursive": false,
-        "regex": null
+        "triggerInside": false,
+        "wordChars": "[\\w]"
     },
     "hotkey": {
         "modifiers": [
@@ -29,5 +23,9 @@
         ],
         "hotKey": "<insert>"
     },
-    "description": "IP"
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "sendMode": "kb"
 }

@@ -1,25 +1,19 @@
 {
     "type": "phrase",
-    "modes": [
-        3
-    ],
-    "omitTrigger": false,
+    "description": "Administrator",
+    "modes": [],
     "usageCount": 9,
-    "sendMode": "kb",
-    "abbreviation": {
-        "wordChars": "[\\w]",
-        "abbreviations": [],
-        "triggerInside": false,
-        "backspace": true,
-        "immediate": false,
-        "ignoreCase": false
-    },
     "prompt": false,
-    "showInTrayMenu": false,
+    "omitTrigger": false,
     "matchCase": false,
-    "filter": {
-        "isRecursive": false,
-        "regex": null
+    "showInTrayMenu": false,
+    "abbreviation": {
+        "abbreviations": [],
+        "backspace": true,
+        "ignoreCase": false,
+        "immediate": false,
+        "triggerInside": false,
+        "wordChars": "[\\w]"
     },
     "hotkey": {
         "modifiers": [
@@ -28,5 +22,9 @@
         ],
         "hotKey": "a"
     },
-    "description": "Administrator"
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "sendMode": "kb"
 }

@@ -1,31 +1,29 @@
 {
     "type": "phrase",
-    "modes": [
-        1
-    ],
-    "omitTrigger": false,
+    "description": "Issue",
+    "modes": [],
     "usageCount": 0,
-    "sendMode": "kb",
+    "prompt": false,
+    "omitTrigger": false,
+    "matchCase": false,
+    "showInTrayMenu": false,
     "abbreviation": {
-        "wordChars": "[\\w]",
         "abbreviations": [
             "ISS"
         ],
-        "triggerInside": false,
         "backspace": true,
+        "ignoreCase": false,
         "immediate": true,
-        "ignoreCase": false
-    },
-    "prompt": false,
-    "showInTrayMenu": false,
-    "matchCase": false,
-    "filter": {
-        "isRecursive": false,
-        "regex": null
+        "triggerInside": false,
+        "wordChars": "[\\w]"
     },
     "hotkey": {
         "modifiers": [],
         "hotKey": null
     },
-    "description": "Issue"
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "sendMode": "kb"
 }

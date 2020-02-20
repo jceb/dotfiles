@@ -1,31 +1,29 @@
 {
     "type": "phrase",
-    "modes": [
-        1
-    ],
+    "description": "Ticket",
+    "modes": [],
+    "usageCount": 5,
+    "prompt": false,
     "omitTrigger": false,
-    "usageCount": 4,
-    "sendMode": "kb",
+    "matchCase": false,
+    "showInTrayMenu": false,
     "abbreviation": {
-        "wordChars": "[\\w]",
         "abbreviations": [
             "TC"
         ],
-        "triggerInside": false,
         "backspace": true,
+        "ignoreCase": false,
         "immediate": true,
-        "ignoreCase": false
-    },
-    "prompt": false,
-    "showInTrayMenu": false,
-    "matchCase": false,
-    "filter": {
-        "isRecursive": false,
-        "regex": null
+        "triggerInside": false,
+        "wordChars": "[\\w]"
     },
     "hotkey": {
         "modifiers": [],
         "hotKey": null
     },
-    "description": "Ticket"
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "sendMode": "kb"
 }

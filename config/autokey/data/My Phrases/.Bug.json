@@ -1,9 +1,7 @@
 {
     "type": "phrase",
     "description": "Bug",
-    "modes": [
-        1
-    ],
+    "modes": [],
     "usageCount": 9,
     "prompt": false,
     "omitTrigger": false,
