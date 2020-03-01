@@ -82,6 +82,9 @@ position = ["--right-of", "laptop"]
 [monitors.dellkraftwerk.outputs.HDMI2]
 position = ["--right-of", "dellkraftwerk", "HDMI1"]
 
+[monitors.dellkraftwerk.outputs.HDMI-1]
+position = ["--right-of", "dellkraftwerk", "DP-2"]
+
 [monitors.dellhubhaw]
 description = "Dell"
 
