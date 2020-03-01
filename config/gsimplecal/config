@@ -1,6 +1,6 @@
 close_on_unfocus = 1
 external_viewer = x-www-browser https://mail.41ppl.com/SOGo
-force_lang = en_US.utf8
+force_lang = en_GB.utf8
 mainwindow_keep_above = 1
 mainwindow_position = mouse
 mainwindow_skip_taskbar = 1
