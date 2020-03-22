@@ -24,3 +24,5 @@ bind generic	L	move-last-line				# Vim-like movement binding
 bind status	A		!git commit --amend			# Amend changes
 bind status	P		!git push					# Push changes
 bind status	U		!git pull					# Pull changes
+
+color cursor			default	default	underline
