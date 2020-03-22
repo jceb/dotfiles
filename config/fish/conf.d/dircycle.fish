@@ -1,3 +1,9 @@
+function __fish_dir_list
+    ls
+    echo
+    commandline -f repaint
+end
+
 function __fish_dir_cycle_prev
     if test (count $dirprev) -gt 0
         prevd

@@ -16,6 +16,7 @@ function fish_user_key_bindings
 
     bind -M insert \ed __fish_list_current_token
     bind -M insert \em __fish_man_page
+    bind -M insert \ei __fish_dir_list
 
     bind -M insert \ck __fish_dir_cycle_warpDir
 
