@@ -328,7 +328,7 @@ schemes:
     #
     indexed_colors: []
 
-colors: *onedark
+colors: *papercolor
 
 # Visual Bell
 #
