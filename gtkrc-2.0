@@ -4,7 +4,7 @@
 include "/usr/share/themes/Breeze/gtk-2.0/gtkrc"
 style "user-font"
 {
-	font_name="Noto Sans Regular 9"
+	font_name="Noto Sans Regular"
 }
 widget_class "*" style "user-font"
 gtk-font-name="Noto Sans Regular 9"
