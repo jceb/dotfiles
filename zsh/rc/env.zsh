@@ -54,7 +54,7 @@ export ANDROID_HOME="${HOME}/Android/Sdk"
 export LD_LIBRARY_PATH="${HOME}/.local/lib"
 
 # set PATH so it includes user's private bin if it exists
-for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$HOME/.yarn/bin" "$HOME/.npm-global/bin" "$HOME/.cargo/bin" "$ANDROID_HOME/tools" "/var/lib/snapd/snap/bin"; do
+for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$HOME/.yarn/bin" "$HOME/.npm-global/bin" "$HOME/.cargo/bin" "$ANDROID_HOME/emulator" "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/tools" "/var/lib/snapd/snap/bin"; do
 	if [ -e "$i" ]; then
 		PATH="$i:${PATH}"
 	fi

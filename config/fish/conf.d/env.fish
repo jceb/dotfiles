@@ -53,7 +53,7 @@ set -x ANDROID_HOME "$HOME/Android/Sdk"
 set -x LD_LIBRARY_PATH "$HOME/.local/lib"
 
 # set PATH so it includes user's private bin if it exists
-for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$HOME/.yarn/bin" "$HOME/.npm-global/bin" "$HOME/.cargo/bin" "$ANDROID_HOME/tools" "/var/lib/snapd/snap/bin"
+for i in "$HOME/Documents/toolshed/" "$HOME/.cabal/bin" "$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.3.0/bin" "$HOME/.gem/ruby/2.4.0/bin" "$GOPATH/bin" "$HOME/.yarn/bin" "$HOME/.npm-global/bin" "$HOME/.cargo/bin" "$ANDROID_HOME/emulator" "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/tools" "/var/lib/snapd/snap/bin"
 	if test -d "$i"; and not contains $i $PATH
 		set -x PATH $i $PATH
 	end
