@@ -1,26 +1,18 @@
-# File created by KDE Gtk Config
-# Configs for GTK2 programs
-
-include "/usr/share/themes/Breeze/gtk-2.0/gtkrc"
-style "user-font"
-{
-	font_name="Noto Sans Regular"
-}
-widget_class "*" style "user-font"
-gtk-font-name="Noto Sans Regular 9"
-gtk-theme-name="Breeze"
-gtk-icon-theme-name="breeze"
-gtk-fallback-icon-theme="breeze"
+gtk-button-images=1
+gtk-can-change-accels=1
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=24
-gtk-toolbar-style=GTK_TOOLBAR_BOTH
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-gtk-button-images=1
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
+gtk-fallback-icon-theme="breeze-dark"
+gtk-font-name="Noto Sans 9"
+gtk-icon-theme-name="breeze-dark"
 gtk-menu-images=1
-gtk-button-images=1
 gtk-primary-button-warps-slider=0
+gtk-theme-name="Breeze-Dark"
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_BOTH
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintnone"
-gtk-xft-rgba="none"
-gtk-can-change-accels = 1
+gtk-xft-hintstyle="hintslight"
+gtk-xft-rgba="rgb"
