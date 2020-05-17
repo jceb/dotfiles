@@ -20,9 +20,7 @@ profile=no
 
 # Add <file or directory> to the black list. It should be a base name, not a
 # path. You may set this option multiple times.
-ignore=CVS
-ignore=.svn
-ignore=.git
+ignore=CVS,.svn,.git
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -282,8 +280,8 @@ max-module-lines=1000
 
 # String used as indentation unit. This is usually " " (4 spaces) or "\t" (1
 # tab).
-#indent-string='    '
-indent-string='\t'
+indent-string='    '
+# indent-string='\t'
 
 
 # checks for:
