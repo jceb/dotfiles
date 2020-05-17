@@ -33,6 +33,14 @@
 # export TTY properly to support gnupg
 export GPG_TTY="$(tty)"
 
+# set environment variables for gpg and ssh agent
+if [ -z "${GPG_AGENT_INFO}" ]; then
+    export GPG_AGENT_INFO="/run/user/$(getent passwd jceb|awk -F: '{print $3}')/gnupg/S.gpg-agent"
+fi
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+    export SSH_AUTH_SOCK="/run/user/$(getent passwd jceb|awk -F: '{print $3}')/gnupg/S.gpg-agent.ssh"
+fi
+
 # export FZF_DEFAULT_COMMAND='rg -i --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_OPTS='--bind ctrl-z:toggle-all --color=light'
 #
