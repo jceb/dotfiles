@@ -1,5 +1,4 @@
 
-fzf_key_bindings
 function fish_user_key_bindings
     # fish_vi_key_bindings
     # Execute this once per mode that emacs bindings should be used in
@@ -59,3 +58,5 @@ function fish_user_key_bindings
     end
     ### fzf ###
 end
+
+fzf_key_bindings
