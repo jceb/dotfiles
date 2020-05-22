@@ -48,6 +48,13 @@ function lh
     ls -lh $argv
 end
 
+# create various things
+
+function create-readme
+    # install: yarn global add yo generator-standard-readme
+    command yo standard-readme $argv
+end
+
 # quilt
 abbr --add q++ 'quilt push -a'
 abbr --add q+ 'quilt push'
