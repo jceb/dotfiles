@@ -51,7 +51,7 @@
     Mod4 + e 
 
 #gvim
-"gvim"
+"fvim"
     m:0x40 + c:55
     Mod4 + v 
 
