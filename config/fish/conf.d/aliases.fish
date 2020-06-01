@@ -14,6 +14,13 @@ function rg
     command rg -i $argv
 end
 
+# function br
+#     set dir (broot $argv)
+#     if [ -n $dir ]
+#         cd $dir
+#     end
+# end
+
 function any
     command ps aux | rg $argv
 end
@@ -38,15 +45,9 @@ function ls
 end
 abbr --add ltr 'ls -ltr'
 abbr --add ltra 'ls -ltra'
-function l
-    ls -l $argv
-end
-function ll
-    ls -l $argv
-end
-function lh
-    ls -lh $argv
-end
+abbr --add l 'ls -l'
+abbr --add ll 'ls -l'
+abbr --add lh 'ls -lh'
 
 # create various things
 
