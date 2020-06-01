@@ -1,4 +1,4 @@
-set -x VISUAL vis
+set -x VISUAL nvim
 set -x EDITOR vim
 
 # cursor shape set by fish_vi_cursor
