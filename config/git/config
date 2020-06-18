@@ -1,7 +1,8 @@
 [user]
 	name = Jan Christoph Ebersbach
+	signingkey = 444912B0B381009F
 	# set through environment variable EMAIL
-	# email = jceb@e-jc.de
+	# email = xxxx
 [gui]
 	fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
