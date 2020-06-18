@@ -1,3 +1,5 @@
+eval "$(direnv hook zsh)"
+
 # export HISTFILE="${HOME}/.historyzsh"
 # export HISTSIZE="1000"
 # export SAVEHIST="1000"
