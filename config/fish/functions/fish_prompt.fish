@@ -98,14 +98,14 @@ function fish_prompt --description 'Write out the prompt'
         # Fixes redraw issues when changing the directory with a keybinding https://github.com/fish-shell/fish-shell/issues/717
         echo -ne '\033[K'
         if test "$stat" -ne 0
-            # ↳⤷➤⇒⤇↦⇥
-            printf '%s(%s) %s%s%s@%s %s%s%s%s\n%s→ ' \
+            # ↳⤷➤⇒⤇↦⇥→
+            printf '%s(%s) %s%s%s@%s %s%s%s%s\n%s↳ ' \
             "$__fish_color_status" "$stat" \
             "$__fish_color_blue" "$user" "$__fish_prompt_normal"  (prompt_hostname) \
             "$__fish_prompt_cwd" (prompt_pwd) "$__fish_color_magenta" "$vcs_prompt" \
             "$__fish_color_red"
         else
-            printf '%s%s%s@%s %s%s%s%s\n%s→ ' \
+            printf '%s%s%s@%s %s%s%s%s\n%s↳ ' \
             "$__fish_color_blue" "$user" "$__fish_prompt_normal"  (prompt_hostname) \
             "$__fish_prompt_cwd" (prompt_pwd) "$__fish_color_magenta" "$vcs_prompt" \
             "$__fish_color_blue"
