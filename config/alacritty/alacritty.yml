@@ -148,17 +148,7 @@ font:
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
+  # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
@@ -182,16 +172,18 @@ schemes:
 
     # Cursor colors
     #
-    # Colors which should be used to draw the terminal cursor. If these are unset,
-    # the cursor color will be the inverse of the cell color.
+    # Allowed values are CellForeground and CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
     cursor:
       text: '0x000000'
       cursor: '0x87afd7'
 
     # Vi mode cursor colors
     #
-    # Colors for the cursor when the vi mode is active. If these are unset, the
-    # cursor color will be the inverse of the cell color.
+    # Colors for the cursor when the vi mode is active.
+    #
+    # Allowed values are CellForeground and CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
     #vi_mode_cursor:
     #  text: '#000000'
     #  cursor: '#ffffff'
@@ -269,16 +261,20 @@ schemes:
 
     # Cursor colors
     #
-    # Colors which should be used to draw the terminal cursor. If these are unset,
-    # the cursor color will be the inverse of the cell color.
+  # Colors which should be used to draw the terminal cursor.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
     cursor:
       text: '0x000000'
       cursor: '0xabb2bf'
 
     # Vi mode cursor colors
     #
-    # Colors for the cursor when the vi mode is active. If these are unset, the
-    # cursor color will be the inverse of the cell color.
+    # Colors for the cursor when the vi mode is active.
+    #
+    # Allowed values are CellForeground and CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
     #vi_mode_cursor:
     #  text: '#000000'
     #  cursor: '#ffffff'
