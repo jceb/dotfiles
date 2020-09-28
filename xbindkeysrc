@@ -8,23 +8,23 @@
 # The pound(#) symbol may be used anywhere for comments.
 #
 # A list of keys is in /usr/include/X11/keysym.h and in
-# /usr/include/X11/keysymdef.h 
-# The XK_ is not needed. 
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
 #
-# List of modifier (on my keyboard): 
-#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
-#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+# List of modifier (on my keyboard):
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
 #
-# Another way to specifie a key is to use 'xev' and set the 
-# keycode with c:nnn or the modifier with m:nnn where nnn is 
-# the keycode or the state returned by xev 
+# Another way to specifie a key is to use 'xev' and set the
+# keycode with c:nnn or the modifier with m:nnn where nnn is
+# the keycode or the state returned by xev
 #
-# This file is created by xbindkey_config 
-# The structure is : 
-# # Remark 
-# "command" 
-# m:xxx + c:xxx 
-# Shift+... 
+# This file is created by xbindkey_config
+# The structure is :
+# # Remark
+# "command"
+# m:xxx + c:xxx
+# Shift+...
 
 
 
@@ -38,132 +38,132 @@
 #x-terminal-emulator tmux
 "x-terminal-emulator"
     m:0x41 + c:36
-    Shift+Mod4 + Return 
+    Shift+Mod4 + Return
 
 #ranger
-"x-terminal-emulator ranger"
-    m:0x41 + c:45
-    Shift+Mod4 + e 
+"x-terminal-emulator nnn"
+    m:0x40 + c:45
+    Mod4 + e
 
 #file manager
 "caja"
-    m:0x40 + c:45
-    Mod4 + e 
+    m:0x41 + c:45
+    Shift+Mod4 + e
 
 #gvim
-"gvim"
+"nvim-qt"
     m:0x40 + c:55
-    Mod4 + v 
+    Mod4 + v
 
 #screensaver lock
 "xset s activate"
     m:0xc + c:30
-    Control+Alt + l 
+    Control+Alt + l
 
 #Browser
 "x-www-browser"
     m:0x0 + c:180
-    XF86HomePage 
+    XF86HomePage
 
 #Mail
 "x-terminal-emulator -e neomutt"
     m:0x0 + c:163
-    XF86Mail 
+    XF86Mail
 
 #Search
 "x-www-browser"
     m:0x0 + c:225
-    XF86Search 
+    XF86Search
 
 #Music
 "clementine"
     m:0x0 + c:179
-    XF86Tools 
+    XF86Tools
 
 #Calculator
 "gnome-calculator"
     m:0x0 + c:148
-    XF86Calculator 
+    XF86Calculator
 
 #Volume Lower
 "pulseaudio-ctl down 2"
     m:0x0 + c:122
-    XF86AudioLowerVolume 
+    XF86AudioLowerVolume
 
 #Volume Raise
 "pulseaudio-ctl up 2"
     m:0x0 + c:123
-    XF86AudioRaiseVolume 
+    XF86AudioRaiseVolume
 
 #Volume Mute
 "pulseaudio-ctl mute"
     m:0x0 + c:121
-    XF86AudioMute 
+    XF86AudioMute
 
 #Volume Mute-Mic
 "pulseaudio-ctl mute-input"
     m:0x0 + c:198
-    XF86AudioMicMute 
+    XF86AudioMicMute
 
 #Audio Previous
 "playerctl previous"
     m:0x0 + c:173
-    XF86AudioPrev 
+    XF86AudioPrev
 
 #Audio Play
 "playerctl play-pause"
     m:0x0 + c:172
-    XF86AudioPlay 
+    XF86AudioPlay
 
 #Audio Play
 "playerctl play-pause"
     m:0x0 + c:208
-    XF86AudioPlay 
+    XF86AudioPlay
 
 #Audio Next
 "playerctl next"
     m:0x0 + c:171
-    XF86AudioNext 
+    XF86AudioNext
 
 #Audio Stop
 "playerctl stop"
     m:0x0 + c:174
-    XF86AudioStop 
+    XF86AudioStop
 
 #dmenu_duckduckgo
 "dmenu_duckduckgo"
     m:0x40 + c:53
-    Mod4 + x 
+    Mod4 + x
 
 #dmenu_run
 "dmenu_run -i"
     m:0x40 + c:39
-    Mod4 + r 
+    Mod4 + r
 
 #calendar
 "gsimplecal"
     m:0x40 + c:52
-    Mod4 + z 
+    Mod4 + z
 
 #Screenshot
 "flameshot gui"
     m:0x40 + c:27
-    Mod4 + p 
+    Mod4 + p
 
 #Screensaver on
 "screensaver-on"
     m:0xd + c:30
-    Control+Shift+Alt + l 
+    Control+Shift+Alt + l
 
 #Screensaver off
 "screensaver-off"
     m:0x45 + c:30
-    Control+Shift+Mod4 + l 
+    Control+Shift+Mod4 + l
 
 #Volume Control
 "pavucontrol"
     m:0x40 + c:38
-    Mod4 + a 
+    Mod4 + a
 
 #
 # End of xbindkeys configuration
