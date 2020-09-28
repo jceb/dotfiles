@@ -130,8 +130,8 @@ function _ch2root --description "jump to the next parent directory containing a 
     return
 end
 
-abbr --add cd. 'cd (_ch2root debian .git .hg .svn)'
-abbr --add cdroot 'cd (_ch2root debian .git .hg .svn)'
+abbr --add cd. 'cd _ch2root debian .git .hg .svn package.json)'
+abbr --add cdroot 'cd (_ch2root debian .git .hg .svn package.json)'
 
 abbr --add cd.. 'cd ..'
 
