@@ -9,4 +9,3 @@ set -g fish_escape_delay_ms 10
 
 # hide greeting
 set fish_greeting ""
-
