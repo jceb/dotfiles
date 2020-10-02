@@ -41,7 +41,7 @@
     Shift+Mod4 + Return
 
 #ranger
-"x-terminal-emulator nnn"
+"x-terminal-emulator -e 'nnn -Q -n'"
     m:0x40 + c:45
     Mod4 + e
 
