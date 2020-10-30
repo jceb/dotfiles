@@ -41,9 +41,6 @@ if test -z "$SSH_AUTH_SOCK"
     export SSH_AUTH_SOCK="/run/user/"(getent passwd jceb|awk -F: '{print $3}')"/gnupg/S.gpg-agent.ssh"
 end
 
-export NNN_COLORS='4625'
-export NNN_FCOLORS='c1e20402000606f7c6d6abc4'
-export NNN_TRASH=1
 export NNN_BMS=(sed -ne 's/^\([0-9a-zA-Z]\)[^:]*:/\1:/p' ~/.warprc | sed -e ':a;N;s/\n/;/;ta')
 
 # export FZF_DEFAULT_COMMAND='command rg -i --files --no-ignore --hidden --follow --glob "!.git/*"'
