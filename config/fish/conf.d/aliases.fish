@@ -28,7 +28,7 @@ end
 abbr --add o 'xdg-open'
 abbr --add open 'xdg-open'
 
-abbr --add n 'VISUAL=vim nnn -Q -n'
+abbr --add n 'VISUAL=vim _n -Q -n'
 
 # on debian based systems this makes the use of ack a bit easier
 if test -e /usr/bin/ack-grep
