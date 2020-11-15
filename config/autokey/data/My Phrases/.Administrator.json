@@ -1,7 +1,9 @@
 {
     "type": "phrase",
     "description": "Administrator",
-    "modes": [],
+    "modes": [
+        3
+    ],
     "usageCount": 9,
     "prompt": false,
     "omitTrigger": false,
@@ -17,8 +19,8 @@
     },
     "hotkey": {
         "modifiers": [
-            "<alt>",
-            "<ctrl>"
+            "<ctrl>",
+            "<shift>"
         ],
         "hotKey": "a"
     },

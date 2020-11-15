@@ -1,16 +1,16 @@
 {
     "type": "phrase",
-    "description": "univention",
-    "modes": [],
-    "usageCount": 4,
+    "description": "paedmllinux",
+    "modes": [
+        3
+    ],
+    "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
-        "abbreviations": [
-            "MAC"
-        ],
+        "abbreviations": [],
         "backspace": true,
         "ignoreCase": false,
         "immediate": false,
@@ -19,10 +19,10 @@
     },
     "hotkey": {
         "modifiers": [
-            "<alt>",
-            "<ctrl>"
+            "<ctrl>",
+            "<shift>"
         ],
-        "hotKey": "u"
+        "hotKey": "p"
     },
     "filter": {
         "regex": null,
