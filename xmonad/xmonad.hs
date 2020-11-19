@@ -5,13 +5,14 @@ import XMonad hiding ( (|||) )
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Fullscreen (fullscreenManageHook, fullscreenFull)
-import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook, ewmhDesktopsEventHook, ewmhDesktopsStartup, ewmhDesktopsLogHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.WorkspaceHistory (workspaceHistoryHook)
 import XMonad.Layout.CenteredMaster
-import XMonad.Layout.Grid
+-- import XMonad.Layout.Grid
+import XMonad.Layout.GridVariants
 import XMonad.Layout.LayoutCombinators
 -- http://hackage.haskell.org/package/xmonad-contrib/docs/XMonad-Layout-Maximize.html
 import XMonad.Layout.Maximize
@@ -26,8 +27,11 @@ import qualified XMonad.StackSet as W
 import System.IO
 import Data.Map as M
 
--- TODO
--- - [90%] make s-enter swap master
+-- myewmhDesktopsEventHookCustom  handle function
+import qualified Data.Monoid as DM
+import XMonad.Util.XUtils (fi)
+import XMonad.Util.WorkspaceCompare
+import qualified XMonad.Util.ExtensibleState as XS
 
 toggleFloat :: Window -> X ()
 toggleFloat w = do
@@ -47,12 +51,12 @@ scratchpads = [
   ]
 
 main = do
-  xmonad $ docks $ ewmh def
+  xmonad $ docks $ def
     { manageHook =  myManageHook <+> manageHook def
     , layoutHook = myLayoutHook
-    , handleEventHook =  myHandleEventHook <+> handleEventHook def
-    , startupHook = setWMName "LG3D"
-    , logHook = myLogHook <+> logHook def
+    , handleEventHook =  myewmhDesktopsEventHookCustom id <+> myHandleEventHook <+> handleEventHook def
+    , startupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
+    , logHook = ewmhDesktopsLogHook <+> myLogHook <+> logHook def
     , borderWidth = 1
     , focusedBorderColor = "#D7005F"
     , normalBorderColor  = "#4D4D4C"
@@ -61,6 +65,55 @@ main = do
     } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
 
 myLogHook = workspaceHistoryHook
+
+
+-- myewmhDesktopsEventHookCustom
+newtype NetActivated    = NetActivated {netActivated :: Maybe Window}
+  deriving (Show, Typeable)
+instance ExtensionClass NetActivated where
+    initialValue        = NetActivated Nothing
+
+myewmhDesktopsEventHookCustom :: ([WindowSpace] -> [WindowSpace]) -> Event -> X DM.All
+myewmhDesktopsEventHookCustom f e = handle f e >> return (DM.All True)
+
+-- only change: swap W.view with W.greedyView
+handle :: ([WindowSpace] -> [WindowSpace]) -> Event -> X ()
+handle f (ClientMessageEvent {
+               ev_window = w,
+               ev_message_type = mt,
+               ev_data = d
+       }) = withWindowSet $ \s -> do
+       sort' <- getSortByIndex
+       let ws = f $ sort' $ W.workspaces s
+       a_cd <- getAtom "_NET_CURRENT_DESKTOP"
+       a_d <- getAtom "_NET_WM_DESKTOP"
+       a_aw <- getAtom "_NET_ACTIVE_WINDOW"
+       a_cw <- getAtom "_NET_CLOSE_WINDOW"
+       a_ignore <- mapM getAtom ["XMONAD_TIMER"]
+       if  mt == a_cd then do
+               let n = head d
+               if 0 <= n && fi n < length ws then
+                       windows $ W.greedyView (W.tag (ws !! fi n))
+                 else  trace $ "Bad _NET_CURRENT_DESKTOP with data[0]="++show n
+        else if mt == a_d then do
+               let n = head d
+               if 0 <= n && fi n < length ws then
+                       windows $ W.shiftWin (W.tag (ws !! fi n)) w
+                 else  trace $ "Bad _NET_DESKTOP with data[0]="++show n
+        else if mt == a_aw then do
+               lh <- asks (logHook . config)
+               XS.put (NetActivated (Just w))
+               lh
+        else if mt == a_cw then
+               killWindow w
+        else if mt `elem` a_ignore then
+           return ()
+        else
+          -- The Message is unknown to us, but that is ok, not all are meant
+          -- to be handled by the window manager
+          return ()
+handle _ _ = return ()
+-- myewmhDesktopsEventHookCustom END
 
 myHandleEventHook = fullscreenEventHook
 
@@ -92,8 +145,8 @@ myManageHook = manageDocks <+> composeAll
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
-               ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders Grid)
-               ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders Grid)
+               ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ TallGrid 2 3 (2/3) (16/10) (5/100))
+               ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ TallGrid 2 3 (2/3) (16/10) (5/100))
                ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
 
@@ -124,6 +177,10 @@ myAdditionalKeys =
   , ((mod4Mask, xK_Tab), toggleWS)
   , ((mod4Mask, xK_i), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
   , ((mod4Mask, xK_o), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
+  , ((mod4Mask .|. shiftMask, xK_equal), sendMessage $ IncMasterCols 1)
+  , ((mod4Mask .|. shiftMask, xK_minus), sendMessage $ IncMasterCols (-1))
+  , ((mod4Mask .|. controlMask,  xK_equal), sendMessage $ IncMasterRows 1)
+  , ((mod4Mask .|. controlMask,  xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
   , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "default")
   ]
