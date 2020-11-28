@@ -40,13 +40,13 @@
     m:0x41 + c:36
     Shift+Mod4 + Return
 
-#ranger
-"x-terminal-emulator -e 'nnn -Q -n'"
+#file manager
+"pcmanfm"
     m:0x40 + c:45
     Mod4 + e
 
-#file manager
-"caja"
+#terminal file manager
+"x-terminal-emulator -e 'nnn -Q -n'"
     m:0x41 + c:45
     Shift+Mod4 + e
 
