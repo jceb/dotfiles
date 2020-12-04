@@ -35,7 +35,10 @@ if test -e /usr/bin/ack-grep
     abbr --add ack 'ack-grep'
 end
 
-abbr --add t 'tree -f'
+# abbr --add t 'tree -f'
+abbr --add t 'exa -T'
+
+abbr --add top 'htop'
 
 # # calendar and contacts abbreviations
 # abbr --add cal 'khal'
@@ -43,12 +46,17 @@ abbr --add t 'tree -f'
 
 # ls
 function ls
-    command ls -b -CF --file-type --color=auto --group-directories-first $argv
+    # command ls -b -CF --file-type --color=auto --group-directories-first $argv
+    command exa --git -F $argv
 end
-abbr --add ltr 'ls -ltr'
-abbr --add ltra 'ls -ltra'
-abbr --add l 'ls -l'
-abbr --add ll 'ls -l'
+abbr --add ltr 'ls -l -smodified'
+# abbr --add ltr 'ls -ltr'
+abbr --add ltra 'ls -la -smodified'
+# abbr --add ltra 'ls -ltra'
+abbr --add l 'ls -l --group-directories-first'
+# abbr --add l 'ls -l'
+abbr --add ll 'ls -l --group-directories-first'
+# abbr --add ll 'ls -l'
 abbr --add lh 'ls -lh'
 
 # create various things
@@ -139,9 +147,11 @@ function r -d 'grep replacement'
     rg -S --hidden -n -H $argv | fzf -0 -m
 end
 
-function f -d 'find for files'
-    fd -tf $argv | fzf -0 -m
-end
+# function f -d 'find for files'
+#     fd -tf $argv | fzf -0 -m
+# end
+
+abbr --add f 'faas-cli'
 
 function d -d 'find for directories'
     fd -td $argv | fzf -0 -m
