@@ -1,0 +1,18 @@
+add_newline = true
+
+[character]
+symbol = "→"
+vicmd_symbol = "[V](bold green)"
+success_symbol = "[↳](bold green)"
+error_symbol = "[✗](bold red)"
+
+[cmd_duration]
+show_notifications = true
+min_time_to_notify = 30000
+
+[directory]
+truncation_symbol = "…/"
+
+[git_branch]
+always_show_remote = false
+format = "on [$symbol$branch$remote]($style)"
