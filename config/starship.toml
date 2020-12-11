@@ -6,6 +6,12 @@ vicmd_symbol = "[V](bold cyan)"
 success_symbol = "[↳](bold cyan)"
 error_symbol = "[✗](bold red)"
 
+[status]
+style = "bold red"
+disabled = false
+symbol = ""
+format = "[$symbol$status]($style) "
+
 [cmd_duration]
 show_notifications = true
 min_time_to_notify = 30000
@@ -16,3 +22,16 @@ truncation_symbol = "…/"
 [git_branch]
 always_show_remote = true
 format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
+
+[custom.quilt_applied]
+when = "findfile patches"
+command = "quilt applied | wc -l"
+format = "[$symbol$output]($style)"
+symbol = "🙨 "
+style = "bold blue"
+
+[custom.quilt_patches]
+when = "findfile patches"
+command = "quilt series | wc -l"
+format = "/[$symbol$output]($style) "
+style = "bold blue"
