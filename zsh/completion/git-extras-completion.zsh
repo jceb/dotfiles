@@ -340,7 +340,7 @@ zstyle ':completion:*:*:git:*' user-commands $existing_user_commands \
     chore:'create chore branch' \
     clear-soft:'soft clean up a repository' \
     clear:'rigorously clean up a repository' \
-    coauthor: 'add a co-author to the last commit' \
+    coauthor:'add a co-author to the last commit' \
     commits-since:'show commit logs since some date' \
     contrib:'show user contributions' \
     count:'show commit count' \
@@ -397,4 +397,5 @@ zstyle ':completion:*:*:git:*' user-commands $existing_user_commands \
     sync:'sync local branch with remote branch' \
     touch:'touch and add file to the index' \
     undo:'remove latest commits' \
-    unlock:'unlock a file excluded from version control'
+    unlock:'unlock a file excluded from version control' \
+    utimes:'change files modification time to their last commit date'
