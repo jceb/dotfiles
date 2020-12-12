@@ -24,14 +24,16 @@ always_show_remote = true
 format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
 
 [custom.quilt_applied]
-when = "findfile patches"
-command = "quilt applied | wc -l"
+when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
+shell = ["sh"]
+command = "quilt applied | wc -l | tr -d '\n'; echo -n '/'; quilt series | wc -l"
 format = "[$symbol$output]($style)"
-symbol = "🙨 "
+symbol = "🩹"
 style = "bold blue"
 
-[custom.quilt_patches]
-when = "findfile patches"
-command = "quilt series | wc -l"
-format = "/[$symbol$output]($style) "
-style = "bold blue"
+# [custom.quilt_patches]
+# when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
+# shell = ["sh"]
+# command = "quilt series | wc -l"
+# format = "/[$symbol$output]($style) "
+# style = "bold blue"
