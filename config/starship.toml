@@ -23,6 +23,13 @@ truncation_symbol = "…/"
 always_show_remote = true
 format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
 
+[git_status]
+style = "bold purple"
+untracked = "" # hide untracked status
+ahead = "⇡$count"
+behind = "⇣$count"
+diverged = "⇕$ahead_count/$behind_count"
+
 [custom.quilt_applied]
 when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
 shell = ["sh"]
