@@ -34,7 +34,7 @@ diverged = "⇕$ahead_count/$behind_count"
 when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
 shell = ["sh"]
 command = "quilt applied | wc -l | tr -d '\n'; echo -n '/'; quilt series | wc -l"
-format = "[$symbol$output]($style)"
+format = "[$symbol$output]($style) "
 symbol = "🩹"
 style = "bold blue"
 
