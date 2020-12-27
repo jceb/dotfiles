@@ -1,4 +1,3 @@
-
 function fish_user_key_bindings
     # fish_vi_key_bindings
     # Execute this once per mode that emacs bindings should be used in
@@ -8,7 +7,7 @@ function fish_user_key_bindings
     # The argument specifies the initial mode (insert, "default" or visual).
     fish_vi_key_bindings --no-erase
 
-    bind -M insert \cs br
+    bind -M insert \cs __n
 
     bind -M insert \eu __fish_dir_cycle_up
 

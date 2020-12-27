@@ -14,21 +14,19 @@ function rg
     command rg -i $argv
 end
 
-# function br
-#     set dir (broot $argv)
-#     if [ -n $dir ]
-#         cd $dir
-#     end
-# end
-
 function any
     command ps aux | rg $argv
 end
 
+function __n
+    VISUAL=vim _n -Q
+end
+
+
 abbr --add o 'xdg-open'
 abbr --add open 'xdg-open'
 
-abbr --add n 'VISUAL=vim _n -Q -n'
+abbr --add n __n
 
 # on debian based systems this makes the use of ack a bit easier
 if test -e /usr/bin/ack-grep
