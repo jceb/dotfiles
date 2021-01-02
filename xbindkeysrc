@@ -46,7 +46,7 @@
     Mod4 + e
 
 #terminal file manager
-"x-terminal-emulator -e 'nnn -Q -n'"
+"x-terminal-emulator -e 'nnn -Q'"
     m:0x41 + c:45
     Shift+Mod4 + e
 
