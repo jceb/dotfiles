@@ -1,4 +1,4 @@
-eval (direnv hook fish)
+# eval (direnv hook fish)
 
 # export TMPDIR="$HOME/.cache/tmp"
 # # speed up certain system calls: https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
