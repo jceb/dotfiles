@@ -24,6 +24,7 @@ always_show_remote = true
 format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
 
 [git_status]
+# disabled = true
 style = "bold purple"
 ahead = "⇡$count"
 behind = "⇣$count"

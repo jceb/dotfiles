@@ -41,7 +41,7 @@
     Shift+Mod4 + Return
 
 #file manager
-"pcmanfm"
+"pcmanfm-qt"
     m:0x40 + c:45
     Mod4 + e
 
@@ -50,8 +50,8 @@
     m:0x41 + c:45
     Shift+Mod4 + e
 
-#gvim
-"nvim-qt"
+#gui vim
+"gnvim"
     m:0x40 + c:55
     Mod4 + v
 
