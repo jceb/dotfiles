@@ -38,6 +38,13 @@ abbr --add t 'exa -T'
 
 abbr --add top 'htop'
 
+abbr --add k 'kubectl'
+
+# abbr --add kr 'kubectl --kubeconfig=$HOME/.kube/rancher'
+# abbr --add ki 'kubectl --kubeconfig=$HOME/.kube/identinet'
+abbr --add ki 'kubectl --context identinet'
+abbr --add k9i 'k9s --context identinet'
+
 # # calendar and contacts abbreviations
 # abbr --add cal 'khal'
 # abbr --add agenda 'khal agenda'
@@ -45,16 +52,15 @@ abbr --add top 'htop'
 # ls
 function ls
     # command ls -b -CF --file-type --color=auto --group-directories-first $argv
-    command exa --git -F $argv
+    command exa --group-directories-first --git -F $argv
 end
+abbr --add la 'ls -laa'
 abbr --add ltr 'ls -l -smodified'
 # abbr --add ltr 'ls -ltr'
-abbr --add ltra 'ls -la -smodified'
+abbr --add ltra 'ls -laa -smodified'
 # abbr --add ltra 'ls -ltra'
-abbr --add l 'ls -l --group-directories-first'
-# abbr --add l 'ls -l'
-abbr --add ll 'ls -l --group-directories-first'
-# abbr --add ll 'ls -l'
+abbr --add l 'ls -l'
+abbr --add ll 'ls -l'
 abbr --add lh 'ls -lh'
 
 # create various things
@@ -80,10 +86,19 @@ abbr --add qs 'quilt series'
 abbr --add qt 'quilt top'
 
 # git
+abbr --add g 'git'
 abbr --add g+ 'git stash pop'
 abbr --add g- 'git stash'
-abbr --add g 'git'
 abbr --add ga 'git add'
+abbr --add gaa 'git annex add'
+abbr --add gae 'git annex edit'
+abbr --add gaen 'git aen'
+abbr --add gag 'git annex get'
+abbr --add gai 'git annex init'
+abbr --add gaii 'git aii'
+abbr --add gan 'git annex'
+abbr --add gas 'git annex sync'
+abbr --add gass 'git annex sync --content'
 abbr --add gau 'git add -u'
 abbr --add gb 'git branch'
 abbr --add gba 'git ba'
@@ -107,9 +122,9 @@ abbr --add gl 'git log'
 abbr --add glu 'git log ..(git rev-parse --abbrev-ref @\{upstream\})'
 abbr --add gm 'git merge'
 abbr --add gp 'git push'
-abbr --add gpu 'git push --set-upstream origin HEAD'
 abbr --add gpm 'git push -o merge_request.create -o merge_request.target=master'
 abbr --add gpre 'git pre'
+abbr --add gpu 'git push --set-upstream origin HEAD'
 abbr --add grm 'git rm'
 abbr --add gst 'git st'
 abbr --add gsta 'git sta'
