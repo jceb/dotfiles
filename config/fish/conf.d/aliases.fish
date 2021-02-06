@@ -135,6 +135,8 @@ abbr --add gsubup 'git subup'
 abbr --add guc 'git commit -m "Update changelogs"'
 abbr --add gup 'git up'
 
+abbr --add p 'paru'
+
 function _ch2root --description "jump to the next parent directory containing a subdirectory that's passed via argv"
     set _d $PWD
     while test $_d != "/"
