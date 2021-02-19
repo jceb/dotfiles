@@ -32,6 +32,7 @@
 	default = upstream
 [init]
 	templatedir = ~/.config/git/template
+	defaultBranch = main
 [rebase]
 	autostash = true
 [alias]
