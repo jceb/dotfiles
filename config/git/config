@@ -41,6 +41,17 @@
 	url = "!git config remote.$(git remote).url"
 	appraise = !git-appraise
 
+	########## annex
+	a = annex
+	aa = annex add
+	ae = annex edit
+	ag = annex get
+	ai = annex init
+	aie = "!bash -c 'source ~/.secrets/wasabi.sh && git annex enableremote wasabi'"
+	aii = "!bash -c 'source ~/.secrets/wasabi.sh && git annex initremote wasabi type=S3 datacenter=eu-central-1 protocol=https host=s3.wasabisys.com versioning=yes requeststyle=path encryption=none bucket=identinet- git-annex fileprefix=$(basename $(git rev-parse --show-toplevel))'/"
+	as = annex sync
+	ass = annex sync --content
+
 	########## branches
 	b = branch
 	bc = branch --contains
