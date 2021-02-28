@@ -164,37 +164,37 @@ font:
 draw_bold_text_with_bright_colors: true
 
 schemes:
-  papercolor: &papercolor # from https://github.com/eendroroy/alacritty-theme/blob/master/themes/papercolor_light.yaml
+  papercolor: &papercolor
     # Default colors
     primary:
-      background: '0xeeeeee'
-      foreground: '0x878787'
+      background: '#eeeeee'
+      foreground: '#878787'
 
     cursor:
-      text: '0xeeeeee'
-      cursor: '0x878787'
+      text: '#eeeeee'
+      cursor: '#87afd7'
 
     # Normal colors
     normal:
-      black:   '0xeeeeee'
-      red:     '0xaf0000'
-      green:   '0x008700'
-      yellow:  '0x5f8700'
-      blue:    '0x0087af'
-      magenta: '0x878787'
-      cyan:    '0x005f87'
-      white:   '0x444444'
+      black:   '#4D4D4C'
+      red:     '#D7005F'
+      green:   '#718C00'
+      yellow:  '#D75F00'
+      blue:    '#005f87'
+      magenta: '#8959A8'
+      cyan:    '#3E999F'
+      white:   '#EDEDED'
 
     # Bright colors
     bright:
-      black:   '0xbcbcbc'
-      red:     '0xd70000'
-      green:   '0xd70087'
-      yellow:  '0x8700af'
-      blue:    '0xd75f00'
-      magenta: '0xd75f00'
-      cyan:    '0x005faf'
-      white:   '0x005f87'
+      black:   '#969694'
+      red:     '#D7005F'
+      green:   '#718C00'
+      yellow:  '#D75F00'
+      blue:    '#4271AE'
+      magenta: '#8959A8'
+      cyan:    '#3E999F'
+      white:   '#F5F5F5'
 
   nord: &nord # from https://github.com/arcticicestudio/nord-alacritty/blob/develop/src/nord.yml
     primary:
@@ -203,7 +203,7 @@ schemes:
       dim_foreground: '#a5abb6'
     cursor:
       text: '#2e3440'
-      cursor: '#d8dee9'
+      cursor: '#87afd7'
     vi_mode_cursor:
       text: '#2e3440'
       cursor: '#d8dee9'
@@ -246,7 +246,7 @@ schemes:
       white: '#aeb3bb'
 
 # colors: *papercolor
-colors: *nord
+colors: *papercolor
 
 # Bell
 #
