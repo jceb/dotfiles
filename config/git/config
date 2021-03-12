@@ -65,8 +65,9 @@
 	bam = branch -a --merged
 	ban = branch -a --no-merged
 
-	pu = push --set-upstream origin HEAD
 	pm = "!bash -c 'git push -o merge_request.create -o merge_request.target=${1:-master}'"
+	pt = push --tags
+	pu = push --set-upstream origin HEAD
 
 	co = checkout
 	# checkout branch by taking the upstream branch and creating a local tracking copy
