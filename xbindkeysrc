@@ -51,6 +51,7 @@
     Shift+Mod4 + e
 
 #gui vim
+# "neovide"
 "gnvim"
     m:0x40 + c:55
     Mod4 + v
