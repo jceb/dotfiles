@@ -30,6 +30,7 @@
 	ui = auto
 [push]
 	default = upstream
+	followTags = true
 [init]
 	templatedir = ~/.config/git/template
 	defaultBranch = main
@@ -174,6 +175,8 @@
 
 [rerere]
 	enabled = true
+[pack]
+	writeReverseIndex = true
 [cola]
 	spellcheck = false
 
