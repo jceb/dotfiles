@@ -1,5 +1,7 @@
 function __fish_dir_list
-    ls
+    echo
+    command exa
+    echo
     echo
     commandline -f repaint
 end
