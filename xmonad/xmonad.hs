@@ -142,6 +142,8 @@ myManageHook = manageDocks <+> composeAll
                , className =? "copyq" --> doFloat
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
+               , className =? "ramboxpro" --> doShift "1"
+               , className =? "Thunderbird" --> doShift "8"
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
@@ -159,6 +161,8 @@ myAdditionalKeys =
   , ((mod4Mask, xK_g ), sendMessage $ JumpToLayout "grid")
   , ((mod4Mask, xK_y ), sendMessage $ JumpToLayout "master")
   , ((mod4Mask, xK_b ), sendMessage $ ToggleStrut U)
+  , ((mod4Mask, xK_0 ), moveTo Next EmptyWS)
+  , ((mod4Mask, xK_grave ), moveTo Prev EmptyWS)
   , ((mod4Mask, xK_c ), kill)
   , ((mod4Mask, xK_Return), windows swapMasterOrSlave)
   , ((mod4Mask .|. shiftMask, xK_space), withFocused toggleFloat)
