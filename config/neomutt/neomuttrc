@@ -93,45 +93,89 @@ macro pager \cb "\
 #   6      cyan
 #   7      white
 
-color   signature    brightblue      default
-color   indicator    color15         brightblue
-color   attachment   magenta         default
-color   error        brightred       default
-color   message      default         default
-color   search       brightwhite     blue
-color   status       color15         black
-color   tree         blue            default
-color   normal       default         default
-color   tilde        blue            default
-color   underline    magenta         default
-color   markers      blue            default
-color   hdrdefault   blue            default  # default header lines
-color   bold         color1          default  # hiliting bold patterns in body
-color   underline    color2          default  # hiliting underlined patterns in body
-color   quoted       color2          default  # quoted text
-color   quoted1      color5          default
-color   quoted2      brightblue      default
-color   quoted3      brightred       default
-color   header       brightmagenta   default  ^From:
-color   header       brightmagenta   default  ^Reply-To:
-color   header       brightblue      default  ^To:
-color   header       brightblue      default  ^Cc:
-color   header       brightred       default  ^Subject:
-color   header       blue            default  ^Date:
-color   header       green           default  ^Importance:
-color   header       green           default  ^X-Priority:
-color   body         brightblue      default  "((ftp|http|https)://|news:)[^	>)\"\t]+"
-color   body         brightred       default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
-color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
-color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
-color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
-color   index        blue            default  ~P  # Mails from me
-color   index        brightblue      default  ~F  # Flagged
-color   index        brightred       default  ~N  # New
-color   index        brightgreen     default  ~O  # Old
-color   index        brightmagenta   default  ~T  # Tagged
-color   index        brightblack     default  ~D  # Deleted
+# color   signature    brightblue      default
+# color   indicator    color15         brightblue
+# color   attachment   magenta         default
+# color   error        brightred       default
+# color   message      default         default
+# color   search       brightwhite     blue
+# color   status       color15         black
+# color   tree         blue            default
+# color   normal       default         default
+# color   tilde        blue            default
+# color   underline    magenta         default
+# color   markers      blue            default
+# color   hdrdefault   blue            default  # default header lines
+# color   bold         color1          default  # hiliting bold patterns in body
+# color   underline    color2          default  # hiliting underlined patterns in body
+# color   quoted       color2          default  # quoted text
+# color   quoted1      color5          default
+# color   quoted2      brightblue      default
+# color   quoted3      brightred       default
+# color   header       brightmagenta   default  ^From:
+# color   header       brightmagenta   default  ^Reply-To:
+# color   header       brightblue      default  ^To:
+# color   header       brightblue      default  ^Cc:
+# color   header       brightred       default  ^Subject:
+# color   header       blue            default  ^Date:
+# color   header       green           default  ^Importance:
+# color   header       green           default  ^X-Priority:
+# color   body         brightblue      default  "((ftp|http|https)://|news:)[^	>)\"\t]+"
+# color   body         brightred       default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+# color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+# color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[\n]"
+# color   body         color1          default  "(^|	)\\*[-a-z0-9*]+\\*[,.?]?[	\n]"
+# color   body         color2          default  "(^|	)_[-a-z0-9_]+_[,.?]?[	\n]"
+# color   index        blue            default  ~P  # Mails from me
+# color   index        brightblue      default  ~F  # Flagged
+# color   index        brightred       default  ~N  # New
+# color   index        brightgreen     default  ~O  # Old
+# color   index        brightmagenta   default  ~T  # Tagged
+# color   index        brightblack     default  ~D  # Deleted
+
+##############################################################################
+# Dracula Theme for Mutt: https://draculatheme.com/
+# https://github.com/dracula/mutt/blob/master/dracula.muttrc
+#
+# @author Paul Townsend <paul@caprica.org>
+
+# general ------------ foreground ---- background -----------------------------
+color error		color231	color212
+color indicator		color231	color241
+color markers		color210	default
+color message		default		default
+color normal		default		default
+color prompt		default	        default
+color search		color84		default
+color status 		color141	color236
+color tilde		color231	default
+color tree		color141	default
+
+# message index ------ foreground ---- background -----------------------------
+color index		color210	default 	~D # deleted messages
+color index		color84		default 	~F # flagged messages
+color index		color117	default 	~N # new messages
+color index		color212	default 	~Q # messages which have been replied to
+color index		color215	default 	~T # tagged messages
+color index		color141	default		~v # messages part of a collapsed thread
+
+# message headers ---- foreground ---- background -----------------------------
+color hdrdefault	color117	default
+color header		color231	default		^Subject:.*
+
+# message body ------- foreground ---- background -----------------------------
+color attachment	color228	default
+color body		color231	default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses
+color body		color228	default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs
+color body		color231	default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text
+color body		color231	default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text
+color body		color231	default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text
+color quoted		color61		default
+color quoted1		color117	default
+color quoted2		color84		default
+color quoted3		color215	default
+color quoted4		color212	default
+color signature		color212	default
 
 # S/MIME configuration
 source ~/.config/neomutt/smime.rc
