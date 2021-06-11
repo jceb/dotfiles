@@ -143,7 +143,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
                , className =? "ramboxpro" --> doShift "1"
-               , className =? "Thunderbird" --> doShift "8"
+               -- , className =? "Thunderbird" --> doShift "8"
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
