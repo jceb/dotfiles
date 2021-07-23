@@ -16,6 +16,8 @@ bind main	P		!git push					# Push changes
 bind main	U		!git pull					# Pull changes
 bind main	M		?git merge %(commit)		# Merge commit
 bind refs	M		?git merge %(commit)		# Merge commit
+bind main	<C-f>	?git merge --ff %(commit)	# Merge commit, fast-forward
+bind refs	<C-f>	?git merge --ff %(commit)	# Merge commit, fast-forward
 
 bind generic	<C-g>	:!git log %(file)		# Show log information for select file
 bind generic	H	move-first-line				# Vim-like movement binding
