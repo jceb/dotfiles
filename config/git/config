@@ -88,7 +88,7 @@
 	########## commits
 	c = commit
 	ca = commit -a
-	ct = "!git commit -t \"$(git rev-parse --show-toplevel)/.git/COMMIT_EDITMSG\""
+    cc = "!bash -c 'if [ -e \"$(git rev-parse --show-toplevel)/.git/COMMIT_EDITMSG\" ]; then git commit -e -F \"$(git rev-parse --show-toplevel)/.git/COMMIT_EDITMSG\"; else git commit; fi'"
 	cam = commit --amend -a
 	cm = commit -m
 
