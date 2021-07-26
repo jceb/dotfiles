@@ -8,3 +8,4 @@ auth.*
 .pc/
 *.log.*
 *.pid
+skin.yaml
