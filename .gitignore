@@ -1,0 +1,10 @@
+secrets/
+xmonad.o
+xmonad.hi
+xmonad.errors
+xmonad-x86_64-linux
+account.*
+auth.*
+.pc/
+*.log.*
+*.pid

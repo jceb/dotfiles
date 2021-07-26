@@ -1,3 +1,0 @@
-#!/bin/sh
-# http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_Gnome
-gconftool-2 -s /desktop/gnome/session/required_components/windowmanager xmonad --type string

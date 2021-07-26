@@ -2,26 +2,26 @@
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
+	path = cli/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
 [submodule "tmux/plugins/tmux-sensible"]
-	path = tmux/plugins/tmux-sensible
+	path = cli/.tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
 [submodule "tmux/plugins/tmux-yank"]
-	path = tmux/plugins/tmux-yank
+	path = cli/.tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
 [submodule "tmux/plugins/tmux-open"]
-	path = tmux/plugins/tmux-open
+	path = cli/.tmux/plugins/tmux-open
 	url = https://github.com/tmux-plugins/tmux-open.git
 [submodule "config/vis/plugins/commentary"]
-	path = config/vis/plugins/commentary
+	path = editors/.config/vis/plugins/commentary
 	url = https://github.com/lutobler/vis-commentary.git
 [submodule "config/vis/plugins/editorconfig"]
-	path = config/vis/plugins/editorconfig
+	path = editors/.config/vis/plugins/editorconfig
 	url = https://github.com/vktec/vis-editorconfig.git
 [submodule "config/vis/plugins/surround"]
-	path = config/vis/plugins/surround
+	path = editors/.config/vis/plugins/surround
 	url = https://repo.or.cz/vis-surround.git
 [submodule "emacs.d"]
-	path = emacs.d
+	path = editors/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
