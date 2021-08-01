@@ -44,11 +44,12 @@ abbr --add r 'rg'
 abbr --add ru 'rg -uuu'
 
 abbr --add k 'kubectl'
-
-# abbr --add kr 'kubectl --kubeconfig=$HOME/.kube/rancher'
-# abbr --add ki 'kubectl --kubeconfig=$HOME/.kube/identinet'
-abbr --add ki 'kubectl --context identinet'
-abbr --add k9i 'k9s --context identinet'
+abbr --add kd 'kubectl delete -f'
+abbr --add kdk 'kubectl delete -k'
+abbr --add ka 'kubectl apply -f'
+abbr --add kak 'kubectl apply -k'
+abbr --add kk 'kubectl kustomize'
+abbr --add kc 'kubectl auth can-i --as system:serviceaccount:cert-manager:cert-manager get configmaps -n kube-system'
 
 # # calendar and contacts abbreviations
 # abbr --add cal 'khal'
