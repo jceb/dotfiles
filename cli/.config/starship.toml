@@ -31,6 +31,7 @@ behind = "⇣$count"
 diverged = "⇕$ahead_count/$behind_count"
 
 [custom.quilt_applied]
+description = "List of applied quilt patches"
 when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
 shell = ["sh"]
 command = "quilt applied | wc -l | tr -d '\n'; echo -n '/'; quilt series | wc -l"
@@ -38,9 +39,24 @@ format = "[$symbol$output]($style) "
 symbol = "🩹"
 style = "bold blue"
 
-# [custom.quilt_patches]
-# when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
-# shell = ["sh"]
-# command = "quilt series | wc -l"
-# format = "/[$symbol$output]($style) "
-# style = "bold blue"
+[custom.quilt_patches]
+disabled = true
+description = "List of total quilt patches"
+when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
+shell = ["bash"]
+command = "quilt series | wc -l"
+format = "/[$symbol$output]($style) "
+style = "bold blue"
+
+[custom.nix_packages]
+disabled = false
+description = "Nix shell information"
+when = '[ -n "${IN_NIX_SHELL}" ]'
+shell = ["sh"]
+command = "echo [${ANY_NIX_SHELL_PKGS:-${name}}]"
+# format = "[$symbol($output)]($style) "
+style = "bold blue"
+
+[nix_shell]
+# hide output
+format = 'via [❄️ $state](bold blue) '
