@@ -1,0 +1,1 @@
+/home/jceb/Documents/dotfiles/fzf/shell/key-bindings.fish

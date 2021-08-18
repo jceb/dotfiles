@@ -1,0 +1,1 @@
+/home/jceb/Documents/Software/git-extras/etc/git-extras.fish
