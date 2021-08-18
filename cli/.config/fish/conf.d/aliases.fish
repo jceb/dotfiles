@@ -47,9 +47,12 @@ abbr --add k 'kubectl'
 abbr --add kd 'kubectl delete -f'
 abbr --add kdk 'kubectl delete -k'
 abbr --add ka 'kubectl apply -f'
+abbr --add kg 'kubectl get'
 abbr --add kak 'kubectl apply -k'
 abbr --add kk 'kubectl kustomize'
 abbr --add kc 'kubectl auth can-i --as system:serviceaccount:cert-manager:cert-manager get configmaps -n kube-system'
+abbr --add kx 'kubectl explain'
+abbr --add kb 'kubectl describe --recursive=true'
 
 # # calendar and contacts abbreviations
 # abbr --add cal 'khal'
