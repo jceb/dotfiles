@@ -54,7 +54,7 @@
 	aie = "!bash -c 'source ~/.secrets/wasabi.sh && git annex enableremote wasabi'"
 	aii = "!bash -c 'source ~/.secrets/wasabi.sh && git annex initremote wasabi type=S3 datacenter=eu-central-1 protocol=https host=s3.wasabisys.com versioning=yes requeststyle=path encryption=none bucket=identinet- git-annex fileprefix=$(basename $(git rev-parse --show-toplevel))'/"
 	as = annex sync
-	ass = annex sync --content
+	ass = annex sync --content -A
 
 	########## branches
 	b = branch
