@@ -180,6 +180,102 @@ font:
 draw_bold_text_with_bright_colors: true
 
 schemes:
+  tokyoday: &tokyoday
+    # Default colors
+    primary:
+      background: '#e1e2e7'
+      foreground: '#3760bf'
+
+    # Normal colors
+    normal:
+      black:   '#e9e9ed'
+      red:     '#f52a65'
+      green:   '#587539'
+      yellow:  '#8c6c3e'
+      blue:    '#2e7de9'
+      magenta: '#9854f1'
+      cyan:    '#007197'
+      white:   '#6172b0'
+
+    # Bright colors
+    bright:
+      black:   '#a1a6c5'
+      red:     '#f52a65'
+      green:   '#587539'
+      yellow:  '#8c6c3e'
+      blue:    '#2e7de9'
+      magenta: '#9854f1'
+      cyan:    '#007197'
+      white:   '#3760bf'
+
+    indexed_colors:
+      - { index: 16, color: '#b15c00' }
+      - { index: 17, color: '#c64343' }
+
+  tokyonight: &tokyonight
+    # Default colors
+    primary:
+      background: '#1a1b26'
+      foreground: '#c0caf5'
+
+    # Normal colors
+    normal:
+      black:   '#15161E'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#a9b1d6'
+
+    # Bright colors
+    bright:
+      black:   '#414868'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#c0caf5'
+
+    indexed_colors:
+      - { index: 16, color: '#ff9e64' }
+      - { index: 17, color: '#db4b4b' }
+
+  tokyostorm: &tokyostorm
+    # Default colors
+    primary:
+      background: '#24283b'
+      foreground: '#c0caf5'
+
+    # Normal colors
+    normal:
+      black:   '#1D202F'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#a9b1d6'
+
+    # Bright colors
+    bright:
+      black:   '#414868'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#c0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '#ff9e64' }
+    - { index: 17, color: '#db4b4b' }
+
   papercolor: &papercolor
     # Default colors
     primary:
