@@ -1,7 +1,6 @@
 add_newline = true
 
 [character]
-symbol = "→"
 vicmd_symbol = "[V](bold cyan)"
 success_symbol = "[↳](bold cyan)"
 error_symbol = "[✗](bold red)"
@@ -59,4 +58,5 @@ style = "bold blue"
 
 [nix_shell]
 # hide output
-format = 'via [❄️ $state](bold blue) '
+format = 'via [$symbol$state](bold blue) '
+# symbol = "❄️ "
