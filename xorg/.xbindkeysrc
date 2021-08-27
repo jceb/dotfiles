@@ -87,22 +87,26 @@
     XF86Calculator
 
 #Volume Lower
-"pulseaudio-ctl down 2"
+# "pulseaudio-ctl down 2"
+"amixer -q sset Master 2%-"
     m:0x0 + c:122
     XF86AudioLowerVolume
 
 #Volume Raise
-"pulseaudio-ctl up 2"
+# "pulseaudio-ctl up 2"
+"amixer -q sset Master 2%+"
     m:0x0 + c:123
     XF86AudioRaiseVolume
 
 #Volume Mute
-"pulseaudio-ctl mute"
+# "pulseaudio-ctl mute"
+"amixer -q sset Master toggle"
     m:0x0 + c:121
     XF86AudioMute
 
 #Volume Mute-Mic
-"pulseaudio-ctl mute-input"
+# "pulseaudio-ctl mute-input"
+"amixer -q sset Capture toggle"
     m:0x0 + c:198
     XF86AudioMicMute
 
@@ -166,5 +170,4 @@
     m:0x40 + c:38
     Mod4 + a
 
-#
 # End of xbindkeys configuration
