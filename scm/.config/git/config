@@ -80,7 +80,10 @@
 	mf = merge --ff-only
 	m = merge --no-ff
 
-	rbc = rebase --continue
+	r = rebase
+	rc = rebase --continue
+	ra = rebase --abort
+	ri = rebase --interactive
 
 	########## Univention specific settings
 	# mm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git merge \"origin/${m}/master\""
