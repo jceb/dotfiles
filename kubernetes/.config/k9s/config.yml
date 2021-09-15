@@ -14,17 +14,16 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: k3d-identinet
+  currentContext: identinet
   currentCluster: k3d-identinet
   clusters:
     k3d-identinet:
       namespace:
         active: ""
         favorites:
-        - all
         - default
       view:
-        active: secret
+        active: pod
       featureGates:
         nodeShell: false
       shellPod:
