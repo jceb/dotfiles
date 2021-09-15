@@ -47,7 +47,8 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
     W.Stack t ls rs -> W.Stack t [] (x:xs ++ rs) where (x:xs) = reverse ls
 
 scratchpads = [
-  NS "default" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  NS "standard-notes" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
+  NS "thingking" "thingking" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
 
 main = do
@@ -121,6 +122,7 @@ myManageHook = manageDocks <+> composeAll
                [
                isFullscreen --> doFullFloat
                , isDialog --> doCenterFloat
+               ,title =? "thingking — JC's thinking system — Mozilla Firefox" --> doFloat
                , className =? "Calendar" --> doFloat
                , className =? "Copyq" --> doFloat
                , className =? "Empathy" --> doFloat
@@ -186,5 +188,6 @@ myAdditionalKeys =
   , ((mod4Mask .|. controlMask,  xK_equal), sendMessage $ IncMasterRows 1)
   , ((mod4Mask .|. controlMask,  xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
-  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "default")
+  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standard-notes")
+  , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "thingking")
   ]
