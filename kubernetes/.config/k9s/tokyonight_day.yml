@@ -11,6 +11,7 @@ orange: &orange "#b15c00"
 magenta: &magenta "#9854f1"
 blue: &blue "#2e7de9"
 red: &red "#f52a65"
+x: &x "#999"
 
 k9s:
   body:
@@ -29,9 +30,9 @@ k9s:
     bgColor: *background
     buttonFgColor: *foreground
     buttonBgColor: *magenta
-    buttonFocusFgColor: white
-    buttonFocusBgColor: *cyan
-    labelFgColor: *orange
+    buttonFocusFgColor: *background
+    buttonFocusBgColor: *foreground
+    labelFgColor: *comment
     fieldFgColor: *foreground
   frame:
     border:
@@ -46,7 +47,7 @@ k9s:
       bgColor: *cyan
       activeColor: *yellow
     status:
-      newColor: *cyan
+      newColor: *magenta
       modifyColor: *blue
       addColor: *green
       errorColor: *red
