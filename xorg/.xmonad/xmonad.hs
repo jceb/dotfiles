@@ -3,6 +3,7 @@ module Main where
 import XMonad hiding ( (|||) )
 -- import XMonad.Layout hiding ( (|||) )
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CycleWorkspaceByScreen
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Fullscreen (fullscreenManageHook, fullscreenFull)
 import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook, ewmhDesktopsEventHook, ewmhDesktopsStartup, ewmhDesktopsLogHook)
@@ -48,25 +49,23 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
 
 scratchpads = [
   NS "standard-notes" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
-  NS "thingking" "thingking" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  NS "thingking" "thingking" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
+  NS "journal" "journal" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
 
 main = do
   xmonad $ docks $ def
     { manageHook =  myManageHook <+> manageHook def
     , layoutHook = myLayoutHook
-    , handleEventHook =  myewmhDesktopsEventHookCustom id <+> myHandleEventHook <+> handleEventHook def
+    , handleEventHook =  myewmhDesktopsEventHookCustom id <+> fullscreenEventHook <+> handleEventHook def
     , startupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
-    , logHook = ewmhDesktopsLogHook <+> myLogHook <+> logHook def
+    , logHook = ewmhDesktopsLogHook <+> workspaceHistoryHook <+> logHook def
     , borderWidth = 1
     , focusedBorderColor = "#D7005F"
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
     , terminal = "x-terminal-emulator"
     } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
-
-myLogHook = workspaceHistoryHook
-
 
 -- myewmhDesktopsEventHookCustom
 newtype NetActivated    = NetActivated {netActivated :: Maybe Window}
@@ -116,8 +115,6 @@ handle f (ClientMessageEvent {
 handle _ _ = return ()
 -- myewmhDesktopsEventHookCustom END
 
-myHandleEventHook = fullscreenEventHook
-
 myManageHook = manageDocks <+> composeAll
                [
                isFullscreen --> doFullFloat
@@ -137,6 +134,7 @@ myManageHook = manageDocks <+> composeAll
                -- , className =? "Rambox" --> doFloat
                , className =? "Riot" --> doFloat
                , className =? "Scratchpad" --> doFloat
+               , className =? "xournalpp" --> doFloat
                , className =? "Skype" --> doFloat
                , className =? "Standard Notes" --> doFloat
                , className =? "Turpial" --> doFloat
@@ -149,10 +147,13 @@ myManageHook = manageDocks <+> composeAll
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
-               ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ TallGrid 2 3 (2/3) (16/10) (5/100))
-               ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ TallGrid 2 3 (2/3) (16/10) (5/100))
+               ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Grid (16/9))
+               ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ Grid (16/9))
+               -- ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ TallGrid 2 3 (2/3) (16/9) (5/100))
+               -- ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ TallGrid 2 3 (2/3) (16/9) (5/100))
                ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
+
 
 myAdditionalKeys =
   -- dwm style layout bindings
@@ -180,7 +181,8 @@ myAdditionalKeys =
   , ((mod4Mask .|. shiftMask, xK_Up), shiftNextScreen)
   , ((mod4Mask .|. shiftMask, xK_comma), shiftPrevScreen)
   , ((mod4Mask .|. shiftMask, xK_period), shiftNextScreen)
-  , ((mod4Mask, xK_Tab), toggleWS)
+  -- , ((mod4Mask, xK_Tab), toggleWS)
+  , ((mod4Mask, xK_Tab), cycleWorkspaceOnCurrentScreen [xK_Super_L, xK_Super_R] xK_Tab xK_grave)
   , ((mod4Mask, xK_i), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
   , ((mod4Mask, xK_o), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
   , ((mod4Mask .|. shiftMask, xK_equal), sendMessage $ IncMasterCols 1)
@@ -188,6 +190,7 @@ myAdditionalKeys =
   , ((mod4Mask .|. controlMask,  xK_equal), sendMessage $ IncMasterRows 1)
   , ((mod4Mask .|. controlMask,  xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
-  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standard-notes")
-  , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "thingking")
+  , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "standard-notes")
+  , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
+  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "journal")
   ]
