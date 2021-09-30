@@ -18,6 +18,10 @@ min_time_to_notify = 30000
 [directory]
 truncation_symbol = "…/"
 
+[kubernetes]
+style = "blue bold"
+disabled = false
+
 [git_branch]
 always_show_remote = true
 format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
