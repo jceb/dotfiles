@@ -150,6 +150,7 @@ abbr --add gsuba 'git submodule add'
 abbr --add gsubm 'git subm'
 abbr --add gsubpre 'git subpre'
 abbr --add gsubup 'git subup'
+abbr --add gsw 'git switch -'
 abbr --add guc 'git commit -m "Update changelogs"'
 abbr --add gup 'git up'
 
