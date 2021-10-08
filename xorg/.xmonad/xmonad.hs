@@ -190,7 +190,7 @@ myAdditionalKeys =
   , ((mod4Mask .|. controlMask,  xK_equal), sendMessage $ IncMasterRows 1)
   , ((mod4Mask .|. controlMask,  xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
-  , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "standard-notes")
+  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standard-notes")
   , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
-  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "journal")
+  , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "journal")
   ]
