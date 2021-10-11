@@ -3,7 +3,7 @@
 #
 # Usage:
 # Store file ensure_git_identity.sh in ~/.config/direnv/lib/ensure_git_identity.sh
-# Store file set_git_identity.sh in a file in PATH
+# Store file set_git_identity.sh in a file in ~/.config/direnv/
 # Install git-identity: https://github.com/madx/git-identity
 # Create a number of digital identities
 # Create .envrc with the following content
@@ -12,7 +12,7 @@ set -euo pipefail
 
 use_git_identity() {
     # 1: identity
-    find . -type d -name .git -print0 | xargs -0 -n 1 -P 8 "$(dirname "$0")/../set_git_identity.sh" "$1" "${PWD}"
+    find . -type d -name .git -print0 | xargs -0 -n 1 -P 8 "$(dirname "${BASH_SOURCE}")/../set_git_identity.sh" "$1" "${PWD}"
 
     # Synchronous implementation:
     # find . -type d -name .git | while read dir; do
