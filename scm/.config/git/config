@@ -159,10 +159,10 @@
 	type = cat-file -t
 	dump = cat-file -p
 
-	########## some git svn commands
-	up = svn rebase
-	ci = svn dcommit
-	unisvn = !gcu
+	; ########## some git svn commands
+	; up = svn rebase
+	; ci = svn dcommit
+	; unisvn = !gcu
 
 	########## submodules
 	subm = submodule foreach git checkout master
