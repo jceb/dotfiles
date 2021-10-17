@@ -99,6 +99,25 @@ abbr --add qs 'quilt series'
 abbr --add qt 'quilt top'
 
 # git
+
+# forgit:
+# Interactive git add selector (ga)
+set forgit_add gai
+# Interactive git log viewer (glo)
+# Interactive .gitignore generator (gi)
+# Interactive git diff viewer (gd)
+set forgit_diff gdi
+# Interactive git reset HEAD <file> selector (grh)
+# Interactive git checkout <file> selector (gcf)
+# Interactive git checkout <branch> selector (gcb)
+# Interactive git checkout <commit> selector (gco)
+set forgit_checkout_commit gci
+# Interactive git stash viewer (gss)
+# Interactive git clean selector (gclean)
+# Interactive git cherry-pick selector (gcp)
+# Interactive git rebase -i selector (grb)
+# Interactive git commit --fixup && git rebase -i --autosquash selector (gfu)
+
 abbr --add g 'git'
 abbr --add g+ 'git stash pop'
 abbr --add g- 'git stash'
@@ -106,7 +125,7 @@ abbr --add ga 'git add'
 abbr --add gaa 'git annex add'
 abbr --add gae 'git annex edit'
 abbr --add gag 'git annex get'
-abbr --add gai 'git annex init'
+abbr --add gaai 'git annex init'
 abbr --add gaie 'git aie'
 abbr --add gaii 'git aii'
 abbr --add gan 'git annex'
@@ -122,7 +141,6 @@ abbr --add gbr 'git bc'
 abbr --add gc 'git commit'
 abbr --add gca 'git commit -a'
 abbr --add gcam 'git commit --amend'
-abbr --add gci 'git ci'
 abbr --add gco 'git checkout'
 abbr --add gcob 'git cob'
 abbr --add gd 'git diff --no-prefix'
