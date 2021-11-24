@@ -9,7 +9,7 @@ description = "Laptop"
 # EDID is an identifier that is unique to each screen.  If you call
 # `srandrd list` it will provide an overview of the connected screens with their
 # EDIDs
-edids = ["E430044600000000", "7038000000000000", "AF06203600000000"]
+edids = ["E430044600000000", "7038000000000000", "AF06203600000000", "6F0E140700000000"]
 # The path to a wallpaper can be specified for each screen.  The wallpaper is
 # set through the tool "feh"
 # List of commands that are executed when a monitor is connected or disconnected
@@ -31,6 +31,8 @@ edids = ["E430044600000000", "7038000000000000", "AF06203600000000"]
 # because EDID is not available!
 # ["touch", "/tmp/test/{.output}"]
 # ]
+# xrandr_args = ["--dpi", "144"]
+xrandr_args = ["--scale", "0.8x0.8"]
 wallpaper = "~/wallpaper2560x1440.png"
 
 [monitors.iiyama]
@@ -66,7 +68,7 @@ position = ["--right-of", "benq", "DP-1-1"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.benq.outputs.HDMI-1]
-position = ["--right-of", "benq", "DP-2"]
+position = ["--right-of", "benq", "DP-1"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.samsung]
@@ -78,12 +80,14 @@ position = ["--left-of", "laptop"]
 description = "Dell"
 edids = ['AC10D0C230504354', 'AC10D0C231345954']
 position = ["--right-of", "laptop"]
-
-[monitors.dellkraftwerk.outputs.HDMI2]
-position = ["--right-of", "dellkraftwerk", "HDMI1"]
+# xrandr_args = ["--scale", "1.25x1.25"]
+# exec_on_connect = [
+#     ["xrandr", "--output", "{.output}", "--scale", "1.5x1.5"]
+# ]
 
 [monitors.dellkraftwerk.outputs.HDMI-1]
-position = ["--right-of", "dellkraftwerk", "DP-2"]
+position = ["--right-of", "dellkraftwerk", "DP-1"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.dellhubhaw]
 description = "Dell"

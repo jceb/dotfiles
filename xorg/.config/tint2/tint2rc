@@ -75,7 +75,7 @@ border_color_pressed = #222222 60
 # Panel
 # panel_items = LTSC
 panel_items = TSCB
-panel_size = 100% 16
+panel_size = 100% 20
 panel_margin = 0 0
 panel_padding = 2 0 2
 panel_background_id = 1
@@ -152,7 +152,7 @@ systray_sort = ascending
 systray_icon_size = 0
 systray_icon_asb = 100 0 0
 systray_monitor = primary
-systray_name_filter = 
+systray_name_filter =
 
 #-------------------------------------
 # Launcher
@@ -173,43 +173,43 @@ launcher_item_app = google-chrome.desktop
 #-------------------------------------
 # Clock
 time1_format = CW%V, %a %b %e %T %Y
-time2_format = 
+time2_format =
 time1_font = JetBrains Mono 9
-time1_timezone = 
-time2_timezone = 
+time1_timezone =
+time2_timezone =
 time2_font = JetBrains Mono 7.5
 clock_font_color = #ffffff 100
 clock_padding = 4 0
 clock_background_id = 0
-clock_tooltip = 
-clock_tooltip_timezone = 
+clock_tooltip =
+clock_tooltip_timezone =
 clock_lclick_command = gsimplecal
 clock_rclick_command = gsimplecal
 clock_mclick_command = gsimplecal
-clock_uwheel_command = 
-clock_dwheel_command = 
+clock_uwheel_command =
+clock_dwheel_command =
 
 #-------------------------------------
 # Battery
 battery_tooltip = 1
 battery_low_status = 10
 battery_low_cmd = notify-send "battery low"
-battery_full_cmd = 
+battery_full_cmd =
 battery_font_color = #ffffff 100
 bat1_font = JetBrains Mono 9
 bat2_font =
 bat1_format = %p %t
-bat2_format = 
+bat2_format =
 battery_padding = 1 0
 battery_background_id = 0
 battery_hide = 101
-battery_lclick_command = 
-battery_rclick_command = 
-battery_mclick_command = 
-battery_uwheel_command = 
-battery_dwheel_command = 
-ac_connected_cmd = 
-ac_disconnected_cmd = 
+battery_lclick_command =
+battery_rclick_command =
+battery_mclick_command =
+battery_uwheel_command =
+battery_dwheel_command =
+ac_connected_cmd =
+ac_disconnected_cmd =
 
 #-------------------------------------
 # Tooltip
