@@ -7,6 +7,8 @@ function fish_user_key_bindings
     # The argument specifies the initial mode (insert, "default" or visual).
     fish_vi_key_bindings --no-erase
 
+    bind -M insert \cq __fzf_insert_kubecontext
+
     bind -M insert \cs __n
 
     bind -M insert \eu __fish_dir_cycle_up
@@ -18,6 +20,7 @@ function fish_user_key_bindings
     bind -M insert \em __fish_man_page
     bind -M insert \ei __fish_dir_list
 
+    bind -e -M insert \ck # remove kill line binding
     bind -M insert \ck __fish_dir_cycle_warpDir
 
     bind -M insert \en __fish_dir_cycle_fzChDir

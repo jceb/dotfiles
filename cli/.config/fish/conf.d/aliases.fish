@@ -111,7 +111,7 @@ set forgit_diff gdi
 # Interactive git checkout <file> selector (gcf)
 # Interactive git checkout <branch> selector (gcb)
 # Interactive git checkout <commit> selector (gco)
-set forgit_checkout_commit gci
+set forgit_checkout_commit gcoi
 # Interactive git stash viewer (gss)
 # Interactive git clean selector (gclean)
 # Interactive git cherry-pick selector (gcp)
@@ -158,6 +158,7 @@ abbr --add gpm 'git push -o merge_request.create -o merge_request.target=master'
 abbr --add gpre 'git pre'
 abbr --add gpt 'git push --tags'
 abbr --add gpu 'git push --set-upstream origin HEAD'
+abbr --add gpum 'git push --set-upstream origin HEAD -o merge_request.create -o merge_request.remove_source_branch -o merge_request.assign=7 -o merge_request.target=master'
 abbr --add gr 'git rebase'
 abbr --add gra 'git rebase --abort'
 abbr --add grc 'git rebase --continue'
