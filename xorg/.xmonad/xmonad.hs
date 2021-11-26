@@ -61,7 +61,7 @@ main = do
     , startupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
     , logHook = ewmhDesktopsLogHook <+> workspaceHistoryHook <+> logHook def
     , borderWidth = 1
-    , focusedBorderColor = "#D7005F"
+    , focusedBorderColor = "#8b008b"
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
     , terminal = "x-terminal-emulator"
@@ -142,6 +142,8 @@ myManageHook = manageDocks <+> composeAll
                , className =? "copyq" --> doFloat
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
+               , className =? "Yeahconsole" --> doFloat
+               , className =? "linphone" --> doFloat
                , className =? "ramboxpro" --> doShift "1"
                -- , className =? "Thunderbird" --> doShift "8"
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
