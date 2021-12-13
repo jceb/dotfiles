@@ -21,6 +21,7 @@ k9s:
       namespace:
         active: ""
         favorites:
+        - all
         - default
       view:
         active: pod

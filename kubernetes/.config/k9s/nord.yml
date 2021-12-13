@@ -63,7 +63,7 @@ k9s:
     # Border title styles.
     title:
       fgColor: *foreground
-      bgColor: *current_line
+      bgColor: default
       highlightColor: *orange
       counterColor: *magenta
       filterColor: *blue
@@ -109,6 +109,7 @@ k9s:
         bgColor: *magenta
     help:
       fgColor: *foreground
-      bgColor: *background
+      bgColor: default
       indicator:
         fgColor: *red
+        bgColor: *selection

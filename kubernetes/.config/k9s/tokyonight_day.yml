@@ -1,4 +1,4 @@
-# K9s Solarized Light Skin Contributed by [@jceb](jceb@e-jc.de)
+# K9s Tokyo Night Day Skin Contributed by [@jceb](jceb@e-jc.de)
 foreground: &foreground "#3760bf"
 background: &background "#e1e2e7"
 current_line: &current_line "#8c6c3e"
@@ -11,23 +11,26 @@ orange: &orange "#b15c00"
 magenta: &magenta "#9854f1"
 blue: &blue "#2e7de9"
 red: &red "#f52a65"
-x: &x "#999"
 
 k9s:
+  # General K9s styles
   body:
     fgColor: *foreground
-    bgColor: *background
+    bgColor: default
     logoColor: *blue
+  # Command prompt styles
   prompt:
     fgColor: *foreground
     bgColor: *background
     suggestColor: *orange
+  # ClusterInfoView styles.
   info:
     fgColor: *magenta
     sectionColor: *foreground
+  # Dialog styles.
   dialog:
     fgColor: *foreground
-    bgColor: *background
+    bgColor: default
     buttonFgColor: *foreground
     buttonBgColor: *magenta
     buttonFocusFgColor: *background
@@ -35,17 +38,21 @@ k9s:
     labelFgColor: *comment
     fieldFgColor: *foreground
   frame:
+    # Borders styles.
     border:
       fgColor: *selection
       focusColor: *foreground
     menu:
       fgColor: *foreground
       keyColor: *magenta
+      # Used for favorite namespaces
       numKeyColor: *magenta
+    # CrumbView attributes for history navigation.
     crumbs:
       fgColor: white
       bgColor: *cyan
       activeColor: *yellow
+    # Resource status and update styles
     status:
       newColor: *magenta
       modifyColor: *blue
@@ -54,13 +61,15 @@ k9s:
       highlightcolor: *orange
       killColor: *comment
       completedColor: *comment
+    # Border title styles.
     title:
       fgColor: *foreground
-      bgColor: *background
+      bgColor: default
       highlightColor: *blue
       counterColor: *magenta
       filterColor: *magenta
   views:
+    # Charts skins...
     charts:
       bgColor: default
       defaultDialColors:
@@ -69,29 +78,40 @@ k9s:
       defaultChartColors:
         - *blue
         - *red
+    # TableView attributes.
     table:
       fgColor: *foreground
-      bgColor: *background
+      bgColor: default
       cursorFgColor: white
       cursorBgColor: *background
       markColor: darkgoldenrod
+      # Header row styles.
       header:
         fgColor: *foreground
-        bgColor: *background
+        bgColor: default
         sorterColor: *cyan
+    # Xray view attributes.
     xray:
       fgColor: *foreground
-      bgColor: *background
+      bgColor: default
       cursorColor: *current_line
       graphicColor: *blue
       showIcons: false
+    # YAML info styles.
     yaml:
       keyColor: *magenta
       colonColor: *blue
       valueColor: *foreground
+    # Logs styles.
     logs:
       fgColor: *foreground
-      bgColor: *background
+      bgColor: default
       indicator:
         fgColor: *foreground
+        bgColor: *selection
+    help:
+      fgColor: *foreground
+      bgColor: default
+      indicator:
+        fgColor: *red
         bgColor: *selection
