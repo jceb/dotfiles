@@ -9,3 +9,9 @@ auth.*
 *.log.*
 *.pid
 skin.yaml
+/cli/.config/fish/conf.d/other.fish
+/cli/.config/fish/fish_variables
+__pycache__/
+/kubernetes/.config/k9s/skin.yml
+/xorg/.config/environment.d/nnn-bookmarks.conf
+*.pdf
