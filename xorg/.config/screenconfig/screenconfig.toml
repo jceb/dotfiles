@@ -32,7 +32,7 @@ edids = ["E430044600000000", "7038000000000000", "AF06203600000000", "6F0E140700
 # ["touch", "/tmp/test/{.output}"]
 # ]
 # xrandr_args = ["--dpi", "144"]
-xrandr_args = ["--scale", "0.8x0.8"]
+xrandr_args = ["--scale", "0.66667"]
 wallpaper = "~/wallpaper2560x1440.png"
 
 [monitors.iiyama]
