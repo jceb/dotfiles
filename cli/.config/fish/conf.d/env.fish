@@ -45,6 +45,9 @@ export NNN_BMS=(sed -ne 's/^\([0-9a-zA-Z]\)[^:]*:/\1:/p' ~/.warprc | sed -e ':a;
 
 export OPENFAAS_PREFIX="jceb"
 
+# Set LS_COLORS
+eval (dircolors -c)
+
 # export FZF_DEFAULT_COMMAND='command rg -i --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_OPTS='--bind ctrl-z:toggle-all --color=light'
 #
