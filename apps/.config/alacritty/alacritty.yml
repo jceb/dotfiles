@@ -63,6 +63,12 @@ window:
   #     - buttonless: Title bar, transparent background and no title bar buttons
   #decorations: full
 
+  # Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  opacity: 1.0
+
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -82,10 +88,10 @@ window:
 
   # Window class (Linux/BSD only):
   #class:
-  #   Application instance name
-  #  instance: Alacritty
-  #   General application class
-  #  general: Alacritty
+  # Application instance name
+  #instance: Alacritty
+  # General application class
+  #general: Alacritty
 
   # GTK theme variant (Linux/BSD only)
   #
@@ -93,13 +99,13 @@ window:
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
-#   Maximum number of lines in the scrollback buffer.
-#   Specifying '0' will disable scrolling.
-#  history: 10000
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 0
 
-#   Scrolling distance multiplier.
-#  multiplier: 3
+# Scrolling distance multiplier.
+#multiplier: 3
 
 # Font configuration
 font:
@@ -355,54 +361,48 @@ schemes:
       white: "#aeb3bb"
 
 # colors: *papercolor
-colors: *tokyoday
+colors: *tokyostorm
 
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
 #bell:
-#   Visual Bell Animation
+# Visual Bell Animation
 #
-#   Animation effect for flashing the screen when the visual bell is rung.
+# Animation effect for flashing the screen when the visual bell is rung.
 #
-#   Values for `animation`:
-#     - Ease
-#     - EaseOut
-#     - EaseOutSine
-#     - EaseOutQuad
-#     - EaseOutCubic
-#     - EaseOutQuart
-#     - EaseOutQuint
-#     - EaseOutExpo
-#     - EaseOutCirc
-#     - Linear
-#  animation: EaseOutExpo
+# Values for `animation`:
+#   - Ease
+#   - EaseOut
+#   - EaseOutSine
+#   - EaseOutQuad
+#   - EaseOutCubic
+#   - EaseOutQuart
+#   - EaseOutQuint
+#   - EaseOutExpo
+#   - EaseOutCirc
+#   - Linear
+#animation: EaseOutExpo
 
-#   Duration of the visual bell flash in milliseconds. A `duration` of `0` will
-#   disable the visual bell animation.
-#  duration: 0
+# Duration of the visual bell flash in milliseconds. A `duration` of `0` will
+# disable the visual bell animation.
+#duration: 0
 
-#   Visual bell animation color.
-#  color: '#ffffff'
+# Visual bell animation color.
+#color: '#ffffff'
 
-#   Bell Command
+# Bell Command
 #
-#   This program is executed whenever the bell is rung.
+# This program is executed whenever the bell is rung.
 #
-#   When set to `command: None`, no command will be executed.
+# When set to `command: None`, no command will be executed.
 #
-#   Example:
-#     command:
-#       program: notify-send
-#       args: ["Hello, World!"]
+# Example:
+#   command:
+#     program: notify-send
+#     args: ["Hello, World!"]
 #
-#  command: None
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+#command: None
 
 selection:
   # This string contains all characters that are used as separators for
@@ -413,39 +413,39 @@ selection:
   save_to_clipboard: false
 
 #cursor:
-#   Cursor style
-#  style:
-#     Cursor shape
+# Cursor style
+#style:
+# Cursor shape
 #
-#     Values for `shape`:
-#       - ▇ Block
-#       - _ Underline
-#       - | Beam
-#    shape: Block
+# Values for `shape`:
+#   - ▇ Block
+#   - _ Underline
+#   - | Beam
+#shape: Block
 
-#     Cursor blinking state
+# Cursor blinking state
 #
-#     Values for `blinking`:
-#       - Never: Prevent the cursor from ever blinking
-#       - Off: Disable blinking by default
-#       - On: Enable blinking by default
-#       - Always: Force the cursor to always blink
-#    blinking: Off
+# Values for `blinking`:
+#   - Never: Prevent the cursor from ever blinking
+#   - Off: Disable blinking by default
+#   - On: Enable blinking by default
+#   - Always: Force the cursor to always blink
+#blinking: Off
 
-#   Vi mode cursor style
+# Vi mode cursor style
 #
-#   If the vi mode cursor style is `None` or not specified, it will fall back to
-#   the style of the active value of the normal cursor.
+# If the vi mode cursor style is `None` or not specified, it will fall back to
+# the style of the active value of the normal cursor.
 #
-#   See `cursor.style` for available options.
-#  vi_mode_style: None
+# See `cursor.style` for available options.
+#vi_mode_style: None
 
-#   Cursor blinking interval in milliseconds.
-#  blink_interval: 750
+# Cursor blinking interval in milliseconds.
+#blink_interval: 750
 
-#   If this is `true`, the cursor will be rendered as a hollow box when the
-#   window is not focused.
-#  unfocused_hollow: true
+# If this is `true`, the cursor will be rendered as a hollow box when the
+# window is not focused.
+#unfocused_hollow: true
 
 #   Thickness of the cursor relative to the cell width as floating point number
 #   from `0.0` to `1.0`.
@@ -478,17 +478,20 @@ selection:
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-#mouse:
-#   Click settings
-#
-#   The `double_click` and `triple_click` settings control the time
-#   alacritty should wait for accepting multiple clicks as one double
-#   or triple click.
-#  double_click: { threshold: 300 }
-#  triple_click: { threshold: 300 }
+# Offer IPC using `alacritty msg` (unix only)
+#ipc_socket: true
 
-#   If this is `true`, the cursor is temporarily hidden when typing.
-#  hide_when_typing: false
+#mouse:
+# Click settings
+#
+# The `double_click` and `triple_click` settings control the time
+# alacritty should wait for accepting multiple clicks as one double
+# or triple click.
+#double_click: { threshold: 300 }
+#triple_click: { threshold: 300 }
+
+# If this is `true`, the cursor is temporarily hidden when typing.
+#hide_when_typing: false
 
 # Regex hints
 #
@@ -552,13 +555,20 @@ hints:
 #   - Right
 #   - Numeric identifier such as `5`
 #
-# - `action` (see key bindings)
+# - `action` (see key bindings for actions not exclusive to mouse mode)
+#
+# - Mouse exclusive actions:
+#
+#   - ExpandSelection
+#       Expand the selection to the current mouse cursor location.
 #
 # And optionally:
 #
 # - `mods` (see key bindings)
 #mouse_bindings:
-#  - { mouse: Middle, action: PasteSelection }
+#  - { mouse: Right,                 action: ExpandSelection }
+#  - { mouse: Right,  mods: Control, action: ExpandSelection }
+#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
 
 # Key bindings
 #
@@ -627,6 +637,8 @@ hints:
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
