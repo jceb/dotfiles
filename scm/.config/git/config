@@ -31,6 +31,8 @@
 [push]
 	default = upstream
 	followTags = true
+[fetch]
+	prune = true
 [pull]
 	rebase = true
 [init]
