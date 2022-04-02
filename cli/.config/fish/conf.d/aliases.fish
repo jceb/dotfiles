@@ -23,8 +23,8 @@ function __n
 end
 
 
-abbr --add o 'xdg-open'
-abbr --add open 'xdg-open'
+abbr --add o 'open'
+# abbr --add open 'xdg-open'
 
 abbr --add n __n
 
@@ -183,6 +183,8 @@ abbr --add gup 'git up'
 abbr --add gu 'gitui'
 
 abbr --add p 'paru'
+
+abbr --add ssh 'TERM=xterm ssh'
 
 function _ch2root --description "jump to the next parent directory containing a subdirectory that's passed via argv"
     set _d $PWD
