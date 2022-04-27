@@ -120,6 +120,7 @@ set forgit_checkout_commit gcoi
 # Interactive git rebase -i selector (grb)
 # Interactive git commit --fixup && git rebase -i --autosquash selector (gfu)
 
+abbr --add lg 'EDITOR=nvim lazygit'
 abbr --add g 'git'
 abbr --add g+ 'git stash pop'
 abbr --add g- 'git stash'
