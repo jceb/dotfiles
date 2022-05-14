@@ -68,7 +68,7 @@ position = ["--right-of", "benq", "DP-1-1"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.benq.outputs.HDMI-1]
-position = ["--right-of", "benq", "DP-1"]
+position = ["--right-of", "benq", "DP-2"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.samsung]
@@ -86,7 +86,7 @@ position = ["--right-of", "laptop"]
 # ]
 
 [monitors.dellkraftwerk.outputs.HDMI-1]
-position = ["--right-of", "dellkraftwerk", "DP-1"]
+position = ["--right-of", "dellkraftwerk", "DP-2"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.dellhubhaw]
