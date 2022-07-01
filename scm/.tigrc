@@ -4,8 +4,6 @@ set refs-view	= date:default,local author:full ref commit-title
 set stash-view	= line-number:no,interval=5 id:no date:default,local author:full commit-title
 set tree-view	= line-number:no,interval=5 mode author:full file-size date:default,local id:no file-name
 
-set line-graphics = utf-8
-
 bind main	<Space>	enter						# Make space behave like enter
 bind main	<C-k>	?git cherry-pick %(commit)	# Cherry-pick commit
 bind main	<C-r>	?git rebase -i %(commit)~	# Rebase starting at the selected commit
