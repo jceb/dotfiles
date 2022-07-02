@@ -29,7 +29,6 @@
     pkgs.khard
     pkgs.mosh
     pkgs.neomutt
-    pkgs.neovim-remote
     pkgs.nnn
     pkgs.offlineimap
     pkgs.pastel
@@ -54,7 +53,9 @@
     pkgs.git-extras
     pkgs.gnumake
     pkgs.httpie
-    pkgs.neovim
+    # pkgs.neovim
+    pkgs.cht-sh
+    pkgs.neovim-remote
     pkgs.pandoc
     pkgs.python310Packages.pyflakes
     pkgs.remarshal
