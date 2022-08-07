@@ -1,7 +1,20 @@
 # Configuration options: https://nix-community.github.io/home-manager/options.html
 { config, pkgs, ... }:
 
-{
+with pkgs;
+let
+  # Python installatino example from https://nixos.wiki/wiki/Python
+  my-python-packages = python-packages:
+    with python-packages; [
+      # setuptools
+      # pip
+      black # python linter
+      pyflakes
+      toml
+      # virtualenv
+    ];
+  python-with-my-packages = python3.withPackages my-python-packages;
+in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "jceb";
@@ -33,8 +46,7 @@
     pkgs.offlineimap
     pkgs.pastel
     pkgs.perlPackages.vidir
-    pkgs.python310Packages.pip
-    pkgs.python3Full
+    python-with-my-packages
     pkgs.starship
     pkgs.stow
     pkgs.tmate
@@ -45,22 +57,29 @@
 
     ## development tools
     # pkgs.python310Packages.pyls-black
-    pkgs.black # python linter
+    # pkgs.neovim
+    pkgs.cht-sh
     pkgs.curl
     pkgs.deno
     pkgs.git
     pkgs.git-annex
     pkgs.git-extras
     pkgs.gnumake
+    pkgs.go
+    pkgs.delve
     pkgs.httpie
-    # pkgs.neovim
-    pkgs.cht-sh
+    pkgs.lldb # high peformance debugger required by https://github.com/mfussenegger/nvim-dap
     pkgs.neovim-remote
     pkgs.pandoc
-    pkgs.python310Packages.pyflakes
     pkgs.remarshal
+    pkgs.rust-analyzer
+    pkgs.rust-bindgen
+    pkgs.rustc
+    pkgs.cargo-watch
+    pkgs.rustfmt
+    # pkgs.rustup # either use this or rustc ...
     pkgs.stylua
-    pkgs.terraform-ls
+    # pkgs.terraform-ls # disabled, because it's managed / automatically downloaded by vim
 
     ## Kubernetes
     pkgs.jq
