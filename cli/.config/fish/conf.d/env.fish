@@ -79,6 +79,7 @@ eval (dircolors -c)
 # end
 #
 # # PYTHONPATH=~/lib/python;		export PYTHONPATH
+# export PYTHONPATH=$HOME/.local/lib/python3.10/site-packages
 # export PYTHONSTARTUP="$HOME/.pystartup"
 #
 # export XTERM_VERSION='XTerm(327)'
