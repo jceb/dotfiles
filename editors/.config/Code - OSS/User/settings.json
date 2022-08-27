@@ -11,8 +11,10 @@
     "vim.easymotionMarkerHeight": 12,
     "git.autofetch": true,
     "vim.neovimPath": "/usr/bin/nvim",
-    "window.zoomLevel": 0,
     "workbench.iconTheme": "vscode-icons",
     "vsicons.dontShowNewVersionMessage": true,
-    "liveshare.featureSet": "stable"
+    "liveshare.featureSet": "stable",
+    "workbench.startupEditor": "none",
+    "git.confirmSync": false,
+    "workbench.colorTheme": "papercolor-vscode"
 }
