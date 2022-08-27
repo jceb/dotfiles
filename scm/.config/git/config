@@ -19,6 +19,7 @@
 [diff]
     # if I want to use vim for git diffs
     # tool = nvimdiff2
+    colorMoved = default
 [difftool "nvimdiff2"]
     cmd = nvim -d $LOCAL $REMOTE
 ; [interactive]
