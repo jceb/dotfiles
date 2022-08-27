@@ -105,7 +105,7 @@ function skim_key_bindings
     else if [ $SKIM_TMUX -eq 1 ]
       echo "sk-tmux -d$SKIM_TMUX_HEIGHT -- "
     else
-      echo "sk"
+      echo "sk --color" (cat ~/.config/colorscheme)
     end
   end
 
