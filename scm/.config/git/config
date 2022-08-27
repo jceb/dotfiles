@@ -4,188 +4,191 @@
 	# set through environment variable EMAIL
 	# email = xxxx
 [gui]
-	fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
-	fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
-	editor = terminal-gvim
+    fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
+    fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
+    editor = terminal-gvim
 [merge]
     tool = nfugitive
     ff = false
 [mergetool "vimdiff"]
-	cmd = "{$VMUX_REALEDITOR_NVIM}" -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    cmd = "{$VMUX_REALEDITOR_NVIM}" -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [mergetool "nvimdiff4"]
     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [mergetool "nfugitive"]
     cmd = nvim -f -c "Gdiff" "$MERGED"
 [diff]
-	# if I want to use vim for git diffs
+    # if I want to use vim for git diffs
     # tool = nvimdiff2
 [difftool "nvimdiff2"]
     cmd = nvim -d $LOCAL $REMOTE
+; [interactive]
+;     diffFilter = delta --color-only
 [core]
-	pager = less -FSRX
-	editor = /usr/bin/nvim
+    pager = less -FSRX
+    ; pager = delta
+    editor = /usr/bin/nvim
 [color]
-	diff = auto
-	status = auto
-	ui = auto
+    diff = auto
+    status = auto
+    ui = auto
 [push]
-	default = upstream
-	followTags = true
+    default = upstream
+    followTags = true
 [fetch]
-	prune = true
+    prune = true
 [pull]
-	rebase = true
+    rebase = true
 [init]
-	templatedir = ~/.config/git/template
-	defaultBranch = main
+    templatedir = ~/.config/git/template
+    defaultBranch = main
 [rebase]
-	autostash = true
+    autostash = true
 [alias]
-	########## list all aliases
-	aliases = "!git config -l | grep alias | cut -c 7-"
-	configedit = "!${EDITOR} ~/.config/git/config"
-	url = "!git config remote.$(git remote).url"
-	appraise = !git-appraise
+    ########## list all aliases
+    aliases = "!git config -l | grep alias | cut -c 7-"
+    configedit = "!${EDITOR} ~/.config/git/config"
+    url = "!git config remote.$(git remote).url"
+    appraise = !git-appraise
 
-	########## annex
-	a = annex
-	aa = annex add
-	ae = annex edit
-	ag = annex get
-	ai = annex init
-	aie = "!bash -c 'source ~/.secrets/wasabi.sh && git annex enableremote wasabi'"
-	aii = "!bash -c 'source ~/.secrets/wasabi.sh && git annex initremote wasabi type=S3 datacenter=eu-central-1 protocol=https host=s3.wasabisys.com versioning=yes requeststyle=path encryption=none bucket=identinet- git-annex fileprefix=$(basename $(git rev-parse --show-toplevel))'/"
-	as = annex sync
-	ass = annex sync --content -A
+    ########## annex
+    a = annex
+    aa = annex add
+    ae = annex edit
+    ag = annex get
+    ai = annex init
+    aie = "!bash -c 'source ~/.secrets/wasabi.sh && git annex enableremote wasabi'"
+    aii = "!bash -c 'source ~/.secrets/wasabi.sh && git annex initremote wasabi type=S3 datacenter=eu-central-1 protocol=https host=s3.wasabisys.com versioning=yes requeststyle=path encryption=none bucket=identinet- git-annex fileprefix=$(basename $(git rev-parse --show-toplevel))'/"
+    as = annex sync
+    ass = annex sync --content -A
 
-	########## branches
-	b = branch
-	bc = branch --contains
-	bm = branch --merged
-	br = branch -r
-	brc = branch -r --contains
-	brm = branch -r --merged
-	ba = branch -a
-	bac = branch -a --contains
-	bam = branch -a --merged
-	ban = branch -a --no-merged
+    ########## branches
+    b = branch
+    bc = branch --contains
+    bm = branch --merged
+    br = branch -r
+    brc = branch -r --contains
+    brm = branch -r --merged
+    ba = branch -a
+    bac = branch -a --contains
+    bam = branch -a --merged
+    ban = branch -a --no-merged
 
-	pm = "!bash -c 'git push -o merge_request.create -o merge_request.target=${1:-master}'"
-	pt = push --tags
-	pu = push --set-upstream origin HEAD
+    pm = "!bash -c 'git push -o merge_request.create -o merge_request.target=${1:-master}'"
+    pt = push --tags
+    pu = push --set-upstream origin HEAD
 
-	co = checkout
-	# checkout branch by taking the upstream branch and creating a local tracking copy
-	coo = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git branch \"${branch}\" \"${origin}\"' -"
-	cob = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git checkout -b \"${branch}\" \"${origin}\"' -"
-	pre = pull --rebase --prune
-	mf = merge --ff-only
-	m = merge --no-ff
+    co = checkout
+    # checkout branch by taking the upstream branch and creating a local tracking copy
+    coo = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git branch \"${branch}\" \"${origin}\"' -"
+    cob = "!bash -c 'origin=\"${1#remotes/}\"; branch=\"${origin#*/}\"; git checkout -b \"${branch}\" \"${origin}\"' -"
+    pre = pull --rebase --prune
+    mf = merge --ff-only
+    m = merge --no-ff
 
-	r = rebase
-	rc = rebase --continue
-	ra = rebase --abort
-	ri = rebase --interactive
+    r = rebase
+    rc = rebase --continue
+    ra = rebase --abort
+    ri = rebase --interactive
 
-	########## Univention specific settings
-	# mm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git merge \"origin/${m}/master\""
-	# cm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git checkout \"${m}/master\""
-	cb = "!r=\"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\"; echo -n \"Enter ticket id: \"; read id; echo -n \"Enter description: \"; read d; git checkout -b \"${r}/${id}-$(echo \"${d}\"|sed -e 's/\\s\\+/_/g')/master\""
+    ########## Univention specific settings
+    # mm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git merge \"origin/${m}/master\""
+    # cm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git checkout \"${m}/master\""
+    cb = "!r=\"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\"; echo -n \"Enter ticket id: \"; read id; echo -n \"Enter description: \"; read d; git checkout -b \"${r}/${id}-$(echo \"${d}\"|sed -e 's/\\s\\+/_/g')/master\""
 
-	########## commits
-	c = commit
-	ca = commit -a
+    ########## commits
+    c = commit
+    ca = commit -a
     cc = "!bash -c 'if [ -e \"$(git rev-parse --show-toplevel)/.git/COMMIT_EDITMSG\" ]; then git commit -e -F \"$(git rev-parse --show-toplevel)/.git/COMMIT_EDITMSG\"; else git commit; fi'"
-	cam = commit --amend -a
-	cm = commit -m
+    cam = commit --amend -a
+    cm = commit -m
 
-	# take commit message from debian/changelog
-	cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
+    # take commit message from debian/changelog
+    cmd = "!git commit -e -m \"$(cd \"${GIT_PREFIX}\" && dpkg-parsechangelog | sed -e '1,/ \\./d; s/\\s\\+//')\""
 
-	# unstage changes
-	unstage = reset HEAD --
+    # unstage changes
+    unstage = reset HEAD --
 
-	# undo last commit, soft and hard way
-	# undo = reset --soft HEAD~
-	# undohard = reset --hard HEAD~
+    # undo last commit, soft and hard way
+    # undo = reset --soft HEAD~
+    # undohard = reset --hard HEAD~
 
-	########## diff
-	# word wise diff
-	d = -p diff --color-words --no-prefix
-	dc = -p diff --color-words --cached --no-prefix
-	df = -p diff-index --color-words -p HEAD --no-prefix
+    ########## diff
+    # word wise diff
+    d = -p diff --color-words --no-prefix
+    dc = -p diff --color-words --cached --no-prefix
+    df = -p diff-index --color-words -p HEAD --no-prefix
 
-	# some diff extensions
-	diffr = -p diff --relative --no-prefix
-	diffc = -p diff --cached --no-prefix
-	diffcr = -p diff --cached --relative --no-prefix
+    # some diff extensions
+    diffr = -p diff --relative --no-prefix
+    diffc = -p diff --cached --no-prefix
+    diffcr = -p diff --cached --relative --no-prefix
 
-	# diff changes regardless whether they are staged or unstaged
-	difff = -p diff-index -p HEAD --no-prefix
-	difffr = -p diff-index -p HEAD --relative --no-prefix
-	diffstat = -p diff --stat -r --no-prefix
+    # diff changes regardless whether they are staged or unstaged
+    difff = -p diff-index -p HEAD --no-prefix
+    difffr = -p diff-index -p HEAD --relative --no-prefix
+    diffstat = -p diff --stat -r --no-prefix
 
-	# edit changed files
-	edit = "!${EDITOR} `git ls-files -m`"
+    # edit changed files
+    edit = "!${EDITOR} `git ls-files -m`"
 
-	# status abbreviations
-	st = status -uno
-	sta = status
+    # status abbreviations
+    st = status -uno
+    sta = status
 
-	########## log
+    ########## log
 
-	# history of a file
-	filelog = log -u
+    # history of a file
+    filelog = log -u
 
-	# show history
-	ls = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
-	ll = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
-	# show deleted files only
-	lsd = log --diff-filter=D --summary
-	# show file names and commits only
-	ln = log --name-only --pretty=oneline
-	# show unique file names only
-	lf = !bash -c 'git log --name-only --pretty=oneline  "${@}" | grep -vE "^[0-9a-f]{40} " | sort | uniq' -
+    # show history
+    ls = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
+    ll = log --pretty=format:"%C(auto)%h\\ %Cgreen%>(12)%ar%C(auto)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --stat
+    # show deleted files only
+    lsd = log --diff-filter=D --summary
+    # show file names and commits only
+    ln = log --name-only --pretty=oneline
+    # show unique file names only
+    lf = !bash -c 'git log --name-only --pretty=oneline  "${@}" | grep -vE "^[0-9a-f]{40} " | sort | uniq' -
 
-	# show latest tag
-	lasttag = describe --tags --abbrev=0
+    # show latest tag
+    lasttag = describe --tags --abbrev=0
 
-	# show latest commit
-	tip = log HEAD -1 --stat --
-	head = log HEAD -1 --stat --
+    # show latest commit
+    tip = log HEAD -1 --stat --
+    head = log HEAD -1 --stat --
 
-	# show who contributed to the project
-	who = shortlog -n -s --no-merges
+    # show who contributed to the project
+    who = shortlog -n -s --no-merges
 
-	########## some plumbing aliases
-	type = cat-file -t
-	dump = cat-file -p
+    ########## some plumbing aliases
+    type = cat-file -t
+    dump = cat-file -p
 
-	; ########## some git svn commands
-	; up = svn rebase
-	; ci = svn dcommit
-	; unisvn = !gcu
+    ; ########## some git svn commands
+    ; up = svn rebase
+    ; ci = svn dcommit
+    ; unisvn = !gcu
 
-	########## submodules
-	subm = submodule foreach git checkout master
-	subpre = submodule foreach git pull --rebase
-	subup = submodule update --init --recursive
+    ########## submodules
+    subm = submodule foreach git checkout master
+    subpre = submodule foreach git pull --rebase
+    subup = submodule update --init --recursive
 
-	########## rebase
-	oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
-	rebase-onto     = !bash -c 'git rebase -i --onto $1 $(git oldest-ancestor $2 $3) $3' -
+    ########## rebase
+    oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+    rebase-onto     = !bash -c 'git rebase -i --onto $1 $(git oldest-ancestor $2 $3) $3' -
 
-	# GUIs
-	t = !tig --all
-	g = !gitg --all 2>/dev/null &
-	k = !gitk --all 2>/dev/null &
-	releases = log --decorate --oneline --simplify-by-decoration --all
+    # GUIs
+    t = !tig --all
+    g = !gitg --all 2>/dev/null &
+    k = !gitk --all 2>/dev/null &
+    releases = log --decorate --oneline --simplify-by-decoration --all
 
 [rerere]
-	enabled = true
+    enabled = true
 [pack]
-	writeReverseIndex = true
+    writeReverseIndex = true
 [cola]
-	spellcheck = false
+    spellcheck = false
 
 # vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
