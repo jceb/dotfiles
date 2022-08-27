@@ -1,38 +1,43 @@
 module Main where
 
-import XMonad hiding ( (|||) )
+import           XMonad                                hiding ((|||))
 -- import XMonad.Layout hiding ( (|||) )
-import XMonad.Actions.CycleWS
-import XMonad.Actions.CycleWorkspaceByScreen
-import XMonad.Hooks.DynamicLog
-import XMonad.Layout.Fullscreen (fullscreenManageHook, fullscreenFull)
-import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook, ewmhDesktopsEventHook, ewmhDesktopsStartup, ewmhDesktopsLogHook)
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.WorkspaceHistory (workspaceHistoryHook)
-import XMonad.Layout.CenteredMaster
+import           XMonad.Actions.CycleWorkspaceByScreen
+import           XMonad.Actions.CycleWS
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.DynamicProperty
+import           XMonad.Hooks.EwmhDesktops             (ewmh,
+                                                        ewmhDesktopsEventHook,
+                                                        ewmhFullscreen)
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
+import           XMonad.Hooks.WorkspaceHistory         (workspaceHistoryHook)
+import           XMonad.Layout.CenteredMaster
+import           XMonad.Layout.Fullscreen              (fullscreenFull,
+                                                        fullscreenManageHook)
 -- import XMonad.Layout.Grid
-import XMonad.Layout.GridVariants
-import XMonad.Layout.LayoutCombinators
+import           Data.Map                              as M
+import           System.IO
+import           XMonad.Layout.GridVariants
+import           XMonad.Layout.LayoutCombinators
 -- http://hackage.haskell.org/package/xmonad-contrib/docs/XMonad-Layout-Maximize.html
-import XMonad.Layout.Maximize
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Renamed
-import XMonad.Layout.SimplestFloat
-import XMonad.Layout.StateFull
-import XMonad.Util.EZConfig (additionalKeys, removeKeys)
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.NamedScratchpad
-import qualified XMonad.StackSet as W
-import System.IO
-import Data.Map as M
+import           XMonad.Layout.Maximize
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Renamed
+import           XMonad.Layout.SimplestFloat
+import           XMonad.Layout.StateFull
+import qualified XMonad.StackSet                       as W
+import           XMonad.Util.EZConfig                  (additionalKeys,
+                                                        removeKeys)
+import           XMonad.Util.NamedScratchpad
+import           XMonad.Util.Run                       (spawnPipe)
 
 -- myewmhDesktopsEventHookCustom  handle function
-import qualified Data.Monoid as DM
-import XMonad.Util.XUtils (fi)
-import XMonad.Util.WorkspaceCompare
-import qualified XMonad.Util.ExtensibleState as XS
+import qualified Data.Monoid                           as DM
+import qualified XMonad.Util.ExtensibleState           as XS
+import           XMonad.Util.WorkspaceCompare
+import           XMonad.Util.XUtils                    (fi)
 
 toggleFloat :: Window -> X ()
 toggleFloat w = do
@@ -43,23 +48,39 @@ toggleFloat w = do
 
 swapMasterOrSlave :: W.StackSet i l a s sd -> W.StackSet i l a s sd
 swapMasterOrSlave = W.modify' $ \c -> case c of
-    W.Stack _ [] []  -> c    -- already master.
+    W.Stack _ [] [] -> c    -- already master.
     W.Stack t [] rs -> W.Stack x [] (t:xs) where (x:xs) = rs  -- swap master with next window - optimum would be to swap it with a previously swapped window
     W.Stack t ls rs -> W.Stack t [] (x:xs ++ rs) where (x:xs) = reverse ls
 
+-- myDynamicPropertyChange :: String -> ManageHook -> Event -> X All
+-- myDynamicPropertyQuery prop hook PropertyEvent { ev_window = w, ev_atom = a, ev_propstate = ps } = do
+--   pa <- getAtom prop
+--   when (ps == propertyNewValue && a == pa) $ do
+--     g <- appEndo <$> userCodeDef (Endo id) (runQuery hook w)
+--     windows g
+--   return mempty -- so anything else also processes it
+-- myDynamicPropertyQuery _ _ _ = return mempty
+-- myDynamicTitle :: ManageHook -> Event -> X All
+-- myDynamicTitle = myDynamicPropertyQuery "_NET_WM_NAME"
+
 scratchpads = [
   NS "standard-notes" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
-  NS "thingking" "thingking" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
-  NS "journal" "journal" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
+  NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
+  -- NS "thingking" "firefox --new-window https://noteself.org/online/" (className =? "firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
+  NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
+  NS "floating-terminal" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
 
 main = do
-  xmonad $ docks $ def
+  xmonad $ docks . ewmhFullscreen . ewmh $ def
     { manageHook =  myManageHook <+> manageHook def
+    -- { manageHook =  manageHook def
     , layoutHook = myLayoutHook
-    , handleEventHook =  myewmhDesktopsEventHookCustom id <+> fullscreenEventHook <+> handleEventHook def
-    , startupHook = ewmhDesktopsStartup <+> setWMName "LG3D"
-    , logHook = ewmhDesktopsLogHook <+> workspaceHistoryHook <+> logHook def
+    -- , handleEventHook =  myewmhDesktopsEventHookCustom id <+> dynamicPropertyChange "WM_NAME" myManageHook <+> handleEventHook def
+    , handleEventHook =  myewmhDesktopsEventHookCustom id <+> handleEventHook def
+    , startupHook = setWMName "LG3D"
+    , logHook = workspaceHistoryHook <+> logHook def
     , borderWidth = 1
     , focusedBorderColor = "#8b008b"
     , normalBorderColor  = "#4D4D4C"
@@ -67,6 +88,8 @@ main = do
     , terminal = "x-terminal-emulator"
     } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
 
+-- FIXME: the handle function isn't executed, I guess because of the change in
+-- how ewmh is integrated
 -- myewmhDesktopsEventHookCustom
 newtype NetActivated    = NetActivated {netActivated :: Maybe Window}
   deriving (Show, Typeable)
@@ -76,7 +99,8 @@ instance ExtensionClass NetActivated where
 myewmhDesktopsEventHookCustom :: ([WindowSpace] -> [WindowSpace]) -> Event -> X DM.All
 myewmhDesktopsEventHookCustom f e = handle f e >> return (DM.All True)
 
--- only change: swap W.view with W.greedyView
+-- only change: swap W.view with W.greedyView so that a click on the taskbar
+-- leads to the current tag being changed to the selected one
 handle :: ([WindowSpace] -> [WindowSpace]) -> Event -> X ()
 handle f (ClientMessageEvent {
                ev_window = w,
@@ -119,10 +143,11 @@ myManageHook = manageDocks <+> composeAll
                [
                isFullscreen --> doFullFloat
                , isDialog --> doCenterFloat
-               ,title =? "thingking — JC's thinking system — Mozilla Firefox" --> doFloat
+               -- , title =? "thingking — JC's thinking system — Mozilla Firefox" --> doFloat
                , className =? "Calendar" --> doFloat
-               , className =? "Copyq" --> doFloat
+               , className =? "copyq" --> doRectFloat (W.RationalRect (11/20) (1/20) (8/20) (8/20))
                , className =? "Empathy" --> doFloat
+               -- , className =? "FloatingTerminal" --> doFloat
                , className =? "Gajim" --> doFloat
                , className =? "Hexchat" --> doFloat
                , className =? "Jitsi" --> doFloat
@@ -131,15 +156,13 @@ myManageHook = manageDocks <+> composeAll
                , className =? "Pidgin" --> doFloat
                , className =? "Psi-plus" --> doFloat
                , className =? "Rainlendar2" --> doFloat
-               -- , className =? "Rambox" --> doFloat
                , className =? "Riot" --> doFloat
                , className =? "Scratchpad" --> doFloat
                , className =? "xournalpp" --> doFloat
                , className =? "Skype" --> doFloat
-               , className =? "Standard Notes" --> doFloat
+               -- , className =? "Standard Notes" --> doFloat
                , className =? "Turpial" --> doFloat
                , className =? "Xchat" --> doFloat
-               , className =? "copyq" --> doFloat
                , className =? "krunner" --> doFloat
                , className =? "skypeforlinux" --> doFloat
                , className =? "Yeahconsole" --> doFloat
@@ -166,8 +189,8 @@ myAdditionalKeys =
   , ((mod4Mask, xK_g ), sendMessage $ JumpToLayout "grid")
   , ((mod4Mask, xK_y ), sendMessage $ JumpToLayout "master")
   , ((mod4Mask, xK_b ), sendMessage $ ToggleStrut U)
-  , ((mod4Mask, xK_0 ), moveTo Next EmptyWS)
-  , ((mod4Mask, xK_grave ), moveTo Prev EmptyWS)
+  , ((mod4Mask, xK_0 ), moveTo Next emptyWS)
+  , ((mod4Mask, xK_grave ), moveTo Prev emptyWS)
   , ((mod4Mask, xK_c ), kill)
   , ((mod4Mask, xK_Return), windows swapMasterOrSlave)
   , ((mod4Mask .|. shiftMask, xK_space), withFocused toggleFloat)
@@ -192,6 +215,7 @@ myAdditionalKeys =
   , ((mod4Mask .|. controlMask,  xK_equal), sendMessage $ IncMasterRows 1)
   , ((mod4Mask .|. controlMask,  xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
+  , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
   , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standard-notes")
   , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
   , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "journal")
