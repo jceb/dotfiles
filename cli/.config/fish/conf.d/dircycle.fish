@@ -39,8 +39,10 @@ function __fish_dir_cycle_warpDir
         if not set -q FZF_TMUX_HEIGHT
             set FZF_TMUX_HEIGHT "40%"
         end
-        set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
-        command sed -ne 's/:/\\t/p' < "$FILE" | command fzf | command sed -ne "s/^[^\t]*\t//p" | read -l selection
+        # set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
+        # command sed -ne 's/:/\\t/p' < "$FILE" | command fzf | command sed -ne "s/^[^\t]*\t//p" | read -l selection
+        set -x -l SKIM_DEFAULT_OPTIONS "$SKIM_DEFAULT_OPTIONS --reverse"
+        command sed -ne 's/:/\\t/p' < "$FILE" | eval (__skimcmd) | command sed -ne "s/^[^\t]*\t//p" | read -l selection
         if test -d "$selection"
             cd "$selection"
         end
@@ -52,13 +54,17 @@ function __fish_dir_cycle_fzChDir
     if not set -q FZF_TMUX_HEIGHT
         set FZF_TMUX_HEIGHT "40%"
     end
-    set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
+    # set -x -l FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --height $FZF_TMUX_HEIGHT --reverse"
+    set -x -l SKIM_DEFAULT_OPTIONS "$SKIM_DEFAULT_OPTIONS --reverse"
     set -l selection
     if type fd > /dev/null
-        set -x -l FZF_DEFAULT_COMMAND 'command fd -d 4 -td -HIL'
-        command fzf | read selection
+        # set -x -l FZF_DEFAULT_COMMAND 'fd -d 4 -td -HL -E "\.git/"'
+        # command fzf | read selection
+        set -x -l SKIM_DEFAULT_COMMAND 'fd --min-depth 1 -d 4 -td -HL -E "\.git/"'
+        eval (__skimcmd) | read selection
     else
-        command find -L . -mindepth 1 -maxdepth 4 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/\* ! -wholename \*/.hg/\* 2>/dev/null | command fzf | read selection
+        # command find -L . -mindepth 1 -maxdepth 4 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/\* ! -wholename \*/.hg/\* 2>/dev/null | command fzf | read selection
+        command find -L . -mindepth 1 -maxdepth 4 \( -type d -o -type l \) ! -wholename \*/debian/\*/\* ! -wholename \*/.svn/\* ! -wholename \*/.git/modules/\* ! -wholename \*/.git/\* ! -wholename \*/.hg/\* 2>/dev/null | eval (__skimcmd) | read selection
     end
     if test -d "$selection"
         cd "$selection"

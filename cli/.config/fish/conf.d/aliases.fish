@@ -35,6 +35,7 @@ end
 
 # abbr --add t 'tree -f'
 abbr --add t 'exa -T'
+abbr --add cl 'curlie -f'
 
 abbr --add top 'htop'
 
@@ -209,8 +210,15 @@ abbr --add cdroot 'cd (_ch2root debian .git .hg .svn package.json)'
 abbr --add cd.. 'cd ..'
 
 function r -d 'grep replacement'
-    rg -S --hidden -n -H $argv | fzf -0 -m
+    # rg -S --hidden -n -H $argv | fzf -0 -m
+    rg -S --hidden -n -H $argv | sk -m
 end
+
+function rr -d 'interactive grep'
+    # rg -S --hidden -n -H $argv | fzf -0 -m
+    sk -i -c "rg -S --hidden -n -H {}"
+end
+
 
 # function f -d 'find for files'
 #     fd -tf $argv | fzf -0 -m
@@ -219,7 +227,8 @@ end
 abbr --add f 'faas-cli'
 
 function d -d 'find for directories'
-    fd -td $argv | fzf -0 -m
+    # fd -td $argv | fzf -0 -m
+    fd -td $argv | sk
 end
 
 function = -d 'zsh like shortcut to the which command'
