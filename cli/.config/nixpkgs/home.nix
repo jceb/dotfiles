@@ -11,6 +11,7 @@ let
       black # Python linter
       pyflakes # Pythong linter
       toml # TOML language module
+      pyyaml # YAML module
       # virtualenv
     ];
   python-with-my-packages = python3.withPackages my-python-packages;
@@ -49,11 +50,11 @@ in {
 
     ## Security
     # pkgs.gnupg
-    # pkgs.openssl
-    # pkgs.vegeta # load generator https://www.terraform.io/
+    # pkgs.openssl # openssl CLI for setting up the HSM
+    # pkgs.vegeta # HTTP load generator https://www.terraform.io/
     pkgs.age # modern encryption tool with small explicit keys https://age-encryption.org/
     pkgs.mosh # Remote shell like ssh that support disconnects
-    pkgs.step-cli # certificate manager: https://smallstep.com/cli/
+    pkgs.step-cli # simplified certificate manager CLI https://smallstep.com/cli/
 
     ## PIM
     pkgs.khal # CLI calendar https://github.com/pimutils/khal
@@ -65,13 +66,12 @@ in {
     ## development tools
     # pkgs.neovim
     # pkgs.httpie # HTTP CLi https://httpie.io/
-    pkgs.nixfmt # Nix language formatter
-    pkgs.nixpkgs-fmt # Nix language formatter
     pkgs.cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
     pkgs.cargo-watch # Generic file watcher and command executor https://github.com/watchexec/cargo-watch
     pkgs.cht-sh # Cheat sheet CLI https://cht.sh/
     pkgs.curl # HTTP and more CLI https://curl.se/
     pkgs.curlie # Wrapper around curl, replacement for httpie https://github.com/rs/curlie
+    pkgs.difftastic # Diff tool that understands programming languages https://github.com/Wilfred/difftastic
     pkgs.git # Git https://git-scm.com/
     pkgs.git-annex # Large file store for Git https://git-annex.branchable.com/
     pkgs.git-extras # Extended Git commands https://git-annex.branchable.com/
@@ -79,6 +79,8 @@ in {
     pkgs.just # Simple make replacement https://just.systems/
     pkgs.neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
     pkgs.pandoc # Document generator http://pandoc.org/
+    pkgs.scc # Fast and accurate code counter https://github.com/boyter/scc
+    pkgs.taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
     pkgs.watchexec # Generic file watcher and command executor https://github.com/watchexec/watchexec
     pkgs.watchman # Generic file watcher and command executor https://github.com/facebook/watchman
 
@@ -90,30 +92,39 @@ in {
     # pkgs.rustfmt # managed via rustup
     # pkgs.terraform-ls # Terraform language server - disabled, because it's managed / automatically downloaded by vim
     # pkgs.terraform # Infrastructure as code https://www.terraform.io/
-    python-with-my-packages
+    # pkgs.nodejs # node used for husky https://nodejs.org/en/
+    # pkgs.node # JS interpreter https://nodejs.org/
     pkgs.delve # Go debugger https://github.com/go-delve/delve
     pkgs.deno # JS interpreter https://deno.land/
-    # pkgs.node # JS interpreter https://nodejs.org/
     pkgs.go # Go language https://golang.org/
     pkgs.lldb # high peformance debugger required by https://github.com/mfussenegger/nvim-dap
+    pkgs.cargo-udeps # Rust fix unused dependency checker https://github.com/est31/cargo-udeps
+    pkgs.cargo-bloat # Rust find the bloat https://github.com/RazrFalcon/cargo-bloat
+    pkgs.nixfmt # Nix language formatter
+    pkgs.nixpkgs-fmt # Nix language formatter
     pkgs.remarshal # Conversion tool between different structured file formats https://github.com/dbohdan/remarshal
     pkgs.rust-analyzer # Rust language server https://rust-analyzer.github.io/
     pkgs.rustup # either use this or rustc, cargo etc ... run `rustup update stable` to initialize the currrent version
+    pkgs.shfmt # Shell formatter https://github.com/patrickvane/shfmt
     pkgs.stylish-haskell # Haskell formatter
     pkgs.stylua # Lua formatter
+    # pkgs.yamlfmt # YAML formatter https://github.com/google/yamlfmt TODO: add to nix
+    python-with-my-packages
 
     ## Kubernetes
     pkgs.jq # JSON CLI - fully replaceable by yq-go
-    pkgs.k9s # Kubernetes TUI https://k9scli.io/
+    pkgs.k9s # interactive kubectl interface  https://k9scli.io/
     pkgs.krew # kubectl plugin manager - explore is a highly recommend plugin https://krew.sigs.k8s.io/plugins/
+    pkgs.kubectl # kubernetes CLI https://kubectl.docs.kubernetes.io/
     pkgs.kubectx # Kubernetes context manager
     pkgs.sops # Kubernetes secret encryption https://github.com/mozilla/sops
-    pkgs.yq-go # YAML CLI https://mikefarah.gitbook.io/yq/
+    pkgs.yq-go # YAML and JSON CLI parser https://mikefarah.gitbook.io/yq/
+    # pkgs.awscli2 # deactivated because of a broken dependency on MacOS, install manually https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
     # pkgs.eksctl # AWS Kubernetes CLi https://eksctl.io/
-    # pkgs.datree # Kubernetes linting https://datree.io/
-    # pkgs.fluxcd # gitops CLI https://fluxcd.io
+    # pkgs.datree # kubernetes configuration verification https://datree.io/
+    # pkgs.fluxcd # fluxcd CLI for interacting with the CD tool https://fluxcd.io
     # pkgs.kubernetes-helm # helm CLI https://helm.sh
-    # pkgs.linkerd # Service mesh https://linkerd.io/
+    # pkgs.linkerd # simple service mesh for kubernetes https://linkerd.io/
 
     # # GUI programs
     # pkgs.alacritty
@@ -171,36 +182,36 @@ in {
   programs.direnv.nix-direnv.enable = true;
 
   programs.feh.enable = true;
-  programs.feh.buttons = {
-    prev_img = [ ];
-    next_img = [ ];
-    blur = [ ];
-    zoom_in = [ "4" "C-4" ];
-    zoom_out = [ "5" "C-5" ];
-  };
-  programs.feh.keybindings = {
-    action_5 = [ "R" ];
-    close = [ "x" "C-w" ];
-    menu_child = [ "l" ];
-    menu_down = [ "j" ];
-    menu_parent = [ "h" ];
-    menu_up = [ "k" ];
-    next_img = [ "j" "n" ];
-    prev_img = [ "k" "p" ];
-    quit = [ "q" "Escape" "C-q" ];
-    reload_minu = [ "s" ];
-    reload_plu = [ "s" ];
-    scroll_down = [ "J" ];
-    scroll_left = [ "H" ];
-    scroll_right = [ "L" ];
-    scroll_up = [ "K" ];
-    toggle_fullscreen = [ "v" "F11" ];
-    toggle_info = [ "i" ];
-    jump_rando = [ "m" ];
-    toggle_keep_vp = [ "z" ];
-    zoom_default = [ "0" ];
-    zoom_fit = [ "equal" "slash" ];
-    zoom_in = [ "plus" ];
-    zoom_out = [ "minus" ];
-  };
+  # programs.feh.buttons = {
+  #   prev_img = [ ];
+  #   next_img = [ ];
+  #   blur = [ ];
+  #   zoom_in = [ "4" "C-4" ];
+  #   zoom_out = [ "5" "C-5" ];
+  # };
+  # programs.feh.keybindings = {
+  #   action_5 = [ "R" ];
+  #   close = [ "x" "C-w" ];
+  #   menu_child = [ "l" ];
+  #   menu_down = [ "j" ];
+  #   menu_parent = [ "h" ];
+  #   menu_up = [ "k" ];
+  #   next_img = [ "j" "n" ];
+  #   prev_img = [ "k" "p" ];
+  #   quit = [ "q" "Escape" "C-q" ];
+  #   reload_minu = [ "s" ];
+  #   reload_plu = [ "s" ];
+  #   scroll_down = [ "J" ];
+  #   scroll_left = [ "H" ];
+  #   scroll_right = [ "L" ];
+  #   scroll_up = [ "K" ];
+  #   toggle_fullscreen = [ "v" "F11" ];
+  #   toggle_info = [ "i" ];
+  #   jump_rando = [ "m" ];
+  #   toggle_keep_vp = [ "z" ];
+  #   zoom_default = [ "0" ];
+  #   zoom_fit = [ "equal" "slash" ];
+  #   zoom_in = [ "plus" ];
+  #   zoom_out = [ "minus" ];
+  # };
 }
