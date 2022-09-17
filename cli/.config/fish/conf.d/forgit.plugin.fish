@@ -51,6 +51,8 @@ test -z "$forgit_log_format";         and set -g forgit_log_format   "-%C(auto)%
 test -z "$forgit_fullscreen_context"; and set -g forgit_fullscreen_context "10"
 test -z "$forgit_preview_context";    and set -g forgit_preview_context "3"
 
+set -g forgit_log_preview_options "--graph --pretty=format:'$forgit_log_format' --color=always --abbrev-commit --date=relative"
+
 # optional render emoji characters (https://github.com/wfxr/emoji-cli)
 type -q emojify >/dev/null 2>&1 && set -g forgit_emojify '|emojify'
 
@@ -145,7 +147,7 @@ function forgit::diff -d "git diff viewer" --argument-names arg1 arg2
 end
 
 # git add selector
-function forgit::add -d "git add selector"
+function forgit::add -d "git add selector" --wraps "git add"
     forgit::inside_work_tree || return 1
     # Add files if passed as arguments
     count $argv >/dev/null && git add "$argv" && git status --short && return
@@ -208,7 +210,7 @@ function forgit::reset::head -d "git reset HEAD (unstage) selector"
 end
 
 # git checkout-restore selector
-function forgit::checkout::file -d "git checkout-file selector" --argument-names 'file_name'
+function forgit::checkout::file -d "git checkout-file selector" --argument-names 'file_name' --wraps "git checkout --"
     forgit::inside_work_tree || return 1
 
     if test -n "$file_name"
@@ -239,7 +241,7 @@ function forgit::checkout::file -d "git checkout-file selector" --argument-names
     echo 'Nothing to restore.'
 end
 
-function forgit::checkout::commit -d "git checkout commit selector" --argument-names 'commit_id'
+function forgit::checkout::commit -d "git checkout commit selector" --argument-names 'commit_id' --wraps "git checkout"
     forgit::inside_work_tree || return 1
 
     if test -n "$commit_id"
@@ -275,10 +277,10 @@ function forgit::checkout::commit -d "git checkout commit selector" --argument-n
         FZF_DEFAULT_OPTS="$opts" fzf | eval "$forgit_extract_sha" | xargs -I% git checkout % --
 end
 
-function forgit::branch::delete -d "git checkout branch deleter"
+function forgit::branch::delete -d "git checkout branch deleter" --wraps "git branch --delete"
     forgit::inside_work_tree || return 1
 
-    set preview "git log {1} --graph --pretty=format:'$forgit_log_format' --color=always --abbrev-commit --date=relative"
+    set preview "git log {1} $forgit_log_preview_options"
 
     set opts "
         $FORGIT_FZF_DEFAULT_OPTS
@@ -300,18 +302,21 @@ function forgit::branch::delete -d "git checkout branch deleter"
 end
 
 
-
-function forgit::checkout::branch -d "git checkout branch selector" --argument-names 'input_branch_name'
+function forgit::checkout::branch -d "git checkout branch selector" --argument-names 'input_branch_name' --wraps "git branch"
     forgit::inside_work_tree || return 1
 
     if test -n "$input_branch_name"
-        git checkout -b "$input_branch_name"
+        if git branch --list | grep "$input_branch_name" > /dev/null
+            git switch "$input_branch_name"
+        else
+            git switch -c "$input_branch_name"
+        end
         set checkout_status $status
         git status --short
         return $checkout_status
     end
 
-    set preview "git log {1} --graph --pretty=format:'$forgit_log_format' --color=always --abbrev-commit --date=relative"
+    set preview "git log {1} $forgit_log_preview_options"
 
     set opts "
         $FORGIT_FZF_DEFAULT_OPTS
@@ -366,7 +371,7 @@ function forgit::clean -d "git clean selector"
     echo 'Nothing to clean.'
 end
 
-function forgit::cherry::pick -d "git cherry-picking" --argument-names 'target'
+function forgit::cherry::pick -d "git cherry-picking" --argument-names 'target' --wraps "git cherry-pick"
     forgit::inside_work_tree || return 1
     set base (git branch --show-current)
     if test -z "$target"
@@ -380,9 +385,43 @@ function forgit::cherry::pick -d "git cherry-picking" --argument-names 'target'
         -m -0 --tiebreak=index
         $FORGIT_CHERRY_PICK_FZF_OPTS
     "
-    git cherry "$base" "$target" --abbrev -v | forgit::reverse_lines |
-        env FZF_DEFAULT_OPTS="$opts" fzf | cut -d' ' -f2 | forgit::reverse_lines |
-        xargs -I% git cherry-pick %
+    set fzf_selection (git cherry "$base" "$target" --abbrev -v | forgit::reverse_lines |
+        env FZF_DEFAULT_OPTS="$opts" fzf)
+
+    set fzf_exitval $status
+    test $fzf_exitval != 0 && return $fzf_exitval
+    set commits (echo "$fzf_selection" | forgit::reverse_lines | cut -d' ' -f2)
+
+    git cherry-pick $commits
+
+end
+
+function forgit::cherry::pick::from::branch -d "git cherry-picking with interactive branch selection"
+    forgit::inside_work_tree || return 1
+
+    set preview "git log {1} $forgit_log_preview_options"
+
+    set opts "
+        $FORGIT_FZF_DEFAULT_OPTS
+        +s +m --tiebreak=index --header-lines=1
+        --preview=\"$preview\"
+        $FORGIT_CHERRY_PICK_FROM_BRANCH_FZF_OPTS
+        "
+
+    set cmd "git branch --color=always --all | LC_ALL=C sort -k1.1,1.1 -rs"
+
+    # loop until either the branch selector is closed or a commit to be cherry
+    # picked has been selected from within a branch
+    while true
+
+        set branch (eval "$cmd" | FZF_DEFAULT_OPTS="$opts" fzf | awk '{print $1}')
+        test -z "$branch" && return 1
+
+        forgit::cherry::pick "$branch"
+
+        set exitval $status
+        test $exitval != 130 && return $exitval
+    end
 end
 
 function forgit::fixup -d "git fixup"
@@ -503,7 +542,7 @@ function forgit::ignore -d "git ignore generator"
      forgit::ignore::get $args
 end
 
-function forgit::revert::commit --argument-names 'commit_hash'
+function forgit::revert::commit --argument-names 'commit_hash' --wraps "git revert --"
     if test -n "$commit_hash"
         git revert -- "$commit_hash"
         set revert_status $status
@@ -646,9 +685,9 @@ if test -z "$FORGIT_NO_ALIASES"
     end
 
     if test -n "$forgit_cherry_pick"
-        alias $forgit_cherry_pick 'forgit::cherry::pick'
+        alias $forgit_cherry_pick 'forgit::cherry::pick::from::branch'
     else
-        alias gcp 'forgit::cherry::pick'
+        alias gcp 'forgit::cherry::pick::from::branch'
     end
 
     if test -n "$forgit_rebase"

@@ -9,7 +9,12 @@ description = "Laptop"
 # EDID is an identifier that is unique to each screen.  If you call
 # `srandrd list` it will provide an overview of the connected screens with their
 # EDIDs
-edids = ["E430044600000000", "7038000000000000", "AF06203600000000", "6F0E140700000000"]
+edids = [
+  "E430044600000000",
+  "7038000000000000",
+  "AF06203600000000",
+  "6F0E140700000000",
+]
 # The path to a wallpaper can be specified for each screen.  The wallpaper is
 # set through the tool "feh"
 # List of commands that are executed when a monitor is connected or disconnected

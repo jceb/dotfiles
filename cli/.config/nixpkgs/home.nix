@@ -6,13 +6,13 @@ let
   # Python installatino example from https://nixos.wiki/wiki/Python
   my-python-packages = python-packages:
     with python-packages; [
-      # setuptools
+      setuptools
       # pip
       black # Python linter
       pyflakes # Pythong linter
       toml # TOML language module
       pyyaml # YAML module
-      # virtualenv
+      virtualenv
     ];
   python-with-my-packages = python3.withPackages my-python-packages;
 in {
@@ -69,6 +69,7 @@ in {
     pkgs.cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
     pkgs.cargo-watch # Generic file watcher and command executor https://github.com/watchexec/cargo-watch
     pkgs.cht-sh # Cheat sheet CLI https://cht.sh/
+    pkgs.github-cli # Github CLI https://docs.github.com/en/github-cli
     pkgs.curl # HTTP and more CLI https://curl.se/
     pkgs.curlie # Wrapper around curl, replacement for httpie https://github.com/rs/curlie
     pkgs.difftastic # Diff tool that understands programming languages https://github.com/Wilfred/difftastic
@@ -97,7 +98,8 @@ in {
     pkgs.delve # Go debugger https://github.com/go-delve/delve
     pkgs.deno # JS interpreter https://deno.land/
     pkgs.go # Go language https://golang.org/
-    pkgs.lldb # high peformance debugger required by https://github.com/mfussenegger/nvim-dap
+    # pkgs.lldb # high peformance debugger required by https://github.com/mfussenegger/nvim-dap # FIXME: currently broken, liblzma/xz dependency is missing
+    # pkgs.xz # required by lldb?
     pkgs.cargo-udeps # Rust fix unused dependency checker https://github.com/est31/cargo-udeps
     pkgs.cargo-bloat # Rust find the bloat https://github.com/RazrFalcon/cargo-bloat
     pkgs.nixfmt # Nix language formatter
