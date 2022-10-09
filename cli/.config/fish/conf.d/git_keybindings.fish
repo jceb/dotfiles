@@ -9,9 +9,12 @@ bind -M insert \eg 'echo; if git rev-parse HEAD &>/dev/null; gitui; end; command
 
 function __git_switch_worktree -d "Switch git worktree"
     set dir (git worktree list --porcelain| awk '/^worktree/ {print $2}' | sk --preview "git worktree list --porcelain")
-    if test -n "$dir"
+    if test -d "$dir"
         cd "$dir"
         commandline -f repaint
+    else if test -n "$dir"
+        echo "Not a directory: '$dir'"
     end
 end
 bind -M insert \co __git_switch_worktree
+bind -M insert \cg forgit::checkout::branch
