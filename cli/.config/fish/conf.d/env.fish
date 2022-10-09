@@ -33,7 +33,7 @@
 
 # export TTY properly to support gnupg
 export GPG_TTY=(tty)
-export SKIM_DEFAULT_OPTIONS="--height=30 --min-height=5"
+export SKIM_DEFAULT_OPTIONS="--height=30 --min-height=5 --color="(cat ~/.config/colorscheme)",hl:1"
 export SKIM_CTRL_T_COMMAND="fd -HL --type f --type l -E '\.git/'"
 export SKIM_ALT_C_COMMAND="fd -HL --type d -E '\.git/'"
 
