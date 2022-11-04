@@ -27,29 +27,31 @@ in {
   # Packages that should be installed to the user profile.
   home.packages = [
     # CLI programs
-    # pkgs.checkexec # File change detection TODO: package it https://github.com/kurtbuilds/checkexec
-    # pkgs.ff # File finder like fd TODO: package it https://github.com/vishaltelangre/ff
     # pkgs.a2ps # Ascii pretty printer
     # pkgs.abcde # CD ripper
     # pkgs.asciinema # Record CLI
+    # pkgs.checkexec # File change detection TODO: package it https://github.com/kurtbuilds/checkexec
     # pkgs.dasel # like awk for data formats such as CSV, JSON, etc
+    # pkgs.ff # File finder like fd TODO: package it https://github.com/vishaltelangre/ff
+    # pkgs.fzf # Fuzzy finder
     # pkgs.miller # like awk for data formats such as CSV, JSON, etc
+    pkgs.parallel # Execute CLI jobs in parallel - also provided by pkg.moreutils
+    # pkgs.perlPackages.vidir # CLI file renamer - also provided by pkg.moreutils
+    # pkgs.screen # Terminal multiplexer
     # pkgs.tab # TODO: package it, Modern text processing like awk https://bitbucket.org/tkatchev/tab
-    # pkgs.parallel # Execute CLI jobs in parallel - covered by moreutils
-    # pkgs.perlPackages.vidir # CLI file renamer - covered by moreutils
     pkgs.any-nix-shell # Nix-shell intergation with any shell https://github.com/haslersn/any-nix-shell
     pkgs.atool # File archive frontend https://www.nongnu.org/atool
     pkgs.bashInteractive # bash
     pkgs.borgbackup # Backup solution https://borgbackup.readthedocs.io/en/stable/index.html
     pkgs.exa # ls replacement
     pkgs.fd # File finder
-    # pkgs.fzf # Fuzzy finder
     pkgs.fzy # Fuzzy finder like fzf
     pkgs.gawk # awk
     pkgs.gnused # sed
     pkgs.htop # top replaceement showing system utilization
     pkgs.imagemagick # Image processing
-    pkgs.moreutils # additional unix tools
+    (lowPrio
+      pkgs.moreutils) # additional unix tools, lowPrio because it provides a few programs that are also provided by other packages, like pkgs.parallel
     pkgs.nnn # CLI file manager https://github.com/jarun/nnn
     pkgs.nushell # Nu Shell
     pkgs.pastel # CLI color manager
@@ -61,24 +63,23 @@ in {
     pkgs.stow # Dotfile manager https://www.gnu.org/software/stow/
     pkgs.tmate # Pair promgramming remote shell using tmux https://tmate.io/
     pkgs.tmux # Terminal multiplexer
-    # pkgs.screen # Terminal multiplexer
     pkgs.trash-cli # rm replacement with system trash support
     pkgs.up # pipes with instant live view
     pkgs.zoxide # Fast cd system
 
     ## Documents
-    # pkgs.fop # XML formatter
-    pkgs.pandoc # Document generator http://pandoc.org/
     # pkgs.asciidoc-full-with-plugins # ASCIIDoc
     # pkgs.asciidoctor-with-extensions # ASCIIDoc
+    # pkgs.fop # XML formatter
+    pkgs.pandoc # Document generator http://pandoc.org/
 
     ## Security
+    # pkgs.bandwhich  # Display current network utilization
     # pkgs.gnupg
+    # pkgs.inlets # TODO: not yet packaged; remote port forwarding
     # pkgs.openssl # openssl CLI for setting up the HSM
     # pkgs.vegeta # HTTP load generator https://www.terraform.io/
-    # pkgs.inlets # TODO: not yet packaged; remote port forwarding
     pkgs.age # modern encryption tool with small explicit keys https://age-encryption.org/
-    # pkgs.bandwhich  # Display current network utilization
     pkgs.mosh # Remote shell like ssh that support disconnects
     pkgs.mtr # traceroute utility
     pkgs.netcat-gnu # TCP swiss army kife
@@ -98,44 +99,43 @@ in {
     pkgs.vdirsyncer # CLI iCal and vCard syncer https://github.com/pimutils/vdirsyncer
 
     ## development tools
-    # pkgs.neovim
-    # pkgs.httpie # HTTP CLi https://httpie.io/
     # pkgs.adr-tools # Tool for working with ADR Recrords
     # pkgs.ant # Java build tool
     # pkgs.batik # Java SVG handling
+    # pkgs.cargo-valgrind # Debugging and profiling tool
+    # pkgs.diffstat # Diff histogram information
+    # pkgs.difftastic # Diff tool that understands programming languages https://github.com/Wilfred/difftastic
     # pkgs.fossil # Fossil SCM
+    # pkgs.httpie # HTTP CLi https://httpie.io/
     # pkgs.myrepos # TODO: not yet packaged
+    # pkgs.neovim
     # pkgs.neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
+    # pkgs.valgrind # Debugging and profiling tool
+    # pkgs.watchman # Generic file watcher and command executor https://github.com/facebook/watchman
     pkgs.cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
-    pkgs.universal-ctags # Maintained ctags implementation
     pkgs.cargo-watch # Generic file watcher and command executor https://github.com/watchexec/cargo-watch
     pkgs.cht-sh # Cheat sheet CLI https://cht.sh/
     pkgs.curl # HTTP and more CLI https://curl.se/
     pkgs.curlie # Wrapper around curl, replacement for httpie https://github.com/rs/curlie
-    pkgs.difftastic # Diff tool that understands programming languages https://github.com/Wilfred/difftastic
-    pkgs.diffstat # Diff histogram information
     pkgs.git # Git https://git-scm.com/
-    pkgs.tig # Git UI
     pkgs.git-annex # Large file store for Git https://git-annex.branchable.com/
     pkgs.git-extras # Extended Git commands https://git-annex.branchable.com/
     pkgs.github-cli # Github CLI https://docs.github.com/en/github-cli
-    # pkgs.valgrind # Debugging and profiling tool
-    # pkgs.cargo-valgrind # Debugging and profiling tool
     pkgs.gitoxide # Gitoxide, Git replacement in Rust https://github.com/Byron/gitoxide
     pkgs.gnumake # Make https://www.gnu.org/software/make/manual/make.html#Quick-Reference
     pkgs.just # Simple make replacement https://just.systems/
     pkgs.quilt # Patch management
     pkgs.scc # Fast and accurate code counter https://github.com/boyter/scc
     pkgs.taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
+    pkgs.tig # Git UI
+    pkgs.universal-ctags # Maintained ctags implementation
     pkgs.watchexec # Generic file watcher and command executor https://github.com/watchexec/watchexec
-    # pkgs.watchman # Generic file watcher and command executor https://github.com/facebook/watchman
 
     # Programming language specific
     # pkgs.cargo # managed via rustup
     # pkgs.lldb # high peformance debugger required by https://github.com/mfussenegger/nvim-dap # FIXME: currently broken, liblzma/xz dependency is missing
-    pkgs.nodejs # JS interpreter https://nodejs.org/en/
-    pkgs.yarn # Yarn JS package manager
     # pkgs.python310Packages.pyls-black # managed via python-with-my-packages
+    # pkgs.remarshal # Conversion tool between different structured file formats https://github.com/dbohdan/remarshal
     # pkgs.rust-analyzer # Rust language server https://rust-analyzer.github.io/ - now provided as part of rustup https://blog.rust-lang.org/2022/09/22/Rust-1.64.0.html#rust-analyzer-is-now-available-via-rustup
     # pkgs.rust-bindgen # managed via rustup
     # pkgs.rustc # managed via rustup
@@ -145,7 +145,6 @@ in {
     # pkgs.xz # required by lldb?
     # pkgs.yamlfmt # YAML formatter https://github.com/google/yamlfmt TODO: add to nix
     pkgs.cargo-bloat # Rust find the bloat https://github.com/RazrFalcon/cargo-bloat
-    pkgs.pyright # Python type checker
     pkgs.cargo-udeps # Rust fix unused dependency checker https://github.com/est31/cargo-udeps
     pkgs.delve # Go debugger https://github.com/go-delve/delve
     pkgs.deno # JS interpreter https://deno.land/
@@ -153,12 +152,14 @@ in {
     pkgs.go-tools # Go language tools
     pkgs.nixfmt # Nix language formatter
     pkgs.nixpkgs-fmt # Nix language formatter
-    # pkgs.remarshal # Conversion tool between different structured file formats https://github.com/dbohdan/remarshal
+    pkgs.nodejs # JS interpreter https://nodejs.org/en/
+    pkgs.pyright # Python type checker
     pkgs.rustup # either use this or rustc, cargo etc ... run `rustup update stable` to initialize the currrent version
     pkgs.sccache # rust compiler caching tool https://github.com/mozilla/sccache
     pkgs.shfmt # Shell formatter https://github.com/patrickvane/shfmt
     pkgs.stylish-haskell # Haskell formatter
     pkgs.stylua # Lua formatter
+    pkgs.yarn # Yarn JS package manager
     python-with-my-packages
 
     ## Kubernetes
@@ -166,9 +167,9 @@ in {
     # pkgs.datree # kubernetes configuration verification https://datree.io/
     # pkgs.eksctl # AWS Kubernetes CLi https://eksctl.io/
     # pkgs.fluxcd # fluxcd CLI for interacting with the CD tool https://fluxcd.io
-    pkgs.jq # JSON CLI - fully replaceable by yq-go
     # pkgs.kubernetes-helm # helm CLI https://helm.sh
     # pkgs.linkerd # simple service mesh for kubernetes https://linkerd.io/
+    pkgs.jq # JSON CLI - fully replaceable by yq-go
     pkgs.k9s # interactive kubectl interface  https://k9scli.io/
     pkgs.krew # kubectl plugin manager - explore is a highly recommend plugin https://krew.sigs.k8s.io/plugins/
     pkgs.kubectl # kubernetes CLI https://kubectl.docs.kubernetes.io/
@@ -181,36 +182,36 @@ in {
     # pkgs.audacity
     # pkgs.autokey
     # pkgs.calibre
-    # pkgs.flameshot # screenshot utility
     # pkgs.drawio
+    # pkgs.flameshot # screenshot utility
     # pkgs.gimp
     # pkgs.gnucash
     # pkgs.gsimplecal
     # pkgs.gufw
+    # pkgs.ibus
+    # pkgs.ibus-engines.libpinyin
     # pkgs.neovide
     # pkgs.obs-studio
     # pkgs.okular
     # pkgs.pdftk
     # pkgs.picom
+    # pkgs.pipewire
+    # pkgs.pipewire-media-session
     # pkgs.redshift
     # pkgs.screenkey
     # pkgs.scribus
+    # pkgs.seafile-client
     # pkgs.solaar
+    # pkgs.tint2
     # pkgs.transmission-gtk
     # pkgs.ufw
     # pkgs.vault
     # pkgs.vlc
-    # pkgs.xournalpp
-    # pkgs.xsel
-    # pkgs.pipewire
-    # pkgs.pipewire-media-session
     # pkgs.xbindkeys
     # pkgs.xbindkeys-config
-    # pkgs.ibus
-    # pkgs.ibus-engines.libpinyin
-    # pkgs.tint2
-    # pkgs.seafile-client
     # pkgs.xcolor # X11 color picker
+    # pkgs.xournalpp
+    # pkgs.xsel
   ];
 
   # This value determines the Home Manager release that your
