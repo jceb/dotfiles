@@ -1,14 +1,16 @@
+{-# LANGUAGE MultiWayIf     #-}
+{-# LANGUAGE NamedFieldPuns #-}
 module Main where
 
 import           XMonad                                hiding ((|||))
+import qualified XMonad.Prelude                        as Pre
+import           XMonad.Prelude                        hiding ((!?))
 -- import XMonad.Layout hiding ( (|||) )
 import           XMonad.Actions.CycleWorkspaceByScreen
 import           XMonad.Actions.CycleWS
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.DynamicProperty
-import           XMonad.Hooks.EwmhDesktops             (ewmh,
-                                                        ewmhDesktopsEventHook,
-                                                        ewmhFullscreen)
+import           XMonad.Hooks.EwmhDesktops             (ewmh, ewmhFullscreen)
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.SetWMName
@@ -16,6 +18,7 @@ import           XMonad.Hooks.WorkspaceHistory         (workspaceHistoryHook)
 import           XMonad.Layout.CenteredMaster
 import           XMonad.Layout.Fullscreen              (fullscreenFull,
                                                         fullscreenManageHook)
+import qualified XMonad.Util.ExtensibleConf            as XC
 -- import XMonad.Layout.Grid
 import           Data.Map                              as M
 import           System.IO
@@ -64,21 +67,20 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
 -- myDynamicTitle = myDynamicPropertyQuery "_NET_WM_NAME"
 
 scratchpads = [
-  NS "standard-notes" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
+  NS "standard-notes" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/20) (1/20) (9/10) (9/10)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (className =? "firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
-  NS "floating-terminal" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  NS "floating-terminal" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
   ]
 
 main = do
-  xmonad $ docks . ewmhFullscreen . ewmh $ def
+  xmonad $ docks . ewmhFullscreen . myewmhDesktopsEventHookConfig . ewmh $ def
     { manageHook =  myManageHook <+> manageHook def
     -- { manageHook =  manageHook def
     , layoutHook = myLayoutHook
     -- , handleEventHook =  myewmhDesktopsEventHookCustom id <+> dynamicPropertyChange "WM_NAME" myManageHook <+> handleEventHook def
-    , handleEventHook =  myewmhDesktopsEventHookCustom id <+> handleEventHook def
     , startupHook = setWMName "LG3D"
     , logHook = workspaceHistoryHook <+> logHook def
     , borderWidth = 1
@@ -88,56 +90,68 @@ main = do
     , terminal = "x-terminal-emulator"
     } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
 
--- FIXME: the handle function isn't executed, I guess because of the change in
--- how ewmh is integrated
--- myewmhDesktopsEventHookCustom
-newtype NetActivated    = NetActivated {netActivated :: Maybe Window}
-  deriving (Show, Typeable)
-instance ExtensionClass NetActivated where
-    initialValue        = NetActivated Nothing
+-- https://github.com/xmonad/xmonad-contrib/issues/776
+data EwmhDesktopsConfig =
+    EwmhDesktopsConfig
+        { workspaceSort   :: X WorkspaceSort
+            -- ^ configurable workspace sorting/filtering
+        , workspaceRename :: X (String -> WindowSpace -> String)
+            -- ^ configurable workspace rename (see 'XMonad.Hooks.StatusBar.PP.ppRename')
+        , activateHook    :: ManageHook
+            -- ^ configurable handling of window activation requests
+        }
 
-myewmhDesktopsEventHookCustom :: ([WindowSpace] -> [WindowSpace]) -> Event -> X DM.All
-myewmhDesktopsEventHookCustom f e = handle f e >> return (DM.All True)
+instance Default EwmhDesktopsConfig where
+    def = EwmhDesktopsConfig
+        { workspaceSort = getSortByIndex
+        , workspaceRename = pure pure
+        , activateHook = doFocus
+        }
+myewmhDesktopsEventHookConfig :: XConfig a -> XConfig a
+myewmhDesktopsEventHookConfig c = c { handleEventHook = myewmhDesktopsEventHook <> handleEventHook c }
+
+myewmhDesktopsEventHook :: Event -> X All
+myewmhDesktopsEventHook = XC.withDef . myewmhDesktopsEventHookCustom
 
 -- only change: swap W.view with W.greedyView so that a click on the taskbar
 -- leads to the current tag being changed to the selected one
-handle :: ([WindowSpace] -> [WindowSpace]) -> Event -> X ()
-handle f (ClientMessageEvent {
-               ev_window = w,
-               ev_message_type = mt,
-               ev_data = d
-       }) = withWindowSet $ \s -> do
-       sort' <- getSortByIndex
-       let ws = f $ sort' $ W.workspaces s
-       a_cd <- getAtom "_NET_CURRENT_DESKTOP"
-       a_d <- getAtom "_NET_WM_DESKTOP"
-       a_aw <- getAtom "_NET_ACTIVE_WINDOW"
-       a_cw <- getAtom "_NET_CLOSE_WINDOW"
-       a_ignore <- mapM getAtom ["XMONAD_TIMER"]
-       if  mt == a_cd then do
-               let n = head d
-               if 0 <= n && fi n < length ws then
-                       windows $ W.greedyView (W.tag (ws !! fi n))
-                 else  trace $ "Bad _NET_CURRENT_DESKTOP with data[0]="++show n
-        else if mt == a_d then do
-               let n = head d
-               if 0 <= n && fi n < length ws then
-                       windows $ W.shiftWin (W.tag (ws !! fi n)) w
-                 else  trace $ "Bad _NET_DESKTOP with data[0]="++show n
-        else if mt == a_aw then do
-               lh <- asks (logHook . config)
-               XS.put (NetActivated (Just w))
-               lh
-        else if mt == a_cw then
-               killWindow w
-        else if mt `elem` a_ignore then
-           return ()
-        else
-          -- The Message is unknown to us, but that is ok, not all are meant
-          -- to be handled by the window manager
-          return ()
-handle _ _ = return ()
--- myewmhDesktopsEventHookCustom END
+myewmhDesktopsEventHookCustom :: Event -> EwmhDesktopsConfig -> X All
+myewmhDesktopsEventHookCustom
+        ClientMessageEvent{ev_window = w, ev_message_type = mt, ev_data = d}
+        EwmhDesktopsConfig{workspaceSort, activateHook} =
+    withWindowSet $ \s -> do
+        sort' <- workspaceSort
+        let ws = sort' $ W.workspaces s
+
+        a_cd <- getAtom "_NET_CURRENT_DESKTOP"
+        a_d <- getAtom "_NET_WM_DESKTOP"
+        a_aw <- getAtom "_NET_ACTIVE_WINDOW"
+        a_cw <- getAtom "_NET_CLOSE_WINDOW"
+
+        if  | mt == a_cd, n : _ <- d, Just ww <- ws Pre.!? fi n ->
+                if W.currentTag s == W.tag ww then mempty else windows $ W.greedyView (W.tag ww)
+            | mt == a_cd ->
+                trace $ "Bad _NET_CURRENT_DESKTOP with data=" ++ show d
+            | mt == a_d, n : _ <- d, Just ww <- ws Pre.!? fi n ->
+                if W.findTag w s == Just (W.tag ww) then mempty else windows $ W.shiftWin (W.tag ww) w
+            | mt == a_d ->
+                trace $ "Bad _NET_WM_DESKTOP with data=" ++ show d
+            | mt == a_aw, 2 : _ <- d ->
+                -- when the request comes from a pager, honor it unconditionally
+                -- https://specifications.freedesktop.org/wm-spec/wm-spec-1.3.html#sourceindication
+                if W.peek s == Just w then mempty else windows $ W.focusWindow w
+            | mt == a_aw -> do
+                if W.peek s == Just w then mempty else windows . appEndo =<< runQuery activateHook w
+            | mt == a_cw ->
+                killWindow w
+            | otherwise ->
+                -- The Message is unknown to us, but that is ok, not all are meant
+                -- to be handled by the window manager
+                mempty
+
+        mempty
+myewmhDesktopsEventHookCustom _ _ = mempty
+-- -- myewmhDesktopsEventHookCustom END
 
 myManageHook = manageDocks <+> composeAll
                [
@@ -168,6 +182,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "Yeahconsole" --> doFloat
                , className =? "linphone" --> doFloat
                , className =? "ramboxpro" --> doShift "1"
+               , className =? "nsp" --> doShift "NSP"
                -- , className =? "Thunderbird" --> doShift "8"
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
