@@ -37,6 +37,7 @@ edids = [
 # ["touch", "/tmp/test/{.output}"]
 # ]
 # xrandr_args = ["--dpi", "144"]
+# xrandr_args = ["--scale", "0.66667", "--pos", "0x0"]
 xrandr_args = ["--scale", "0.66667"]
 wallpaper = "~/wallpaper2560x1440.png"
 
@@ -72,8 +73,21 @@ wallpaper = "~/wallpaper2560x1440_3.png"
 position = ["--right-of", "benq", "DP-1-1"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
-[monitors.benq.outputs.HDMI-1]
-position = ["--right-of", "benq", "DP-2"]
+# [monitors.benq.outputs.DP-2]
+[monitors.benq.outputs.DisplayPort-1]
+# position = ["--right-of", "benq", "eDP"]
+# position = ["--pos", "2560x0"]
+# xrandr_args = ["--pos", "2560x0"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+# [monitors.benq.outputs.HDMI-1]
+[monitors.benq.outputs.HDMI-A-0]
+# position = ["--right-of", "benq", "DP-2"]
+position = ["--right-of", "benq", "DisplayPort-1"]
+# position = ["--pos", "5120x0"]
+# xrandr_args = ["--pos", "5120x0"]
+# resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.samsung]
@@ -90,8 +104,20 @@ position = ["--right-of", "laptop"]
 #     ["xrandr", "--output", "{.output}", "--scale", "1.5x1.5"]
 # ]
 
-[monitors.dellkraftwerk.outputs.HDMI-1]
-position = ["--right-of", "dellkraftwerk", "DP-2"]
+# [monitors.dellkraftwerk.outputs.DP-2]
+[monitors.dellkraftwerk.outputs.DisplayPort-1]
+# position = ["--right-of", "dellkraftwerk", "DP-2"]
+# position = ["--right-of", "laptop"]
+# position = ["--pos", "2560x0"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+# [monitors.dellkraftwerk.outputs.HDMI-1]
+[monitors.dellkraftwerk.outputs.HDMI-A-0]
+# position = ["--right-of", "dellkraftwerk", "DP-2"]
+position = ["--right-of", "dellkraftwerk", "DisplayPort-1"]
+# position = ["--pos", "5120x0"]
+# resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.dellhubhaw]
@@ -136,14 +162,17 @@ wallpaper = "~/wallpaper1280x1024.png"
 # E.g. put the following in your work computer's bashrc
 # export SCREENCONFIG_DEFAULT="monitors.default-work"
 [monitors.default]
-position = ["--above", "laptop"]
+# position = ["--above", "laptop"]
+position = ["--above", "eDP"]
 resolution = "auto"
 wallpaper = "~/wallpaper2560x1440_2.png"
-# exec_on_connect = [
-# ["touch", "/tmp/test/file"],
-# ["sh", "-x", "-c", "touch /tmp/test/$SRANDRD_EVENT"],
-# ["touch", "/tmp/test/{.output}"]
-# ]
+exec_on_connect = [
+  # ["sleep", "500"],
+  ["/home/jceb/bin/fixxmodmap"],
+  # ["touch", "/tmp/test/file"],
+  # ["sh", "-x", "-c", "touch /tmp/test/$SRANDRD_EVENT"],
+  # ["touch", "/tmp/test/{.output}"]
+]
 # The disconnect commands will only be triggered from the default
 # configuration because EDID is not available!
 # exec_on_disconnect = [
