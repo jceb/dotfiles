@@ -84,7 +84,8 @@ in {
     pkgs.mtr # traceroute utility
     pkgs.netcat-gnu # TCP swiss army kife
     pkgs.nmap # port scanner
-    pkgs.pwgen-secure # password generator
+    # pkgs.pwgen-secure # password generator in python
+    pkgs.pwgen # password generator
     pkgs.step-cli # simplified certificate manager CLI https://smallstep.com/cli/
 
     ## PIM
