@@ -72,6 +72,7 @@ in {
     # pkgs.asciidoctor-with-extensions # ASCIIDoc
     # pkgs.fop # XML formatter
     pkgs.pandoc # Document generator http://pandoc.org/
+    # pkgs.d2 # Diagramming tool https://github.com/terrastruct/d2
 
     ## Security
     # pkgs.bandwhich  # Display current network utilization
@@ -110,7 +111,6 @@ in {
     # pkgs.httpie # HTTP CLi https://httpie.io/
     # pkgs.myrepos # TODO: not yet packaged
     # pkgs.neovim
-    # pkgs.neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
     # pkgs.valgrind # Debugging and profiling tool
     # pkgs.watchman # Generic file watcher and command executor https://github.com/facebook/watchman
     pkgs.cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
@@ -120,11 +120,13 @@ in {
     pkgs.curlie # Wrapper around curl, replacement for httpie https://github.com/rs/curlie
     pkgs.git # Git https://git-scm.com/
     pkgs.git-annex # Large file store for Git https://git-annex.branchable.com/
+    pkgs.git-bug # Git bug https://github.com/MichaelMure/git-bug
     pkgs.git-extras # Extended Git commands https://git-annex.branchable.com/
     pkgs.github-cli # Github CLI https://docs.github.com/en/github-cli
     pkgs.gitoxide # Gitoxide, Git replacement in Rust https://github.com/Byron/gitoxide
     pkgs.gnumake # Make https://www.gnu.org/software/make/manual/make.html#Quick-Reference
     pkgs.just # Simple make replacement https://just.systems/
+    pkgs.neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
     pkgs.quilt # Patch management
     pkgs.scc # Fast and accurate code counter https://github.com/boyter/scc
     pkgs.taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
@@ -150,6 +152,7 @@ in {
     pkgs.delve # Go debugger https://github.com/go-delve/delve
     pkgs.deno # JS interpreter https://deno.land/
     pkgs.go # Go language https://golang.org/
+    # pkgs.golint # Go language linter, deprecated; replaced by go vet ./... and staticcheck ./... (https://staticcheck.io/docs/getting-started/)
     pkgs.go-tools # Go language tools
     pkgs.nixfmt # Nix language formatter
     pkgs.nixpkgs-fmt # Nix language formatter
