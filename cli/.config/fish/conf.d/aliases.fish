@@ -3,6 +3,8 @@ function issh
     command ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive" $argv
 end
 
+abbr --add nossh ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+
 abbr --add dockeri 'docker run --rm -i -t'
 
 # defaults
