@@ -56,11 +56,11 @@ in {
     lsof # List open files
     neofetch # neofetch https://github.com/dylanaraps/neofetch
     nnn # CLI file manager https://github.com/jarun/nnn
-    nushell # Nu Shell
+    nushell # Nu Shell https://www.nushell.sh/
     parallel # Execute CLI jobs in parallel - also provided by pkg.moreutils
     pastel # CLI color manager
     ranger # CLI file manager
-    rclone # Sync files
+    rclone # Sync files https://rclone.org/
     ripgrep # grep
     skim # Fuzzy finder like fzf
     starship # Shell prompt https://starship.rs/
@@ -245,7 +245,9 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  # See https://nix-community.github.io/home-manager/index.html
+  home.stateVersion = "22.11";
+  # home.stateVersion = "22.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
