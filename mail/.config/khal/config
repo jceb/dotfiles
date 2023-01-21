@@ -1,7 +1,13 @@
 # http://lostpackets.de/khal/configure.html
 [calendars]
-[[my_calendar_local]]
+[[private]]
 path = '~/Documents/PIM/calendars/*'
+type = 'discover'
+[[consulting]]
+path = '~/Documents/PIM/calendars-41ppl/*'
+type = 'discover'
+[[identinet]]
+path = '~/Documents/PIM/calendars-biz/*'
 type = 'discover'
 
 [locale]
