@@ -1,0 +1,712 @@
+# Nushell Config File
+
+module completions {
+  # Custom completions for external commands (those outside of Nushell)
+  # Each completions has two parts: the form of the external command, including its flags and parameters
+  # and a helper command that knows how to complete values for those flags and parameters
+  #
+  # This is a simplified version of completions for git branches and git remotes
+  def "nu-complete git branches" [] {
+    ^git branch | lines | each { |line| $line | str replace '[\*\+] ' '' | str trim }
+  }
+
+  def "nu-complete git remotes" [] {
+    ^git remote | lines | each { |line| $line | str trim }
+  }
+
+  # Download objects and refs from another repository
+  export extern "git fetch" [
+    repository?: string@"nu-complete git remotes" # name of the repository to fetch
+    branch?: string@"nu-complete git branches" # name of the branch to fetch
+    --all                                         # Fetch all remotes
+    --append(-a)                                  # Append ref names and object names to .git/FETCH_HEAD
+    --atomic                                      # Use an atomic transaction to update local refs.
+    --depth: int                                  # Limit fetching to n commits from the tip
+    --deepen: int                                 # Limit fetching to n commits from the current shallow boundary
+    --shallow-since: string                       # Deepen or shorten the history by date
+    --shallow-exclude: string                     # Deepen or shorten the history by branch/tag
+    --unshallow                                   # Fetch all available history
+    --update-shallow                              # Update .git/shallow to accept new refs
+    --negotiation-tip: string                     # Specify which commit/glob to report while fetching
+    --negotiate-only                              # Do not fetch, only print common ancestors
+    --dry-run                                     # Show what would be done
+    --write-fetch-head                            # Write fetched refs in FETCH_HEAD (default)
+    --no-write-fetch-head                         # Do not write FETCH_HEAD
+    --force(-f)                                   # Always update the local branch
+    --keep(-k)                                    # Keep dowloaded pack
+    --multiple                                    # Allow several arguments to be specified
+    --auto-maintenance                            # Run 'git maintenance run --auto' at the end (default)
+    --no-auto-maintenance                         # Don't run 'git maintenance' at the end
+    --auto-gc                                     # Run 'git maintenance run --auto' at the end (default)
+    --no-auto-gc                                  # Don't run 'git maintenance' at the end
+    --write-commit-graph                          # Write a commit-graph after fetching
+    --no-write-commit-graph                       # Don't write a commit-graph after fetching
+    --prefetch                                    # Place all refs into the refs/prefetch/ namespace
+    --prune(-p)                                   # Remove obsolete remote-tracking references
+    --prune-tags(-P)                              # Remove any local tags that do not exist on the remote
+    --no-tags(-n)                                 # Disable automatic tag following
+    --refmap: string                              # Use this refspec to map the refs to remote-tracking branches
+    --tags(-t)                                    # Fetch all tags
+    --recurse-submodules: string                  # Fetch new commits of populated submodules (yes/on-demand/no)
+    --jobs(-j): int                               # Number of parallel children
+    --no-recurse-submodules                       # Disable recursive fetching of submodules
+    --set-upstream                                # Add upstream (tracking) reference
+    --submodule-prefix: string                    # Prepend to paths printed in informative messages
+    --upload-pack: string                         # Non-default path for remote command
+    --quiet(-q)                                   # Silence internally used git commands
+    --verbose(-v)                                 # Be verbose
+    --progress                                    # Report progress on stderr
+    --server-option(-o): string                   # Pass options for the server to handle
+    --show-forced-updates                         # Check if a branch is force-updated
+    --no-show-forced-updates                      # Don't check if a branch is force-updated
+    -4                                            # Use IPv4 addresses, ignore IPv6 addresses
+    -6                                            # Use IPv6 addresses, ignore IPv4 addresses
+    --help                                        # Display this help message
+  ]
+
+  # Check out git branches and files
+  export extern "git checkout" [
+    ...targets: string@"nu-complete git branches"   # name of the branch or files to checkout
+    --conflict: string                              # conflict style (merge or diff3)
+    --detach(-d)                                    # detach HEAD at named commit
+    --force(-f)                                     # force checkout (throw away local modifications)
+    --guess                                         # second guess 'git checkout <no-such-branch>' (default)
+    --ignore-other-worktrees                        # do not check if another worktree is holding the given ref
+    --ignore-skip-worktree-bits                     # do not limit pathspecs to sparse entries only
+    --merge(-m)                                     # perform a 3-way merge with the new branch
+    --orphan: string                                # new unparented branch
+    --ours(-2)                                      # checkout our version for unmerged files
+    --overlay                                       # use overlay mode (default)
+    --overwrite-ignore                              # update ignored files (default)
+    --patch(-p)                                     # select hunks interactively
+    --pathspec-from-file: string                    # read pathspec from file
+    --progress                                      # force progress reporting
+    --quiet(-q)                                     # suppress progress reporting
+    --recurse-submodules: string                    # control recursive updating of submodules
+    --theirs(-3)                                    # checkout their version for unmerged files
+    --track(-t)                                     # set upstream info for new branch
+    -b: string                                      # create and checkout a new branch
+    -B: string                                      # create/reset and checkout a branch
+    -l                                              # create reflog for new branch
+    --help                                          # Display this help message
+  ]
+
+  # Push changes
+  export extern "git push" [
+    remote?: string@"nu-complete git remotes",      # the name of the remote
+    ...refs: string@"nu-complete git branches"      # the branch / refspec
+    --all                                           # push all refs
+    --atomic                                        # request atomic transaction on remote side
+    --delete(-d)                                    # delete refs
+    --dry-run(-n)                                   # dry run
+    --exec: string                                  # receive pack program
+    --follow-tags                                   # push missing but relevant tags
+    --force-with-lease: string                      # require old value of ref to be at this value
+    --force(-f)                                     # force updates
+    --ipv4(-4)                                      # use IPv4 addresses only
+    --ipv6(-6)                                      # use IPv6 addresses only
+    --mirror                                        # mirror all refs
+    --no-verify                                     # bypass pre-push hook
+    --porcelain                                     # machine-readable output
+    --progress                                      # force progress reporting
+    --prune                                         # prune locally removed refs
+    --push-option(-o): string                       # option to transmit
+    --quiet(-q)                                     # be more quiet
+    --receive-pack: string                          # receive pack program
+    --recurse-submodules: string                    # control recursive pushing of submodules
+    --repo: string                                  # repository
+    --set-upstream(-u)                              # set upstream for git pull/status
+    --signed: string                                # GPG sign the push
+    --tags                                          # push tags (can't be used with --all or --mirror)
+    --thin                                          # use thin pack
+    --verbose(-v)                                   # be more verbose
+    --help                                          # Display this help message
+  ]
+}
+
+# Get just the extern definitions without the custom completion commands
+use completions *
+
+# for more information on themes see
+# https://www.nushell.sh/book/coloring_and_theming.html
+let dark_theme = {
+    # color for nushell primitives
+    separator: white
+    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
+    header: green_bold
+    empty: blue
+    bool: white
+    int: white
+    filesize: white
+    duration: white
+    date: white
+    range: white
+    float: white
+    string: white
+    nothing: white
+    binary: white
+    cellpath: white
+    row_index: green_bold
+    record: white
+    list: white
+    block: white
+    hints: dark_gray
+
+    # shapes are used to change the cli syntax highlighting
+    shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
+    shape_binary: purple_bold
+    shape_bool: light_cyan
+    shape_int: purple_bold
+    shape_float: purple_bold
+    shape_range: yellow_bold
+    shape_internalcall: cyan_bold
+    shape_external: cyan
+    shape_externalarg: green_bold
+    shape_literal: blue
+    shape_operator: yellow
+    shape_signature: green_bold
+    shape_string: green
+    shape_string_interpolation: cyan_bold
+    shape_datetime: cyan_bold
+    shape_list: cyan_bold
+    shape_table: blue_bold
+    shape_record: cyan_bold
+    shape_block: blue_bold
+    shape_filepath: cyan
+    shape_globpattern: cyan_bold
+    shape_variable: purple
+    shape_flag: blue_bold
+    shape_custom: green
+    shape_nothing: light_cyan
+}
+
+let light_theme = {
+    # color for nushell primitives
+    separator: dark_gray
+    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
+    header: green_bold
+    empty: blue
+    bool: dark_gray
+    int: dark_gray
+    filesize: dark_gray
+    duration: dark_gray
+    date: dark_gray
+    range: dark_gray
+    float: dark_gray
+    string: dark_gray
+    nothing: dark_gray
+    binary: dark_gray
+    cellpath: dark_gray
+    row_index: green_bold
+    record: white
+    list: white
+    block: white
+    hints: dark_gray
+
+    # shapes are used to change the cli syntax highlighting
+    shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
+    shape_binary: purple_bold
+    shape_bool: light_cyan
+    shape_int: purple_bold
+    shape_float: purple_bold
+    shape_range: yellow_bold
+    shape_internalcall: cyan_bold
+    shape_external: cyan
+    shape_externalarg: green_bold
+    shape_literal: blue
+    shape_operator: yellow
+    shape_signature: green_bold
+    shape_string: green
+    shape_string_interpolation: cyan_bold
+    shape_datetime: cyan_bold
+    shape_list: cyan_bold
+    shape_table: blue_bold
+    shape_record: cyan_bold
+    shape_block: blue_bold
+    shape_filepath: cyan
+    shape_globpattern: cyan_bold
+    shape_variable: purple
+    shape_flag: blue_bold
+    shape_custom: green
+    shape_nothing: light_cyan
+}
+
+# let-env LS_COLORS = (vivid generate molokai | str trim)
+
+# The default config record. This is where much of your global configuration is setup.
+let-env config = {
+  ls: {
+    use_ls_colors: true
+    clickable_links: true
+  }
+  filesize: {
+    metric: false
+    format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
+  }
+  table: {
+    mode: compact # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+  }
+  rm: {
+    always_trash: true
+  }
+  show_banner: false
+  color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  use_grid_icons: true
+  footer_mode: "25" # always, never, number_of_rows, auto
+  # animate_prompt: false # redraw the prompt every second
+  float_precision: 2
+  # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+  use_ansi_coloring: true
+  edit_mode: emacs # emacs, vi
+  history: {
+    max_size: 10000 # Session has to be reloaded for this to take effect
+    sync_on_enter: true # Enable to share the history between multiple sessions, else you have to close the session to persist history to file
+    file_format: "plaintext" # "sqlite" or "plaintext"
+  }
+  shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
+  # disable_table_indexes: false # set to true to remove the index column from tables
+  cd: {
+  abbreviations: false # set to true to allow you to do things like cd s/o/f and nushell expand it to cd some/other/folder
+  }
+  completions: {
+    case_sensitive: false # set to true to enable case-sensitive completions
+    algorithm: "prefix"  # prefix, fuzzy
+    partial: true  # set this to false to prevent partial filling of the prompt
+    quick: true  # set this to false to prevent auto-selecting completions when only one remains
+    external: {
+      enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
+    }
+  }
+  hooks: {
+    pre_prompt: [{
+      $nothing  # replace with source code to run before the prompt is shown
+    }]
+    pre_execution: [{
+      # See https://github.com/nushell/nu_scripts/blob/main/direnv/config.nu
+      code: "
+        let direnv = (direnv export json | from json)
+        let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+        $direnv | load-env
+      "
+    }]
+    env_change: {
+      PWD: [{|before, after|
+        $nothing  # replace with source code to run if the PWD environment is different since the last repl input
+      }]
+    }
+  }
+  menus: [
+      # Configuration for default nushell menus
+      # Note the lack of source parameter
+      {
+        name: bookmark_menu
+        only_buffer_difference: true
+        marker: "b "
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            open ~/.warprc | lines | parse "{shortcut}:{directory}"
+            | where shortcut =~ $buffer or directory =~ $buffer
+            | sort-by shortcut
+            | each { |it| {description: $it.shortcut value: $it.directory} }
+        }
+      }
+      {
+        name: file_menu
+        only_buffer_difference: true
+        marker: "f "
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            fd -E .git -E node_modules -d 4 -H -t f -t l -L
+            | lines
+            | where ($it =~ $buffer)
+            | each { |it| {value: $it} }
+        }
+      }
+      {
+        name: directory_menu
+        only_buffer_difference: true
+        marker: "d "
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            fd -E .git -E node_modules -d 4 -H -t d -t l -L
+            | lines
+            | where ($it =~ $buffer)
+            | each { |it| {value: $"./($it)"} }
+        }
+      }
+      {
+        name: last_word_menu
+        only_buffer_difference: true
+        marker: "h "
+        type: {
+            layout: list
+            page_size: 10
+            # layout: columnar
+            # columns: 4
+            # col_width: 20   # Optional value. If missing all the screen width is used to calculate column width
+            # col_padding: 2
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            history | last 10 | get command | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
+            | reverse
+            | find $buffer
+            | each { |it| {value: ($it | ansi strip)} }
+        }
+      }
+      {
+        name: kube_context_menu
+        only_buffer_difference: true
+        marker: "k "
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            yq e '.contexts[].name' $env.KUBECONFIG
+            | lines
+            | compact
+            | where ($it =~ $buffer)
+            | each { |it| {value: $"--context=($it)"} }
+        }
+      }
+      {
+        name: completion_menu
+        only_buffer_difference: false
+        marker: "| "
+        type: {
+            layout: columnar
+            columns: 4
+            col_width: 20   # Optional value. If missing all the screen width is used to calculate column width
+            col_padding: 2
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+      {
+        name: history_menu
+        only_buffer_difference: true
+        marker: "? "
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+      {
+        name: help_menu
+        only_buffer_difference: true
+        marker: "? "
+        type: {
+            layout: description
+            columns: 4
+            col_width: 20   # Optional value. If missing all the screen width is used to calculate column width
+            col_padding: 2
+            selection_rows: 4
+            description_rows: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+      # Example of extra menus created using a nushell source
+      # Use the source field to create a list of records that populates
+      # the menu
+      {
+        name: commands_menu
+        only_buffer_difference: false
+        marker: "# "
+        type: {
+            layout: columnar
+            columns: 4
+            col_width: 20
+            col_padding: 2
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            $nu.scope.commands
+            | where name =~ $buffer
+            | each { |it| {value: $it.name description: $it.usage} }
+        }
+      }
+      {
+        name: vars_menu
+        only_buffer_difference: true
+        marker: "# "
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            $nu.scope.vars
+            | where name =~ $buffer
+            | sort-by name
+            | each { |it| {value: $it.name description: $it.type} }
+        }
+      }
+      {
+        name: commands_with_description
+        only_buffer_difference: true
+        marker: "# "
+        type: {
+            layout: description
+            columns: 4
+            col_width: 20
+            col_padding: 2
+            selection_rows: 4
+            description_rows: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            $nu.scope.commands
+            | where name =~ $buffer
+            | each { |it| {value: $it.name description: $it.usage} }
+        }
+      }
+  ]
+  keybindings: [
+    {
+      name: completion_menu
+      modifier: none
+      keycode: tab
+      mode: emacs # Options: emacs vi_normal vi_insert
+      event: {
+        until: [
+          { send: menu name: completion_menu }
+          { send: menunext }
+        ]
+      }
+    }
+    {
+      name: bookmark_menu
+      modifier: control
+      keycode: char_k
+      mode: emacs
+      event: [
+      # { send: menu name: bookmark_menu }
+      # { edit: InsertString, value: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
+      { send: executehostcommand cmd: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
+      ]
+    }
+    {
+      name: kube_context_menu
+      modifier: control
+      keycode: char_g
+      mode: emacs
+      event: [
+      { send: menu name: kube_context_menu }
+      ]
+    }
+    {
+      name: file_menu
+      modifier: alt
+      keycode: char_t
+      mode: emacs
+      event: [
+      { send: menu name: file_menu }
+      # { edit: InsertString, value: "(fd --min-depth 1 -d 4 -td -HL -E '\\.git/' | sk --color '(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | str trim)"}
+      ]
+    }
+    {
+      name: directory_menu
+      modifier: alt
+      keycode: char_n
+      mode: emacs
+      event: [
+      # { send: menu name: directory_menu }
+      { send: executehostcommand cmd: "cd $'(fd -E .git -E node_modules -d 4 -H -t d -t l -L | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
+      ]
+    }
+    {
+      name: last_word_menu
+      modifier: alt
+      keycode: char_.
+      mode: emacs
+      event: [
+      { send: menu name: last_word_menu }
+      ]
+    }
+    {
+      name: directory_u
+      modifier: alt
+      keycode: char_u
+      mode: emacs
+      event: [
+          { send: executehostcommand cmd: "let-env DIRHISTORY = ($env.DIRHISTORY | prepend $env.PWD); cd .." }
+      ]
+    }
+    {
+      name: directory_u
+      modifier: alt
+      keycode: char_h
+      mode: emacs
+      event: [
+          { send: executehostcommand cmd: "cd ($env.DIRHISTORY.0); let-env DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.OLDPWD); let-env DIRHISTORY = ($env.DIRHISTORY | range 1..)" }
+      ]
+    }
+    {
+      name: directory_l
+      modifier: alt
+      keycode: char_l
+      mode: emacs
+      event: [
+          { send: executehostcommand cmd: "cd ($env.DIRHISTORY_REVERSE.0); let-env DIRHISTORY = ($env.DIRHISTORY | prepend $env.OLDPWD); let-env DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | range 1..)" }
+      ]
+    }
+    {
+      name: completion_previous
+      modifier: shift
+      keycode: backtab
+      mode: [emacs, vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
+      event: { send: menuprevious }
+    }
+    {
+      name: history_menu
+      modifier: control
+      keycode: char_r
+      mode: emacs
+      event: { send: menu name: history_menu }
+    }
+    {
+      name: help_menu
+      modifier: control
+      keycode: char_q
+      mode: emacs
+      event: { send: menu name: help_menu }
+    }
+    {
+      name: next_page
+      modifier: control
+      keycode: char_x
+      mode: emacs
+      event: { send: menupagenext }
+    }
+    {
+      name: undo_or_previous_page
+      modifier: control
+      keycode: char_z
+      mode: emacs
+      event: {
+        until: [
+          { send: menupageprevious }
+          { edit: undo }
+        ]
+       }
+    }
+    {
+      name: yank
+      modifier: control
+      keycode: char_y
+      mode: emacs
+      event: {
+        until: [
+          {edit: pastecutbufferafter}
+        ]
+      }
+    }
+    {
+      name: unix-line-discard
+      modifier: control
+      keycode: char_u
+      mode: [emacs, vi_normal, vi_insert]
+      event: {
+        until: [
+          {edit: cutfromlinestart}
+        ]
+      }
+    }
+    # {
+    #   name: kill-line
+    #   modifier: control
+    #   keycode: char_k
+    #   mode: [emacs, vi_normal, vi_insert]
+    #   event: {
+    #     until: [
+    #       {edit: cuttolineend}
+    #     ]
+    #   }
+    # }
+    # Keybindings used to trigger the user defined menus
+    {
+      name: commands_menu
+      modifier: control
+      keycode: char_t
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: commands_menu }
+    }
+    {
+      name: vars_menu
+      modifier: alt
+      keycode: char_o
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: vars_menu }
+    }
+    {
+      name: commands_with_description
+      modifier: control
+      keycode: char_s
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: commands_with_description }
+    }
+  ]
+}
+
+let-env DIRHISTORY = []
+let-env DIRHISTORY_REVERSE = []
+
+use aliases.nu *
