@@ -96,6 +96,7 @@ export alias gsubup = git subup
 export alias gsw = git switch -
 export alias guc = git commit -m "Update changelogs"
 export alias gup = git up
+
 export alias cd. = cdx .git
 export alias cdb = cdx base
 export def-env cdx [searchdir] {
@@ -113,3 +114,9 @@ export def-env cdx [searchdir] {
 export alias p = paru
 export alias reload = source ~/.config/nushell/config.nu
 # export alias reload = source $nu.config-path
+export alias k9s = EDITOR=nvim ^k9s
+export alias kk = kubectl kuctomize
+export alias ka = kubectl apply
+export alias kx = kubectl explore
+
+# export alias psa = (ps | find)
