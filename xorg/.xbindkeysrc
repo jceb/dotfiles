@@ -166,7 +166,7 @@
     Control+Shift+Mod4 + l
 
 #Volume Control
-"pavucontrol"
+"pavucontrol-qt"
     m:0x40 + c:38
     Mod4 + a
 
