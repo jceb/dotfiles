@@ -185,8 +185,6 @@ abbr --add gsw 'git switch -'
 abbr --add guc 'git commit -m "Update changelogs"'
 abbr --add gup 'git up'
 
-abbr --add gu 'gitui'
-
 abbr --add p 'paru'
 
 abbr --add ssh 'TERM=xterm ssh'
