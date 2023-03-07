@@ -1,22 +1,15 @@
+# Source: https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_env.nu
 # Nushell Environment Config File
 
-let-env STARSHIP_SHELL = "nu"
-
 def create_left_prompt [] {
-    # let path_segment = if (is-admin) {
-    #     $"(ansi red_bold)($env.PWD)"
-    # } else {
-    #     $"(ansi green_bold)($env.PWD)"
-    # }
-    #
-    # $path_segment
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
+let-env STARSHIP_SHELL = "nu"
 
 def create_right_prompt [] {
     let time_segment = ([
         (date now | date format '%m/%d/%Y %r')
-    ] | str collect)
+    ] | str join)
 
     $time_segment
 }
@@ -40,12 +33,12 @@ let-env PROMPT_MULTILINE_INDICATOR = { "::: " }
 # Note: The conversions happen *after* config.nu is loaded
 let-env ENV_CONVERSIONS = {
   "PATH": {
-    from_string: { |s| $s | split row (char esep) }
-    to_string: { |v| $v | path expand | str collect (char esep) }
+    from_string: { |s| $s | split row (char esep) | path expand -n }
+    to_string: { |v| $v | path expand -n | str join (char esep) }
   }
   "Path": {
-    from_string: { |s| $s | split row (char esep) }
-    to_string: { |v| $v | path expand | str collect (char esep) }
+    from_string: { |s| $s | split row (char esep) | path expand -n }
+    to_string: { |v| $v | path expand -n | str join (char esep) }
   }
 }
 
@@ -54,6 +47,8 @@ let-env ENV_CONVERSIONS = {
 # By default, <nushell-config-dir>/scripts is added
 let-env NU_LIB_DIRS = [
     ($nu.config-path | path dirname | path join 'scripts')
+    ($nu.config-path | path dirname | path join 'nu_scripts' 'aliases' 'git')
+    ($nu.config-path | path dirname | path join 'nu_scripts' 'just')
 ]
 
 # Directories to search for plugin binaries when calling register

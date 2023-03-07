@@ -1,3 +1,4 @@
+# Source: https://raw.githubusercontent.com/nushell/nushell/main/crates/nu-utils/src/sample_config/default_config.nu
 # Nushell Config File
 
 module completions {
@@ -33,7 +34,7 @@ module completions {
     --write-fetch-head                            # Write fetched refs in FETCH_HEAD (default)
     --no-write-fetch-head                         # Do not write FETCH_HEAD
     --force(-f)                                   # Always update the local branch
-    --keep(-k)                                    # Keep dowloaded pack
+    --keep(-k)                                    # Keep downloaded pack
     --multiple                                    # Allow several arguments to be specified
     --auto-maintenance                            # Run 'git maintenance run --auto' at the end (default)
     --no-auto-maintenance                         # Don't run 'git maintenance' at the end
@@ -61,7 +62,7 @@ module completions {
     --no-show-forced-updates                      # Don't check if a branch is force-updated
     -4                                            # Use IPv4 addresses, ignore IPv6 addresses
     -6                                            # Use IPv6 addresses, ignore IPv4 addresses
-    --help                                        # Display this help message
+    --help                                        # Display the help message for this command
   ]
 
   # Check out git branches and files
@@ -88,7 +89,7 @@ module completions {
     -b: string                                      # create and checkout a new branch
     -B: string                                      # create/reset and checkout a branch
     -l                                              # create reflog for new branch
-    --help                                          # Display this help message
+    --help                                          # Display the help message for this command
   ]
 
   # Push changes
@@ -101,7 +102,6 @@ module completions {
     --dry-run(-n)                                   # dry run
     --exec: string                                  # receive pack program
     --follow-tags                                   # push missing but relevant tags
-    --force-with-lease: string                      # require old value of ref to be at this value
     --force(-f)                                     # force updates
     --ipv4(-4)                                      # use IPv4 addresses only
     --ipv6(-6)                                      # use IPv6 addresses only
@@ -120,166 +120,308 @@ module completions {
     --tags                                          # push tags (can't be used with --all or --mirror)
     --thin                                          # use thin pack
     --verbose(-v)                                   # be more verbose
-    --help                                          # Display this help message
+    --help                                          # Display the help message for this command
   ]
 }
 
 # Get just the extern definitions without the custom completion commands
 use completions *
 
-# for more information on themes see
+# For more information on themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
-let dark_theme = {
-    # color for nushell primitives
-    separator: white
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    bool: white
-    int: white
-    filesize: white
-    duration: white
-    date: white
-    range: white
-    float: white
-    string: white
-    nothing: white
-    binary: white
-    cellpath: white
-    row_index: green_bold
-    record: white
-    list: white
-    block: white
-    hints: dark_gray
+use ./nu_scripts/themes/themes/tokyo-night.nu *
+let dark_theme = tokyo_night
+# let dark_theme = {
+#     # color for nushell primitives
+#     separator: white
+#     leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
+#     header: green_bold
+#     empty: blue
+#     # Closures can be used to choose colors for specific values.
+#     # The value (in this case, a bool) is piped into the closure.
+#     bool: { if $in { 'light_cyan' } else { 'light_gray' } }
+#     int: white
+#     filesize: {|e|
+#       if $e == 0b {
+#         'white'
+#       } else if $e < 1mb {
+#         'cyan'
+#       } else { 'blue' }
+#     }
+#     duration: white
+#     date: { (date now) - $in |
+#       if $in < 1hr {
+#         '#e61919'
+#       } else if $in < 6hr {
+#         '#e68019'
+#       } else if $in < 1day {
+#         '#e5e619'
+#       } else if $in < 3day {
+#         '#80e619'
+#       } else if $in < 1wk {
+#         '#19e619'
+#       } else if $in < 6wk {
+#         '#19e5e6'
+#       } else if $in < 52wk {
+#         '#197fe6'
+#       } else { 'light_gray' }
+#     }
+#     range: white
+#     float: white
+#     string: white
+#     nothing: white
+#     binary: white
+#     cellpath: white
+#     row_index: green_bold
+#     record: white
+#     list: white
+#     block: white
+#     hints: dark_gray
+#
+#     shape_and: purple_bold
+#     shape_binary: purple_bold
+#     shape_block: blue_bold
+#     shape_bool: light_cyan
+#     shape_custom: green
+#     shape_datetime: cyan_bold
+#     shape_directory: cyan
+#     shape_external: cyan
+#     shape_externalarg: green_bold
+#     shape_filepath: cyan
+#     shape_flag: blue_bold
+#     shape_float: purple_bold
+#     # shapes are used to change the cli syntax highlighting
+#     shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
+#     shape_globpattern: cyan_bold
+#     shape_int: purple_bold
+#     shape_internalcall: cyan_bold
+#     shape_list: cyan_bold
+#     shape_literal: blue
+#     shape_matching_brackets: { attr: u }
+#     shape_nothing: light_cyan
+#     shape_operator: yellow
+#     shape_or: purple_bold
+#     shape_pipe: purple_bold
+#     shape_range: yellow_bold
+#     shape_record: cyan_bold
+#     shape_redirection: purple_bold
+#     shape_signature: green_bold
+#     shape_string: green
+#     shape_string_interpolation: cyan_bold
+#     shape_table: blue_bold
+#     shape_variable: purple
+# }
 
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
-    shape_binary: purple_bold
-    shape_bool: light_cyan
-    shape_int: purple_bold
-    shape_float: purple_bold
-    shape_range: yellow_bold
-    shape_internalcall: cyan_bold
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_literal: blue
-    shape_operator: yellow
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_datetime: cyan_bold
-    shape_list: cyan_bold
-    shape_table: blue_bold
-    shape_record: cyan_bold
-    shape_block: blue_bold
-    shape_filepath: cyan
-    shape_globpattern: cyan_bold
-    shape_variable: purple
-    shape_flag: blue_bold
-    shape_custom: green
-    shape_nothing: light_cyan
-}
+use ./nu_scripts/themes/themes/tokyo-day.nu *
+let light_theme = tokyo_day
+# let light_theme = {
+#     # color for nushell primitives
+#     separator: dark_gray
+#     leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
+#     header: green_bold
+#     empty: blue
+#     # Closures can be used to choose colors for specific values.
+#     # The value (in this case, a bool) is piped into the closure.
+#     bool: { if $in { 'dark_cyan' } else { 'dark_gray' } }
+#     int: dark_gray
+#     filesize: {|e|
+#       if $e == 0b {
+#         'dark_gray'
+#       } else if $e < 1mb {
+#         'cyan_bold'
+#       } else { 'blue_bold' }
+#     }
+#     duration: dark_gray
+#   date: { (date now) - $in |
+#     if $in < 1hr {
+#       'red3b'
+#     } else if $in < 6hr {
+#       'orange3'
+#     } else if $in < 1day {
+#       'yellow3b'
+#     } else if $in < 3day {
+#       'chartreuse2b'
+#     } else if $in < 1wk {
+#       'green3b'
+#     } else if $in < 6wk {
+#       'darkturquoise'
+#     } else if $in < 52wk {
+#       'deepskyblue3b'
+#     } else { 'dark_gray' }
+#   }
+#     range: dark_gray
+#     float: dark_gray
+#     string: dark_gray
+#     nothing: dark_gray
+#     binary: dark_gray
+#     cellpath: dark_gray
+#     row_index: green_bold
+#     record: white
+#     list: white
+#     block: white
+#     hints: dark_gray
+#
+#     shape_and: purple_bold
+#     shape_binary: purple_bold
+#     shape_block: blue_bold
+#     shape_bool: light_cyan
+#     shape_custom: green
+#     shape_datetime: cyan_bold
+#     shape_directory: cyan
+#     shape_external: cyan
+#     shape_externalarg: green_bold
+#     shape_filepath: cyan
+#     shape_flag: blue_bold
+#     shape_float: purple_bold
+#     # shapes are used to change the cli syntax highlighting
+#     shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
+#     shape_globpattern: cyan_bold
+#     shape_int: purple_bold
+#     shape_internalcall: cyan_bold
+#     shape_list: cyan_bold
+#     shape_literal: blue
+#     shape_matching_brackets: { attr: u }
+#     shape_nothing: light_cyan
+#     shape_operator: yellow
+#     shape_or: purple_bold
+#     shape_pipe: purple_bold
+#     shape_range: yellow_bold
+#     shape_record: cyan_bold
+#     shape_redirection: purple_bold
+#     shape_signature: green_bold
+#     shape_string: green
+#     shape_string_interpolation: cyan_bold
+#     shape_table: blue_bold
+#     shape_variable: purple
+# }
 
-let light_theme = {
-    # color for nushell primitives
-    separator: dark_gray
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    bool: dark_gray
-    int: dark_gray
-    filesize: dark_gray
-    duration: dark_gray
-    date: dark_gray
-    range: dark_gray
-    float: dark_gray
-    string: dark_gray
-    nothing: dark_gray
-    binary: dark_gray
-    cellpath: dark_gray
-    row_index: green_bold
-    record: white
-    list: white
-    block: white
-    hints: dark_gray
+# External completer example
+# let carapace_completer = {|spans|
+#     carapace $spans.0 nushell $spans | from json
+# }
 
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
-    shape_binary: purple_bold
-    shape_bool: light_cyan
-    shape_int: purple_bold
-    shape_float: purple_bold
-    shape_range: yellow_bold
-    shape_internalcall: cyan_bold
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_literal: blue
-    shape_operator: yellow
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_datetime: cyan_bold
-    shape_list: cyan_bold
-    shape_table: blue_bold
-    shape_record: cyan_bold
-    shape_block: blue_bold
-    shape_filepath: cyan
-    shape_globpattern: cyan_bold
-    shape_variable: purple
-    shape_flag: blue_bold
-    shape_custom: green
-    shape_nothing: light_cyan
-}
 
-# let-env LS_COLORS = (vivid generate molokai | str trim)
+let-env LS_COLORS = (vivid generate one-light | str trim)
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
   ls: {
-    use_ls_colors: true
-    clickable_links: true
+    use_ls_colors: true # use the LS_COLORS environment variable to colorize output
+    clickable_links: true # enable or disable clickable links. Your terminal has to support links.
   }
-  filesize: {
-    metric: false
-    format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
+  rm: {
+    always_trash: true # always act as if -t was given. Can be overridden with -p
+  }
+  cd: {
+    abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
   }
   table: {
     mode: compact # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+    index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
+    trim: {
+      methodology: wrapping # wrapping or truncating
+      wrapping_try_keep_words: true # A strategy used by the 'wrapping' methodology
+      truncating_suffix: "..." # A suffix used by the 'truncating' methodology
+    }
   }
-  rm: {
-    always_trash: true
+
+  explore: {
+    help_banner: true
+    exit_esc: true
+
+    command_bar_text: '#C4C9C6'
+    # command_bar: {fg: '#C4C9C6' bg: '#223311' }
+
+    status_bar_background: {fg: '#1D1F21' bg: '#C4C9C6' }
+    # status_bar_text: {fg: '#C4C9C6' bg: '#223311' }
+
+    highlight: {bg: 'yellow' fg: 'black' }
+
+    status: {
+      # warn: {bg: 'yellow', fg: 'blue'}
+      # error: {bg: 'yellow', fg: 'blue'}
+      # info: {bg: 'yellow', fg: 'blue'}
+    }
+
+    try: {
+      # border_color: 'red'
+      # highlighted_color: 'blue'
+
+      # reactive: false
+    }
+
+    table: {
+      split_line: '#404040'
+
+      cursor: true
+
+      line_index: true
+      line_shift: true
+      line_head_top: true
+      line_head_bottom: true
+
+      show_head: true
+      show_index: true
+
+      # selected_cell: {fg: 'white', bg: '#777777'}
+      # selected_row: {fg: 'yellow', bg: '#C1C2A3'}
+      # selected_column: blue
+
+      # padding_column_right: 2
+      # padding_column_left: 2
+
+      # padding_index_left: 2
+      # padding_index_right: 1
+    }
+
+    config: {
+      cursor_color: {bg: 'yellow' fg: 'black' }
+
+      # border_color: white
+      # list_color: green
+    }
   }
-  show_banner: false
-  color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
-  use_grid_icons: true
-  footer_mode: "25" # always, never, number_of_rows, auto
-  # animate_prompt: false # redraw the prompt every second
-  float_precision: 2
-  # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
-  use_ansi_coloring: true
-  edit_mode: emacs # emacs, vi
+
   history: {
     max_size: 10000 # Session has to be reloaded for this to take effect
-    sync_on_enter: true # Enable to share the history between multiple sessions, else you have to close the session to persist history to file
+    sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
     file_format: "plaintext" # "sqlite" or "plaintext"
-  }
-  shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
-  # disable_table_indexes: false # set to true to remove the index column from tables
-  cd: {
-  abbreviations: false # set to true to allow you to do things like cd s/o/f and nushell expand it to cd some/other/folder
   }
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
-    algorithm: "prefix"  # prefix, fuzzy
-    partial: true  # set this to false to prevent partial filling of the prompt
     quick: true  # set this to false to prevent auto-selecting completions when only one remains
+    partial: true  # set this to false to prevent partial filling of the prompt
+    algorithm: "prefix"  # prefix or fuzzy
     external: {
       enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
+      max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
+      completer: null # check 'carapace_completer' above as an example
     }
   }
+  filesize: {
+    metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
+    format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
+  }
+  cursor_shape: {
+    emacs: line # block, underscore, line (line is the default)
+    vi_insert: block # block, underscore, line (block is the default)
+    vi_normal: underscore # block, underscore, line  (underscore is the default)
+  }
+  color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  use_grid_icons: true
+  footer_mode: "25" # always, never, number_of_rows, auto
+  float_precision: 2 # the precision for displaying floats in tables
+  # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+  use_ansi_coloring: true
+  edit_mode: emacs # emacs, vi
+  shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
+  # true or false to enable or disable the welcome banner at startup
+  show_banner: false
+  render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
+
   hooks: {
     pre_prompt: [{
-      $nothing  # replace with source code to run before the prompt is shown
+      null  # replace with source code to run before the prompt is shown
     }]
     pre_execution: [{
       # See https://github.com/nushell/nu_scripts/blob/main/direnv/config.nu
@@ -291,8 +433,11 @@ let-env config = {
     }]
     env_change: {
       PWD: [{|before, after|
-        $nothing  # replace with source code to run if the PWD environment is different since the last repl input
+        null  # replace with source code to run if the PWD environment is different since the last repl input
       }]
+    }
+    display_output: {
+      if (term size).columns >= 100 { table -e } else { table }
     }
   }
   menus: [
@@ -524,7 +669,7 @@ let-env config = {
       name: completion_menu
       modifier: none
       keycode: tab
-      mode: emacs # Options: emacs vi_normal vi_insert
+      mode: [emacs vi_normal vi_insert]
       event: {
         until: [
           { send: menu name: completion_menu }
@@ -709,4 +854,8 @@ let-env config = {
 let-env DIRHISTORY = []
 let-env DIRHISTORY_REVERSE = []
 
+use nu_alias_git.nu *
+source just.nu
+
 use aliases.nu *
+source zoxide.nu
