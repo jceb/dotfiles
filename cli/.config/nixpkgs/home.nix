@@ -106,7 +106,7 @@ in {
     step-cli # simplified certificate manager CLI https://smallstep.com/cli/
 
     ## PIM
-    khal # CLI calendar https://github.com/pimutils/khal
+    # khal # CLI calendar https://github.com/pimutils/khal
     # msmtp # simple SMTP client
     # neomutt # CLI mail client https://github.com/neomutt/neomutt
     # notmuch-mutt # mail indexer
@@ -129,13 +129,15 @@ in {
     # neovim
     # valgrind # Debugging and profiling tool
     # watchman # Generic file watcher and command executor https://github.com/facebook/watchman
-    cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
+    # cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
     cargo-watch # Generic file watcher and command executor https://github.com/watchexec/cargo-watch
     cht-sh # Cheat sheet CLI https://cht.sh/
+    gh # GitHub CLI https://cli.github.com/
     git # Git https://git-scm.com/
     git-annex # Large file store for Git https://git-annex.branchable.com/
     git-bug # Git bug https://github.com/MichaelMure/git-bug
     git-extras # Extended Git commands https://git-annex.branchable.com/
+    git-cliff # Changelog generator https://github.com/orhun/git-cliff
     github-cli # Github CLI https://docs.github.com/en/github-cli
     gitoxide # Gitoxide, Git replacement in Rust https://github.com/Byron/gitoxide
     gnumake # Make https://www.gnu.org/software/make/manual/make.html#Quick-Reference
@@ -143,6 +145,7 @@ in {
     neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
     quilt # Patch management
     scc # Fast and accurate code counter https://github.com/boyter/scc
+    tokei # Count your code, quickly https://github.com/XAMPPRocky/tokei
     taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
     tig # Git UI
     universal-ctags # Maintained ctags implementation
