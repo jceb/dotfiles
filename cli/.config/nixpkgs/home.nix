@@ -218,6 +218,7 @@ in {
     # obs-studio
     # okular
     # pdftk
+    pdfcpu # PDF processor https://pdfcpu.io/
     # picom
     # pipewire
     # pipewire-media-session
