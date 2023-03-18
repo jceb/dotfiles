@@ -1,19 +1,26 @@
-# # Lists the files in a directory with the directories listed first.
-# export def list [
-#     directory : string = "."
-#     --sort-by = "name" # Sort by column
-#     --long (-l): bool = false # List all available columns for each entry
-# ] {
-#     $"ls -l"
-#     ls $directory | where type == dir; or type == symlink; ($it.name | path expand | path type) == dir | if not ($in | empty?) { sort-by -i $sort-by }
-#     | append (ls $directory | where type != dir; type != symlink; or ($it.name | path expand | path type) != dir | if not ($in | empty?) { sort-by -i $sort-by } else {[]})
-#     # ls $directory | upsert isdir {|it| $it.name | path expand | path type} | sort-by isdir $sort-by | drop column 1
-# }
+# Lists the files in a directory with the directories listed first.
+export def list [
+    directory : string = "."
+    --sort-by (-s): string = "name" # Sort by column
+    --long (-l): bool # List all available columns for each entry
+] {
+    ls $directory | if not ($in | is-empty) { where type == dir or type == symlink and ($in.name | path expand | path type) == dir | sort-by -i $sort_by } else {[]}
+    | append (ls $directory | if not ($in | is-empty) {where type != dir and type != symlink or ($it.name | path expand | path type) != dir | sort-by -i $sort_by} else {[]})
+    # ls $directory | upsert isdir {|it| $it.name | path expand | path type} | sort-by isdir $sort_by | drop column 1
+}
 
-export alias l = ls
-export alias ll = ls
-export alias lt = (ls | sort-by modified -r)
-export alias ltr = (ls | sort-by modified)
+export alias l = list
+export alias ll = list
+# export alias l = ls
+# export alias ll = ls
+export def lt [directory: string = "."] {
+  ls $directory | sort-by modified -r
+}
+# export alias lt = (ls | sort-by modified -r)
+export def ltr [directory: string = "."] {
+  ls $directory | sort-by modified
+}
+# export alias ltr = (ls | sort-by modified)
 export alias el = exa --group-directories-first --git -F
 export alias elh = exa -lh
 export alias ela = exa -lha
@@ -130,7 +137,7 @@ export def psa [searchterm=""] {
 # npm install -g yo generator-standard-readme
 export alias create-readme = yo standard-readme
 
-export alias p = paru
+# export alias p = paru
 export alias o = xdg-open
 
 export alias ssh = TERM=xterm ^ssh
