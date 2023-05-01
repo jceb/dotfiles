@@ -28,8 +28,10 @@
         "disabledModifiers": [],
         "scriptGlobals": {},
         "gtkTheme": "classic",
-        "gtkExpandedRows": [],
-        "pathLastOpen": "0"
+        "gtkExpandedRows": [
+            "0"
+        ],
+        "pathLastOpen": "0:9"
     },
     "folders": [],
     "toggleServiceHotkey": {
@@ -41,10 +43,12 @@
         "hotKey": "a"
     },
     "configHotkey": {
-        "enabled": false,
+        "enabled": true,
         "modifiers": [
+            "<ctrl>",
+            "<shift>",
             "<super>"
         ],
-        "hotKey": "k"
+        "hotKey": "a"
     }
 }
