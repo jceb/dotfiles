@@ -129,8 +129,8 @@ use completions *
 
 # For more information on themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
-use ./nu_scripts/themes/themes/tokyo-night.nu *
-let dark_theme = tokyo_night
+use ~/.config/nushell/nu_scripts/themes/themes/tokyo-night.nu
+let dark_theme = (tokyo-night)
 # let dark_theme = {
 #     # color for nushell primitives
 #     separator: white
@@ -212,8 +212,8 @@ let dark_theme = tokyo_night
 #     shape_variable: purple
 # }
 
-use ./nu_scripts/themes/themes/tokyo-day.nu *
-let light_theme = tokyo_day
+use ~/.config/nushell/nu_scripts/themes/themes/tokyo-day.nu
+let light_theme = (tokyo-day)
 # let light_theme = {
 #     # color for nushell primitives
 #     separator: dark_gray
@@ -420,9 +420,10 @@ let-env config = {
   render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 
   hooks: {
-    pre_prompt: [{
-      null  # replace with source code to run before the prompt is shown
-    }]
+    pre_prompt: [
+    # {# null # replace with source code to run before the prompt is shown
+    # }
+    ]
     pre_execution: [{
       # See https://github.com/nushell/nu_scripts/blob/main/direnv/config.nu
       code: "
@@ -436,7 +437,7 @@ let-env config = {
         null  # replace with source code to run if the PWD environment is different since the last repl input
       }]
     }
-    display_output: {
+    display_output: {||
       if (term size).columns >= 100 { table -e } else { table }
     }
   }
@@ -854,8 +855,25 @@ let-env config = {
 let-env DIRHISTORY = []
 let-env DIRHISTORY_REVERSE = []
 
-use nu_alias_git.nu *
-source just.nu
+# somehow the alias can't be set because it's sourced the moment it's
+# created??!!
+# # export alias reload = source ~/.config/nushell/config.nu
+# export alias R = reload
+# # export alias reload = source $nu.config-path
+# export def-env reload [] {
+#     # source $nu.config-path
+#     source ~/.config/nushell/config.nu
+# }
+
+# use nu_alias_git.nu *
+# # use git.nu *
+use cargo-completions.nu *
+use git-completions.nu *
+use make-completions.nu *
+use nix-completions.nu *
+use yarn-completion.nu *
+use just.nu *
 
 use aliases.nu *
 source zoxide.nu
+

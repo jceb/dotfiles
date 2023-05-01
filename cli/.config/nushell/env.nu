@@ -1,6 +1,9 @@
 # Source: https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_env.nu
 # Nushell Environment Config File
 
+let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
+#let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/bin:($env.GOPATH)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
+
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
@@ -15,17 +18,17 @@ def create_right_prompt [] {
 }
 
 # Use nushell functions to define your right and left prompt
-let-env PROMPT_COMMAND = { create_left_prompt }
-# let-env PROMPT_COMMAND_RIGHT = { create_right_prompt }
-let-env PROMPT_COMMAND_RIGHT = ""
+let-env PROMPT_COMMAND = {|| create_left_prompt}
+# let-env PROMPT_COMMAND_RIGHT = {|| create_right_prompt}
+let-env PROMPT_COMMAND_RIGHT = {|| ""}
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-# let-env PROMPT_INDICATOR = { "〉" }
-let-env PROMPT_INDICATOR = { "" }
-let-env PROMPT_INDICATOR_VI_INSERT = { ": " }
-let-env PROMPT_INDICATOR_VI_NORMAL = { "〉" }
-let-env PROMPT_MULTILINE_INDICATOR = { "::: " }
+# let-env PROMPT_INDICATOR = "〉"
+let-env PROMPT_INDICATOR = ""
+let-env PROMPT_INDICATOR_VI_INSERT = ": "
+let-env PROMPT_INDICATOR_VI_NORMAL = "〉"
+let-env PROMPT_MULTILINE_INDICATOR = "::: "
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
@@ -46,9 +49,17 @@ let-env ENV_CONVERSIONS = {
 #
 # By default, <nushell-config-dir>/scripts is added
 let-env NU_LIB_DIRS = [
-    ($nu.config-path | path dirname | path join 'scripts')
-    ($nu.config-path | path dirname | path join 'nu_scripts' 'aliases' 'git')
-    ($nu.config-path | path dirname | path join 'nu_scripts' 'just')
+    ($nu.default-config-dir | path join 'scripts')
+    ($nu.default-config-dir | path join 'nu_scripts' 'aliases' 'git')
+    # ($nu.default-config-dir | path join 'nu_scripts' 'git')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'just')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'git')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'cargo')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'make')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'nix')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'npm')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'yarn')
+    ($nu.default-config-dir | path join 'nu_scripts' 'just')
 ]
 
 # Directories to search for plugin binaries when calling register
@@ -76,4 +87,13 @@ let-env config = {
       }]
     }
   }
+}
+
+# set environment variables for gpg and ssh agent
+if ($env | default null GPG_AGENT_INFO | get GPG_AGENT_INFO | is-empty) {
+	let-env GPG_AGENT_INFO = (gpgconf --list-dirs agent-socket)
+}
+
+if ($env | default null SSH_AUTH_SOCK | get SSH_AUTH_SOCK | is-empty) {
+	let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 }
