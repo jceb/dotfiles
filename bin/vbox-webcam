@@ -1,0 +1,5 @@
+#!/bin/bash
+vboxmanage list vms
+vboxmanage list webcams
+echo Run the following command to attach the webcam our your choice
+echo vboxmanage controlvm windows10pro webcam attach .1

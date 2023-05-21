@@ -1,0 +1,60 @@
+#!/bin/bash
+# vi: ft=sh
+
+set -e
+set -u
+
+echo "Running fixxmodmap..."
+
+# clear configuration
+setxkbmap -option
+
+# look at /usr/share/X11/xkb/rules/base.lst
+# for grp:ctrls_toggle see also https://bugs.freedesktop.org/show_bug.cgi?id=15843
+# /usr/share/X11/xkb/symbols/group
+if [ -e "${HOME}/.Xkbmap" ]; then
+    echo setxkbmap $(cat "${HOME}/.Xkbmap")
+    setxkbmap $(cat "${HOME}/.Xkbmap")
+fi
+if [ -e "${HOME}/.Xmodmap" ]; then
+    echo xmodmap "${HOME}/.Xmodmap"
+    xmodmap "${HOME}/.Xmodmap"
+fi
+
+# set screensaver to start after 10 minutes
+xset s $((10 * 60))
+xset s on
+
+# set repeat settings
+xset r rate 300 35
+
+# turn bell off
+xset b off
+
+# update mouse pointer
+xsetroot -cursor_name left_ptr
+
+touchpad || true
+
+naturalscrolling
+
+MONITOR="HDMI-A-0"
+
+# assign wacom tablet to the third screen
+# xsetwacom --set "HUION Huion Tablet stylus" MapToOutput "$MONITOR" | true
+# xsetwacom --set "HUION Huion Tablet Touch Strip pad" MapToOutput "$MONITOR" | true
+# xsetwacom --set "HUION Huion Tablet Dial pad" MapToOutput "$MONITOR" | true
+# xsetwacom --set "HUION Huion Tablet Pad pad" MapToOutput "$MONITOR" | true
+# xsetwacom --set "Wacom One by Wacom M Pen stylus" MapToOutput "$MONITOR" | true
+# xsetwacom --set "Wacom One by Wacom M Pen eraser" MapToOutput "$MONITOR" | true
+
+xsetwacom --list devices | awk -F\\t '{print $2}' | awk '{print $2}' | xargs -r -t -P 8 -I {} xsetwacom --set {} MapToOutput "$MONITOR" || true
+
+# Rotate 180 degree:
+xsetwacom --list devices | awk -F\\t '/Wacom .*type: (STYLUS|ERASER)/ {print $2}' | awk '{print $2}' | xargs -r -t -P 8 -I {} xsetwacom --set {} Rotate none || true
+xsetwacom --list devices | awk -F\\t '/Wacom .*type: (STYLUS|ERASER)/ {print $2}' | awk '{print $2}' | xargs -r -t -P 8 -I {} xsetwacom --set {} Rotate half || true
+
+# xsetwacom --set "Wacom One by Wacom M Pen stylus" Rotate none | true
+# xsetwacom --set "Wacom One by Wacom M Pen eraser" Rotate none | true
+# xsetwacom --set "Wacom One by Wacom M Pen stylus" Rotate half | true
+# xsetwacom --set "Wacom One by Wacom M Pen eraser" Rotate half | true

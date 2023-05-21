@@ -1,0 +1,11 @@
+#!/bin/bash
+# Open a shell in a Nix docker image.
+# Usage: run-nix
+set -e
+set -u
+set -o pipefail
+
+export IMAGE="nixos/nix:latest"
+export CMD="/bin/sh"
+
+exec run-ucs "$@"

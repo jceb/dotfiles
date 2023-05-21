@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo btrfs fi defrag -r / /home

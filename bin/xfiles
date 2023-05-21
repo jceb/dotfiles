@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rust regex: https://doc.rust-lang.org/regex/regex/index.html
+# command rg -e '(?:modified:\s*)([-~_./[:alnum:]]+/[-_./[:alnum:]]*|[-_.[:alnum:]]+\.[-_[:alnum:]]+)' "$@"
+command rg -e '([-~_./[:alnum:]]+/[-_./[:alnum:]]*|[-_.[:alnum:]]+\.[-_[:alnum:]]+)' "$@"

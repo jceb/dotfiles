@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Generating standard readme according to https://github.com/RichardLitt/standard-readme"
+exec yo standard-readme

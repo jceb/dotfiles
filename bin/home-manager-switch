@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+HOME_MANAGER_DIR=$(nix profile list | grep home-manager-path | head -n1 | awk '{print $4}')
+
+nix profile remove "${HOME_MANAGER_DIR}"
+echo
+echo "${HOME_MANAGER_DIR}/bin/home-manager" switch "$@"
+echo "${HOME_MANAGER_DIR}/bin/home-manager" switch "$@" | xsel -i
+echo
+"${HOME_MANAGER_DIR}/bin/home-manager" switch "$@"

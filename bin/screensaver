@@ -1,0 +1,3 @@
+#!/bin/bash
+xset s "$1"
+notify-send -u low "Screensaver $1"

@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# watchman-trigger
+#  A little wrapper around watchman to make it possible to define a
+#  trigger on the command line without having the file names appended to
+#  it.
+#
+# Depends: watchman
+#
+# Copyright (C) 2015 Jan Christoph Ebersbach
+#
+# http://www.e-jc.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <http://www.gnu.org/licenses/>.
+
+import os
+import sys
+import json
+import subprocess
+import logging
+from docopt import docopt
+
+# multiple instances of expression AND command aren't supported by
+# docopt yet: https://github.com/docopt/docopt.go/issues/5
+__doc__ = """Wrapper for watchman trigger.
+
+Usage:
+  watchman-trigger [-va] <path> <name> <expression> -- <command>...
+  watchman-trigger [-va] <path> <name> <expression> <expression> -- <command>...
+  watchman-trigger [-va] <path> <name> <expression> <expression> <expression> -- <command>...
+  watchman-trigger [-va] <path> <name> <expression> <expression> <expression> <expression> -- <command>...
+  watchman-trigger [-va] <path> <name> <expression> <expression> <expression> <expression> <expression> -- <command>...
+  watchman-trigger [-va] <path> <name> <expression> <expression> <expression> <expression> <expression> <expression> -- <command>...
+  watchman-trigger (-h | --help)
+  watchman-trigger --version
+
+Examples:
+  watchman-trigger . build '*.c' '*.h' -- make build
+
+Arguments:
+  path          Path to watched directory.
+  name          Name of trigger.
+  expression    Regular expression for file names that causes the
+                trigger to go off.
+  command       Command that's executed when the trigger goes off.
+
+Options:
+  -a --append   Append changed files to command.
+  -v            Show verbose output.
+  -h --help     Show this screen.
+  --version     Show version.
+
+"""
+
+__version__ = 0.1
+
+
+if __name__ == '__main__':
+    args = docopt(__doc__, version='watchman-trigger %s' % str(__version__))
+    logging.basicConfig(level=logging.DEBUG if args['-v'] else logging.WARNING)
+    logging.debug('input: %s', args)
+
+    # process path
+    if os.path.isabs(args['<path>']):
+        path = args['<path>']
+    else:
+        path = os.path.abspath(
+            os.path.normpath(
+                os.path.join(os.path.curdir, args['<path>'])))
+
+    # append files
+    append_files = True if args['--append'] else False
+
+    # regular expressions
+    expressions = [['match', exp, 'wholename'] for exp in args['<expression>']]
+    expressions.insert(0, 'anyof')
+
+    # build configuration
+    trigger_configuration = ['trigger', path, {
+        'name': args['<name>'],
+        'append_files': append_files,
+        'expression': expressions,
+        'command': args['<command>']
+    }]
+
+    logging.debug('confiration:\n%s', json.dumps(trigger_configuration, indent=4))
+    p = subprocess.Popen(['watchman', '-j'], stdin=subprocess.PIPE)
+    p.communicate(input=json.dumps(trigger_configuration).encode('utf-8'))
+    sys.exit(p.returncode)

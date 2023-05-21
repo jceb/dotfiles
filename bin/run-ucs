@@ -1,0 +1,21 @@
+#!/bin/bash
+# Open a shell in a UCS docker image.
+# List of tags: https://hub.docker.com/r/univention/ucs-generic-amd64/tags
+# Usage: run-ucs
+set -e
+set -u
+set -o pipefail
+
+IMAGE="${IMAGE:-univention/ucs-generic-amd64:latest}"
+CMD="${CMD:-/bin/bash}"
+uid="${uid:-$(id -u)}"
+gid="${gid:-$(id -g)}"
+
+echo "Running ${IMAGE}"
+echo "with UID ${uid} and GID ${gid}"
+
+if ! docker image inspect "${IMAGE}" &>/dev/null; then
+    docker image pull "${IMAGE}"
+fi
+
+exec docker run -t -i --rm -u "${uid}:${gid}" -w /app --mount "type=bind,src=$PWD,dst=/app" "${IMAGE}" "${CMD}" "$@"

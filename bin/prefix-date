@@ -1,0 +1,2 @@
+#!/bin/bash
+exec prefix $(date +%y%m%d_) "$@"

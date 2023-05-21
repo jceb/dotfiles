@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e
+set -u
+
+SHORTCUTS="
+!ade
+!d
+!duden
+!emoji
+!g
+!gi
+!gii
+!github
+!leo
+!maps
+!mwd
+!mwt
+!osm
+!thesaurus
+!thesaurusde
+!utf8
+!w
+!wde
+"
+
+query="$(echo "${SHORTCUTS}" | sort | dmenu)"
+[ -n "${query}" ] && exec x-www-browser "https://duckduckgo.com/?q=${query}"

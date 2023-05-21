@@ -1,0 +1,10 @@
+#!/bin/bash
+# Wrapper for clang-format to add support for passing in file names
+set -euo pipefail
+TMP=$(mktemp)
+while [ $# -ge 1 ]; do
+	clang-format "$1" >"${TMP}"
+	cp "${TMP}" "$1"
+	shift
+done
+rm -f "${TMP}"

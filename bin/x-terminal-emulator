@@ -1,0 +1,59 @@
+#!/bin/bash
+# start a new terminal and open tmux in it
+# TERMINAL="st"
+TERMINAL="alacritty"
+# SHELL="/usr/bin/fish"
+SHELL="$(getent passwd jceb | awk -F: '{print $7}')"
+
+# DEBUG
+# exec 1>/tmp/x 2>&1
+# echo "${@}"
+# set -x
+
+command=("${TERMINAL}")
+
+# specify the window's class
+if [ $# -ge 1 ] && ([ "${1}" = '-h' ] || [ "${1}" = '--help' ]); then
+	echo "USAGE: $(basename "${0}") [tmux session options|command]"
+	exit
+fi
+
+# specify the window's class
+if [ $# -ge 1 ] && [ "${1}" = '-c' ]; then
+	command+=('-c' "${2}")
+	shift 2
+fi
+
+# tmux shell
+command+=('-e' tmux)
+
+first_detached_session="$(tmux list-sessions | grep -v '(attached)$' | sed -n -e '1s/:.*//p')"
+
+if [ $# -eq 0 ] && [ -n "${first_detached_session}" ]; then
+	# reattach first detached session
+	command+=('attach-session' '-t' "${first_detached_session}")
+else
+	session='new-session'
+
+	# attach a specifc tmux session
+	if [ "${1}" = '-s' ]; then
+		sessionname="${2}"
+		shift 2
+		if tmux has-session -t "${sessionname}"; then
+			command+=('attach-session' '-t' "${sessionname}")
+		else
+			command+=('new-session' '-s' "${sessionname}")
+		fi
+	else
+		command+=('new-session')
+	fi
+
+	# strip -e, all following parameters will be handed to tmux' new-session
+	if [ "${1}" = '-e' ]; then
+		shift 1
+	fi
+	command+=("${@}")
+fi
+
+# spawn new terminal
+TMUX= SHELL="${SHELL}" exec "${command[@]}"

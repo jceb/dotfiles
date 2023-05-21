@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+# Tool to print the number of the currently active monitor
+
+import gi
+
+gi.require_version("Gdk", "3.0")
+from gi.repository import Gdk
+
+display = Gdk.Display.get_default()
+screen = display.get_default_screen()
+print(screen.get_monitor_at_window(screen.get_active_window()))
+# print(Gdk.get_default_root_window().get_screen())

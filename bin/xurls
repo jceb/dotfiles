@@ -1,0 +1,3 @@
+#!/bin/sh
+# Rust regex: https://doc.rust-lang.org/regex/regex/index.html
+command rg -e '(www.[^/\s:]+\.[A-Za-z]+|localhost|[A-Za-z]+:///?[^/\s:]+)(:[0-9]+)?(/([^\s]*[^])}>."\x47])?)?' "$@"

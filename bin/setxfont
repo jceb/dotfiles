@@ -1,0 +1,5 @@
+#!/bin/sh
+xset fp default
+fc-cache -f ~/.fonts/
+find $HOME/.fonts/ -type d -print0 | xargs -0 -n 1 -I {} bash -c '([ -e "{}/fonts.dir" ] || [ "$(basename "{}")" = "univers" ]) && (xset +fp "{}"; echo "{}")'
+xset fp rehash

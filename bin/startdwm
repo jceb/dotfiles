@@ -1,0 +1,27 @@
+#!/bin/bash
+# dwm startup script
+
+echo "Starting window manager: $(date)"
+
+set -a
+. ~/.config/environment.d/env.conf
+. ~/.config/environment.d/X.conf
+set +a
+
+# set environment variables for gpg and ssh agent
+if [ -z "${GPG_AGENT_INFO}" ]; then
+	export GPG_AGENT_INFO="$(gpgconf --list-dirs agent-socket)"
+fi
+unset SSH_AGENT_PID
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+# start window manager and autostart programs
+xmonad --recompile
+xmonad &
+
+systemctl --user start autostart.target
+
+# everything has been started, wait here for dwm to terminate
+wait %1 || true

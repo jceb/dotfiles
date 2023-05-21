@@ -1,0 +1,23 @@
+#!/bin/bash
+# wrapper around feh execution from a file manager to support view all images in
+# the current directory
+cmd=(exec feh)
+if [ $# -eq 1 ]; then
+    dir=
+    if [ ! -d "${1}" ]; then
+        dir="$(dirname "${1}")"
+        # test if relative path is properly specified in filename otherwise feh
+        # will fail
+        if echo "${1}" | grep "^${dir}/"; then
+            cmd+=(--start-at "${1}")
+        else
+            cmd+=(--start-at "${dir}/${1}")
+        fi
+    else
+        dir="${1}"
+    fi
+    cmd+=(--conversion-timeout 0.5 "${dir}")
+else
+    cmd+=("${@}")
+fi
+"${cmd[@]}"

@@ -1,0 +1,8 @@
+#!/bin/sh
+LANG=en_US.UTF-8; export LANG
+if test $(screen -list | grep -c yeah) -ge 1
+then
+   yeahconsole -e screen -U -x -S yeah -R -Aa &
+else
+   yeahconsole -e screen -U -S yeah -R -Aa &
+fi

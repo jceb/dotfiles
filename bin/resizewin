@@ -1,0 +1,10 @@
+#!/bin/sh
+# resize window
+# width and height can also be passed as arguments
+set -e
+if [ $# -lt 1 ]; then
+	size="$(zenity --modal --forms --add-entry=width --add-entry=height --separator=\  --text='New window size' 2>/dev/null)"
+else
+	size="$@"
+fi
+xdotool selectwindow -- windowsize %@ ${size}

@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+set -u
+
+prefix="$1"
+shift
+
+while [ $# -gt 0 ]; do
+  mv -v -i "$1" "${prefix}$1"
+  shift
+done

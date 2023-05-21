@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+set -u
+exec vault server -config ~/.config/vault/vault.json -log-level=warn "$@" &>> ~/.config/vault/vault.log

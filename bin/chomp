@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+# Tool to chop off the trailing newline from an input
+perl -e chomp

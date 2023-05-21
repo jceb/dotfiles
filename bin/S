@@ -1,0 +1,2 @@
+#!/bin/bash
+deno repl --allow-net --allow-env --eval 'import {S, $, def, F} from "https://deno.land/x/sanctuary_cheat_sheet/repl.js"'

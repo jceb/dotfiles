@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# Display date in dwm's status line
+
+
+from Xlib.display import Display
+from datetime import datetime
+import time
+import os
+
+
+def numberOfFilesAndDirectories(directory):
+    return len(os.listdir(os.path.expanduser(os.path.expandvars(directory))))
+
+
+TIMEFORMAT = u' 📆%V, %a %b %e %T %Y '
+TIMEFORMAT = u' CW%V, %a %b %e %T %Y '
+MQ = (u'⬆️', lambda: int(numberOfFilesAndDirectories(u'~/.msmtp.queue/') / 2))
+MQ = (u'>', lambda: int(numberOfFilesAndDirectories(u'~/.msmtp.queue/') / 2))
+MBOX = (u'📧', lambda: numberOfFilesAndDirectories(u'~/Documents/Mail/new')
+        + numberOfFilesAndDirectories(u'~/Documents/Mail/cur'))
+MBOX = (u'<', lambda: numberOfFilesAndDirectories(u'~/Documents/Mail/new')
+        + numberOfFilesAndDirectories(u'~/Documents/Mail/cur'))
+SCREEN_ROOT = Display().screen().root
+
+while True:
+    message = u''
+    for symbol, value_func in (MBOX, MQ):
+        value = value_func()
+        if value and value != "0":
+            message += u' %s%d' % (symbol, value)
+
+    SCREEN_ROOT.set_wm_name(message + datetime.now().strftime(TIMEFORMAT))
+    SCREEN_ROOT.get_wm_name()
+    time.sleep(1)

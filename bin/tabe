@@ -1,0 +1,3 @@
+#!/bin/sh
+tmux new-window -c '#{pane_current_path}' -a "${*}"
+tmux select-window -t :.-1

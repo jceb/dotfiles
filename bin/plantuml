@@ -1,0 +1,6 @@
+#!/bin/bash
+# Downloaded from http://plantuml.com/
+# Direct download URL http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+set -e
+set -u
+java -cp "${HOME}/.local/lib/java" -DPLANTUML_LIMIT_SIZE=8192 -Xmx1024m -jar "${HOME}/.local/lib/java/plantuml.jar" -charset UTF-8 -nbthread auto -failfast2 -DDATE=$(date +%Y-%m-%d) "$@"

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -x
+set -e
+
+trap 'echo term' TERM
+trap 'echo hup' HUP
+trap 'echo int' INT
+trap 'echo quit' QUIT
+trap 'echo ill' ILL
+trap 'echo abrt' ABRT
+trap 'echo kill' KILL
+trap 'echo segv' SEGV
+trap 'echo pipe' PIPE
+trap 'echo alrm' ALRM
+
+while true; do
+sleep 1
+done

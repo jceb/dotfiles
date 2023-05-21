@@ -1,0 +1,12 @@
+#!/bin/sh
+session_name="${1}"
+cmd=
+if [ "${BIT}" = '7' ]; then
+    cmd='tput smm;'
+    BIT=8
+else
+    BIT=7
+fi
+tmux set-environment BIT "${BIT}"
+tmux detach
+TMUX= exec st -t "${session_name} - ${BIT} bit" -e "${SHELL}" -c "${cmd} exec /usr/bin/tmux attach-session -t '${session_name}'"

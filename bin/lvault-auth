@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+gpg -dq "$1" | lvault login -

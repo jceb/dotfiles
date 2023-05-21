@@ -1,0 +1,2 @@
+#!/bin/sh
+exec tidy -xml -i --quiet 1 "$@"

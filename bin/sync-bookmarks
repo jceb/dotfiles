@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+import time
+import os
+from lxml import etree as ET
+from lxml.builder import E
+
+
+def expand_path(filename):
+    return os.path.expanduser(os.path.expandvars(filename))
+
+
+def file_exists(filename):
+    if filename:
+        return os.path.exists(expand_path(filename))
+    return False
+
+
+def read_file(filename):
+    if not file_exists(filename):
+        return []
+    with open(expand_path(filename)) as f:
+        return f.readlines()
+
+
+def split_lines(lines, separator):
+    return [line.strip().split(separator, 1) for line in lines if line and separator in line]
+
+
+def read_warp_bookmarks(bookmark_file):
+    return {handle.strip(): directory.strip() for handle, directory in split_lines(read_file(bookmark_file), ':')}
+
+
+def make_directories(path):
+    path = expand_path(path)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    return path
+
+
+def write_file(file, content):
+    if os.path.exists(expand_path(file)):
+        with open(expand_path(file), 'w') as f:
+            f.write(content)
+            return True
+    return False
+
+
+def get_nnn_bookmarks(bookmarks):
+    res = ('~/.config/environment.d/nnn-bookmarks.conf',  'NNN_BMS=' + ';'.join(':'.join([handle[0], directory]) for handle, directory in bookmarks.items()))
+    return res
+
+
+def get_midnight_commander_bookmarks(bookmarks):
+    return ('~/.config/mc/hotlist', os.linesep.join([f'ENTRY "{handle}" URL "{directory}"' for handle, directory in bookmarks.items()]))
+
+
+def get_spacefm_bookmarks(bookmarks):
+    return ('~/.config/spacefm/bookmarks', get_gtk3_bookmarks(bookmarks)[1])
+
+
+def get_gtk_bookmarks(bookmarks):
+    return ('~/.gtk-bookmarks', get_gtk3_bookmarks(bookmarks)[1])
+
+
+def get_gtk3_bookmarks(bookmarks):
+    return ('~/.config/gtk-3.0/bookmarks', os.linesep.join([f'file://{directory.replace(" ", "%20")} {handle}' for handle, directory in bookmarks.items()]))
+
+
+def get_fuf_bookmarks(bookmarks):
+    return ('~/.vim-fuf-data/bookmarkdir/items', os.linesep.join([f"{{'word': '{handle}', 'path': '{directory}', 'time': '{int(time.time())!s}'}}" for handle, directory in bookmarks.items()]))
+
+
+def get_ranger_bookmarks(bookmarks):
+    return ('~/.config/ranger/bookmarks', os.linesep.join([f"{handle[0].lower()}:{directory}" for handle, directory in bookmarks.items()]))
+
+
+def get_kde_bookmarks(bookmarks):
+    bookmark_file = expand_path('~/.local/share/user-places.xbel')
+    if os.path.exists(bookmark_file):
+        tree = ET.parse(bookmark_file)
+        r = tree.getroot()
+        # delete all manually created bookmarks
+        for elem in r.xpath('//bookmark[not(info/metadata/isSystemItem)]'):
+            p = elem.getparent()
+            if p is not None:
+                p.remove(elem)
+        # append new bookmarks
+        insert_at = 0
+        trash = r.xpath('//bookmark[@href="trash:/"]')
+        if trash:
+            insert_at = r.index(trash[0]) + 1
+        for i, (handle, directory) in enumerate(sorted(bookmarks.items(), reverse=True)):
+            r.insert(insert_at, E('bookmark',
+                                  E('title', handle),
+                                  E('info',
+                                      E('metadata',
+                                        E('icon', name='inode-directory'),
+                                          owner='http://freedesktop.org',
+                                        ),
+                                      E('metadata',
+                                        E('ID', f'{int(time.time())}/{i}'),
+                                          E('IsHidden', 'false'),
+                                          owner='http://www.kde.org',
+                                        )
+                                    ),
+                                  href=f'file://{directory}'
+                                  )
+                     )
+        return ('~/.local/share/user-places.xbel', ET.tostring(tree, encoding=str, pretty_print=True))
+    # not yet implemented
+    # raise NotImplemented('Bookmark file has to exist .. start KDE/a KDE app at least once!')
+    return ('~/.local/share/user-places.xbel', '')
+
+
+def sync_bookmarks(bookmarks, bookmark_generators):
+    return [write_file(*f(bookmarks)) for f in bookmark_generators]
+
+
+if __name__ == '__main__':
+    sync_bookmarks(read_warp_bookmarks('~/.warprc'), (
+        get_fuf_bookmarks,
+        get_gtk3_bookmarks,
+        get_gtk_bookmarks,
+        get_kde_bookmarks,
+        get_midnight_commander_bookmarks,
+        get_nnn_bookmarks,
+        get_ranger_bookmarks,
+        get_spacefm_bookmarks,
+    )
+    )
+
+# vi: ft=python:tw=80:sw=4:ts=4:sts=4:noet

@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+set -u
+
+for i in $(seq 1 5); do
+    if [ -e ~/.config/vault/keys/${i}.gpg ]; then
+        lvault operator unseal "$(gpg -dq ~/.config/vault/keys/${i}.gpg 2>/dev/null)"
+    fi
+done

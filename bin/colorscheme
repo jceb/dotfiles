@@ -1,0 +1,47 @@
+#!/bin/bash
+set -euo pipefail
+
+USAGE="$(basename "$0") [dark|light]"
+
+if [ $# -ge 1 ] && ([ "$1" = "-h" ] || [ "$1" = "--help" ]); then
+	echo "${USAGE}"
+	exit 0
+fi
+
+if [ $# -ge 1 ]; then
+	if [ "${1}" = 'dark' ]; then
+		COLORSCHEME='dark'
+	else
+		COLORSCHEME='light'
+	fi
+else
+	if [ "$(redshift -p 2>/dev/null | awk '/Period:/ {print $2}')" = "Daytime" ]; then
+		COLORSCHEME='light'
+	else
+		# stay in dark mode during the transition time
+		COLORSCHEME='dark'
+	fi
+
+	# COLORSCHEME="$(([ $(date +%k) -ge 7 ] && [ $(date +%k) -lt 18 ]) && echo light || echo dark)"
+fi
+
+echo "${COLORSCHEME}" >~/.config/colorscheme
+
+# update alacritty and k9s colorscheme on demand
+if [ "${COLORSCHEME}" = 'light' ]; then
+	# sed -i -e 's/^colors:.*/colors: *papercolor/' ~/.config/alacritty/alacritty.yml
+	sed -i -e 's/^colors:.*/colors: *tokyoday/' ~/.config/alacritty/alacritty.yml
+	# ln -s ~/.config/k9s/solarized_light.yml ~/.config/k9s/skin.yml # don't link, instead truncate so that changes are directly picked up by k9s
+	cat ~/.config/k9s/tokyonight_day.yml >~/.config/k9s/skin.yml
+	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $light_theme/' -e 's/ one-dark / one-light /' ~/.config/nushell/config.nu
+else
+	# sed -i -e 's/^colors:.*/colors: *nord/' ~/.config/alacritty/alacritty.yml
+	sed -i -e 's/^colors:.*/colors: *tokyostorm/' ~/.config/alacritty/alacritty.yml
+	cat ~/.config/k9s/nord.yml >~/.config/k9s/skin.yml
+	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $dark_theme/' -e 's/ one-light / one-dark /' ~/.config/nushell/config.nu
+fi
+
+# tmate setenv -g COLORSCHEME "${COLORSCHEME}"
+# tmate source ~/.tmux.conf
+tmux setenv -g COLORSCHEME "${COLORSCHEME}"
+tmux source ~/.tmux.conf
