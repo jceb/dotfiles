@@ -1,8 +1,10 @@
+# vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
 [user]
-	name = Jan Christoph Ebersbach
-	signingkey = 444912B0B381009F
-	# set through environment variable EMAIL
-	# email = xxxx
+  name = Jan Christoph Ebersbach
+  signingkey = 444912B0B381009F
+  email = jceb@e-jc.de
+  ; set through environment variable EMAIL
+  ; email = xxxx
 [gui]
     fontui = -family \"Bitstream Vera Sans\" -size 8 -weight bold -slant roman -underline 0 -overstrike 0
     fontdiff = -family \"Bitstream Vera Sans Mono\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
@@ -193,5 +195,5 @@
     writeReverseIndex = true
 [cola]
     spellcheck = false
-
-# vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
+[credential]
+	helper = store

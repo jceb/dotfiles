@@ -94,9 +94,9 @@ in {
     nethogs # net top tool https://github.com/raboof/nethogs
 
     ## Security
-    # gnupg
+    gnupg
     # inlets # TODO: not yet packaged; remote port forwarding
-    # openssl # openssl CLI for setting up the HSM
+    openssl # openssl CLI for setting up the HSM
     # pwgen-secure # password generator in python
     # vegeta # HTTP load generator https://www.terraform.io/
     age # modern encryption tool with small explicit keys https://age-encryption.org/
@@ -126,28 +126,30 @@ in {
     # fossil # Fossil SCM
     # httpie # HTTP CLi https://httpie.io/
     # myrepos # TODO: not yet packaged
-    # neovim
+    # neovim # NeoVim https://neovim.io/
     # valgrind # Debugging and profiling tool
     # watchman # Generic file watcher and command executor https://github.com/facebook/watchman
     # cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
+    clang # gcc compatible compiler https://clang.llvm.org/
     cargo-watch # Generic file watcher and command executor https://github.com/watchexec/cargo-watch
     cht-sh # Cheat sheet CLI https://cht.sh/
     gh # GitHub CLI https://cli.github.com/
     git # Git https://git-scm.com/
     git-annex # Large file store for Git https://git-annex.branchable.com/
     git-bug # Git bug https://github.com/MichaelMure/git-bug
-    git-extras # Extended Git commands https://git-annex.branchable.com/
     git-cliff # Changelog generator https://github.com/orhun/git-cliff
+    git-extras # Extended Git commands https://git-annex.branchable.com/
     github-cli # Github CLI https://docs.github.com/en/github-cli
     gitoxide # Gitoxide, Git replacement in Rust https://github.com/Byron/gitoxide
     gnumake # Make https://www.gnu.org/software/make/manual/make.html#Quick-Reference
     just # Simple make replacement https://just.systems/
+    mold # A modern and fast linker for C, C++ and Rust https://github.com/rui314/mold
     neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
     quilt # Patch management
     scc # Fast and accurate code counter https://github.com/boyter/scc
-    tokei # Count your code, quickly https://github.com/XAMPPRocky/tokei
     taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
     tig # Git UI
+    tokei # Count your code, quickly https://github.com/XAMPPRocky/tokei
     universal-ctags # Maintained ctags implementation
     watchexec # Generic file watcher and command executor https://github.com/watchexec/watchexec
 
@@ -165,24 +167,32 @@ in {
     # terraform-ls # Terraform language server - disabled, because it's managed / automatically downloaded by vim
     # xz # required by lldb?
     # yamlfmt # YAML formatter https://github.com/google/yamlfmt TODO: add to nix
-    cargo-bloat # Rust find the bloat https://github.com/RazrFalcon/cargo-bloat
-    cargo-udeps # Rust fix unused dependency checker https://github.com/est31/cargo-udeps
-    delve # Go debugger https://github.com/go-delve/delve
-    deno # JS interpreter https://deno.land/
-    go # Go language https://golang.org/
-    go-tools # Go language tools
+    python-with-my-packages
+
+    # Misc
     nixfmt # Nix language formatter
     nixpkgs-fmt # Nix language formatter
-    nodejs # JS interpreter https://nodejs.org/en/
     pyright # Python type checker
-    python-with-my-packages
-    rustup # either use this or rustc, cargo etc ... run `rustup update stable` to initialize the currrent version
-    sccache # rust compiler caching tool https://github.com/mozilla/sccache
     shellcheck # Bash script linter
     shfmt # Shell formatter https://github.com/patrickvane/shfmt
     stylish-haskell # Haskell formatter
     stylua # Lua formatter
+
+    # Go
+    delve # Go debugger https://github.com/go-delve/delve
+    go # Go language https://golang.org/
+    go-tools # Go language tools
+
+    # JavaScript
+    deno # JS interpreter https://deno.land/
+    nodejs # JS interpreter https://nodejs.org/en/
     yarn # Yarn JS package manager
+
+    # Rust
+    cargo-bloat # Rust find the bloat https://github.com/RazrFalcon/cargo-bloat
+    cargo-udeps # Rust fix unused dependency checker https://github.com/est31/cargo-udeps
+    rustup # either use this or rustc, cargo etc ... run `rustup update stable` to initialize the currrent version
+    sccache # rust compiler caching tool https://github.com/mozilla/sccache
 
     ## Kubernetes
     # awscli2 # deactivated because of a broken dependency on MacOS, install manually https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html

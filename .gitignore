@@ -15,3 +15,4 @@ __pycache__/
 /kubernetes/.config/k9s/skin.yml
 /xorg/.config/environment.d/nnn-bookmarks.conf
 *.pdf
+/scm/.config/direnv/direnvrc

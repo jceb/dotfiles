@@ -26,9 +26,10 @@
 window:
   # Window dimensions (changes require restart)
   #
-  # Number of lines/columns (not pixels) in the terminal. The number of columns
-  # must be at least `2`, while using a value of `0` for columns and lines will
-  # fall back to the window manager's recommended size.
+  # Number of lines/columns (not pixels) in the terminal. Both lines and columns
+  # must be non-zero for this to take effect. The number of columns must be at
+  # least `2`, while using a value of `0` for columns and lines will fall back
+  # to the window manager's recommended size
   dimensions:
     columns: 0
     lines: 0
@@ -93,20 +94,32 @@ window:
   #   General application class
   #  general: Alacritty
 
-  # Decorations theme variant (Linux/BSD only)
+  # Decorations theme variant
   #
-  # Override the variant of the GTK theme/Wayland client side decorations.
-  # Commonly supported values are `dark` and `light`. Set this to `None` to use
-  # the default theme variant.
+  # Override the variant of the System theme/GTK theme/Wayland client side
+  # decorations. Commonly supported values are `Dark`, `Light`, and `None` for
+  # auto pick-up. Set this to `None` to use the default theme variant.
   #decorations_theme_variant: None
+
+  # Resize increments
+  #
+  # Prefer resizing window by discrete steps equal to cell dimensions.
+  #resize_increments: false
+
+  # Make `Option` key behave as `Alt` (macOS only):
+  #   - OnlyLeft
+  #   - OnlyRight
+  #   - Both
+  #   - None (default)
+  #option_as_alt: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   history: 0
 
-# Scrolling distance multiplier.
-#multiplier: 3
+  # Scrolling distance multiplier.
+  # multiplier: 3
 
 # Font configuration
 font:
@@ -358,6 +371,7 @@ schemes:
       cyan: "#6d96a5"
       white: "#aeb3bb"
 
+# Colors
 # colors: *papercolor
 colors: *tokyoday
 
@@ -595,7 +609,7 @@ hints:
 #    - Key0-Key9
 #
 #    A full list with available key codes can be found here:
-#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+#    https://docs.rs/winit/*/winit/event/enum.VirtualKeyCode.html#variants
 #
 #    Instead of using the name of the keys, the `key` field also supports using
 #    the scancode of the desired key. Scancodes have to be specified as a
@@ -644,6 +658,7 @@ hints:
 #   - Quit
 #       Quit Alacritty.
 #   - ToggleFullscreen
+#   - ToggleMaximized
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
 #   - CreateNewWindow
@@ -1391,9 +1406,15 @@ key_bindings:
 #     - Debug
 #     - Trace
 #  log_level: Warn
-
-#   Print all received window events.
+#
+#   # Print all received window events.
 #  print_events: false
-
-#   Highlight window damage information.
+#
+#   # Highlight window damage information.
 #  highlight_damage: false
+#
+#   # Print all received window events.
+#   print_events: false
+#
+#   # Highlight window damage information.
+#   highlight_damage: false
