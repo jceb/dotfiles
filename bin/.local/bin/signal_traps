@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -x
 set -e
@@ -15,5 +15,5 @@ trap 'echo pipe' PIPE
 trap 'echo alrm' ALRM
 
 while true; do
-sleep 1
+	sleep 1
 done

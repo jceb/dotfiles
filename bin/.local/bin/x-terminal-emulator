@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # start a new terminal and open tmux in it
 # TERMINAL="st"
 TERMINAL="alacritty"

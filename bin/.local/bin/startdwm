@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # dwm startup script
 
 echo "Starting window manager: $(date)"

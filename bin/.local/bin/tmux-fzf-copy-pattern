@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # extract URLs from current tmux pane, select one via fzf and copy it into
 # clipboard
 
@@ -12,44 +12,44 @@ set -u
 set -o pipefail
 
 if [[ -z ${TMUX} ]]; then
-    echo "Error: tmux isn't running." 1>&2
-    exit 1
+	echo "Error: tmux isn't running." 1>&2
+	exit 1
 fi
 
 if [[ $# -ge 1 ]] && ([[ $1 == "-f" ]] || [[ $1 == "-F" ]]); then
-    # capture everything in this pane instead of only the visible part
-    # -S -
-    prompt='Copy filename'
-    cmd=(xsel -i)
-    if [[ $1 == "-F" ]]; then
-        prompt='Paste filename'
-        cmd=(tmux load-buffer -)
-    fi
-    set +e
-    (tmux capture-pane && tmux save-buffer - | xfiles -o | xurls -v | sort | uniq | dmenu -i -l 10 -p "${prompt}" | perl -pe 'chomp if eof' | "${cmd[@]}") 2>/dev/null
-    if [[ $? -eq 0 ]] && [[ $1 == "-F" ]]; then
-        tmux paste-buffer
-    fi
-    set -e
+	# capture everything in this pane instead of only the visible part
+	# -S -
+	prompt='Copy filename'
+	cmd=(xsel -i)
+	if [[ $1 == "-F" ]]; then
+		prompt='Paste filename'
+		cmd=(tmux load-buffer -)
+	fi
+	set +e
+	(tmux capture-pane && tmux save-buffer - | xfiles -o | xurls -v | sort | uniq | dmenu -i -l 10 -p "${prompt}" | perl -pe 'chomp if eof' | "${cmd[@]}") 2>/dev/null
+	if [[ $? -eq 0 ]] && [[ $1 == "-F" ]]; then
+		tmux paste-buffer
+	fi
+	set -e
 elif [[ $# -ge 1 ]] && ([[ $1 == "-u" ]] || [[ $1 == "-U" ]]); then
-    prompt='Copy URL'
-    cmd=(xsel -i)
-    if [[ $1 == "-U" ]]; then
-        prompt='Open URL'
-        cmd=(xargs -r x-www-browser)
-    fi
-    (tmux capture-pane && tmux save-buffer - | xurls -o | sort | uniq | dmenu -i -l 10 -p "${prompt}" | perl -pe 'chomp if eof' | "${cmd[@]}") &>/dev/null || true
+	prompt='Copy URL'
+	cmd=(xsel -i)
+	if [[ $1 == "-U" ]]; then
+		prompt='Open URL'
+		cmd=(xargs -r x-www-browser)
+	fi
+	(tmux capture-pane && tmux save-buffer - | xurls -o | sort | uniq | dmenu -i -l 10 -p "${prompt}" | perl -pe 'chomp if eof' | "${cmd[@]}") &>/dev/null || true
 elif [[ $# -ge 1 ]] && ([[ $1 == "-l" ]] || [[ $1 == "-L" ]]); then
-    prompt='Copy line'
-    cmd=(xsel -i)
-    if [[ $1 == "-L" ]]; then
-        prompt='Paste line'
-        cmd=(tmux load-buffer -)
-    fi
-    set +e
-    (tmux capture-pane && tmux save-buffer - | grep -v '^$' | tac | dmenu -i -l 10 -p "${prompt}" | perl -pe 'chomp if eof' | "${cmd[@]}") 2>/dev/null
-    if [[ $? -eq 0 ]] && [[ $1 == "-L" ]]; then
-        tmux paste-buffer
-    fi
-    set -e
+	prompt='Copy line'
+	cmd=(xsel -i)
+	if [[ $1 == "-L" ]]; then
+		prompt='Paste line'
+		cmd=(tmux load-buffer -)
+	fi
+	set +e
+	(tmux capture-pane && tmux save-buffer - | grep -v '^$' | tac | dmenu -i -l 10 -p "${prompt}" | perl -pe 'chomp if eof' | "${cmd[@]}") 2>/dev/null
+	if [[ $? -eq 0 ]] && [[ $1 == "-L" ]]; then
+		tmux paste-buffer
+	fi
+	set -e
 fi

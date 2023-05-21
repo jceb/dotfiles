@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Open a shell in a Nix docker image.
 # Usage: run-nix
 set -e

@@ -1,22 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e
 set -u
 
 synclient \
-    VertEdgeScroll=0 \
-    HorizEdgeScroll=0 \
-    CornerCoasting=1 \
-    VertTwoFingerScroll=1 \
-    HorizTwoFingerScroll=1 \
-    TouchpadOff=0 \
-    TapButton1=1 \
-    TapButton2=2 \
-    TapButton3=3 \
-    ClickFinger1=1 \
-    ClickFinger2=1 \
-    ClickFinger3=2 \
-    PalmDetect=1 \
-    MaxTapMove=530
+	VertEdgeScroll=0 \
+	HorizEdgeScroll=0 \
+	CornerCoasting=1 \
+	VertTwoFingerScroll=1 \
+	HorizTwoFingerScroll=1 \
+	TouchpadOff=0 \
+	TapButton1=1 \
+	TapButton2=2 \
+	TapButton3=3 \
+	ClickFinger1=1 \
+	ClickFinger2=1 \
+	ClickFinger3=2 \
+	PalmDetect=1 \
+	MaxTapMove=530
 
 # http://www.thinkwiki.org/wiki/How_to_configure_the_TrackPoint
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1

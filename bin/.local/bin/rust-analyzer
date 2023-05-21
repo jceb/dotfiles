@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Install rust-analyzer with this command: rustup component add rust-analyzer
 # Details, see: https://blog.rust-lang.org/2022/09/22/Rust-1.64.0.html#rust-analyzer-is-now-available-via-rustup
 exec rustup run stable rust-analyzer

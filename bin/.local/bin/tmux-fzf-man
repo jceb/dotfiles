@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # query user for a manpage
 set -e
 set -u
 
 manpage="$(man -k . | dmenu -l 10 || true)"
 if [[ -n "${manpage}" ]]; then
-    section="$(awk '{gsub(/[()]/, "", $2); print $2}' <<< "${manpage}")"
-    page="$(echo "${manpage}" | awk '{print $1}')"
-    tmux split-window -c '#{pane_current_path}' -h "exec man "${section}" ${page}"
+	section="$(awk '{gsub(/[()]/, "", $2); print $2}' <<<"${manpage}")"
+	page="$(echo "${manpage}" | awk '{print $1}')"
+	tmux split-window -c '#{pane_current_path}' -h "exec man "${section}" ${page}"
 fi

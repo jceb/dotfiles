@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/usr/bin/env bash
 exec x-terminal-emulator -c Scratchpad -s Scratch -e nvim -c :ScratchOrg

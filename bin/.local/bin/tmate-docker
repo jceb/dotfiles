@@ -1,4 +1,4 @@
-#!/usr/bin/env -S docker build  . -t tmate -f
+#!/usr/bin/env -S docker build . -t tmate -f
 # Wrapper to execute tmate inside a docker container. The current directory is
 # mounted at /app
 #

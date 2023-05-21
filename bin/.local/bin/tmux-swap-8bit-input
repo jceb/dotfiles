@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
 session_name="${1}"
 cmd=
 if [ "${BIT}" = '7' ]; then
-    cmd='tput smm;'
-    BIT=8
+	cmd='tput smm;'
+	BIT=8
 else
-    BIT=7
+	BIT=7
 fi
 tmux set-environment BIT "${BIT}"
 tmux detach
