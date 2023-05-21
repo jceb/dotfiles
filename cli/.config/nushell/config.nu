@@ -872,7 +872,7 @@ use git-completions.nu *
 use make-completions.nu *
 use nix-completions.nu *
 use yarn-completion.nu *
-use just.nu *
+use just-completions.nu *
 
 use aliases.nu *
 source zoxide.nu

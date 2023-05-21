@@ -25,3 +25,6 @@
 [submodule "emacs.d"]
 	path = editors/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
+[submodule "cli/.config/nushell/nu_scripts"]
+	path = cli/.config/nushell/nu_scripts
+	url = https://github.com/nushell/nu_scripts.git
