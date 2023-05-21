@@ -1,8 +1,8 @@
 # Source: https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_env.nu
 # Nushell Environment Config File
 
-let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
-#let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/bin:($env.GOPATH)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
+let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
+#let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.GOPATH)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
