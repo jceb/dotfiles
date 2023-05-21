@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # $1: encrypted secret file
 # $2: path
 # $3: jq value

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # thunar wrapper for feh
 cmd=(exec thunar)
 if [ $# -eq 1 ]; then

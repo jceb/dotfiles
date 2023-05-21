@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Downloaded from http://plantuml.com/
 # Direct download URL http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 set -e

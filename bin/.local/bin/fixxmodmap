@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # vi: ft=sh
 
 set -e
@@ -13,12 +13,12 @@ setxkbmap -option
 # for grp:ctrls_toggle see also https://bugs.freedesktop.org/show_bug.cgi?id=15843
 # /usr/share/X11/xkb/symbols/group
 if [ -e "${HOME}/.Xkbmap" ]; then
-    echo setxkbmap $(cat "${HOME}/.Xkbmap")
-    setxkbmap $(cat "${HOME}/.Xkbmap")
+	echo setxkbmap $(cat "${HOME}/.Xkbmap")
+	setxkbmap $(cat "${HOME}/.Xkbmap")
 fi
 if [ -e "${HOME}/.Xmodmap" ]; then
-    echo xmodmap "${HOME}/.Xmodmap"
-    xmodmap "${HOME}/.Xmodmap"
+	echo xmodmap "${HOME}/.Xmodmap"
+	xmodmap "${HOME}/.Xmodmap"
 fi
 
 # set screensaver to start after 10 minutes

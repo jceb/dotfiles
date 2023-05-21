@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Wrapper for clang-format to add support for passing in file names
 set -euo pipefail
 TMP=$(mktemp)

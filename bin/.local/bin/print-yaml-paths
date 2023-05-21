@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 deno run --allow-read --allow-net https://deno.land/x/k8s_yaml_tools@v1.0.3/print-yaml-paths.js

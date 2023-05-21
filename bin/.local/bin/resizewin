@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # resize window
 # width and height can also be passed as arguments
 set -e

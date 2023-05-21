@@ -197,3 +197,22 @@
     spellcheck = false
 [credential]
 	helper = store
+
+[identity "default"]
+    name = Jan Christoph Ebersbach
+    email = jceb@e-jc.de
+    signingkey = 444912B0B381009F
+[identity "ssi"]
+    name = Jan Christoph Ebersbach
+    email = jan-christoph.ebersbach@identinet.io
+    signingkey = 444912B0B381009F
+[identity "biz"]
+    name = Jan Christoph Ebersbach
+    email = jan-christoph.ebersbach@41ppl.com
+    signingkey = 444912B0B381009F
+[identity "eucon"]
+    name = Jan Christoph Ebersbach
+    email = jan.ebersbach@eucon.com
+[identity "jb10x"]
+    name = Jan Christoph Ebersbach
+    email = jan-christoph@jb10x.com

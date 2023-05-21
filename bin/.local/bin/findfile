@@ -1,19 +1,19 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # find file upwards
 set -e
 set -u
 
 file="$1"
 while [ "$(pwd)" != "/" ]; do
-    if [ -e "$(pwd)/${file}" ]; then
-        break
-    else
-        cd ..
-    fi
+	if [ -e "$(pwd)/${file}" ]; then
+		break
+	else
+		cd ..
+	fi
 done
 
 if [ -e "$(pwd)/${file}" ]; then
-    echo "$(pwd)/${file}"
-    exit 0
+	echo "$(pwd)/${file}"
+	exit 0
 fi
 exit 1

@@ -1,16 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 TMPFILE="$(mktemp -d)"
-trap "rm -rf '$TMPFILE'" 0               # EXIT
-trap "rm -rf '$TMPFILE'; exit 1" 2       # INT
-trap "rm -rf '$TMPFILE'; exit 1" 1 15    # HUP TERM
+trap "rm -rf '$TMPFILE'" 0            # EXIT
+trap "rm -rf '$TMPFILE'; exit 1" 2    # INT
+trap "rm -rf '$TMPFILE'; exit 1" 1 15 # HUP TERM
 
 direction=90
 if [ "$(basename "${0}")" = 'rotate-left' ]; then
-    direction=270
+	direction=270
 fi
 
 while [ $# -ge 1 ]; do
-    convert -rotate "${direction}" "${1}" "${TMPFILE}/$(basename "${1}")"
-    mv -v "${TMPFILE}/$(basename "${1}")" "${1}"
-    shift
+	convert -rotate "${direction}" "${1}" "${TMPFILE}/$(basename "${1}")"
+	mv -v "${TMPFILE}/$(basename "${1}")" "${1}"
+	shift
 done
