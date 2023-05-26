@@ -16,6 +16,10 @@ let
       virtualenv
       yamllint # YAML linter
       pynvim # Python neovim client
+      pygls # Python language server implementation
+      lsprotocol # Python language server implementation
+      pylyzer # Python language server implementation
+      jupyterlab-lsp # Jupyter language server implementation
     ];
   python-with-my-packages = python3.withPackages my-python-packages;
 in {
@@ -126,11 +130,13 @@ in {
     # fossil # Fossil SCM
     # httpie # HTTP CLi https://httpie.io/
     # myrepos # TODO: not yet packaged
-    # neovim # NeoVim https://neovim.io/
+    neovim # NeoVim https://neovim.io/
     # valgrind # Debugging and profiling tool
     # watchman # Generic file watcher and command executor https://github.com/facebook/watchman
     # cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
-    clang # gcc compatible compiler https://clang.llvm.org/
+    (hiPrio clang) # gcc compatible compiler https://clang.llvm.org/
+    (lowPrio gcc) # gcc compiler
+    zig # Zig compiler https://ziglang.org/
     cargo-watch # Generic file watcher and command executor https://github.com/watchexec/cargo-watch
     cht-sh # Cheat sheet CLI https://cht.sh/
     gh # GitHub CLI https://cli.github.com/
@@ -145,6 +151,11 @@ in {
     just # Simple make replacement https://just.systems/
     mold # A modern and fast linker for C, C++ and Rust https://github.com/rui314/mold
     neovim-remote # Wrapper to open files in an existing neovim instance https://github.com/mhinz/neovim-remote
+    nodePackages.bash-language-server # bash language server for neovim
+    nodePackages.yaml-language-server # yaml language server for neovim
+    nodePackages.vim-language-server # vim language server for neovim
+    nodePackages.typescript-language-server # typescript language server for neovim
+    nodePackages.dockerfile-language-server-nodejs # dockerfile language server for neovim
     quilt # Patch management
     scc # Fast and accurate code counter https://github.com/boyter/scc
     taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
@@ -173,6 +184,7 @@ in {
     nixfmt # Nix language formatter
     nixpkgs-fmt # Nix language formatter
     pyright # Python type checker
+    nodePackages.prettier # HTML and CSS formatter
     shellcheck # Bash script linter
     shfmt # Shell formatter https://github.com/patrickvane/shfmt
     stylish-haskell # Haskell formatter
