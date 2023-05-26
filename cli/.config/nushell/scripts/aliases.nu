@@ -66,8 +66,10 @@ export alias gbc = ^git bc
 export alias gbm = ^git bm
 export alias gbr = ^git br
 export alias gcam = ^git commit -v --amend
+export alias gca = ^git commit -a
 export alias gcb = ^git checkout -b
 export alias gcob = ^git cob
+export alias gco = ^git checkout
 export alias gd = ^git diff --no-prefix
 export alias gdc = ^git diffc
 export alias gdd = ^git difff
@@ -147,7 +149,8 @@ export def psa [searchterm=""] {
 export alias create-readme = yo standard-readme
 
 # export alias p = paru
-export alias o = xdg-open
+# export alias o = xdg-open
+export alias o = open-cli
 
 # # export alias ssh = TERM=xterm ^ssh
 # export def ssh [] {
