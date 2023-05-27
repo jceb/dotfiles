@@ -30,8 +30,7 @@ in {
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    # CLI basics
-
+    ## CLI basics
     # a2ps # Ascii pretty printer
     # abcde # CD ripper
     # asciinema # Record CLI
@@ -51,6 +50,7 @@ in {
     bashInteractive # bash
     borgbackup # Backup solution https://borgbackup.readthedocs.io/en/stable/index.html
     exa # ls replacement
+    # findutils # GNU find etc
     fd # File finder
     fzy # Fuzzy finder like fzf
     gawk # awk
@@ -77,7 +77,7 @@ in {
     vivid # LS_COLORS support https://github.com/sharkdp/vivid
     zoxide # Fast cd system
 
-    # system tools
+    ## system tools
     parted # system partitioning
     # etckeeper # doesn't exist yet
     nixos-rebuild # NixOS configuration  maangement https://nixos.wiki/wiki/Nixos-rebuild
@@ -131,6 +131,7 @@ in {
     # httpie # HTTP CLi https://httpie.io/
     # myrepos # TODO: not yet packaged
     neovim # NeoVim https://neovim.io/
+    lua-language-server # lua language server
     # valgrind # Debugging and profiling tool
     # watchman # Generic file watcher and command executor https://github.com/facebook/watchman
     # cargo-generate # Generic file templating tool https://github.com/topics/cargo-generate
@@ -164,7 +165,7 @@ in {
     universal-ctags # Maintained ctags implementation
     watchexec # Generic file watcher and command executor https://github.com/watchexec/watchexec
 
-    # Programming language specific
+    ## Programming language specific
     # cargo # managed via rustup
     # golint # Go language linter, deprecated; replaced by go vet ./... and staticcheck ./... (https://staticcheck.io/docs/getting-started/)
     # lldb # high peformance debugger required by https://github.com/mfussenegger/nvim-dap # FIXME: currently broken, liblzma/xz dependency is missing
@@ -180,7 +181,7 @@ in {
     # yamlfmt # YAML formatter https://github.com/google/yamlfmt TODO: add to nix
     python-with-my-packages
 
-    # Misc
+    ## Misc
     nixfmt # Nix language formatter
     nixpkgs-fmt # Nix language formatter
     pyright # Python type checker
@@ -190,17 +191,17 @@ in {
     stylish-haskell # Haskell formatter
     stylua # Lua formatter
 
-    # Go
+    ## Go
     delve # Go debugger https://github.com/go-delve/delve
     go # Go language https://golang.org/
     go-tools # Go language tools
 
-    # JavaScript
+    ## JavaScript
     deno # JS interpreter https://deno.land/
     nodejs # JS interpreter https://nodejs.org/en/
     yarn # Yarn JS package manager
 
-    # Rust
+    ## Rust
     cargo-bloat # Rust find the bloat https://github.com/RazrFalcon/cargo-bloat
     cargo-udeps # Rust fix unused dependency checker https://github.com/est31/cargo-udeps
     rustup # either use this or rustc, cargo etc ... run `rustup update stable` to initialize the currrent version
@@ -223,44 +224,48 @@ in {
     skaffold # Image build tool https://skaffold.dev/docs/
     yq-go # YAML and JSON CLI parser https://mikefarah.gitbook.io/yq/
 
-    # # GUI programs
-    # alacritty
-    # audacity
-    # autokey
-    # calibre
-    # drawio
+    ## GUI programs
+    # alacritty # Terminal emulator https://alacritty.org/
+    # audacity # audio editor
+    # autokey # expandable text snippets
+    # calibre # eBook reader
+    # nerdfonts # Fonts with icons
+    # drawio # visualization tool
     # flameshot # screenshot utility
-    # gimp
-    # gnucash
-    # gsimplecal
-    # gufw
-    # ibus
-    # ibus-engines.libpinyin
-    # neovide
-    # obs-studio
-    # okular
+    # gimp # graphics editor
+    # gnucash # account tool
+    # gsimplecal # simple GUI calendar
+    # gufw # grafical ufw firewall interface
+    # ibus # text input service
+    # ibus-engines.libpinyin # Pinyin engine for ibus
+    # neovide # Graphical neovim wrapper https://neovide.dev/
+    # obs-studio # broadcasting tool
+    # libsForQt5.okular # PDF viewer
     # pdftk
     pdfcpu # PDF processor https://pdfcpu.io/
     # picom
-    # pipewire
-    # pipewire-media-session
-    # redshift
+    # redshift # Automatic blue filter to protect the eyes
     # screenkey
-    # scribus
-    # seafile-client
-    # solaar
+    # scribus # desktop publishing tool
+    # seafile-client # file store
+    # synergy # Mause and keyboard sharing https://symless.com/synergy
+    # solaar # Logitech configurator https://pwr-solaar.github.io/Solaar/
     # tint2
     # transmission-gtk
     # ufw
     # vault
     # vlc
-    # xbindkeys
+    # xbindkeys # X11 keybindings
     # xbindkeys-config
     # xcolor # X11 color picker
     # xournalpp
     # xsel
     # standardnotes # notebook https://standardnotes.com/
     # insomnia # GUI rest client https://insomnia.rest/
+    # firefox # Browser
+    # thunderbird # Mail program
+    # spotify # Music
+    # rambox # Chat tool
   ];
 
   # This value determines the Home Manager release that your
