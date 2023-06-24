@@ -60,6 +60,7 @@ export alias gan = ^git annex
 export alias gas = ^git annex sync
 export alias gass = ^git annex sync --content -A
 
+export alias ga = ^git add
 export alias gbam = ^git bam
 export alias gban = ^git ban
 export alias gbc = ^git bc
