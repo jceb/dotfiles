@@ -18,7 +18,7 @@ if [ -z "${SSH_AUTH_SOCK}" ]; then
 fi
 
 # start window manager and autostart programs
-xmonad --recompile
+PATH=/usr/bin:/usr/sbin:/bin:/sbin xmonad --recompile
 xmonad &
 
 systemctl --user start autostart.target
