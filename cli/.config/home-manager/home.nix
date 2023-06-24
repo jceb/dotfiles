@@ -157,6 +157,8 @@ in {
     nodePackages.vim-language-server # vim language server for neovim
     nodePackages.typescript-language-server # typescript language server for neovim
     nodePackages.dockerfile-language-server-nodejs # dockerfile language server for neovim
+    nodePackages.vscode-langservers-extracted # vscode language servers
+    nodePackages.ocaml-language-server # ocaml language server
     quilt # Patch management
     scc # Fast and accurate code counter https://github.com/boyter/scc
     taplo-cli # TOML Toolkit https://github.com/tamasfe/taplo
