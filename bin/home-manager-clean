@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+home-manager generations | awk '{print $5}' | sed -e '1,10d' | xargs home-manager remove-generations
