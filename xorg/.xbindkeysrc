@@ -36,7 +36,7 @@
 
 
 #x-terminal-emulator tmux
-"x-terminal-emulator"
+"/home/jceb/.local/bin/x-terminal-emulator"
     m:0x41 + c:36
     Shift+Mod4 + Return
 
@@ -141,7 +141,7 @@
     Mod4 + x
 
 #dmenu_run
-"dmenu_run -i"
+"/home/jceb/.local/bin/dmenu_run -i"
     m:0x40 + c:39
     Mod4 + r
 
@@ -166,7 +166,7 @@
     Control+Shift+Mod4 + l
 
 #Volume Control
-"pavucontrol-qt"
+"pavucontrol"
     m:0x40 + c:38
     Mod4 + a
 

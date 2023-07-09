@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# ~/Documents/PIM/etckeeper_pim "Local changes"
+vdirsyncer sync "${@}"
+# ~/Documents/PIM/etckeeper_pim "Sync"
+
+# cat ~/Documents/PIM/calendars/**/*.ics > ~/.local/share/orage/orage.ics

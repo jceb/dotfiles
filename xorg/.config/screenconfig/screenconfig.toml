@@ -74,17 +74,16 @@ position = ["--right-of", "benq", "DP-1-1"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 # [monitors.benq.outputs.DP-2]
-[monitors.benq.outputs.DisplayPort-1]
+[monitors.benq.outputs.DP-2]
 # position = ["--right-of", "benq", "eDP"]
 # position = ["--pos", "2560x0"]
 # xrandr_args = ["--pos", "2560x0"]
 # resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_2.png"
 
-# [monitors.benq.outputs.HDMI-1]
-[monitors.benq.outputs.HDMI-A-0]
+[monitors.benq.outputs.HDMI-1]
 # position = ["--right-of", "benq", "DP-2"]
-position = ["--right-of", "benq", "DisplayPort-1"]
+position = ["--right-of", "benq", "DP-2"]
 # position = ["--pos", "5120x0"]
 # xrandr_args = ["--pos", "5120x0"]
 # resolution = "2560x1440"
@@ -104,18 +103,15 @@ position = ["--right-of", "laptop"]
 #     ["xrandr", "--output", "{.output}", "--scale", "1.5x1.5"]
 # ]
 
-# [monitors.dellkraftwerk.outputs.DP-2]
-[monitors.dellkraftwerk.outputs.DisplayPort-1]
+[monitors.dellkraftwerk.outputs.DP-2]
 # position = ["--right-of", "dellkraftwerk", "DP-2"]
 # position = ["--right-of", "laptop"]
 # position = ["--pos", "2560x0"]
 # resolution = "2560x1440"
-wallpaper = "~/wallpaper2560x1440_3.png"
+wallpaper = "~/wallpaper2560x1440_2.png"
 
-# [monitors.dellkraftwerk.outputs.HDMI-1]
-[monitors.dellkraftwerk.outputs.HDMI-A-0]
-# position = ["--right-of", "dellkraftwerk", "DP-2"]
-position = ["--right-of", "dellkraftwerk", "DisplayPort-1"]
+[monitors.dellkraftwerk.outputs.HDMI-1]
+position = ["--right-of", "dellkraftwerk", "DP-2"]
 # position = ["--pos", "5120x0"]
 # resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_3.png"
@@ -163,12 +159,12 @@ wallpaper = "~/wallpaper1280x1024.png"
 # export SCREENCONFIG_DEFAULT="monitors.default-work"
 [monitors.default]
 # position = ["--above", "laptop"]
-position = ["--above", "eDP"]
+position = ["--above", "eDP-1"]
 resolution = "auto"
 wallpaper = "~/wallpaper2560x1440_2.png"
 exec_on_connect = [
   # ["sleep", "500"],
-  ["/home/jceb/bin/fixxmodmap"],
+  ["/home/jceb/.local/bin/fixxmodmap"],
   # ["touch", "/tmp/test/file"],
   # ["sh", "-x", "-c", "touch /tmp/test/$SRANDRD_EVENT"],
   # ["touch", "/tmp/test/{.output}"]

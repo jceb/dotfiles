@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+set -x
 # start a new terminal and open tmux in it
 # TERMINAL="st"
 TERMINAL="alacritty"
 # SHELL="/usr/bin/fish"
-SHELL="$(getent passwd jceb | awk -F: '{print $7}')"
+#SHELL="$(getent passwd jceb | awk -F: '{print $7}')"
+SHELL="$(which nu)"
 
 # DEBUG
 # exec 1>/tmp/x 2>&1
@@ -33,8 +35,6 @@ if [ $# -eq 0 ] && [ -n "${first_detached_session}" ]; then
 	# reattach first detached session
 	command+=('attach-session' '-t' "${first_detached_session}")
 else
-	session='new-session'
-
 	# attach a specifc tmux session
 	if [ "${1}" = '-s' ]; then
 		sessionname="${2}"
@@ -56,4 +56,4 @@ else
 fi
 
 # spawn new terminal
-TMUX= SHELL="${SHELL}" exec "${command[@]}"
+TMUX="" SHELL="${SHELL}" exec "${command[@]}"

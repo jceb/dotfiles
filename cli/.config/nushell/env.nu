@@ -1,9 +1,6 @@
 # Source: https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_env.nu
 # Nushell Environment Config File
 
-let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
-#let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.GOPATH)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
-
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
@@ -70,7 +67,10 @@ let-env NU_PLUGIN_DIRS = [
 ]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-let-env PATH = ($env.PATH | split row (char esep) | prepend '/home/jceb/bin' | prepend '/home/jceb/.local/bin')
+# let-env PATH = ($env.PATH | split row (char esep) | prepend '/home/jceb/.local/bin')
+
+# let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
+#let-env PATH = $"($env.HOME)/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:($env.HOME)/.nix-profile/bin:($env.HOME)/.local/venv/bin:($env.HOME)/.local/bin:($env.GOPATH)/bin:($env.HOME)/.krew/bin:($env.HOME)/.arkade/bin:($env.HOME)/.config/npm-global/bin:($env.HOME)/.deno/bin/:($env.HOME)/.cargo/bin:($env.PATH)"
 
 ## To enable direnv in nushell we must run code in the context of the current shell - i.e it cannot be within a block and it needs to run as a "code" string as per https://github.com/nushell/nushell/pull/5982 (so you must run nushell 0.66 or later). That way it works as if you'd typed in and run the code directly in your shell.
 ## Direnv knows what to do otherwise and will export the env to load (or unload) based on what is in your current environment so this is all that is needed with some checks for empty strings, defaulting then to an empty table so that load-env is always happy.

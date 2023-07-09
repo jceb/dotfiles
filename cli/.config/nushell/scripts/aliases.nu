@@ -12,6 +12,7 @@ export def list [
 export alias l = list
 export alias ll = list
 # export alias l = ls
+export alias la = ls -la
 # export alias ll = ls
 export def lt [directory: string = "."] {
   ls $directory | sort-by modified -r

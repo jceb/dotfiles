@@ -1,0 +1,4 @@
+#!/bin/bash
+BIN="$(find ~/.local/bin -name standard-notes-\* | tail -n 1)"
+notify-send -e "Starting ${BIN}"
+exec "${BIN}"

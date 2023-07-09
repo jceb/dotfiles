@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rambox --ozone-platform-hint=auto --enable-webrtc-pipewire-capturer

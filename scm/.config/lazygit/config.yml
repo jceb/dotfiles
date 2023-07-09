@@ -1,0 +1,16 @@
+# See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+gui:
+  theme:
+    activeBorderColor:
+      - cyan
+      - reverse
+    selectedLineBgColor:
+      - underline
+    selectedRangeBgColor:
+      - underline
+git:
+  paging:
+    colerArg: never
+    # pager: delta --dark --paging=never
+services:
+  gitlab.eucon-services.com: gitlab:gitlab.eucon-services.com

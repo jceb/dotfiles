@@ -67,7 +67,7 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
 -- myDynamicTitle = myDynamicPropertyQuery "_NET_WM_NAME"
 
 scratchpads = [
-  NS "standard-notes" "standard-notes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/20) (1/20) (9/10) (9/10)),
+  NS "standardnotes" "standardnotes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/20) (1/20) (9/10) (9/10)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (className =? "firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
@@ -88,7 +88,7 @@ main = do
     , focusedBorderColor = "#8b008b"
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
-    , terminal = "x-terminal-emulator"
+    , terminal = "/home/jceb/.local/bin/x-terminal-emulator"
     } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
 
 -- https://github.com/xmonad/xmonad-contrib/issues/776
@@ -209,6 +209,7 @@ myAdditionalKeys =
   , ((mod4Mask, xK_grave ), moveTo Prev emptyWS)
   , ((mod4Mask, xK_c ), kill)
   , ((mod4Mask, xK_Return), windows swapMasterOrSlave)
+  -- , ((mod4Mask .|. shiftMask, xK_Return), spawn "/home/jceb/.local/bin/x-terminal-emulator")
   , ((mod4Mask .|. shiftMask, xK_space), withFocused toggleFloat)
   , ((mod4Mask, xK_Left), prevWS)
   , ((mod4Mask, xK_Right), nextWS)
@@ -233,7 +234,7 @@ myAdditionalKeys =
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
   , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
   , ((mod1Mask .|. mod4Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal-fullscreen")
-  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standard-notes")
+  , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standardnotes")
   , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
   , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "journal")
   ]

@@ -12,8 +12,9 @@ symbol = ""
 format = "[$symbol$status]($style) "
 
 [cmd_duration]
+disabled = false            # seems to be broken for some unknown reason
 show_notifications = true
-min_time_to_notify = 30000
+min_time_to_notify = 30_000
 
 [directory]
 truncation_symbol = "…/"
