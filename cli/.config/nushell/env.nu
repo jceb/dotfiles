@@ -66,6 +66,8 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
+let-env NNN_PLUG = 'x:!trash -rv -- $nnn;c:!chmod a-x -- $nnn;C:!chmod a+x -- $nnn;e:!nvr -- $nnn'
+
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/home/jceb/.local/bin')
 
