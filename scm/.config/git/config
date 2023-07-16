@@ -31,7 +31,7 @@
 [core]
     pager = less -FSRX
     ; pager = delta
-    editor = /usr/bin/nvim
+    editor = nvim
 [color]
     diff = auto
     status = auto
