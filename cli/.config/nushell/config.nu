@@ -876,4 +876,5 @@ use just-completions.nu *
 
 use aliases.nu *
 source zoxide.nu
+source atuin.nu
 
