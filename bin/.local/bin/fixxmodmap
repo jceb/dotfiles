@@ -38,7 +38,7 @@ touchpad || true
 
 naturalscrolling
 
-MONITOR="HDMI-A-0"
+MONITOR="HDMI-1"
 
 # assign wacom tablet to the third screen
 # xsetwacom --set "HUION Huion Tablet stylus" MapToOutput "$MONITOR" | true
