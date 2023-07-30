@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd ~/Documents/PIM
+(git add -A . && git commit -n -m "Local changes") || true
 # ~/Documents/PIM/etckeeper_pim "Local changes"
 vdirsyncer sync "${@}"
 # ~/Documents/PIM/etckeeper_pim "Sync"
+(git add -A . && git commit -n -m "Sync") || true
 
 # cat ~/Documents/PIM/calendars/**/*.ics > ~/.local/share/orage/orage.ics
