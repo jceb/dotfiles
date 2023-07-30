@@ -2,7 +2,8 @@
 export def list [
     directory : string = "."
     --sort-by (-s): string = "name" # Sort by column
-    --long (-l): bool # List all available columns for each entry
+    --reverse (-r): bool # Sort in reverse order # FIXME: doesn't work yet
+    --long (-l): bool # List all available columns for each entry # FIXME: doesn't work yet
 ] {
     ls $directory | if not ($in | is-empty) { where type == dir or type == symlink and ($in.name | path expand | path type) == dir | sort-by -i $sort_by } else {[]}
     | append (ls $directory | if not ($in | is-empty) {where type != dir and type != symlink or ($it.name | path expand | path type) != dir | sort-by -i $sort_by} else {[]})
@@ -12,14 +13,16 @@ export def list [
 export alias l = list
 export alias ll = list
 # export alias l = ls
-export alias la = ls -la
+export alias la = ls -a
+export alias lsa = ls -a
+export alias lla = ls -la
 # export alias ll = ls
 export def lt [directory: string = "."] {
   ls $directory | sort-by modified -r
 }
 # export alias lt = (ls | sort-by modified -r)
 export def ltr [directory: string = "."] {
-  ls $directory | sort-by modified
+  list --sort-by modified $directory
 }
 # export alias ltr = (ls | sort-by modified)
 export alias el = ^exa --group-directories-first --git -F
@@ -104,8 +107,6 @@ export alias gu = ^git pull --rebase
 
 # CD
 export alias cd.. = cd ..
-export alias cd. = cdx .^git
-export alias cdb = cdx base
 export def-env cdx [searchdir] {
     mut nwd = $env.PWD
     while not ($"([$nwd, $searchdir] | path join)" | path exists) or $nwd == "/" {
@@ -117,6 +118,8 @@ export def-env cdx [searchdir] {
 
     cd $nwd
 }
+export alias cd. = cdx .git
+export alias cdb = cdx base
 
 # Kubernetes
 # abbr --add kc 'kubectl auth can-i --as system:serviceaccount:cert-manager:cert-manager get configmaps -n kube-system'

@@ -301,10 +301,10 @@ let light_theme = (tokyo-day)
 # }
 
 
-let-env LS_COLORS = (vivid generate one-light | str trim)
+$env.LS_COLORS = (vivid generate one-light | str trim)
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   ls: {
     use_ls_colors: true # use the LS_COLORS environment variable to colorize output
     clickable_links: true # enable or disable clickable links. Your terminal has to support links.
@@ -733,7 +733,7 @@ let-env config = {
       keycode: char_u
       mode: emacs
       event: [
-          { send: executehostcommand cmd: "let-env DIRHISTORY = ($env.DIRHISTORY | prepend $env.PWD); cd .." }
+          { send: executehostcommand cmd: "$env.DIRHISTORY = ($env.DIRHISTORY | prepend $env.PWD); cd .." }
       ]
     }
     {
@@ -742,7 +742,7 @@ let-env config = {
       keycode: char_h
       mode: emacs
       event: [
-          { send: executehostcommand cmd: "cd ($env.DIRHISTORY.0); let-env DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.OLDPWD); let-env DIRHISTORY = ($env.DIRHISTORY | range 1..)" }
+          { send: executehostcommand cmd: "cd ($env.DIRHISTORY.0); $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.OLDPWD); $env.DIRHISTORY = ($env.DIRHISTORY | range 1..)" }
       ]
     }
     {
@@ -751,7 +751,7 @@ let-env config = {
       keycode: char_l
       mode: emacs
       event: [
-          { send: executehostcommand cmd: "cd ($env.DIRHISTORY_REVERSE.0); let-env DIRHISTORY = ($env.DIRHISTORY | prepend $env.OLDPWD); let-env DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | range 1..)" }
+          { send: executehostcommand cmd: "cd ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY = ($env.DIRHISTORY | prepend $env.OLDPWD); $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | range 1..)" }
       ]
     }
     {
@@ -852,8 +852,8 @@ let-env config = {
   ]
 }
 
-let-env DIRHISTORY = []
-let-env DIRHISTORY_REVERSE = []
+$env.DIRHISTORY = []
+$env.DIRHISTORY_REVERSE = []
 
 # somehow the alias can't be set because it's sourced the moment it's
 # created??!!
