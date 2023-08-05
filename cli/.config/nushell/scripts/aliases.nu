@@ -153,7 +153,6 @@ export def psa [searchterm=""] {
 # npm install -g yo generator-standard-readme
 export alias create-readme = yo standard-readme
 
-# export alias p = paru
 # export alias o = xdg-open
 export alias o = open-cli
 
