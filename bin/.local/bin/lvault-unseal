@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env /etc/profiles/per-user/jceb/bin/bash
 set -e
 set -u
 
