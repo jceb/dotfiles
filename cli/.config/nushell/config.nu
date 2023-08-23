@@ -686,7 +686,7 @@ $env.config = {
       event: [
       # { send: menu name: bookmark_menu }
       # { edit: InsertString, value: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
-      { send: executehostcommand cmd: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
+      { send: executehostcommand cmd: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
       ]
     }
     {
@@ -705,7 +705,7 @@ $env.config = {
       mode: emacs
       event: [
       { send: menu name: file_menu }
-      # { edit: InsertString, value: "(fd --min-depth 1 -d 4 -td -HL -E '\\.git/' | sk --color '(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | str trim)"}
+      # { edit: InsertString, value: "(fd --min-depth 1 -d 4 -td -HL -E '\\.git/' | fzf --color '(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | str trim)"}
       ]
     }
     {
@@ -715,7 +715,7 @@ $env.config = {
       mode: emacs
       event: [
       # { send: menu name: directory_menu }
-      { send: executehostcommand cmd: "cd $'(fd -E .git -E node_modules -d 4 -H -t d -t l -L | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
+      { send: executehostcommand cmd: "cd $'(fd -E .git -E node_modules -d 4 -H -t d -t l -L | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
       ]
     }
     {
