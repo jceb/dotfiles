@@ -65,11 +65,14 @@ export alias gas = ^git annex sync
 export alias gass = ^git annex sync --content -A
 
 export alias ga = ^git add
+export alias gb = ^git branch
+export alias gba = ^git ba
 export alias gbam = ^git bam
 export alias gban = ^git ban
 export alias gbc = ^git bc
 export alias gbm = ^git bm
 export alias gbr = ^git br
+export alias gc = ^git commit
 export alias gcam = ^git commit -v --amend
 export alias gca = ^git commit -a
 export alias gcb = ^git checkout -b
@@ -126,9 +129,12 @@ export alias cdb = cdx base
 # abbr --add ke 'kubectl exec -it -n dev POD -- /bin/sh'
 # abbr --add kr 'kubectl run -it --rm -n dev --image=alpine:3 test -- /bin/sh'
 export alias k = kubectl
-# export alias k9s = EDITOR=nvim ^k9s
-export def k9s [...args] {
-  EDITOR=nvim ^k9s $args
+export def k9s [--context: string = "", ...args] {
+  if $context == "" {
+    EDITOR=nvim ^k9s $args
+  } else {
+    EDITOR=nvim ^k9s --context $context $args
+  }
 }
 export alias ka = kubectl apply
 export alias kaf = kubectl apply -f
@@ -144,6 +150,12 @@ export def khard [...args] {
 export alias kk = kubectl kustomize
 export alias kw = kubectl krew
 export alias kx = kubectl explore
+
+export def nix-clean [] {
+  sudo nix-collect-garbage
+  sudo nix-store --verify --check-contents --repair
+  sudo nix-store --optimise
+}
 
 # Misc
 export def psa [searchterm=""] {

@@ -522,7 +522,8 @@ $env.config = {
             description_text: yellow
         }
         source: { |buffer, position|
-            history | last 10 | get command | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
+            # history | last 10 | get command | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
+            atuin history last --cmd-only | lines | last 10 | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
             | reverse
             | find $buffer
             | each { |it| {value: ($it | ansi strip)} }
