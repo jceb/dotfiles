@@ -2,7 +2,7 @@
 # extract URLs from current tmux pane, select one via fzf and copy it into
 # clipboard
 
-# exec &> /tmp/x
+# exec &>/tmp/x
 # date
 # set -x
 # echo $PATH

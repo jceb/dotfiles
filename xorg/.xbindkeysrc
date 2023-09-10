@@ -36,7 +36,7 @@
 
 
 #x-terminal-emulator tmux
-"/home/jceb/.local/bin/x-terminal-emulator"
+"x-terminal-emulator"
     m:0x41 + c:36
     Shift+Mod4 + Return
 
@@ -56,8 +56,9 @@
     m:0x40 + c:55
     Mod4 + v
 
+# "xset s activate"
 #screensaver lock
-"xset s activate"
+"xscreensaver-command -lock"
     m:0xc + c:30
     Control+Alt + l
 
@@ -141,7 +142,7 @@
     Mod4 + x
 
 #dmenu_run
-"/home/jceb/.local/bin/dmenu_run -i"
+"dmenu_run -i"
     m:0x40 + c:39
     Mod4 + r
 
