@@ -15,7 +15,7 @@ if [ $# -ge 1 ]; then
 		COLORSCHEME='light'
 	fi
 else
-	if [ "$(redshift -p 2>/dev/null | awk '/Period:/ {print $2}')" = "Daytime" ]; then
+	if [ "$(redshift -l 53.047950:8.743050 -p 2>/dev/null | awk '/Period:/ {print $2}')" = "Daytime" ]; then
 		COLORSCHEME='light'
 	else
 		# stay in dark mode during the transition time
@@ -30,14 +30,18 @@ echo "${COLORSCHEME}" >~/.config/colorscheme
 # update alacritty and k9s colorscheme on demand
 if [ "${COLORSCHEME}" = 'light' ]; then
 	# sed -i -e 's/^colors:.*/colors: *papercolor/' ~/.config/alacritty/alacritty.yml
-	sed -i -e 's/^colors:.*/colors: *tokyoday/' ~/.config/alacritty/alacritty.yml
+	sed -i -e 's/^colors:.*/colors: *light/' ~/.config/alacritty/alacritty.yml
+	sed -i -e 's/^  theme:.*/  theme: *light/' ~/.config/lazygit/config.yml
 	# ln -s ~/.config/k9s/solarized_light.yml ~/.config/k9s/skin.yml # don't link, instead truncate so that changes are directly picked up by k9s
 	cat ~/.config/k9s/tokyonight_day.yml >~/.config/k9s/skin.yml
+	# cat ~/.config/k9s/catpuccin/dist/latte.yml >~/.config/k9s/skin.yml
 	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $light_theme/' -e 's/ one-dark / one-light /' ~/.config/nushell/config.nu
 else
 	# sed -i -e 's/^colors:.*/colors: *nord/' ~/.config/alacritty/alacritty.yml
-	sed -i -e 's/^colors:.*/colors: *tokyostorm/' ~/.config/alacritty/alacritty.yml
+	sed -i -e 's/^colors:.*/colors: *dark/' ~/.config/alacritty/alacritty.yml
+	sed -i -e 's/^  theme:.*/  theme: *dark/' ~/.config/lazygit/config.yml
 	cat ~/.config/k9s/nord.yml >~/.config/k9s/skin.yml
+	# cat ~/.config/k9s/catpuccin/dist/frappe.yml >~/.config/k9s/skin.yml
 	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $dark_theme/' -e 's/ one-light / one-dark /' ~/.config/nushell/config.nu
 fi
 
