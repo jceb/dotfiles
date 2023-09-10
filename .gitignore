@@ -16,3 +16,5 @@ __pycache__/
 /xorg/.config/environment.d/nnn-bookmarks.conf
 *.pdf
 /scm/.config/direnv/direnvrc
+/scm/.config/lazygit/state.yml
+/cli/.config/nushell/history.txt

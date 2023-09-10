@@ -25,3 +25,9 @@
 [submodule "cli/.config/nushell/nu_scripts"]
 	path = cli/.config/nushell/nu_scripts
 	url = https://github.com/nushell/nu_scripts.git
+[submodule "scm/.config/lazygit/lazygit"]
+	path = scm/.config/lazygit/lazygit
+	url = https://github.com/catppuccin/lazygit.git
+[submodule "kubernetes/.config/k9s/k9s"]
+	path = kubernetes/.config/k9s/catpuccin
+	url = https://github.com/catppuccin/k9s.git
