@@ -867,16 +867,14 @@ $env.DIRHISTORY_REVERSE = []
 #     source ~/.config/nushell/config.nu
 # }
 
-# use nu_alias_git.nu *
-# # use git.nu *
+# use git-aliases.nu *
 use cargo-completions.nu *
-# temporarily disabled
-# use git-completions.nu *
+use git-completions.nu *
 use make-completions.nu *
 use nix-completions.nu *
 use yarn-completion.nu *
 use just-completions.nu *
-# use config.nu *
+use man-completions.nu *
 # use direnv.nu *
 
 use aliases.nu *

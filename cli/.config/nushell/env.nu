@@ -53,6 +53,7 @@ $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'git')
     ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'cargo')
     ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'make')
+    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'man')
     ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'nix')
     ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'npm')
     ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'yarn')
