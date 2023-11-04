@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+set -eEuo pipefail
+PATH=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> { }; in { x = "${pkgs.git-ignore}/bin"; }.x'):${PATH} git-ignore "$@"

@@ -18,3 +18,4 @@ __pycache__/
 /scm/.config/direnv/direnvrc
 /scm/.config/lazygit/state.yml
 /cli/.config/nushell/history.txt
+--help
