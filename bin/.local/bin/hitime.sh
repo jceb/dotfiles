@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# set -x
+
+SLEEP_FOR_MIN=30
+set +u
+if [ $# -ge 2 ] && [ $(($1 + 1)) -gt 1 ]; then
+	SLEEP_FOR_MIN="$1"
+	shift
+fi
+set -u
+
+# sleep $((SLEEP_FOR_MIN * 60)) && notify-send -t 600000 -a HiTime "$*"
+bash -c "echo -e \"Timer due in ${SLEEP_FOR_MIN} min at: $(date +'%H:%M' -d@$(($(date +%s) + SLEEP_FOR_MIN * 60)))\nMessage: $*\nStatus of timer: ps -o start --pid \$BASHPID\nStop the timer with: kill \$BASHPID\"; sleep $((SLEEP_FOR_MIN * 60)) && notify-send -t 600000 -a HiTime '$*'" &

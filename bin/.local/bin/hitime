@@ -1,14 +1,12 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# set -x
+#!/usr/bin/env nu
 
-SLEEP_FOR_MIN=30
-set +u
-if [ $# -ge 2 ] && [ $(($1 + 1)) -gt 1 ]; then
-	SLEEP_FOR_MIN="$1"
-	shift
-fi
-set -u
+def main [time: duration, message: string = "time's up", --warntime: duration = 2min, ...rest] {
+  let full_message = ([$message] | append $rest | str join " ")
+  print $"The timer will be up at (date now | $in + $time)"
+  sleep ($time - $warntime)
+  notify-send -t 100000 -e -a HiTime $"almost up: ($full_message)"
+  sleep $warntime
+  notify-send -t 600000 -e -a HiTime $full_message
+}
 
-# sleep $((SLEEP_FOR_MIN * 60)) && notify-send -t 600000 -a HiTime "$*"
-bash -c "echo -e \"Timer due in ${SLEEP_FOR_MIN} min at: $(date +'%H:%M' -d@$(($(date +%s) + SLEEP_FOR_MIN * 60)))\nMessage: $*\nStatus of timer: ps -o start --pid \$BASHPID\nStop the timer with: kill \$BASHPID\"; sleep $((SLEEP_FOR_MIN * 60)) && notify-send -t 600000 -a HiTime '$*'" &
+# vi ft=nu:tw=80:sw=2:ts=4:sts=4:et
