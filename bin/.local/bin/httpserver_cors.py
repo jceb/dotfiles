@@ -23,6 +23,6 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
 host = sys.argv[1] if len(sys.argv) > 2 else "localhost"
 port = int(sys.argv[len(sys.argv) - 1]) if len(sys.argv) > 1 else 8080
 
-print("Listening on {}:{}".format(host, port))
+print("Listening on http://{}:{}".format(host, port))
 httpd = HTTPServer((host, port), CORSRequestHandler)
 httpd.serve_forever()

@@ -51,14 +51,12 @@
     Shift+Mod4 + e
 
 #gui vim
-# "gnvim"
 "neovide"
     m:0x40 + c:55
     Mod4 + v
 
-# "xset s activate"
 #screensaver lock
-"xscreensaver-command -lock"
+"xset s activate"
     m:0xc + c:30
     Control+Alt + l
 

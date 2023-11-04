@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-exec firefox "$@"
+exec /etc/profiles/per-user/jceb/bin/firefox "$@"
