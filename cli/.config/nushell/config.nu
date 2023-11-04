@@ -129,7 +129,7 @@ use completions *
 
 # For more information on themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
-use ~/.config/nushell/nu_scripts/themes/themes/tokyo-night.nu
+use ~/.config/nushell/nu_scripts/themes/nu-themes/tokyo-night.nu
 let dark_theme = (tokyo-night)
 # let dark_theme = {
 #     # color for nushell primitives
@@ -212,7 +212,7 @@ let dark_theme = (tokyo-night)
 #     shape_variable: purple
 # }
 
-use ~/.config/nushell/nu_scripts/themes/themes/tokyo-day.nu
+use ~/.config/nushell/nu_scripts/themes/nu-themes/tokyo-day.nu
 let light_theme = (tokyo-day)
 # let light_theme = {
 #     # color for nushell primitives
@@ -312,9 +312,9 @@ $env.config = {
   rm: {
     always_trash: true # always act as if -t was given. Can be overridden with -p
   }
-  cd: {
-    abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
-  }
+  # cd: {
+  #   abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
+  # }
   table: {
     mode: compact # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
     index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
@@ -423,15 +423,16 @@ $env.config = {
     pre_prompt: [
     # {# null # replace with source code to run before the prompt is shown
     # }
-    ]
-    pre_execution: [{
+    {
       # See https://github.com/nushell/nu_scripts/blob/main/direnv/config.nu
       code: "
         let direnv = (direnv export json | from json)
-        let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+        let direnv = if not ($direnv | is-empty) { $direnv } else { {} }
         $direnv | load-env
       "
-    }]
+    }
+    ]
+    pre_execution: [ ]
     env_change: {
       PWD: [{|before, after|
         null  # replace with source code to run if the PWD environment is different since the last repl input
@@ -869,11 +870,14 @@ $env.DIRHISTORY_REVERSE = []
 # use nu_alias_git.nu *
 # # use git.nu *
 use cargo-completions.nu *
-use git-completions.nu *
+# temporarily disabled
+# use git-completions.nu *
 use make-completions.nu *
 use nix-completions.nu *
 use yarn-completion.nu *
 use just-completions.nu *
+# use config.nu *
+# use direnv.nu *
 
 use aliases.nu *
 source zoxide.nu

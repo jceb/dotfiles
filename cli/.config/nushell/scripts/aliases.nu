@@ -129,6 +129,9 @@ export alias cdb = cdx base
 # abbr --add ke 'kubectl exec -it -n dev POD -- /bin/sh'
 # abbr --add kr 'kubectl run -it --rm -n dev --image=alpine:3 test -- /bin/sh'
 export alias k = kubectl
+export def gist [...args] {
+  ^gh gist $args
+}
 export def k9s [--context: string = "", ...args] {
   if $context == "" {
     EDITOR=nvim ^k9s $args
@@ -144,22 +147,48 @@ export alias kct = kubectl ctx
 export alias kd = kubectl delete
 export alias kg = kubectl get
 # export alias khard = EDITOR=nvim ^khard
-export def khard [...args] {
-  EDITOR=nvim ^khard $args
+export def khard [-a: string = "", ...args] {
+  if ($a) {
+    EDITOR=nvim ^khard -a $a $args
+  } else {
+    EDITOR=nvim ^khard $args
+  }
 }
 export alias kk = kubectl kustomize
 export alias kw = kubectl krew
 export alias kx = kubectl explore
 
+export def nix-init [] {
+  if (".flake" | path exists) {
+    print -e "ERROR: .flake directory already exists"
+    exit 1
+  }
+  "# Documentation: https://direnv.net/man/direnv-stdlib.1.html
+source_up_if_exists
+dotenv_if_exists
+
+use flake .flake
+" | save .envrc
+  mkdir .flake
+  cp ~/.config/templates/flake.nix .flake
+  git add .flake
+  cd .flake
+  nix flake update
+  print "Initialization done."
+  print "1. Add custom packages to .flake/flake.nix"
+  print "2. Update packages with `cd .flake; nix flake update`"
+  print "3. Allow direnv: direnv allow ."
+}
+
 export def nix-clean [] {
-  sudo nix-collect-garbage
+  sudo nix-collect-garbage -d
   sudo nix-store --verify --check-contents --repair
   sudo nix-store --optimise
 }
 
 # Misc
 export def psa [searchterm=""] {
-    ps | where name =~ $searchterm
+    ps -l | where name =~ $searchterm | select user_id pid start_time status command
 }
 
 # npm install -g yo generator-standard-readme

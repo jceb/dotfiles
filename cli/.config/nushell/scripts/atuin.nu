@@ -35,11 +35,15 @@ def _atuin_search_cmd [...flags: string] {
     ] | str join "\n"
 }
 
+$env.config = ($env | default {} config).config
+$env.config = ($env.config | default {} hooks)
 $env.config = (
     $env.config | upsert hooks (
         $env.config.hooks
-        | upsert pre_execution ($env.config.hooks.pre_execution | append $_atuin_pre_execution)
-        | upsert pre_prompt ($env.config.hooks.pre_prompt | append $_atuin_pre_prompt)
+        | upsert pre_execution (
+            $env.config.hooks | get -i pre_execution | default [] | append $_atuin_pre_execution)
+        | upsert pre_prompt (
+            $env.config.hooks | get -i pre_prompt | default [] | append $_atuin_pre_prompt)
     )
 )
 
@@ -56,16 +60,16 @@ $env.config = (
     )
 )
 
-$env.config = (
-    $env.config | upsert keybindings (
-        $env.config.keybindings
-        | append {
-            name: atuin
-            modifier: none
-            keycode: up
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: executehostcommand cmd: (_atuin_search_cmd '--shell-up-key-binding') }
-        }
-    )
-)
-
+# disable configuration - ctrl-r is enough
+# $env.config = (
+#     $env.config | upsert keybindings (
+#         $env.config.keybindings
+#         | append {
+#             name: atuin
+#             modifier: none
+#             keycode: up
+#             mode: [emacs, vi_normal, vi_insert]
+#             event: { send: executehostcommand cmd: (_atuin_search_cmd '--shell-up-key-binding') }
+#         }
+#     )
+# )
