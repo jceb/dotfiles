@@ -49,3 +49,6 @@ fi
 # tmate source ~/.tmux.conf
 tmux setenv -g COLORSCHEME "${COLORSCHEME}"
 tmux source ~/.tmux.conf
+
+echo "Now run:"
+echo "source ~/.config/nushell/config.nu"

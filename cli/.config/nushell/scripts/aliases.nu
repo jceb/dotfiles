@@ -158,6 +158,11 @@ export alias kk = kubectl kustomize
 export alias kw = kubectl krew
 export alias kx = kubectl explore
 
+# export alias colors-load = source ~/.config/nushell/config.nu
+# export def colors-load {
+#   source ~/.config/nushell/config.nu
+# }
+
 export def nix-init [] {
   if (".flake" | path exists) {
     print -e "ERROR: .flake directory already exists"
