@@ -1,4 +1,4 @@
-# vi: ft=txt:tw=72:sw=4:ts=4:noet:cms=#%s
+# vi: ft=toml:tw=72:sw=4:ts=4:noet:cms=#%s
 [user]
   name = Jan Christoph Ebersbach
   signingkey = 444912B0B381009F
@@ -39,6 +39,7 @@
 [push]
     default = upstream
     followTags = true
+	autoSetupRemote = true
 [fetch]
     prune = true
 [pull]
