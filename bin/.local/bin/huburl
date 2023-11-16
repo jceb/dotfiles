@@ -43,7 +43,7 @@ get_remote_url() { # retrieve the remote URL for the current branch
 	fi
 	remote=$(git config "branch.${1}.remote")
 	if [ -n "${remote}" ]; then
-		git config "remote.${remote}.url" | sed -e '/^git@/s/:/\//'
+		git config "remote.${remote}.url" | sed -e 's/ssh\.dev\.azure\.com:v3/dev.azure.com/' -e '/^git@/s/:/\//'
 	fi
 }
 
