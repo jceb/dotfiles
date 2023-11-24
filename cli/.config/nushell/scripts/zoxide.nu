@@ -23,7 +23,7 @@ if (not ($env | default false __zoxide_hooked | get __zoxide_hooked)) {
 #
 
 # Jump to a directory using only keywords.
-def-env __zoxide_z [...rest:list<string>] {
+def --env __zoxide_z [...rest:list<string>] {
   let arg0 = ($rest | append '~').0
   let path = if (($rest | length) <= 1) and ($arg0 == '-' or ($arg0 | path expand | path type) == dir) {
     $arg0
@@ -34,7 +34,7 @@ def-env __zoxide_z [...rest:list<string>] {
 }
 
 # Jump to a directory using interactive search.
-def-env __zoxide_zi  [...rest:list<string>] {
+def --env __zoxide_zi  [...rest:list<string>] {
   cd $'(zoxide query --interactive -- $rest | str trim -r -c "\n")'
 }
 
