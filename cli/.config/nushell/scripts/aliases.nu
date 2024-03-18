@@ -2,8 +2,8 @@
 export def list [
     directory : string = "."
     --sort-by (-s): string = "name" # Sort by column
-    --reverse (-r): bool # Sort in reverse order # FIXME: doesn't work yet
-    --long (-l): bool # List all available columns for each entry # FIXME: doesn't work yet
+    --reverse (-r) # Sort in reverse order # FIXME: doesn't work yet
+    --long (-l) # List all available columns for each entry # FIXME: doesn't work yet
 ] {
     ls $directory | if not ($in | is-empty) { where type == dir or type == symlink and ($in.name | path expand | path type) == dir | sort-by -i $sort_by } else {[]}
     | append (ls $directory | if not ($in | is-empty) {where type != dir and type != symlink or ($it.name | path expand | path type) != dir | sort-by -i $sort_by} else {[]})
@@ -32,6 +32,12 @@ export alias ell = ^exa -l
 export alias eltr = ^exa -l -smodified
 export alias eltra = ^exa -laa -smodified
 
+export def flux-status [] {
+ flux get source git -A
+ flux get kustomizations -A
+ flux get helmrelease -A
+}
+
 # quilt
 export alias q++ = ^quilt push -a
 export alias q+ = ^quilt push
@@ -49,9 +55,10 @@ export alias qt = ^quilt top
 
 # ^git
 # export alias lg = EDITOR=nvim lazygit
-export def lg [] {
-  EDITOR=nvim lazygit
-}
+# export def lg [] {
+#   EDITOR=nvim lazygit
+# }
+export alias lg = ^lazygit
 export alias g+ = ^git stash pop
 export alias g- = ^git stash
 export alias gaa = ^git annex add
@@ -89,15 +96,15 @@ export alias gl = ^git log
 export alias gp = ^git push
 # export alias gpf = ^git push -f
 export alias gpm = ^git push -o merge_request.create -o merge_request.target=master
+export alias gpme = ^git push --set-upstream origin HEAD -o merge_request.create -o merge_request.remove_source_branch -o merge_request.assign=7 -o merge_request.target=master
 # export alias gpre = ^git pre
 export alias gpt = ^git push --tags
-export alias gpu = ^git push --set-upstream origin HEAD
-export alias gpum = ^git push --set-upstream origin HEAD -o merge_request.create -o merge_request.remove_source_branch -o merge_request.assign=7 -o merge_request.target=master
+export alias gpu = ^git push upstream HEAD
 export alias gr = ^git rebase
 export alias gra = ^git rebase --abort
 export alias grc = ^git rebase --continue
 export alias gri = ^git rebase --interactive
-export alias gs = ^git switch -
+export alias gss = ^git switch -
 export alias gst = ^git st
 export alias gsta = ^git sta
 export alias gsuba = ^git submodule add
@@ -107,10 +114,11 @@ export alias gsubup = ^git subup
 # export alias guc = ^git commit -m "Update changelogs"
 # export alias gup = ^git up
 export alias gu = ^git pull --rebase
+export alias guu = ^git pull upstream HEAD
 
 # CD
 export alias cd.. = cd ..
-export def-env cdx [searchdir] {
+export def --env cdx [searchdir] {
     mut nwd = $env.PWD
     while not ($"([$nwd, $searchdir] | path join)" | path exists) or $nwd == "/" {
         $nwd = ($nwd | path dirname)
@@ -132,13 +140,13 @@ export alias k = kubectl
 export def gist [...args] {
   ^gh gist $args
 }
-export def k9s [--context: string = "", ...args] {
-  if $context == "" {
-    EDITOR=nvim ^k9s $args
-  } else {
-    EDITOR=nvim ^k9s --context $context $args
-  }
-}
+# export def k9s [--context: string = "", ...args] {
+#   if $context == "" {
+#     EDITOR=nvim ^k9s $args
+#   } else {
+#     EDITOR=nvim ^k9s --context $context $args
+#   }
+# }
 export alias ka = kubectl apply
 export alias kaf = kubectl apply -f
 export alias kak = kubectl apply -k
@@ -147,13 +155,13 @@ export alias kct = kubectl ctx
 export alias kd = kubectl delete
 export alias kg = kubectl get
 # export alias khard = EDITOR=nvim ^khard
-export def khard [-a: string = "", ...args] {
-  if ($a) {
-    EDITOR=nvim ^khard -a $a $args
-  } else {
-    EDITOR=nvim ^khard $args
-  }
-}
+# export def khard [-a: string = "", ...args] {
+#   if ($a) {
+#     EDITOR=nvim ^khard -a $a $args
+#   } else {
+#     EDITOR=nvim ^khard $args
+#   }
+# }
 export alias kk = kubectl kustomize
 export alias kw = kubectl krew
 export alias kx = kubectl explore
@@ -186,9 +194,9 @@ use flake .flake
 }
 
 export def nix-clean [] {
-  sudo nix-collect-garbage -d
-  sudo nix-store --verify --check-contents --repair
-  sudo nix-store --optimise
+  print -e "sudo nix-collect-garbage -d"
+  print -e "sudo nix-store --optimise"
+  print -e "sudo nix-store --verify --check-contents --repair"
 }
 
 # Misc

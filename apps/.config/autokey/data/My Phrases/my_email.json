@@ -1,10 +1,10 @@
 {
     "type": "phrase",
-    "description": "whereby",
+    "description": "my_email",
     "modes": [
         3
     ],
-    "usageCount": 3,
+    "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
@@ -22,11 +22,11 @@
             "<alt>",
             "<ctrl>"
         ],
-        "hotKey": "w"
+        "hotKey": "e"
     },
     "filter": {
         "regex": null,
         "isRecursive": false
     },
-    "sendMode": "<shift>+<insert>"
+    "sendMode": "<ctrl>+v"
 }

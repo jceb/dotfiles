@@ -1,4 +1,5 @@
 k9s:
+  liveViewAutoRefresh: false
   refreshRate: 2
   maxConnRetry: 5
   enableMouse: false
@@ -12,22 +13,21 @@ k9s:
   logger:
     tail: 100
     buffer: 5000
-    sinceSeconds: -1
+    sinceSeconds: 300
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: k8s-dev-1
-  currentCluster: k8s-dev-1
+  currentContext: ""
+  currentCluster: ""
   clusters:
-    k8s-dev-1:
+    "":
       namespace:
-        active: all
+        active: default
         lockFavorites: false
         favorites:
-        - datahub
         - default
       view:
-        active: svc
+        active: po
       featureGates:
         nodeShell: false
       shellPod:
@@ -47,4 +47,4 @@ k9s:
     memory:
       critical: 90
       warn: 70
-  screenDumpDir: /home/jceb/.cache/tmp/k9s-screens-jceb
+  screenDumpDir: /tmp/tmpdir-jceb/k9s-screens-jceb

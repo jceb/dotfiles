@@ -870,11 +870,11 @@ $env.DIRHISTORY_REVERSE = []
 # use git-aliases.nu *
 use cargo-completions.nu *
 use git-completions.nu *
+# use just-completions.nu *
 use make-completions.nu *
-use nix-completions.nu *
-use yarn-completion.nu *
-use just-completions.nu *
 use man-completions.nu *
+use nix-completions.nu *
+use yarn-v4-completions.nu *
 # use direnv.nu *
 
 use aliases.nu *

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash
 set -euo pipefail
 
 JOBS="${JOBS:-16}"     # set this to the number of parallel jobs, only works if xargs or parallel are installed - attention, output of the commands will be interlaced / mixed for xargs
@@ -11,7 +11,7 @@ fi
 SCRIPT="$(mktemp)"
 
 cat >"${SCRIPT}" <<EOF
-#!/bin/bash
+#!/usr/bin/env -S bash
 set -euo pipefail
 ${@}
 EOF
