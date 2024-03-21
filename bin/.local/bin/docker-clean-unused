@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -x
+docker-clean-stopped-containers.nu
+docker-clean-unused-images.nu
