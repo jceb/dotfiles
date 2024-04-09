@@ -176,7 +176,7 @@
     ; unisvn = !gcu
 
     ; ########## submodules
-    subm = submodule foreach git checkout master
+    subm = submodule foreach git checkout main
     subpre = submodule foreach git pull --rebase
     subup = submodule update --init --recursive
 
