@@ -51,6 +51,11 @@ wallpaper = "~/wallpaper1280x1024.png"
 # (see xrandr(1) for more information)
 position = ["--left-of", "laptop"]
 
+[monitors.empart.outputs.HDMI-1]
+description = "AOC"
+edids = ["E305240200001989"]
+position = ["--right-of", "laptop"]
+
 [monitors.benq]
 description = "Benq BL1152"
 edids = ["D109801B00005445"]
@@ -103,6 +108,13 @@ position = ["--right-of", "laptop"]
 #     ["xrandr", "--output", "{.output}", "--scale", "1.5x1.5"]
 # ]
 
+[monitors.dellkraftwerk.outputs.DP-1]
+# position = ["--right-of", "dellkraftwerk", "DP-2"]
+# position = ["--right-of", "laptop"]
+# position = ["--pos", "2560x0"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_2.png"
+
 [monitors.dellkraftwerk.outputs.DP-2]
 # position = ["--right-of", "dellkraftwerk", "DP-2"]
 # position = ["--right-of", "laptop"]
@@ -112,6 +124,7 @@ wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.dellkraftwerk.outputs.HDMI-1]
 position = ["--right-of", "dellkraftwerk", "DP-2"]
+# position = ["--right-of", "dellkraftwerk", "DP-2"]
 # position = ["--pos", "5120x0"]
 # resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_3.png"
