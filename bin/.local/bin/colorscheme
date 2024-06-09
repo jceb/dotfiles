@@ -37,6 +37,7 @@ if [ "${COLORSCHEME}" = 'light' ]; then
 	yq -i -e '.k9s.ui.skin = "catppuccin-latte-transparent"' ~/.config/k9s/config.yaml
 	# cat ~/.config/k9s/catpuccin/dist/latte.yml >~/.config/k9s/skin.yml
 	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $light_theme/' -e 's/ one-dark / one-light /' ~/.config/nushell/config.nu
+	sed -i -e 's/^#\s*--theme=\(.*\) # light$/--theme=\1 # light/' -e 's/^--theme=\(.*\) # dark$/# --theme=\1 # dark/' ~/.config/bat/config
 else
 	# sed -i -e 's/^colors:.*/colors: *nord/' ~/.config/alacritty/alacritty.yml
 	cat ~/.config/alacritty/alacritty-tokyonight.toml >~/.config/alacritty/alacritty.toml
@@ -45,6 +46,7 @@ else
 	yq -i -e '.k9s.ui.skin = "catppuccin-mocha-transparent"' ~/.config/k9s/config.yaml
 	# cat ~/.config/k9s/catpuccin/dist/frappe.yml >~/.config/k9s/skin.yml
 	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $dark_theme/' -e 's/ one-light / one-dark /' ~/.config/nushell/config.nu
+	sed -i -e 's/^#\s*--theme=\(.*\) # dark$/--theme=\1 # dark/' -e 's/^--theme=\(.*\) # light$/# --theme=\1 # light/' ~/.config/bat/config
 fi
 
 # tmate setenv -g COLORSCHEME "${COLORSCHEME}"
