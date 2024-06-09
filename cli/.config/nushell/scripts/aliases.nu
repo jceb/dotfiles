@@ -101,6 +101,7 @@ export alias gpme = ^git push --set-upstream origin HEAD -o merge_request.create
 export alias gpt = ^git push --tags
 export alias gpu = ^git push upstream HEAD
 export alias gr = ^git rebase
+export alias grv = ^git remote -v
 export alias gra = ^git rebase --abort
 export alias grc = ^git rebase --continue
 export alias gri = ^git rebase --interactive

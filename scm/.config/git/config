@@ -95,6 +95,7 @@
     rc = rebase --continue
     ra = rebase --abort
     ri = rebase --interactive
+    rv = remote --verbose
 
     ; ########## Univention specific settings
     # mm = "!m=\"$(dirname \"$(dirname \"$(git branch|sed -ne 's/^\\*\\s*//p')\")\")\"; git merge \"origin/${m}/master\""
