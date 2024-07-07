@@ -195,7 +195,10 @@ use flake .flake
 }
 
 export def nix-clean [] {
+  print -e "^find -H /nix/var/nix/gcroots/auto -type l | xargs -I {} sh -c 'readlink {}' | grep jceb | xargs rm -v"
   print -e "sudo nix-collect-garbage -d"
+  print -e "# run as normal user to remove generations form the user's profile"
+  print -e "nix-collect-garbage -d"
   print -e "sudo nix-store --optimise"
   print -e "sudo nix-store --verify --check-contents --repair"
 }
