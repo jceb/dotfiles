@@ -28,5 +28,5 @@
         "regex": null,
         "isRecursive": false
     },
-    "sendMode": "<shift>+<insert>"
+    "sendMode": "kb"
 }
