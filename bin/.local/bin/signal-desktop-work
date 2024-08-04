@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+exec signal-desktop --user-data-dir="$HOME/.config/Signal-work" "$@"
