@@ -41,6 +41,16 @@ edids = [
 xrandr_args = ["--scale", "0.66667"]
 wallpaper = "~/wallpaper2560x1440.png"
 
+[monitors.m14d]
+description = "ThinkVision M14d"
+edids = ["AE3063AA00000000"]
+wallpaper = "~/wallpaper2560x1440_3.png"
+# The position of this screen relative to another screen, in this case
+# relative to the screen "laptop".  Position is one of
+# --right-of, --left-of, --above, --below or --same-as
+# (see xrandr(1) for more information)
+position = ["--below", "laptop"]
+
 [monitors.iiyama]
 description = "Iiyama"
 edids = ["CD2646B40000306A"]
