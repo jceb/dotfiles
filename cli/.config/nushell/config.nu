@@ -857,3 +857,8 @@ use yarn-v4-completions.nu *
 use aliases.nu *
 source zoxide.nu
 source atuin.nu
+
+# plugin use /run/current-system/sw/bin/nu_plugin_formats # from ini, ...
+# plugin add /run/current-system/sw/bin/nu_plugin_query
+# plugin add /run/current-system/sw/bin/nu_plugin_gstat
+# plugin add /run/current-system/sw/bin/nu_plugin_polars
