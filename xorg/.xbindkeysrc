@@ -169,4 +169,10 @@
     m:0x40 + c:38
     Mod4 + a
 
+#Center Mouse
+"center-mouse-on-focus.nu"
+    m:0x44 + c:58
+    Control+Mod4 + m
+
+#
 # End of xbindkeys configuration
