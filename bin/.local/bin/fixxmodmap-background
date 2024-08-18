@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+! /home/jceb/.local/bin/fixxmodmap &
+fixxmodmap

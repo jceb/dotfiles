@@ -1,15 +1,23 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # export LANG=en_US.UTF-8
 
 # tput smm enables 8 bit shell input
 # ENABLE_8_BIT="tput smm;"
 ENABLE_8_BIT=""
 
-if $(tmux has-session -t yeah); then
-	exec yeahconsole -e "${SHELL}" -c "'${ENABLE_8_BIT} exec tmux attach-session -t yeah'"
-else
-	tmux new-session -d -s yeah
-	# tmux new-session -d -s yeah -n imap offlineimap
-	# tmux new-window -n irc weechat-curses
-	exec "${0}"
-fi
+# # Export environment variables
+# set -a
+# source ~/.config/environment.d/X.conf
+# source ~/.config/environment.d/env.conf
+# source ~/.config/environment.d/nnn-bookmarks.conf
+# set +a
+
+exec alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah
+# if $(tmux has-session -t yeah); then
+# 	exec yeahconsole -e "${SHELL}" -c "'${ENABLE_8_BIT} exec tmux attach-session -t yeah'"
+# else
+# 	tmux new-session -d -s yeah
+# 	# tmux new-session -d -s yeah -n imap offlineimap
+# 	# tmux new-window -n irc weechat-curses
+# 	exec "${0}"
+# fi
