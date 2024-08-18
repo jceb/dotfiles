@@ -9,7 +9,8 @@ import           XMonad.Prelude                        hiding ((!?))
 import           XMonad.Actions.CycleWorkspaceByScreen
 import           XMonad.Actions.CycleWS
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.DynamicProperty
+-- import           XMonad.Hooks.DynamicProperty
+import           XMonad.Hooks.OnPropertyChange
 import           XMonad.Hooks.EwmhDesktops             (ewmh, ewmhFullscreen)
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
@@ -28,8 +29,10 @@ import           XMonad.Layout.LayoutCombinators
 import           XMonad.Layout.Maximize
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Renamed
+import XMonad.Layout.FocusTracking
 import           XMonad.Layout.SimplestFloat
-import           XMonad.Layout.StateFull
+-- import           XMonad.Layout.StateFull
+import           XMonad.Layout.TrackFloating
 import qualified XMonad.StackSet                       as W
 import           XMonad.Util.EZConfig                  (additionalKeys,
                                                         removeKeys)
@@ -67,13 +70,14 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
 -- myDynamicTitle = myDynamicPropertyQuery "_NET_WM_NAME"
 
 scratchpads = [
-  NS "standardnotes" "standardnotes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/20) (1/20) (9/10) (9/10)),
+  NS "standardnotes" "/etc/profiles/per-user/jceb/bin/standardnotes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/20) (1/20) (9/10) (9/10)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (className =? "firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
-  NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
-  NS "floating-terminal" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2)),
-  NS "floating-terminal-fullscreen" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (38/40))
+  NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20))
+  -- NS "floating-terminal" "/home/jceb/.local/bin/yeahtmux" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2)),
+  -- NS "floating-terminal" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2)),
+  -- NS "floating-terminal-fullscreen" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (19/20))
   ]
 
 main = do
@@ -88,8 +92,8 @@ main = do
     , focusedBorderColor = "#8b008b"
     , normalBorderColor  = "#4D4D4C"
     , modMask = mod4Mask
-    , terminal = "/home/jceb/.local/bin/x-terminal-emulator"
-    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r)] `additionalKeys` myAdditionalKeys
+    -- , terminal = "/home/jceb/.local/bin/x-terminal-emulator"
+    } `removeKeys` [(mod4Mask, xK_space), (mod4Mask, xK_comma), (mod4Mask, xK_period), (mod4Mask, xK_w), (mod4Mask, xK_e), (mod4Mask, xK_r), (mod4Mask, xK_p), (mod4Mask .|. shiftMask, xK_p), (mod4Mask .|. shiftMask, xK_w), (mod4Mask .|. shiftMask, xK_e), (mod4Mask .|. shiftMask, xK_r), (mod4Mask .|. shiftMask, xK_Return)] `additionalKeys` myAdditionalKeys
 
 -- https://github.com/xmonad/xmonad-contrib/issues/776
 data EwmhDesktopsConfig =
@@ -187,12 +191,17 @@ myManageHook = manageDocks <+> composeAll
                -- , className =? "Thunderbird" --> doShift "8"
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
 
+-- myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
 myLayoutHook = avoidStruts $ renamed [Replace "tiled"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Tall 1 (3/100) (2/3))
-               ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Grid (16/9))
-               ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ Grid (16/9))
+               -- ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ Grid (16/9))
+               ||| renamed [Replace "grid"] (maximizeWithPadding 1 $ smartBorders $ Grid (16/9))
+               -- ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ Grid (16/9))
+               ||| renamed [Replace "master"] (centerMaster $ smartBorders $ Grid (16/9))
                -- ||| renamed [Replace "grid"] (focusTracking $ maximizeWithPadding 1 $ smartBorders $ TallGrid 2 3 (2/3) (16/9) (5/100))
                -- ||| renamed [Replace "master"] (focusTracking $ centerMaster $ smartBorders $ TallGrid 2 3 (2/3) (16/9) (5/100))
-               ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
+               -- ||| renamed [Replace "full"] (fullscreenFull $ noBorders StateFull)
+               -- ||| renamed [Replace "full"] (fullscreenFull $ noBorders TrackFloating)
+               ||| renamed [Replace "full"] (focusTracking $ fullscreenFull $ noBorders Full)
                ||| renamed [Replace "float"] (smartBorders simplestFloat)
 
 
@@ -229,11 +238,11 @@ myAdditionalKeys =
   , ((mod4Mask, xK_o), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
   , ((mod4Mask .|. shiftMask, xK_equal), sendMessage $ IncMasterCols 1)
   , ((mod4Mask .|. shiftMask, xK_minus), sendMessage $ IncMasterCols (-1))
-  , ((mod4Mask .|. controlMask,  xK_equal), sendMessage $ IncMasterRows 1)
-  , ((mod4Mask .|. controlMask,  xK_minus), sendMessage $ IncMasterRows (-1))
+  , ((mod4Mask .|. controlMask, xK_equal), sendMessage $ IncMasterRows 1)
+  , ((mod4Mask .|. controlMask, xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
-  , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
-  , ((mod1Mask .|. mod4Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal-fullscreen")
+  -- , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
+  -- , ((mod1Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "floating-terminal-fullscreen")
   , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standardnotes")
   , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
   , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "journal")
