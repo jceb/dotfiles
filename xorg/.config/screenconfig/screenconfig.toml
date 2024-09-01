@@ -49,7 +49,10 @@ wallpaper = "~/wallpaper2560x1440_3.png"
 # relative to the screen "laptop".  Position is one of
 # --right-of, --left-of, --above, --below or --same-as
 # (see xrandr(1) for more information)
-position = ["--below", "laptop"]
+[monitors.m14d.outputs.DP-1]
+position = ["--right-of", "laptop"]
+[monitors.m14d.outputs.DP-2]
+position = ["--left-of", "laptop"]
 
 [monitors.iiyama]
 description = "Iiyama"
