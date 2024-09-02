@@ -19,3 +19,4 @@ __pycache__/
 /scm/.config/lazygit/state.yml
 /cli/.config/nushell/history.txt
 --help
+scm/.config/lazygit/config.yml

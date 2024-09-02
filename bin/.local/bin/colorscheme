@@ -31,7 +31,8 @@ echo "${COLORSCHEME}" >~/.config/colorscheme
 if [ "${COLORSCHEME}" = 'light' ]; then
 	# sed -i -e 's/^colors:.*/colors: *papercolor/' ~/.config/alacritty/alacritty.yml
 	cat ~/.config/alacritty/alacritty-tokyoday.toml >~/.config/alacritty/alacritty.toml
-	sed -i -e 's/^  theme:.*/  theme: *light/' ~/.config/lazygit/config.yml
+	cat ~/.config/lazygit/config-light.yml >~/.config/lazygit/config.yml
+	# sed -i -e 's/^  theme:.*/  theme: *light/' ~/.config/lazygit/config.yml
 	# ln -s ~/.config/k9s/solarized_light.yml ~/.config/k9s/skin.yml # don't link, instead truncate so that changes are directly picked up by k9s
 	# cat ~/.config/k9s/tokyonight_day.yml >~/.config/k9s/skin.yml
 	yq -i -e '.k9s.ui.skin = "catppuccin-latte-transparent"' ~/.config/k9s/config.yaml
@@ -41,7 +42,8 @@ if [ "${COLORSCHEME}" = 'light' ]; then
 else
 	# sed -i -e 's/^colors:.*/colors: *nord/' ~/.config/alacritty/alacritty.yml
 	cat ~/.config/alacritty/alacritty-tokyonight.toml >~/.config/alacritty/alacritty.toml
-	sed -i -e 's/^  theme:.*/  theme: *dark/' ~/.config/lazygit/config.yml
+	cat ~/.config/lazygit/config-dark.yml >~/.config/lazygit/config.yml
+	# sed -i -e 's/^  theme:.*/  theme: *dark/' ~/.config/lazygit/config.yml
 	# cat ~/.config/k9s/nord.yml >~/.config/k9s/skin.yml
 	yq -i -e '.k9s.ui.skin = "catppuccin-mocha-transparent"' ~/.config/k9s/config.yaml
 	# cat ~/.config/k9s/catpuccin/dist/frappe.yml >~/.config/k9s/skin.yml

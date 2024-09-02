@@ -1,0 +1,35 @@
+# See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+# :r ./lazygit/themes-mergable/latte/sapphire.yml
+
+gui:
+  theme:
+    activeBorderColor:
+      - "#209fb5"
+      - bold
+    inactiveBorderColor:
+      - "#6c6f85"
+    optionsTextColor:
+      - "#1e66f5"
+    selectedLineBgColor:
+      - "#ccd0da"
+    cherryPickedCommitBgColor:
+      - "#bcc0cc"
+    cherryPickedCommitFgColor:
+      - "#209fb5"
+    unstagedChangesColor:
+      - "#d20f39"
+    defaultFgColor:
+      - "#4c4f69"
+    searchingActiveBorderColor:
+      - "#df8e1d"
+
+  authorColors:
+    "*": "#7287fd"
+
+# git:
+#   paging:
+#     colorArg: never
+#     # pager: delta --dark --paging=never
+
+services:
+  gitlab.eucon-services.com: gitlab:gitlab.eucon-services.com
