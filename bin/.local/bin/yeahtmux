@@ -6,11 +6,11 @@
 ENABLE_8_BIT=""
 
 # # Export environment variables
-# set -a
-# source ~/.config/environment.d/X.conf
-# source ~/.config/environment.d/env.conf
-# source ~/.config/environment.d/nnn-bookmarks.conf
-# set +a
+set -a
+source ~/.config/environment.d/X.conf
+source ~/.config/environment.d/env.conf
+source ~/.config/environment.d/nnn-bookmarks.conf
+set +a
 
 exec alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah
 # if $(tmux has-session -t yeah); then

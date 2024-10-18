@@ -112,7 +112,7 @@ description = "Samsung"
 edids = ["2D4C03E800000000", "2D4C03E654573236"]
 position = ["--left-of", "laptop"]
 
-[monitors.dellkraftwerk]
+[monitors.ateliergemeinschaft]
 description = "Dell"
 edids = ['AC10D0C230504354', 'AC10D0C231345954']
 position = ["--right-of", "laptop"]
@@ -121,23 +121,23 @@ position = ["--right-of", "laptop"]
 #     ["xrandr", "--output", "{.output}", "--scale", "1.5x1.5"]
 # ]
 
-[monitors.dellkraftwerk.outputs.DP-1]
-# position = ["--right-of", "dellkraftwerk", "DP-2"]
+[monitors.ateliergemeinschaft.outputs.DP-1]
+# position = ["--right-of", "ateliergemeinschaft", "DP-2"]
 # position = ["--right-of", "laptop"]
 # position = ["--pos", "2560x0"]
 # resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_2.png"
 
-[monitors.dellkraftwerk.outputs.DP-2]
-# position = ["--right-of", "dellkraftwerk", "DP-2"]
+[monitors.ateliergemeinschaft.outputs.DP-2]
+# position = ["--right-of", "ateliergemeinschaft", "DP-2"]
 # position = ["--right-of", "laptop"]
 # position = ["--pos", "2560x0"]
 # resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_2.png"
 
-[monitors.dellkraftwerk.outputs.HDMI-1]
-position = ["--right-of", "dellkraftwerk", "DP-2"]
-# position = ["--right-of", "dellkraftwerk", "DP-2"]
+[monitors.ateliergemeinschaft.outputs.HDMI-1]
+# position = ["--right-of", "ateliergemeinschaft", "DP-1"]
+position = ["--right-of", "ateliergemeinschaft", "DP-2"]
 # position = ["--pos", "5120x0"]
 # resolution = "2560x1440"
 wallpaper = "~/wallpaper2560x1440_3.png"
