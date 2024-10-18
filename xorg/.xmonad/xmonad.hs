@@ -74,9 +74,9 @@ scratchpads = [
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (className =? "firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
-  NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20))
-  -- NS "floating-terminal" "/home/jceb/.local/bin/yeahtmux" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2)),
-  -- NS "floating-terminal" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2)),
+  NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
+  NS "floating-terminal" "/home/jceb/.local/bin/yeahtmux" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
+  -- NS "floating-terminal" "/etc/profiles/per-user/jceb/bin/alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
   -- NS "floating-terminal-fullscreen" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (19/20))
   ]
 
@@ -241,7 +241,7 @@ myAdditionalKeys =
   , ((mod4Mask .|. controlMask, xK_equal), sendMessage $ IncMasterRows 1)
   , ((mod4Mask .|. controlMask, xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
-  -- , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
+  , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
   -- , ((mod1Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "floating-terminal-fullscreen")
   , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standardnotes")
   , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
