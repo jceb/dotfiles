@@ -1,11 +1,48 @@
 #!/usr/bin/env nu
 
-def main [time: duration, message: string = "time's up", --warntime: duration = 2min, ...rest] {
+# Send a notification at the specified date / time or after a certan amount of time (duration) has passed.
+def main [
+  time: any,
+  # duration (3min) or date / time ("14:30" | into datetime).
+  message: string = "time is up",
+  # The message that will be sent
+  --warntime: duration = 2min,
+  # Warning that will be sent ahead of time. Set to 0 to disable warning.
+  ...rest
+  # The remainder of arguments will be appended to the message.
+] {
+  let _time = match ($time | describe) {
+   "duration" => {
+     if $time < 1sec {
+       print -e $"ERROR: time must be of type duration or date but is of type: ($time | describe)"
+       exit 1
+     }
+     print $"The timer will be up at (date now | $in + $time)"
+     $time
+   },
+   "date" => {
+     let duration =  $time - (date now)
+     if $duration < 1sec {
+       print -e $"ERROR: time must be of type duration or date but is of type: ($time | describe)"
+       exit 1
+     }
+     print $"The timer will be up at ($time)"
+     $duration
+   },
+   _ => {
+     print -e $"ERROR: time must be of type duration or date but is of type: ($time | describe)"
+     exit 1
+   },
+  }
   let full_message = ([$message] | append $rest | str join " ")
-  print $"The timer will be up at (date now | $in + $time)"
-  sleep ($time - $warntime)
-  notify-send -t 100000 -e -a HiTime $"almost up: ($full_message)"
-  sleep $warntime
+  if $warntime >= 0sec {
+    sleep ($_time - $warntime)
+    notify-send -t 100000 -e -a HiTime $"time's almost up: ($full_message)"
+    sleep $warntime
+  } else {
+    print -e "Warn time disabled."
+    sleep $_time
+  }
   notify-send -t 600000 -e -a HiTime $full_message
 }
 
