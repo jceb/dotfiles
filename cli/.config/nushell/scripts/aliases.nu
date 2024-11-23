@@ -1,28 +1,55 @@
-# Lists the files in a directory with the directories listed first.
+# Lists the files in a directory, directories are listed first.
 export def list [
-    directory : string = "."
+    dir: string = "."
     --sort-by (-s): string = "name" # Sort by column
-    --reverse (-r) # Sort in reverse order # FIXME: doesn't work yet
-    --long (-l) # List all available columns for each entry # FIXME: doesn't work yet
+    --reverse (-r) # Reverse sort order
+    --all (-a) # Show hidden files
+    --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
+    --full-paths (-f) # display paths as absolute paths
+    --du (-d) # Display the apparent directory size ("disk usage") in place of the directory metadata size
+    --directory (-D) # List the specified directory itself instead of its contents
+    --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
+    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
 ] {
-    ls $directory | if not ($in | is-empty) { where type == dir or type == symlink and ($in.name | path expand | path type) == dir | sort-by -i $sort_by } else {[]}
-    | append (ls $directory | if not ($in | is-empty) {where type != dir and type != symlink or ($it.name | path expand | path type) != dir | sort-by -i $sort_by} else {[]})
-    # ls $directory | upsert isdir {|it| $it.name | path expand | path type} | sort-by isdir $sort_by | drop column 1
+    ls --all=$all --long=$long --full-paths=$full_paths --du=$du --directory=$directory --mime-type=$mime_type --threads=$threads $dir | sort-by -c {|a, b|
+      if ($a.type == "dir") {
+        if ($b.type == "dir") {
+          # print $"($a.name) ($b.name): ($a.name < $b.name)"
+          if $reverse {
+            ($a | get $sort_by) > ($b | get $sort_by)
+          } else {
+            ($a | get $sort_by) < ($b | get $sort_by)
+          }
+        } else {
+          # if a is a directory, then it's sorted before b
+          true
+        }
+      } else if ($b.type == "dir") {
+        # if b is a directory, then it's sorted before a
+        false
+      } else {
+        # print $"($a.name) ($b.name): ($a.name < $b.name)"
+        if $reverse {
+          ($a | get $sort_by) > ($b | get $sort_by)
+        } else {
+          ($a | get $sort_by) < ($b | get $sort_by)
+        }
+      }
+    }
 }
 
 export alias l = list
 export alias ll = list
-# export alias l = ls
-export alias la = ls -a
-export alias lsa = ls -a
-export alias lla = ls -la
-# export alias ll = ls
-export def lt [directory: string = "."] {
-  ls $directory | sort-by modified -r
+export alias la = list -a
+export alias lsa = list -a
+export alias lla = list -la
+export def lt [dir: string = "."] {
+  # ls $dir | sort-by modified -r
+  list --sort-by modified $dir
 }
 # export alias lt = (ls | sort-by modified -r)
-export def ltr [directory: string = "."] {
-  list --sort-by modified $directory
+export def ltr [dir: string = "."] {
+  list -r --sort-by modified $dir
 }
 # export alias ltr = (ls | sort-by modified)
 export alias el = ^exa --group-directories-first --git -F
