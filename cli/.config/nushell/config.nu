@@ -411,7 +411,11 @@ $env.config = {
     ]
     pre_execution: [{ null }] # run before the repl input is run
     env_change: {
-            PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
+            PWD: [{|before, after|
+              if ($before == null) or (($before != ($env.DIRHISTORY_REVERSE | get -i 0)) and ($before != ($env.DIRHISTORY | get -i 0))) {
+                $env.DIRHISTORY = ($env.DIRHISTORY | prepend $before);
+              }
+            }] # run if the PWD environment is different since the last repl input
     }
     display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
     command_not_found: { null } # return an error message when a command is not found
@@ -711,7 +715,7 @@ $env.config = {
       keycode: char_u
       mode: emacs
       event: [
-          { send: executehostcommand cmd: "$env.DIRHISTORY = ($env.DIRHISTORY | prepend $env.PWD); cd .." }
+          { send: executehostcommand cmd: "cd .." }
       ]
     }
     {
@@ -720,7 +724,9 @@ $env.config = {
       keycode: char_h
       mode: emacs
       event: [
-          { send: executehostcommand cmd: "cd ($env.DIRHISTORY.0); $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.OLDPWD); $env.DIRHISTORY = ($env.DIRHISTORY | range 1..)" }
+          { send: executehostcommand
+            cmd: "if ($env.DIRHISTORY | length) > 0 { $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.PWD); let newdir = ($env.DIRHISTORY.0); $env.DIRHISTORY = ($env.DIRHISTORY | range 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
+          }
       ]
     }
     {
@@ -729,7 +735,9 @@ $env.config = {
       keycode: char_l
       mode: emacs
       event: [
-          { send: executehostcommand cmd: "cd ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY = ($env.DIRHISTORY | prepend $env.OLDPWD); $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | range 1..)" }
+          { send: executehostcommand
+            cmd: "if ($env.DIRHISTORY_REVERSE | length) > 0 {  let newdir = ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | range 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
+          }
       ]
     }
     {
