@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# slock
-xflock4
+slock
+# xflock4
 fixxmodmap
