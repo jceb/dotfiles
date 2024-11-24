@@ -244,6 +244,6 @@ myAdditionalKeys =
   , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
   -- , ((mod1Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "floating-terminal-fullscreen")
   , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standardnotes")
-  , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
+  -- , ((mod4Mask  .|. mod1Mask, xK_space), namedScratchpadAction scratchpads "thingking")
   , ((mod4Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "journal")
   ]
