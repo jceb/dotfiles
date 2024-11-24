@@ -11,6 +11,23 @@ let dark_theme = (tokyo-night)
 use ~/.config/nushell/nu_scripts/themes/nu-themes/tokyo-day.nu
 let light_theme = (tokyo-day)
 
+# Configure carapace:
+# mkdir ~/.cache/carapace
+# carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+let carapace_completer = {|spans|
+  # if the current command is an alias, get it's expansion
+  let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+  # overwrite
+  let spans = (if $expanded_alias != null  {
+    # put the first word of the expanded alias first in the span
+    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+  } else {
+    $spans
+  })
+  carapace $spans.0 nushell ...$spans
+  | from json
+}
+
 $env.LS_COLORS = (vivid generate one-light | str trim)
 
 # The default config record. This is where much of your global configuration is setup.
@@ -114,7 +131,7 @@ $env.config = {
     external: {
       enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
       max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      # completer: null # caraspace is being used
+      completer: $carapace_completer
     }
     use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
   }
@@ -127,7 +144,7 @@ $env.config = {
     vi_insert: line # block, underscore, line (block is the default)
     vi_normal: block # block, underscore, line  (underscore is the default)
   }
-  color_config: $dark_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
   footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2 # the precision for displaying floats in tables
   buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -695,7 +712,3 @@ source atuin.nu
 # plugin add /run/current-system/sw/bin/nu_plugin_query
 # plugin add /run/current-system/sw/bin/nu_plugin_gstat
 # plugin add /run/current-system/sw/bin/nu_plugin_polars
-
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
-#

@@ -94,4 +94,5 @@ if ($env | default null SSH_AUTH_SOCK | get SSH_AUTH_SOCK | is-empty) {
 	$env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 }
 
-source ~/.cache/carapace/init.nu
+# Carapace is set up in config.nu:
+# source ~/.cache/carapace/init.nu
