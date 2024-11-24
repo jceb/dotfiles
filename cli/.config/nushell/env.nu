@@ -49,22 +49,6 @@ $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts')
     ($nu.default-config-dir | path join 'nu_scripts' 'aliases' 'git')
     # ($nu.default-config-dir | path join 'nu_scripts' 'git')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'cargo')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'docker')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'eza')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'gh')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'git')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'just')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'make')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'man')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'nix')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'npm')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'pnpm')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'rg')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'rustup')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'ssh')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'tar')
-    ($nu.default-config-dir | path join 'nu_scripts' 'custom-completions' 'yarn')
     ($nu.default-config-dir | path join 'nu_scripts' 'hooks' 'direnv')
     ($nu.default-config-dir | path join 'nu_scripts' 'just')
 ]
@@ -109,3 +93,5 @@ if ($env | default null GPG_AGENT_INFO | get GPG_AGENT_INFO | is-empty) {
 if ($env | default null SSH_AUTH_SOCK | get SSH_AUTH_SOCK | is-empty) {
 	$env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 }
+
+source ~/.cache/carapace/init.nu
