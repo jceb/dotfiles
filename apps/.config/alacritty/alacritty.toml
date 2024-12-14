@@ -53,1366 +53,284 @@ mods = "Control|Shift"
 enabled = true
 mods = "Control"
 
-[[keyboard.bindings]]
-action = "Paste"
-key = "Paste"
-
-[[keyboard.bindings]]
-action = "Copy"
-key = "Copy"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3H"
-key = "Home"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001BOH"
-key = "Home"
-mode = "AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001B[H"
-key = "Home"
-mode = "~AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3F"
-key = "End"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001BOF"
-key = "End"
-mode = "AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001B[F"
-key = "End"
-mode = "~AppCursor"
-
-[[keyboard.bindings]]
-action = "ScrollPageUp"
-key = "PageUp"
-mode = "~Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[5;2~"
-key = "PageUp"
-mode = "Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[5;5~"
-key = "PageUp"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[5;3~"
-key = "PageUp"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[5~"
-key = "PageUp"
-
-[[keyboard.bindings]]
-action = "ScrollPageDown"
-key = "PageDown"
-mode = "~Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[6;2~"
-key = "PageDown"
-mode = "Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[6;5~"
-key = "PageDown"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[6;3~"
-key = "PageDown"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[6~"
-key = "PageDown"
-
-[[keyboard.bindings]]
-chars = "\u001B[Z"
-key = "Tab"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u007F"
-key = "Back"
-
-[[keyboard.bindings]]
-chars = "\u001B\u007F"
-key = "Back"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[2~"
-key = "Insert"
-
-[[keyboard.bindings]]
-chars = "\u001B[3~"
-key = "Delete"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2D"
-key = "Left"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5D"
-key = "Left"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3D"
-key = "Left"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[D"
-key = "Left"
-mode = "~AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001BOD"
-key = "Left"
-mode = "AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2C"
-key = "Right"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5C"
-key = "Right"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3C"
-key = "Right"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[C"
-key = "Right"
-mode = "~AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001BOC"
-key = "Right"
-mode = "AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2A"
-key = "Up"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5A"
-key = "Up"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3A"
-key = "Up"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[A"
-key = "Up"
-mode = "~AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001BOA"
-key = "Up"
-mode = "AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2B"
-key = "Down"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5B"
-key = "Down"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3B"
-key = "Down"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[B"
-key = "Down"
-mode = "~AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001BOB"
-key = "Down"
-mode = "AppCursor"
-
-[[keyboard.bindings]]
-chars = "\u001BOP"
-key = "F1"
-
-[[keyboard.bindings]]
-chars = "\u001BOQ"
-key = "F2"
-
-[[keyboard.bindings]]
-chars = "\u001BOR"
-key = "F3"
-
-[[keyboard.bindings]]
-chars = "\u001BOS"
-key = "F4"
-
-[[keyboard.bindings]]
-chars = "\u001B[15~"
-key = "F5"
-
-[[keyboard.bindings]]
-chars = "\u001B[17~"
-key = "F6"
-
-[[keyboard.bindings]]
-chars = "\u001B[18~"
-key = "F7"
-
-[[keyboard.bindings]]
-chars = "\u001B[19~"
-key = "F8"
-
-[[keyboard.bindings]]
-chars = "\u001B[20~"
-key = "F9"
-
-[[keyboard.bindings]]
-chars = "\u001B[21~"
-key = "F10"
-
-[[keyboard.bindings]]
-chars = "\u001B[23~"
-key = "F11"
-
-[[keyboard.bindings]]
-chars = "\u001B[24~"
-key = "F12"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2P"
-key = "F1"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2Q"
-key = "F2"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2R"
-key = "F3"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;2S"
-key = "F4"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[15;2~"
-key = "F5"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[17;2~"
-key = "F6"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[18;2~"
-key = "F7"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[19;2~"
-key = "F8"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[20;2~"
-key = "F9"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[21;2~"
-key = "F10"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[23;2~"
-key = "F11"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[24;2~"
-key = "F12"
-mods = "Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5P"
-key = "F1"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5Q"
-key = "F2"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5R"
-key = "F3"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;5S"
-key = "F4"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[15;5~"
-key = "F5"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[17;5~"
-key = "F6"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[18;5~"
-key = "F7"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[19;5~"
-key = "F8"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[20;5~"
-key = "F9"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[21;5~"
-key = "F10"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[23;5~"
-key = "F11"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[24;5~"
-key = "F12"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;6P"
-key = "F1"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;6Q"
-key = "F2"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;6R"
-key = "F3"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;6S"
-key = "F4"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[15;6~"
-key = "F5"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[17;6~"
-key = "F6"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[18;6~"
-key = "F7"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[19;6~"
-key = "F8"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[20;6~"
-key = "F9"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[21;6~"
-key = "F10"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[23;6~"
-key = "F11"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[24;6~"
-key = "F12"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3P"
-key = "F1"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3Q"
-key = "F2"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3R"
-key = "F3"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[1;3S"
-key = "F4"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[15;3~"
-key = "F5"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[17;3~"
-key = "F6"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[18;3~"
-key = "F7"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[19;3~"
-key = "F8"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[20;3~"
-key = "F9"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[21;3~"
-key = "F10"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[23;3~"
-key = "F11"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001B[24;3~"
-key = "F12"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = """
-
-"""
-key = "NumpadEnter"
-
-[[keyboard.bindings]]
-chars = "\u001B[97;6u"
-key = "A"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[97;7u"
-key = "A"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[97;8u"
-key = "A"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[97;4u"
-key = "A"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[98;6u"
-key = "B"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[98;7u"
-key = "B"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[98;8u"
-key = "B"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[98;4u"
-key = "B"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[99;6u"
-key = "C"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[99;7u"
-key = "C"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[99;8u"
-key = "C"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[99;4u"
-key = "C"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[100;6u"
-key = "D"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[100;7u"
-key = "D"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[100;8u"
-key = "D"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[100;4u"
-key = "D"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[101;6u"
-key = "E"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[101;7u"
-key = "E"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[101;8u"
-key = "E"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[101;4u"
-key = "E"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[102;6u"
-key = "F"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[102;7u"
-key = "F"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[102;8u"
-key = "F"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[102;4u"
-key = "F"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[103;6u"
-key = "G"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[103;7u"
-key = "G"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[103;8u"
-key = "G"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[103;4u"
-key = "G"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[104;6u"
-key = "H"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[104;7u"
-key = "H"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[104;8u"
-key = "H"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[104;4u"
-key = "H"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[105;5u"
-key = "I"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[105;6u"
-key = "I"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[105;7u"
-key = "I"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[105;8u"
-key = "I"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[105;4u"
-key = "I"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[106;5u"
-key = "J"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[106;6u"
-key = "J"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[106;7u"
-key = "J"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[106;8u"
-key = "J"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[106;4u"
-key = "J"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[107;3u"
-key = "K"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[107;6u"
-key = "K"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[107;7u"
-key = "K"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[107;8u"
-key = "K"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[107;4u"
-key = "K"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[108;6u"
-key = "L"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[108;7u"
-key = "L"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[108;8u"
-key = "L"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[108;4u"
-key = "L"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[109;5u"
-key = "M"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[109;6u"
-key = "M"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[109;7u"
-key = "M"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[109;8u"
-key = "M"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[109;4u"
-key = "M"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[110;6u"
-key = "N"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[110;7u"
-key = "N"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[110;8u"
-key = "N"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[110;4u"
-key = "N"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[111;3u"
-key = "O"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[111;6u"
-key = "O"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[111;7u"
-key = "O"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[111;8u"
-key = "O"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[111;4u"
-key = "O"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[112;6u"
-key = "P"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[112;7u"
-key = "P"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[112;8u"
-key = "P"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[112;4u"
-key = "P"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[113;6u"
-key = "Q"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[113;7u"
-key = "Q"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[113;8u"
-key = "Q"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[113;4u"
-key = "Q"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[114;6u"
-key = "R"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[114;7u"
-key = "R"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[114;8u"
-key = "R"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[114;4u"
-key = "R"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[115;6u"
-key = "S"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[115;7u"
-key = "S"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[115;8u"
-key = "S"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[115;4u"
-key = "S"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[116;6u"
-key = "T"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[116;7u"
-key = "T"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[116;8u"
-key = "T"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[116;4u"
-key = "T"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[117;6u"
-key = "U"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[117;7u"
-key = "U"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[117;8u"
-key = "U"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[117;4u"
-key = "U"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[118;6u"
-key = "V"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[118;7u"
-key = "V"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[118;8u"
-key = "V"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[118;4u"
-key = "V"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[119;6u"
-key = "W"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[119;7u"
-key = "W"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[119;8u"
-key = "W"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[119;4u"
-key = "W"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[120;6u"
-key = "X"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[120;7u"
-key = "X"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[120;8u"
-key = "X"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[120;4u"
-key = "X"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[121;6u"
-key = "Y"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[121;7u"
-key = "Y"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[121;8u"
-key = "Y"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[121;4u"
-key = "Y"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[122;6u"
-key = "Z"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[122;7u"
-key = "Z"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[122;8u"
-key = "Z"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[122;4u"
-key = "Z"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[48;6u"
-key = "Key0"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[48;3u"
-key = "Key0"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[48;7u"
-key = "Key0"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[48;8u"
-key = "Key0"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[48;4u"
-key = "Key0"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[49;6u"
-key = "Key1"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[49;3u"
-key = "Key1"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[49;7u"
-key = "Key1"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[49;8u"
-key = "Key1"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[49;4u"
-key = "Key1"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[50;6u"
-key = "Key2"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[50;3u"
-key = "Key2"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[50;7u"
-key = "Key2"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[50;8u"
-key = "Key2"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[50;4u"
-key = "Key2"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[51;6u"
-key = "Key3"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[51;3u"
-key = "Key3"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[51;7u"
-key = "Key3"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[51;8u"
-key = "Key3"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[51;4u"
-key = "Key3"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[52;6u"
-key = "Key4"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[52;3u"
-key = "Key4"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[52;7u"
-key = "Key4"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[52;8u"
-key = "Key4"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[52;4u"
-key = "Key4"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[53;6u"
-key = "Key5"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[53;3u"
-key = "Key5"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[53;7u"
-key = "Key5"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[53;8u"
-key = "Key5"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[53;4u"
-key = "Key5"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[54;6u"
-key = "Key6"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[54;3u"
-key = "Key6"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[54;7u"
-key = "Key6"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[54;8u"
-key = "Key6"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[54;4u"
-key = "Key6"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[55;6u"
-key = "Key7"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[55;3u"
-key = "Key7"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[55;7u"
-key = "Key7"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[55;8u"
-key = "Key7"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[55;4u"
-key = "Key7"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[56;6u"
-key = "Key8"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[56;3u"
-key = "Key8"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[56;7u"
-key = "Key8"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[56;8u"
-key = "Key8"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[56;4u"
-key = "Key8"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[57;6u"
-key = "Key9"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[57;3u"
-key = "Key9"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[57;7u"
-key = "Key9"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[57;8u"
-key = "Key9"
-mods = "Alt|Control|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[57;4u"
-key = "Key9"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[59;5u"
-key = "Semicolon"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[59;3u"
-key = "Semicolon"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[59;7u"
-key = "Semicolon"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[59;4u"
-key = "Semicolon"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B[58;5u"
-key = "Colon"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[58;3u"
-key = "Colon"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[58;7u"
-key = "Colon"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[44;5u"
-key = "Comma"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[44;3u"
-key = "Comma"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001B[44;7u"
-key = "Comma"
-mods = "Alt|Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[46;5u"
-key = "Period"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001B[46;7u"
-key = "Period"
-mods = "Alt|Control"
+[keyboard]
+bindings = [
+  { action = "Paste", key = "Paste" },
+  { action = "Copy", key = "Copy" },
+  { chars = "\u001B[1;3H", key = "Home", mods = "Alt" },
+  { chars = "\u001BOH", key = "Home", mode = "AppCursor" },
+  { chars = "\u001B[H", key = "Home", mode = "~AppCursor" },
+  { chars = "\u001B[1;3F", key = "End", mods = "Alt" },
+  { chars = "\u001BOF", key = "End", mode = "AppCursor" },
+  { chars = "\u001B[F", key = "End", mode = "~AppCursor" },
+  { action = "ScrollPageUp", key = "PageUp", mode = "~Alt", mods = "Shift" },
+  { chars = "\u001B[5;2~", key = "PageUp", mode = "Alt", mods = "Shift" },
+  { chars = "\u001B[5;5~", key = "PageUp", mods = "Control" },
+  { chars = "\u001B[5;3~", key = "PageUp", mods = "Alt" },
+  { chars = "\u001B[5~", key = "PageUp" },
+  { action = "ScrollPageDown", key = "PageDown", mode = "~Alt", mods = "Shift" },
+  { chars = "\u001B[6;2~", key = "PageDown", mode = "Alt", mods = "Shift" },
+  { chars = "\u001B[6;5~", key = "PageDown", mods = "Control" },
+  { chars = "\u001B[6;3~", key = "PageDown", mods = "Alt" },
+  { chars = "\u001B[6~", key = "PageDown" },
+  { chars = "\u001B[Z", key = "Tab", mods = "Shift" },
+  { chars = "\u007F", key = "Back" },
+  { chars = "\u001B\u007F", key = "Back", mods = "Alt" },
+  { chars = "\u001B[2~", key = "Insert" },
+  { chars = "\u001B[3~", key = "Delete" },
+  { chars = "\u001B[1;2D", key = "Left", mods = "Shift" },
+  { chars = "\u001B[1;5D", key = "Left", mods = "Control" },
+  { chars = "\u001B[1;3D", key = "Left", mods = "Alt" },
+  { chars = "\u001B[D", key = "Left", mode = "~AppCursor" },
+  { chars = "\u001BOD", key = "Left", mode = "AppCursor" },
+  { chars = "\u001B[1;2C", key = "Right", mods = "Shift" },
+  { chars = "\u001B[1;5C", key = "Right", mods = "Control" },
+  { chars = "\u001B[1;3C", key = "Right", mods = "Alt" },
+  { chars = "\u001B[C", key = "Right", mode = "~AppCursor" },
+  { chars = "\u001BOC", key = "Right", mode = "AppCursor" },
+  { chars = "\u001B[1;2A", key = "Up", mods = "Shift" },
+  { chars = "\u001B[1;5A", key = "Up", mods = "Control" },
+  { chars = "\u001B[1;3A", key = "Up", mods = "Alt" },
+  { chars = "\u001B[A", key = "Up", mode = "~AppCursor" },
+  { chars = "\u001BOA", key = "Up", mode = "AppCursor" },
+  { chars = "\u001B[1;2B", key = "Down", mods = "Shift" },
+  { chars = "\u001B[1;5B", key = "Down", mods = "Control" },
+  { chars = "\u001B[1;3B", key = "Down", mods = "Alt" },
+  { chars = "\u001B[B", key = "Down", mode = "~AppCursor" },
+  { chars = "\u001BOB", key = "Down", mode = "AppCursor" },
+  { chars = "\u001BOP", key = "F1" },
+  { chars = "\u001BOQ", key = "F2" },
+  { chars = "\u001BOR", key = "F3" },
+  { chars = "\u001BOS", key = "F4" },
+  { chars = "\u001B[15~", key = "F5" },
+  { chars = "\u001B[17~", key = "F6" },
+  { chars = "\u001B[18~", key = "F7" },
+  { chars = "\u001B[19~", key = "F8" },
+  { chars = "\u001B[20~", key = "F9" },
+  { chars = "\u001B[21~", key = "F10" },
+  { chars = "\u001B[23~", key = "F11" },
+  { chars = "\u001B[24~", key = "F12" },
+  { chars = "\u001B[1;2P", key = "F1", mods = "Shift" },
+  { chars = "\u001B[1;2Q", key = "F2", mods = "Shift" },
+  { chars = "\u001B[1;2R", key = "F3", mods = "Shift" },
+  { chars = "\u001B[1;2S", key = "F4", mods = "Shift" },
+  { chars = "\u001B[15;2~", key = "F5", mods = "Shift" },
+  { chars = "\u001B[17;2~", key = "F6", mods = "Shift" },
+  { chars = "\u001B[18;2~", key = "F7", mods = "Shift" },
+  { chars = "\u001B[19;2~", key = "F8", mods = "Shift" },
+  { chars = "\u001B[20;2~", key = "F9", mods = "Shift" },
+  { chars = "\u001B[21;2~", key = "F10", mods = "Shift" },
+  { chars = "\u001B[23;2~", key = "F11", mods = "Shift" },
+  { chars = "\u001B[24;2~", key = "F12", mods = "Shift" },
+  { chars = "\u001B[1;5P", key = "F1", mods = "Control" },
+  { chars = "\u001B[1;5Q", key = "F2", mods = "Control" },
+  { chars = "\u001B[1;5R", key = "F3", mods = "Control" },
+  { chars = "\u001B[1;5S", key = "F4", mods = "Control" },
+  { chars = "\u001B[15;5~", key = "F5", mods = "Control" },
+  { chars = "\u001B[17;5~", key = "F6", mods = "Control" },
+  { chars = "\u001B[18;5~", key = "F7", mods = "Control" },
+  { chars = "\u001B[19;5~", key = "F8", mods = "Control" },
+  { chars = "\u001B[20;5~", key = "F9", mods = "Control" },
+  { chars = "\u001B[21;5~", key = "F10", mods = "Control" },
+  { chars = "\u001B[23;5~", key = "F11", mods = "Control" },
+  { chars = "\u001B[24;5~", key = "F12", mods = "Control" },
+  { chars = "\u001B[1;6P", key = "F1", mods = "Alt" },
+  { chars = "\u001B[1;6Q", key = "F2", mods = "Alt" },
+  { chars = "\u001B[1;6R", key = "F3", mods = "Alt" },
+  { chars = "\u001B[1;6S", key = "F4", mods = "Alt" },
+  { chars = "\u001B[15;6~", key = "F5", mods = "Alt" },
+  { chars = "\u001B[17;6~", key = "F6", mods = "Alt" },
+  { chars = "\u001B[18;6~", key = "F7", mods = "Alt" },
+  { chars = "\u001B[19;6~", key = "F8", mods = "Alt" },
+  { chars = "\u001B[20;6~", key = "F9", mods = "Alt" },
+  { chars = "\u001B[21;6~", key = "F10", mods = "Alt" },
+  { chars = "\u001B[23;6~", key = "F11", mods = "Alt" },
+  { chars = "\u001B[24;6~", key = "F12", mods = "Alt" },
+  { chars = "\u001B[1;3P", key = "F1", mods = "Super" },
+  { chars = "\u001B[1;3Q", key = "F2", mods = "Super" },
+  { chars = "\u001B[1;3R", key = "F3", mods = "Super" },
+  { chars = "\u001B[1;3S", key = "F4", mods = "Super" },
+  { chars = "\u001B[15;3~", key = "F5", mods = "Super" },
+  { chars = "\u001B[17;3~", key = "F6", mods = "Super" },
+  { chars = "\u001B[18;3~", key = "F7", mods = "Super" },
+  { chars = "\u001B[19;3~", key = "F8", mods = "Super" },
+  { chars = "\u001B[20;3~", key = "F9", mods = "Super" },
+  { chars = "\u001B[21;3~", key = "F10", mods = "Super" },
+  { chars = "\u001B[23;3~", key = "F11", mods = "Super" },
+  { chars = "\u001B[24;3~", key = "F12", mods = "Super" },
+  # { chars = "", key = "NumpadEnter" },
+  { chars = "\u001B[97;6u", key = "A", mods = "Control|Shift" },
+  { chars = "\u001B[97;7u", key = "A", mods = "Alt|Control" },
+  { chars = "\u001B[97;8u", key = "A", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[97;4u", key = "A", mods = "Alt|Shift" },
+  { chars = "\u001B[98;6u", key = "B", mods = "Control|Shift" },
+  { chars = "\u001B[98;7u", key = "B", mods = "Alt|Control" },
+  { chars = "\u001B[98;8u", key = "B", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[98;4u", key = "B", mods = "Alt|Shift" },
+  { chars = "\u001B[99;6u", key = "C", mods = "Control|Shift" },
+  { chars = "\u001B[99;7u", key = "C", mods = "Alt|Control" },
+  { chars = "\u001B[99;8u", key = "C", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[99;4u", key = "C", mods = "Alt|Shift" },
+  { chars = "\u001B[100;6u", key = "D", mods = "Control|Shift" },
+  { chars = "\u001B[100;7u", key = "D", mods = "Alt|Control" },
+  { chars = "\u001B[100;8u", key = "D", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[100;4u", key = "D", mods = "Alt|Shift" },
+  { chars = "\u001B[101;6u", key = "E", mods = "Control|Shift" },
+  { chars = "\u001B[101;7u", key = "E", mods = "Alt|Control" },
+  { chars = "\u001B[101;8u", key = "E", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[101;4u", key = "E", mods = "Alt|Shift" },
+  { chars = "\u001B[102;6u", key = "F", mods = "Control|Shift" },
+  { chars = "\u001B[102;7u", key = "F", mods = "Alt|Control" },
+  { chars = "\u001B[102;8u", key = "F", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[102;4u", key = "F", mods = "Alt|Shift" },
+  { chars = "\u001B[103;6u", key = "G", mods = "Control|Shift" },
+  { chars = "\u001B[103;7u", key = "G", mods = "Alt|Control" },
+  { chars = "\u001B[103;8u", key = "G", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[103;4u", key = "G", mods = "Alt|Shift" },
+  { chars = "\u001B[104;6u", key = "H", mods = "Control|Shift" },
+  { chars = "\u001B[104;7u", key = "H", mods = "Alt|Control" },
+  { chars = "\u001B[104;8u", key = "H", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[104;4u", key = "H", mods = "Alt|Shift" },
+  { chars = "\u001B[105;5u", key = "I", mods = "Control" },
+  { chars = "\u001B[105;6u", key = "I", mods = "Control|Shift" },
+  { chars = "\u001B[105;7u", key = "I", mods = "Alt|Control" },
+  { chars = "\u001B[105;8u", key = "I", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[105;4u", key = "I", mods = "Alt|Shift" },
+  { chars = "\u001B[106;5u", key = "J", mods = "Control" },
+  { chars = "\u001B[106;6u", key = "J", mods = "Control|Shift" },
+  { chars = "\u001B[106;7u", key = "J", mods = "Alt|Control" },
+  { chars = "\u001B[106;8u", key = "J", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[106;4u", key = "J", mods = "Alt|Shift" },
+  { chars = "\u001B[107;3u", key = "K", mods = "Alt" },
+  { chars = "\u001B[107;6u", key = "K", mods = "Control|Shift" },
+  { chars = "\u001B[107;7u", key = "K", mods = "Alt|Control" },
+  { chars = "\u001B[107;8u", key = "K", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[107;4u", key = "K", mods = "Alt|Shift" },
+  { chars = "\u001B[108;6u", key = "L", mods = "Control|Shift" },
+  { chars = "\u001B[108;7u", key = "L", mods = "Alt|Control" },
+  { chars = "\u001B[108;8u", key = "L", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[108;4u", key = "L", mods = "Alt|Shift" },
+  { chars = "\u001B[109;5u", key = "M", mods = "Control" },
+  { chars = "\u001B[109;6u", key = "M", mods = "Control|Shift" },
+  { chars = "\u001B[109;7u", key = "M", mods = "Alt|Control" },
+  { chars = "\u001B[109;8u", key = "M", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[109;4u", key = "M", mods = "Alt|Shift" },
+  { chars = "\u001B[110;6u", key = "N", mods = "Control|Shift" },
+  { chars = "\u001B[110;7u", key = "N", mods = "Alt|Control" },
+  { chars = "\u001B[110;8u", key = "N", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[110;4u", key = "N", mods = "Alt|Shift" },
+  { chars = "\u001B[111;3u", key = "O", mods = "Alt" },
+  { chars = "\u001B[111;6u", key = "O", mods = "Control|Shift" },
+  { chars = "\u001B[111;7u", key = "O", mods = "Alt|Control" },
+  { chars = "\u001B[111;8u", key = "O", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[111;4u", key = "O", mods = "Alt|Shift" },
+  { chars = "\u001B[112;6u", key = "P", mods = "Control|Shift" },
+  { chars = "\u001B[112;7u", key = "P", mods = "Alt|Control" },
+  { chars = "\u001B[112;8u", key = "P", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[112;4u", key = "P", mods = "Alt|Shift" },
+  { chars = "\u001B[113;6u", key = "Q", mods = "Control|Shift" },
+  { chars = "\u001B[113;7u", key = "Q", mods = "Alt|Control" },
+  { chars = "\u001B[113;8u", key = "Q", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[113;4u", key = "Q", mods = "Alt|Shift" },
+  { chars = "\u001B[114;6u", key = "R", mods = "Control|Shift" },
+  { chars = "\u001B[114;7u", key = "R", mods = "Alt|Control" },
+  { chars = "\u001B[114;8u", key = "R", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[114;4u", key = "R", mods = "Alt|Shift" },
+  { chars = "\u001B[115;6u", key = "S", mods = "Control|Shift" },
+  { chars = "\u001B[115;7u", key = "S", mods = "Alt|Control" },
+  { chars = "\u001B[115;8u", key = "S", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[115;4u", key = "S", mods = "Alt|Shift" },
+  { chars = "\u001B[116;6u", key = "T", mods = "Control|Shift" },
+  { chars = "\u001B[116;7u", key = "T", mods = "Alt|Control" },
+  { chars = "\u001B[116;8u", key = "T", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[116;4u", key = "T", mods = "Alt|Shift" },
+  { chars = "\u001B[117;6u", key = "U", mods = "Control|Shift" },
+  { chars = "\u001B[117;7u", key = "U", mods = "Alt|Control" },
+  { chars = "\u001B[117;8u", key = "U", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[117;4u", key = "U", mods = "Alt|Shift" },
+  { chars = "\u001B[118;6u", key = "V", mods = "Control|Shift" },
+  { chars = "\u001B[118;7u", key = "V", mods = "Alt|Control" },
+  { chars = "\u001B[118;8u", key = "V", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[118;4u", key = "V", mods = "Alt|Shift" },
+  { chars = "\u001B[119;6u", key = "W", mods = "Control|Shift" },
+  { chars = "\u001B[119;7u", key = "W", mods = "Alt|Control" },
+  { chars = "\u001B[119;8u", key = "W", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[119;4u", key = "W", mods = "Alt|Shift" },
+  { chars = "\u001B[120;6u", key = "X", mods = "Control|Shift" },
+  { chars = "\u001B[120;7u", key = "X", mods = "Alt|Control" },
+  { chars = "\u001B[120;8u", key = "X", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[120;4u", key = "X", mods = "Alt|Shift" },
+  { chars = "\u001B[121;6u", key = "Y", mods = "Control|Shift" },
+  { chars = "\u001B[121;7u", key = "Y", mods = "Alt|Control" },
+  { chars = "\u001B[121;8u", key = "Y", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[121;4u", key = "Y", mods = "Alt|Shift" },
+  { chars = "\u001B[122;6u", key = "Z", mods = "Control|Shift" },
+  { chars = "\u001B[122;7u", key = "Z", mods = "Alt|Control" },
+  { chars = "\u001B[122;8u", key = "Z", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[122;4u", key = "Z", mods = "Alt|Shift" },
+  { chars = "\u001B[48;6u", key = "Key0", mods = "Control|Shift" },
+  { chars = "\u001B[48;3u", key = "Key0", mods = "Alt" },
+  { chars = "\u001B[48;7u", key = "Key0", mods = "Alt|Control" },
+  { chars = "\u001B[48;8u", key = "Key0", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[48;4u", key = "Key0", mods = "Alt|Shift" },
+  { chars = "\u001B[49;6u", key = "Key1", mods = "Control|Shift" },
+  { chars = "\u001B[49;3u", key = "Key1", mods = "Alt" },
+  { chars = "\u001B[49;7u", key = "Key1", mods = "Alt|Control" },
+  { chars = "\u001B[49;8u", key = "Key1", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[49;4u", key = "Key1", mods = "Alt|Shift" },
+  { chars = "\u001B[50;6u", key = "Key2", mods = "Control|Shift" },
+  { chars = "\u001B[50;3u", key = "Key2", mods = "Alt" },
+  { chars = "\u001B[50;7u", key = "Key2", mods = "Alt|Control" },
+  { chars = "\u001B[50;8u", key = "Key2", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[50;4u", key = "Key2", mods = "Alt|Shift" },
+  { chars = "\u001B[51;6u", key = "Key3", mods = "Control|Shift" },
+  { chars = "\u001B[51;3u", key = "Key3", mods = "Alt" },
+  { chars = "\u001B[51;7u", key = "Key3", mods = "Alt|Control" },
+  { chars = "\u001B[51;8u", key = "Key3", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[51;4u", key = "Key3", mods = "Alt|Shift" },
+  { chars = "\u001B[52;6u", key = "Key4", mods = "Control|Shift" },
+  { chars = "\u001B[52;3u", key = "Key4", mods = "Alt" },
+  { chars = "\u001B[52;7u", key = "Key4", mods = "Alt|Control" },
+  { chars = "\u001B[52;8u", key = "Key4", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[52;4u", key = "Key4", mods = "Alt|Shift" },
+  { chars = "\u001B[53;6u", key = "Key5", mods = "Control|Shift" },
+  { chars = "\u001B[53;3u", key = "Key5", mods = "Alt" },
+  { chars = "\u001B[53;7u", key = "Key5", mods = "Alt|Control" },
+  { chars = "\u001B[53;8u", key = "Key5", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[53;4u", key = "Key5", mods = "Alt|Shift" },
+  { chars = "\u001B[54;6u", key = "Key6", mods = "Control|Shift" },
+  { chars = "\u001B[54;3u", key = "Key6", mods = "Alt" },
+  { chars = "\u001B[54;7u", key = "Key6", mods = "Alt|Control" },
+  { chars = "\u001B[54;8u", key = "Key6", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[54;4u", key = "Key6", mods = "Alt|Shift" },
+  { chars = "\u001B[55;6u", key = "Key7", mods = "Control|Shift" },
+  { chars = "\u001B[55;3u", key = "Key7", mods = "Alt" },
+  { chars = "\u001B[55;7u", key = "Key7", mods = "Alt|Control" },
+  { chars = "\u001B[55;8u", key = "Key7", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[55;4u", key = "Key7", mods = "Alt|Shift" },
+  { chars = "\u001B[56;6u", key = "Key8", mods = "Control|Shift" },
+  { chars = "\u001B[56;3u", key = "Key8", mods = "Alt" },
+  { chars = "\u001B[56;7u", key = "Key8", mods = "Alt|Control" },
+  { chars = "\u001B[56;8u", key = "Key8", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[56;4u", key = "Key8", mods = "Alt|Shift" },
+  { chars = "\u001B[57;6u", key = "Key9", mods = "Control|Shift" },
+  { chars = "\u001B[57;3u", key = "Key9", mods = "Alt" },
+  { chars = "\u001B[57;7u", key = "Key9", mods = "Alt|Control" },
+  { chars = "\u001B[57;8u", key = "Key9", mods = "Alt|Control|Shift" },
+  { chars = "\u001B[57;4u", key = "Key9", mods = "Alt|Shift" },
+  { chars = "\u001B[59;5u", key = "Semicolon", mods = "Control" },
+  { chars = "\u001B[59;3u", key = "Semicolon", mods = "Alt" },
+  { chars = "\u001B[59;7u", key = "Semicolon", mods = "Alt|Control" },
+  { chars = "\u001B[59;4u", key = "Semicolon", mods = "Alt|Shift" },
+  { chars = "\u001B[58;5u", key = "Colon", mods = "Control" },
+  { chars = "\u001B[58;3u", key = "Colon", mods = "Alt" },
+  { chars = "\u001B[58;7u", key = "Colon", mods = "Alt|Control" },
+  { chars = "\u001B[44;5u", key = "Comma", mods = "Control" },
+  { chars = "\u001B[44;3u", key = "Comma", mods = "Alt" },
+  { chars = "\u001B[44;7u", key = "Comma", mods = "Alt|Control" },
+  { chars = "\u001B[46;5u", key = "Period", mods = "Control" },
+  { chars = "\u001B[46;7u", key = "Period", mods = "Alt|Control" },
+]
 
 [scrolling]
 history = 0
