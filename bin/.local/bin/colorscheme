@@ -29,8 +29,7 @@ echo "${COLORSCHEME}" >~/.config/colorscheme
 
 # update alacritty and k9s colorscheme on demand
 if [ "${COLORSCHEME}" = 'light' ]; then
-	# sed -i -e 's/^colors:.*/colors: *papercolor/' ~/.config/alacritty/alacritty.yml
-	cat ~/.config/alacritty/alacritty-tokyoday.toml >~/.config/alacritty/alacritty.toml
+	sed -i -e 's/^\(\s*\)# \?\(".*",\? # light\)$/\1\2/' -e 's/^\(\s*\)\(".*",\? # dark\)$/\1# \2/' ~/.config/alacritty/alacritty.toml
 	cat ~/.config/lazygit/config-light.yml >~/.config/lazygit/config.yml
 	# sed -i -e 's/^  theme:.*/  theme: *light/' ~/.config/lazygit/config.yml
 	# ln -s ~/.config/k9s/solarized_light.yml ~/.config/k9s/skin.yml # don't link, instead truncate so that changes are directly picked up by k9s
@@ -40,8 +39,7 @@ if [ "${COLORSCHEME}" = 'light' ]; then
 	sed -i -e 's/^\([ \t]*\)color_config: \$[^ ]*/\1color_config: $light_theme/' -e 's/ one-dark / one-light /' ~/.config/nushell/config.nu
 	sed -i -e 's/^#\s*--theme=\(.*\) # light$/--theme=\1 # light/' -e 's/^--theme=\(.*\) # dark$/# --theme=\1 # dark/' ~/.config/bat/config
 else
-	# sed -i -e 's/^colors:.*/colors: *nord/' ~/.config/alacritty/alacritty.yml
-	cat ~/.config/alacritty/alacritty-tokyonight.toml >~/.config/alacritty/alacritty.toml
+	sed -i -e 's/^\(\s*\)# \?\(".*",\? # dark\)$/\1\2/' -e 's/^\(\s*\)\(".*",\? # light\)$/\1# \2/' ~/.config/alacritty/alacritty.toml
 	cat ~/.config/lazygit/config-dark.yml >~/.config/lazygit/config.yml
 	# sed -i -e 's/^  theme:.*/  theme: *dark/' ~/.config/lazygit/config.yml
 	# cat ~/.config/k9s/nord.yml >~/.config/k9s/skin.yml
