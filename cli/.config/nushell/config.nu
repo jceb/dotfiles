@@ -548,7 +548,7 @@ $env.config = {
       mode: [emacs vi_normal vi_insert]
       event: [
       # { send: menu name: directory_menu }
-      { send: executehostcommand cmd: "cd $'(fd -E .git -E node_modules -d 4 -H -t d -t l -L | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
+      { send: executehostcommand cmd: "cd $'(fd -uuu -E .git -E node_modules -d 4 -H -t d -t l -L | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
       ]
     }
     {
