@@ -145,7 +145,7 @@
     Mod4 + r
 
 #calendar
-"gsimplecal"
+"LC_TIME=en_GB.UTF-8 gsimplecal"
     m:0x40 + c:52
     Mod4 + z
 
