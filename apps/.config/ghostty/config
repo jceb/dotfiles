@@ -1,0 +1,84 @@
+# Documentation: https://ghostty.org/docs/config/reference
+selection-invert-fg-bg = true
+cursor-style-blink = false
+cursor-invert-fg-bg = true
+font-size = 9.0
+font-family = "JetBrainsMono Nerd Font"
+theme = tokyonight-day
+gtk-titlebar = false
+auto-update = off
+copy-on-select = true
+window-inherit-working-directory = true
+resize-overlay = never
+
+# Tmux like bindings
+keybind = ctrl+space>s=new_split:down
+keybind = ctrl+space>v=new_split:right
+keybind = ctrl+space>ctrl+s=new_split:down
+keybind = ctrl+space>ctrl+v=new_split:right
+keybind = ctrl+space>j=goto_split:bottom
+keybind = ctrl+space>k=goto_split:top
+keybind = ctrl+space>h=goto_split:left
+keybind = ctrl+space>l=goto_split:right
+keybind = ctrl+space>ctrl+j=goto_split:bottom
+keybind = ctrl+space>ctrl+k=goto_split:top
+keybind = ctrl+space>ctrl+h=goto_split:left
+keybind = ctrl+space>ctrl+l=goto_split:right
+keybind = ctrl+space>n=next_tab
+keybind = ctrl+space>p=previous_tab
+keybind = ctrl+space>ctrl+n=next_tab
+keybind = ctrl+space>ctrl+p=previous_tab
+keybind = ctrl+space>shift+h=move_tab:-1
+keybind = ctrl+space>shift+l=move_tab:+1
+keybind = ctrl+space>t=new_tab
+keybind = ctrl+space>x=close_window
+keybind = ctrl+space>1=goto_tab:1
+keybind = ctrl+space>2=goto_tab:2
+keybind = ctrl+space>3=goto_tab:3
+keybind = ctrl+space>4=goto_tab:4
+keybind = ctrl+space>5=goto_tab:5
+keybind = ctrl+space>6=goto_tab:6
+keybind = ctrl+space>7=goto_tab:7
+keybind = ctrl+space>8=goto_tab:8
+keybind = ctrl+space>9=goto_tab:9
+keybind = ctrl+space>r=reload_config
+keybind = ctrl+space>comma=open_config
+# keybind = ctrl+space>less_than=resize_split:left,10
+# keybind = ctrl+space>>=resize_split:right,10
+keybind = ctrl+space>minus=resize_split:up,10
+keybind = ctrl+space>plus=resize_split:down,10
+keybind = ctrl+space>shift+k=jump_to_prompt:-1
+keybind = ctrl+space>shift+j=jump_to_prompt:1
+
+# unbind almost all default bindings
+keybind = shift+up=unbind
+keybind = shift+left=unbind
+keybind = shift+right=unbind
+keybind = shift+down=unbind
+keybind = ctrl+tab=unbind
+keybind = ctrl+comma=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
+keybind = ctrl+shift+e=unbind
+keybind = ctrl+shift+t=unbind
+keybind = ctrl+shift+w=unbind
+keybind = ctrl+shift+n=unbind
+keybind = ctrl+shift+q=unbind
+keybind = ctrl+shift+c=unbind
+keybind = ctrl+shift+o=unbind
+keybind = ctrl+shift+a=unbind
+keybind = ctrl+shift+v=unbind
+keybind = ctrl+shift+comma=unbind
+keybind = super+ctrl+right_bracket=unbind
+keybind = super+ctrl+left_bracket=unbind
+keybind = ctrl+alt+up=unbind
+keybind = ctrl+alt+down=unbind
+keybind = ctrl+alt+left=unbind
+keybind = ctrl+alt+right=unbind
