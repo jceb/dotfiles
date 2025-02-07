@@ -174,5 +174,15 @@
     m:0x44 + c:58
     Control+Mod4 + m
 
+#Brightness Down
+"xbrightness -5000"
+    m:0x0 + c:232
+    XF86MonBrightnessDown
+
+#Brightness Up
+"xbrightness +5000"
+    m:0x0 + c:233
+    XF86MonBrightnessUp
+
 #
 # End of xbindkeys configuration
