@@ -75,9 +75,9 @@ scratchpads = [
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (className =? "firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   NS "journal" "xournalpp" (className =? "Xournalpp") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
-  NS "floating-terminal" "/home/jceb/.local/bin/yeahtmux" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
-  -- NS "floating-terminal" "/etc/profiles/per-user/jceb/bin/alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
-  -- NS "floating-terminal-fullscreen" "alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah" (title =? "FloatingTerminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (19/20))
+  NS "floating-terminal" "/home/jceb/.local/bin/yeahtmux" (title =? "Floating.Terminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
+  -- NS "floating-terminal" "/etc/profiles/per-user/jceb/bin/alacritty --class Floating.Terminal --title Floating.Terminal -e tmux new-session -A -t yeah" (title =? "Floating.Terminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (1/2))
+  -- NS "floating-terminal-fullscreen" "alacritty --class Floating.Terminal --title Floating.Terminal -e tmux new-session -A -t yeah" (title =? "Floating.Terminal") (customFloating $ W.RationalRect (1/40) (1/40) (19/20) (19/20))
   ]
 
 main = do
@@ -166,7 +166,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "Calendar" --> doFloat
                , className =? "copyq" --> doRectFloat (W.RationalRect (11/20) (1/20) (8/20) (8/20))
                , className =? "Empathy" --> doFloat
-               -- , className =? "FloatingTerminal" --> doFloat
+               , className =? "Floating.Terminal" --> doFloat
                , className =? "Gajim" --> doFloat
                , className =? "Hexchat" --> doFloat
                , className =? "Jitsi" --> doFloat

@@ -10,9 +10,11 @@ set -a
 source ~/.config/environment.d/X.conf
 source ~/.config/environment.d/env.conf
 source ~/.config/environment.d/nnn-bookmarks.conf
+source ~/.config/environment.d/secrets.conf
 set +a
 
-exec alacritty --class FloatingTerminal --title FloatingTerminal -e tmux new-session -A -t yeah
+SHELL=$(which nu) exec ghostty --class=Floating.Terminal --title=Floating.Terminal
+# exec alacritty --class Floating.Terminal --title Floating.Terminal -e tmux new-session -A -t yeah
 # if $(tmux has-session -t yeah); then
 # 	exec yeahconsole -e "${SHELL}" -c "'${ENABLE_8_BIT} exec tmux attach-session -t yeah'"
 # else

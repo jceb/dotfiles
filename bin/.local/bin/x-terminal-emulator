@@ -21,39 +21,41 @@ if [ $# -ge 1 ] && ([ "${1}" = '-h' ] || [ "${1}" = '--help' ]); then
 	exit
 fi
 
-# specify the window's class
-if [ $# -ge 1 ] && [ "${1}" = '-c' ]; then
-	command+=('-c' "${2}")
-	shift 2
-fi
-
-# tmux shell
-command+=('-e' tmux)
-
-first_detached_session="$(tmux list-sessions | grep -v '(attached)$' | sed -n -e '1s/:.*//p')"
-
-if [ $# -eq 0 ] && [ -n "${first_detached_session}" ]; then
-	# reattach first detached session
-	command+=('attach-session' '-t' "${first_detached_session}")
-else
-	# attach a specifc tmux session
-	if [ "${1}" = '-s' ]; then
-		sessionname="${2}"
+if [ "${TERMINAL}" != "ghostty" ]; then
+	# specify the window's class
+	if [ $# -ge 1 ] && [ "${1}" = '-c' ]; then
+		command+=('-c' "${2}")
 		shift 2
-		if tmux has-session -t "${sessionname}"; then
-			command+=('attach-session' '-t' "${sessionname}")
-		else
-			command+=('new-session' '-s' "${sessionname}")
-		fi
-	else
-		command+=('new-session')
 	fi
 
-	# strip -e, all following parameters will be handed to tmux' new-session
-	if [ "${1}" = '-e' ]; then
-		shift 1
+	# tmux shell
+	command+=('-e' tmux)
+
+	first_detached_session="$(tmux list-sessions | grep -v '(attached)$' | sed -n -e '1s/:.*//p')"
+
+	if [ $# -eq 0 ] && [ -n "${first_detached_session}" ]; then
+		# reattach first detached session
+		command+=('attach-session' '-t' "${first_detached_session}")
+	else
+		# attach a specifc tmux session
+		if [ "${1}" = '-s' ]; then
+			sessionname="${2}"
+			shift 2
+			if tmux has-session -t "${sessionname}"; then
+				command+=('attach-session' '-t' "${sessionname}")
+			else
+				command+=('new-session' '-s' "${sessionname}")
+			fi
+		else
+			command+=('new-session')
+		fi
+
+		# strip -e, all following parameters will be handed to tmux' new-session
+		if [ "${1}" = '-e' ]; then
+			shift 1
+		fi
+		command+=("${@}")
 	fi
-	command+=("${@}")
 fi
 
 # spawn new terminal

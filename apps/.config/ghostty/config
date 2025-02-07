@@ -1,15 +1,21 @@
 # Documentation: https://ghostty.org/docs/config/reference
-selection-invert-fg-bg = true
-cursor-style-blink = false
-cursor-invert-fg-bg = true
-font-size = 9.0
-font-family = "JetBrainsMono Nerd Font"
-theme = tokyonight-day
-gtk-titlebar = false
+adw-toolbar-style = flat
 auto-update = off
 copy-on-select = true
-window-inherit-working-directory = true
+cursor-invert-fg-bg = true
+cursor-style-blink = false
+font-family = "JetBrainsMono Nerd Font"
+font-size = 9.0
+gtk-tabs-location = bottom
+gtk-titlebar = false
+gtk-wide-tabs = false
 resize-overlay = never
+selection-invert-fg-bg = true
+theme = tokyonight
+window-decoration = false
+window-inherit-working-directory = true
+window-new-tab-position = current
+window-save-state = never
 
 # Tmux like bindings
 keybind = ctrl+space>s=new_split:down
@@ -27,10 +33,15 @@ keybind = ctrl+space>ctrl+l=goto_split:right
 keybind = ctrl+space>n=next_tab
 keybind = ctrl+space>p=previous_tab
 keybind = ctrl+space>ctrl+n=next_tab
+keybind = ctrl+space>ctrl+space=next_tab
+keybind = ctrl+space>space=next_tab
 keybind = ctrl+space>ctrl+p=previous_tab
 keybind = ctrl+space>shift+h=move_tab:-1
 keybind = ctrl+space>shift+l=move_tab:+1
 keybind = ctrl+space>t=new_tab
+keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>ctrl+t=new_tab
+keybind = ctrl+space>ctrl+c=new_tab
 keybind = ctrl+space>x=close_window
 keybind = ctrl+space>1=goto_tab:1
 keybind = ctrl+space>2=goto_tab:2
@@ -43,12 +54,14 @@ keybind = ctrl+space>8=goto_tab:8
 keybind = ctrl+space>9=goto_tab:9
 keybind = ctrl+space>r=reload_config
 keybind = ctrl+space>comma=open_config
-# keybind = ctrl+space>less_than=resize_split:left,10
-# keybind = ctrl+space>>=resize_split:right,10
+keybind = ctrl+space>shift+comma=resize_split:left,10
+keybind = ctrl+space>shift+period=resize_split:right,10
 keybind = ctrl+space>minus=resize_split:up,10
 keybind = ctrl+space>plus=resize_split:down,10
 keybind = ctrl+space>shift+k=jump_to_prompt:-1
 keybind = ctrl+space>shift+j=jump_to_prompt:1
+keybind = ctrl+space>left_bracket=write_scrollback_file:paste
+keybind = ctrl+space>z=toggle_split_zoom
 
 # unbind almost all default bindings
 keybind = shift+up=unbind
