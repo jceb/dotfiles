@@ -15,7 +15,7 @@ theme = tokyonight
 window-decoration = false
 window-inherit-working-directory = true
 window-new-tab-position = current
-window-save-state = never
+# window-save-state = never
 
 # Tmux like bindings
 keybind = ctrl+space>s=new_split:down
@@ -34,7 +34,6 @@ keybind = ctrl+space>n=next_tab
 keybind = ctrl+space>p=previous_tab
 keybind = ctrl+space>ctrl+n=next_tab
 keybind = ctrl+space>ctrl+space=next_tab
-keybind = ctrl+space>space=next_tab
 keybind = ctrl+space>ctrl+p=previous_tab
 keybind = ctrl+space>shift+h=move_tab:-1
 keybind = ctrl+space>shift+l=move_tab:+1
