@@ -218,7 +218,7 @@ $env.config = {
     env_change: {
             PWD: [{|before, after|
               if ($before == null) or (($before != ($env.DIRHISTORY_REVERSE | get -i 0)) and ($before != ($env.DIRHISTORY | get -i 0))) {
-                $env.DIRHISTORY = ($env.DIRHISTORY | prepend $before);
+                $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | prepend $before);
               }
             }] # run if the PWD environment is different since the last repl input
     }
@@ -576,7 +576,7 @@ $env.config = {
       mode: [emacs vi_normal vi_insert]
       event: [
           { send: executehostcommand
-            cmd: "if ($env.DIRHISTORY | length) > 0 { $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.PWD); let newdir = ($env.DIRHISTORY.0); $env.DIRHISTORY = ($env.DIRHISTORY | range 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
+            cmd: "if ($env.DIRHISTORY | length) > 0 { $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.PWD); let newdir = ($env.DIRHISTORY.0); $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | range 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
           }
       ]
     }
@@ -587,7 +587,7 @@ $env.config = {
       mode: [emacs vi_normal vi_insert]
       event: [
           { send: executehostcommand
-            cmd: "if ($env.DIRHISTORY_REVERSE | length) > 0 {  let newdir = ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | range 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
+            cmd: "if ($env.DIRHISTORY_REVERSE | length) > 0 {  let newdir = ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY_REVERSE = ($env | default [] DIRHISTORY_REVERSE | get DIRHISTORY_REVERSE | range 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
           }
       ]
     }
