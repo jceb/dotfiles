@@ -114,6 +114,10 @@ $env.config = {
 
       # border_color: white
       # list_color: green
+      filesize: {
+        metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
+        unit: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
+      }
     }
   }
 
@@ -135,16 +139,12 @@ $env.config = {
     }
     use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
   }
-  filesize: {
-    metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-    format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
-  }
   cursor_shape: {
     emacs: line # block, underscore, line (line is the default)
     vi_insert: line # block, underscore, line (block is the default)
     vi_normal: block # block, underscore, line  (underscore is the default)
   }
-  color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  color_config: $dark_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
   footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2 # the precision for displaying floats in tables
   buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -705,7 +705,7 @@ $env.DIRHISTORY_REVERSE = []
 
 # use git-aliases.nu *
 use aliases.nu *
-source zoxide.nu
+# source zoxide.nu
 source atuin.nu
 
 # plugin use /run/current-system/sw/bin/nu_plugin_formats # from ini, ...
