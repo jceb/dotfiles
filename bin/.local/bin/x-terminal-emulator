@@ -2,8 +2,8 @@
 # set -x
 # start a new terminal and open tmux in it
 # TERMINAL="st"
-TERMINAL="ghostty"
-# TERMINAL="alacritty"
+# TERMINAL="ghostty"
+TERMINAL="alacritty"
 # SHELL="/usr/bin/fish"
 #SHELL="$(getent passwd jceb | awk -F: '{print $7}')"
 SHELL="$(which nu)"
