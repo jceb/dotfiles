@@ -1,4 +1,5 @@
 # Documentation: https://ghostty.org/docs/config/reference
+# window-save-state = never
 adw-toolbar-style = flat
 auto-update = off
 copy-on-select = true
@@ -6,16 +7,18 @@ cursor-invert-fg-bg = true
 cursor-style-blink = false
 font-family = "JetBrainsMono Nerd Font"
 font-size = 9.0
+gtk-single-instance = true
 gtk-tabs-location = bottom
 gtk-titlebar = false
 gtk-wide-tabs = false
 resize-overlay = never
 selection-invert-fg-bg = true
-theme = tokyonight
+theme = tokyonight-day
 window-decoration = false
 window-inherit-working-directory = true
 window-new-tab-position = current
-# window-save-state = never
+title-report = false
+auto-update = off
 
 # Tmux like bindings
 keybind = ctrl+space>s=new_split:down
