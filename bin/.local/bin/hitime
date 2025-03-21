@@ -5,13 +5,13 @@ def main [
   time: any,
   # duration (3min) or date / time ("14:30" | into datetime).
   message: string = "time is up",
-  # The message that will be sent
-  --warntime: duration = 2min,
+  # The message that will be sent, by default 10% of the total time, max 5min
+  --warntime: duration,
   # Warning that will be sent ahead of time. Set to 0 to disable warning.
   ...rest
   # The remainder of arguments will be appended to the message.
 ] {
-  let _time = match ($time | describe) {
+  let time = match ($time | describe) {
    "duration" => {
      if $time < 1sec {
        print -e $"ERROR: time must be of type duration or date but is of type: ($time | describe)"
@@ -35,15 +35,20 @@ def main [
    },
   }
   let full_message = ([$message] | append $rest | str join " ")
+  let warntime = if $warntime != null {$warntime} else {
+    let warntime = $time | into int | $in / 10 | into int | into duration
+    if $warntime > 5min { 5min } else { $warntime }
+  }
   if $warntime >= 0sec {
-    sleep ($_time - $warntime)
-    notify-send -t 100000 -e -a HiTime $"time's almost up: ($full_message)"
+    print -e $"Warning will be sent ($warntime) before, at (date now | $in + $time - $warntime)."
+    sleep ($time - $warntime)
+    notify-send -t 100000 -e -a "Time's almost up" $full_message
     sleep $warntime
   } else {
     print -e "Warn time disabled."
-    sleep $_time
+    sleep $time
   }
-  notify-send -t 600000 -e -a HiTime $full_message
+  notify-send -t 600000 -e -a "Done" $full_message
 }
 
 # vi ft=nu:tw=80:sw=2:ts=4:sts=4:et
