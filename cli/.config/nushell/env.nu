@@ -60,7 +60,9 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
-$env.NNN_PLUG = 'x:!trash -rv -- $nnn;c:!chmod a-x -- $nnn;C:!chmod a+x -- $nnn;e:!nvr -- $nnn'
+# $env.NNN_OPENER = '~/.config/nnn/nuker' | path expand
+$env.NNN_PLUG = 'x:!chmod a-x -- "$nnn";X:!chmod a+x -- "$nnn";e:!nvr -- "$nnn";R:!vidir;r:renamer;g:gitroot;p:-!bat --paging always -- "$nnn";v:!chafa -- "$nnn";o:!&xdg-open "$nnn";'
+# $env.NNN_PLUG = 'x:!chmod a-x -- "$nnn";X:!chmod a+x -- "$nnn";e:!nvr -- "$nnn";R:!vidir;r:renamer;g:gitroot;f:finder;p:-!bat --paging always -- "$nnn";v:!chafa -- "$nnn";n:nuke;o:!&xdg-open "$nnn;P:prview-tui"'
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/jceb/.local/bin')
