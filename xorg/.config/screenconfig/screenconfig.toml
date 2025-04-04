@@ -110,7 +110,15 @@ wallpaper = "~/wallpaper2560x1440_2.png"
 position = ["--right-of", "benq", "DP-3"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
+[monitors.benq.outputs.DP-5]
+position = ["--above", "laptop"]
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.benq.outputs.DP-6]
+position = ["--right-of", "benq", "DP-5"]
+wallpaper = "~/wallpaper2560x1440_3.png"
 [monitors.benq.outputs.HDMI-1]
+
 # position = ["--right-of", "benq", "DP-2"]
 position = ["--right-of", "DP-2"]
 # position = ["--right-of", "benq", "DP-2"]
@@ -164,6 +172,24 @@ wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.ateliergemeinschaft.outputs.DP-4]
 position = ["--right-of", "ateliergemeinschaft", "DP-3"]
+# position = ["--right-of", "laptop"]
+# position = ["--pos", "0x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-5]
+# position = ["--right-of", "ateliergemeinschaft", "DP-2"]
+position = ["--above", "laptop"]
+# position = ["--right-of", "ateliergemeinschaft", "HDMI-1"]
+# position = ["--pos", "2560x0"]
+# position = ["--pos", "2560x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-6]
+position = ["--right-of", "ateliergemeinschaft", "DP-5"]
 # position = ["--right-of", "laptop"]
 # position = ["--pos", "0x0"]
 # position = ["--pos", "0x2160"]
