@@ -455,48 +455,51 @@ $env.config = {
   keybindings: [
     # extend vi insert mode with emacs bindings
     {
-      name: vi_normal
+      name: vi_i_move_left
       modifier: alt
       keycode: char_b
       mode: vi_insert
       event: [
-          { edit: MoveWordLeft }
+        { edit: MoveWordLeft }
       ]
     }
     {
-      name: vi_normal
+      name: vi_i_move_right
       modifier: alt
       keycode: char_f
       mode: vi_insert
       event: [
+        { until: [
+          { send: HistoryHintWordComplete }
           { edit: MoveWordRight }
+        ] }
       ]
     }
     {
-      name: vi_normal
+      name: vi_i_move_left_ctl
       modifier: control
       keycode: char_b
       mode: vi_insert
       event: [
-          { edit: MoveLeft }
+        { edit: MoveLeft }
       ]
     }
     {
-      name: vi_normal
+      name: vi_i_move_right_ctl
       modifier: control
       keycode: char_f
       mode: vi_insert
       event: [
-          { edit: MoveRight }
+        { edit: MoveRight }
       ]
     }
     {
-      name: vi_normal
+      name: vi_i_delete
       modifier: alt
       keycode: backspace
       mode: vi_insert
       event: [
-          { edit: CutWordLeft }
+        { edit: CutWordLeft }
       ]
     }
     {
@@ -517,9 +520,9 @@ $env.config = {
       keycode: char_k
       mode: [emacs vi_normal vi_insert]
       event: [
-      # { send: menu name: bookmark_menu }
-      # { edit: InsertString, value: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
-      { send: executehostcommand cmd: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
+        # { send: menu name: bookmark_menu }
+        # { edit: InsertString, value: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | sk --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
+        { send: executehostcommand cmd: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
       ]
     }
     {
@@ -528,7 +531,7 @@ $env.config = {
       keycode: char_g
       mode: [emacs vi_normal vi_insert]
       event: [
-      { send: menu name: kube_context_menu }
+        { send: menu name: kube_context_menu }
       ]
     }
     {
@@ -537,8 +540,8 @@ $env.config = {
       keycode: char_t
       mode: [emacs vi_normal vi_insert]
       event: [
-      { send: menu name: file_menu }
-      # { edit: InsertString, value: "(fd --min-depth 1 -d 4 -td -HL -E '\\.git/' | fzf --color '(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | str trim)"}
+        { send: menu name: file_menu }
+        # { edit: InsertString, value: "(fd --min-depth 1 -d 4 -td -HL -E '\\.git/' | fzf --color '(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | str trim)"}
       ]
     }
     {
@@ -547,8 +550,8 @@ $env.config = {
       keycode: char_n
       mode: [emacs vi_normal vi_insert]
       event: [
-      # { send: menu name: directory_menu }
-      { send: executehostcommand cmd: "cd $'(fd -uuu -E .git -E .direnv -E node_modules -d 4 -H -t d -t l -L | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
+        # { send: menu name: directory_menu }
+        { send: executehostcommand cmd: "cd $'(fd -uuu -E .git -E .direnv -E node_modules -d 4 -H -t d -t l -L | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40%)'"}
       ]
     }
     {
@@ -557,7 +560,7 @@ $env.config = {
       keycode: char_.
       mode: [emacs vi_normal vi_insert]
       event: [
-      { send: menu name: last_word_menu }
+        { send: menu name: last_word_menu }
       ]
     }
     {
@@ -566,7 +569,7 @@ $env.config = {
       keycode: char_u
       mode: [emacs vi_normal vi_insert]
       event: [
-          { send: executehostcommand cmd: "cd .." }
+        { send: executehostcommand cmd: "cd .." }
       ]
     }
     {
@@ -575,9 +578,9 @@ $env.config = {
       keycode: char_h
       mode: [emacs vi_normal vi_insert]
       event: [
-          { send: executehostcommand
-            cmd: "if ($env.DIRHISTORY | length) > 0 { $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.PWD); let newdir = ($env.DIRHISTORY.0); $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | slice 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
-          }
+        { send: executehostcommand
+          cmd: "if ($env.DIRHISTORY | length) > 0 { $env.DIRHISTORY_REVERSE = ($env.DIRHISTORY_REVERSE | prepend $env.PWD); let newdir = ($env.DIRHISTORY.0); $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | slice 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
+        }
       ]
     }
     {
@@ -586,9 +589,9 @@ $env.config = {
       keycode: char_l
       mode: [emacs vi_normal vi_insert]
       event: [
-          { send: executehostcommand
-            cmd: "if ($env.DIRHISTORY_REVERSE | length) > 0 {  let newdir = ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY_REVERSE = ($env | default [] DIRHISTORY_REVERSE | get DIRHISTORY_REVERSE | slice 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
-          }
+        { send: executehostcommand
+          cmd: "if ($env.DIRHISTORY_REVERSE | length) > 0 {  let newdir = ($env.DIRHISTORY_REVERSE.0); $env.DIRHISTORY_REVERSE = ($env | default [] DIRHISTORY_REVERSE | get DIRHISTORY_REVERSE | slice 1..); cd $newdir} else {print -e 'Already at oldest directory.'}"
+        }
       ]
     }
     {
@@ -630,7 +633,7 @@ $env.config = {
           { send: menupageprevious }
           { edit: undo }
         ]
-       }
+      }
     }
     {
       name: yank
