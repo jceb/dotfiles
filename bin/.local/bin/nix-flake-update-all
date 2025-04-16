@@ -1,0 +1,14 @@
+#!/usr/bin/env -S nu --stdin
+# Update all flake.lock files from the current directory down.
+def main [
+  --yes (-y)
+  # Actually perform the update
+]: nothing -> list<string> {
+  fd -H flake.nix | lines | par-each {|file|
+    cd ($file | path dirname)
+    if $yes {
+      nix flake update
+    }
+    $file
+  }
+}
