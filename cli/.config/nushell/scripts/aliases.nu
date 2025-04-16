@@ -146,19 +146,29 @@ export alias guu = ^git pull upstream HEAD
 
 # CD
 export alias cd.. = cd ..
-export def --env cdx [searchdir] {
-    mut nwd = $env.PWD
-    while not ($"([$nwd, $searchdir] | path join)" | path exists) or $nwd == "/" {
-        $nwd = ($nwd | path dirname)
-    }
-    if $nwd == "/" and (not ([$nwd $searchdir] | path join | path exists)) {
-        return $"Staying in directory ($env.PWD)"
-    }
-
-    cd $nwd
+# Searches up the directory tree, starting with the parent directory of the current directory, for a directory that that
+# contains any of the files and changes the current directory to this directory. If no such directory is found, the
+# current directory stays unchanged.
+export def --env cdx [...files] {
+  mut next_wd = $env.PWD | path dirname
+  def existInPath [cwd: string] {
+    any {|file| $cwd | path join $file | path exists }
+  }
+  while not ($files | existInPath $next_wd) and $next_wd != "/" {
+    $next_wd = $next_wd | path dirname
+  }
+  if $next_wd == "/" and (not ($files | existInPath $next_wd)) {
+    print -e $"Unable to locate directory with any of these files: ($files | str join ', ').\nStaying in directory ($env.PWD)"
+    return
+  }
+  cd $next_wd
 }
-export alias cd. = cdx .git
+export alias cd. = cdx .git Cargo.toml packages.json deno.json deno.jsonc flake.nix
 export alias cdb = cdx base
+export alias cdg = cdx .git
+export alias cdj = cdx packages.json deno.json deno.jsonc
+export alias cdn = cdx flake.nix
+export alias cdr = cdx Cargo.toml
 
 # Kubernetes
 # abbr --add kc 'kubectl auth can-i --as system:serviceaccount:cert-manager:cert-manager get configmaps -n kube-system'
