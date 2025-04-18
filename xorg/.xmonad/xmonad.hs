@@ -187,6 +187,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "skypeforlinux" --> doFloat
                , className =? "Yeahconsole" --> doFloat
                , className =? "linphone" --> doFloat
+               , className =? "zoom" --> doFloat
                , className =? "ramboxpro" --> doShift "1"
                , className =? "nsp" --> doShift "NSP"
                -- , className =? "Thunderbird" --> doShift "8"
