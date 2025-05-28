@@ -4,8 +4,6 @@
 set -e
 set -u
 
-export PATH="/run/current-system/sw/bin/setxkbmap:${PATH}"
-
 # if [ "${XAUTHORITY}" != "${HOME}/.Xauthority" ]; then
 # 	cp -f "${XAUTHORITY}" "${HOME}/.Xauthority"
 # fi
