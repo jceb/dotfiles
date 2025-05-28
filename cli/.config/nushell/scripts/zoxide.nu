@@ -6,7 +6,7 @@
 #
 
 # Initialize hook to add new entries to the database.
-if (not ($env | default false __zoxide_hooked | get __zoxide_hooked)) {
+if (not ($env | default false __zoxide_hooked | get __zoxide_hooked | if ($in | describe -d).type == "string" { if $in == "true" {true} else {false} } else {$in})) {
   $env.__zoxide_hooked = true
   $env.config = ($env | default {} config).config
   $env.config = ($env.config | default {} hooks)
@@ -23,19 +23,20 @@ if (not ($env | default false __zoxide_hooked | get __zoxide_hooked)) {
 #
 
 # Jump to a directory using only keywords.
-def --env __zoxide_z [...rest:list<string>] {
+def --env --wrapped __zoxide_z [...rest:string] {
   let arg0 = ($rest | append '~').0
-  let path = if (($rest | length) <= 1) and ($arg0 == '-' or ($arg0 | path expand | path type) == dir) {
+  let arg0_is_dir = (try {$arg0 | path expand | path type}) == 'dir'
+  let path = if (($rest | length) <= 1) and ($arg0 == '-' or $arg0_is_dir) {
     $arg0
   } else {
-    (zoxide query --exclude $env.PWD -- $rest | str trim -r -c "\n")
+    (zoxide query --exclude $env.PWD -- ...$rest | str trim -r -c "\n")
   }
   cd $path
 }
 
 # Jump to a directory using interactive search.
-def --env __zoxide_zi  [...rest:list<string>] {
-  cd $'(zoxide query --interactive -- $rest | str trim -r -c "\n")'
+def --env --wrapped __zoxide_zi [...rest:string] {
+  cd $'(zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
 }
 
 # =============================================================================
@@ -57,4 +58,4 @@ alias zi = __zoxide_zi
 #
 #   source ~/.zoxide.nu
 #
-# Note: zoxide only supports Nushell v0.73.0 and above.
+# Note: zoxide only supports Nushell v0.89.0+.
