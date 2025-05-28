@@ -28,6 +28,73 @@ let carapace_completer = {|spans|
   | from json
 }
 
+def smart-parse [] {
+  let input = $in
+  let openers = {'"': '"', "'": "'", '(': ')', '[': ']', '{': '}'}
+  mut res = $input | split chars | reduce -f {
+    # current word
+    current: "",
+    stack: "",
+    # stores the character that opened a particular combined word
+    result: []} {|char, acc|
+    mut res = $acc
+    let is_space = ($char == " " or $char == "\t")
+    if ($res.stack | is-empty) {
+      if $is_space {
+        if ($res.current | is-not-empty) {
+          $res.result = $res.result | append $res.current
+          $res.current = ""
+        }
+        return $res
+      }
+    }
+    if ($res.stack | is-empty) and ($char in $openers) {
+      $res.stack = $char
+    } else if ($res.stack | is-not-empty) and ($char == ($openers | get $res.stack)) {
+      $res.current = $res.current + $char
+      $res.result = $res.result | append $res.current
+      $res.current = ""
+      $res.stack = ""
+      return $res
+    }
+    $res.current = $res.current + $char
+    return $res
+  }
+  if ($res.current | is-not-empty) {
+    $res.result = $res.result | append $res.current
+  }
+  return $res.result
+}
+
+def test-smart-parse [] {
+  use std assert
+  let result = "" | smart-parse
+  let expected = []
+  assert ($expected == $result) $"When an empty string is parsed, then the result should be an empty list. Expected: ($expected), Got: ($result)"
+
+  let result = "   	" | smart-parse
+  let expected = []
+  assert ($expected == $result) $"When a string with just white charaters is parsed, then the result should be an empty list. Expected: ($expected), Got: ($result)"
+
+  let result = "a" | smart-parse
+  let expected = [a]
+  assert ($expected == $result) $"When a string with just one charaters is parsed, then the result should be a list with one entry. Expected: ($expected), Got: ($result)"
+
+  let result = "ab cd" | smart-parse
+  let expected = [ab cd]
+  assert ($expected == $result) $"When a string with multiple words is parsed, then the result should be a list with multiple entries. Expected: ($expected), Got: ($result)"
+
+  let result = " 	ab  cd " | smart-parse
+  let expected = [ab cd]
+  assert ($expected == $result) $"When a string with multiple words, separated by multiple leading and trailing space characters is parsed, then the space charaters shall be stripped. Expected: ($expected), Got: ($result)"
+
+  let result = "ab 'c d' \"ho ho\" (a b c ) [ a ] {mo  in}" | smart-parse
+  let expected = [ab "'c d'" '"ho ho"' '(a b c )' '[ a ]' '{mo  in}']
+  assert ($expected == $result) $"When multiple words are wrapped in quotes or parentheses, then these words shall be parsed as one word. Expected: ($expected), Got: ($result)"
+}
+# test-smart-parse
+
+
 $env.LS_COLORS = (vivid generate one-light | str trim)
 
 # The default config record. This is where much of your global configuration is setup.
@@ -144,7 +211,7 @@ $env.config = {
     vi_insert: line # block, underscore, line (block is the default)
     vi_normal: block # block, underscore, line  (underscore is the default)
   }
-  color_config: $dark_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
   footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2 # the precision for displaying floats in tables
   buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -307,10 +374,13 @@ $env.config = {
         }
         source: { |buffer, position|
             # history | last 10 | get command | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
-            atuin history last --cmd-only | lines | last 10 | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
-            | reverse
+            # atuin history list --cmd-only | lines | last 10 | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
+            # open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 10" | get command | split row ' ' | filter {$in != '|'} | str trim | str trim --char '"' | str trim --char "'" | filter {is-not-empty}
+            open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 20" | get command | each {smart-parse} | flatten | filter {is-not-empty}
+            | filter {|it| $it in ["|" "==" "!="] | not $in}
             | find $buffer
-            | each { |it| {value: ($it | ansi strip)} }
+            | find $buffer
+            | each {|it| {value: ($it | ansi strip)}}
         }
       }
       {
@@ -708,8 +778,10 @@ $env.DIRHISTORY_REVERSE = []
 
 # use git-aliases.nu *
 use aliases.nu *
-# source zoxide.nu
+source zoxide.nu
 source atuin.nu
+source yazi.nu
+source jj.nu
 
 # plugin use /run/current-system/sw/bin/nu_plugin_formats # from ini, ...
 # plugin add /run/current-system/sw/bin/nu_plugin_query
