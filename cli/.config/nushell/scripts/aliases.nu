@@ -85,6 +85,65 @@ export alias qt = ^quilt top
 # export def lg [] {
 #   EDITOR=nvim lazygit
 # }
+export alias j = ^jj
+export alias jb = ^jj bookmark
+export alias jbc = ^jj bookmark create -r @-
+export alias jbl = ^jj bookmark list
+export alias jbs = ^jj bookmark set
+export alias jbt = ^jj bookmark track
+export alias jc = ^jj commit
+export alias jci = ^jj commit --interactive
+export alias jd = ^jj diff
+export alias jde = ^jj desc
+export alias je = ^jj edit
+export alias jf = ^jj file
+export alias jg = ^jj git
+export alias jgf = ^jj git fetch
+export alias jp = ^jj git push
+export alias jgp = ^jj git push
+export alias jgu = ^jj git fetch
+export alias ju = ^jj git fetch
+export alias jl = ^jj log
+export alias jll = ^jj log -r ::@
+export alias jla = ^jj log -r ::
+export alias jlt = ^jj log -r 'tags() | bookmarks()'
+export alias jlh = ^jj log -r 'heads(all())'
+export alias jls = ^jj file list
+export alias jn = ^jj new
+export alias jr = ^jj rebase
+export alias js = ^jj show
+export alias jsq = ^jj squash
+export alias jss = ^jj squash
+export alias jsi = ^jj squash --interactive
+export alias jt = ^jj tug
+export def jjignore [
+  --force (-f)
+  # Overwrite existing exclude file
+]: nothing -> nothing {
+  let root = jj root
+  let gitignore = [$root .gitignore] | path join
+  let gitexclude = [$root .git info exclude] | path join
+  if ($gitignore | path exists) {
+    if ($gitexclude | path exists) {
+      if  $force {
+        print -e "Original file contents:"
+        print -e (open --raw $gitexclude)
+        cp -v $gitignore $gitexclude
+      } else {
+        print -e "File contents:"
+        print -e (open --raw $gitexclude)
+        error make {msg: $"File exists: ($gitignore)"}
+      }
+    } else {
+      cp -v $gitignore $gitexclude
+    }
+  } else {
+    error make {msg: $"File doesn't exist: ($gitignore)"}
+  }
+}
+export alias jignore = jjignore
+
+export alias lj = ^lazyjj
 export alias lg = ^lazygit
 export alias g+ = ^git stash pop
 export alias g- = ^git stash

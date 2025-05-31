@@ -31,3 +31,6 @@
 [submodule "kubernetes/.config/k9s/k9s"]
 	path = kubernetes/.config/k9s/catpuccin
 	url = https://github.com/catppuccin/k9s.git
+[submodule "cli/.config/nushell/jj-gh-pr.nu"]
+	path = cli/.config/nushell/jj-gh-pr.nu
+	url = https://github.com/eopb/jj-gh-pr.nu.git
