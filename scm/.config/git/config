@@ -140,7 +140,7 @@
 
     ; status abbreviations
     st = status -uno
-    sta = status
+    sta = status --ignored
 
     ; ########## log
 

@@ -1,0 +1,388 @@
+#!/usr/bin/env bash
+
+# TODO: Support non-stardard identity store
+
+# shellcheck disable=SC2034
+USAGE="$(cat <<'EOF'
+[-d | --define] <identity> <name> <email> [<ssh-file>] [<gpgkeyid>]
+   or: jj identity [--define-gpg] <identity> <gpgkeyid>
+   or: jj identity [--define-ssh] <identity> <ssh-file> [<ssh-verbosity>]
+   or: jj identity [-p | --print] [<identity>]
+   or: jj identity [-s | --get-settings]
+   or: jj identity [-r | --remove] <identity>
+   or: jj identity [-l | --list]
+   or: jj identity [-R | --list-raw]
+   or: jj identity [-u | --update]
+   or: jj identity [-c | --get-shell-command] [<identity>] [<command>]
+   or: jj identity <identity>
+
+Specific jj-identity actions:
+   -d, --define            define new identity and optionally specify ssh-file and gpg key
+   --define-gpg            add gpg signature to the identity
+   --define-ssh            add ssh key to an identity. If it does not have a path, assume '~/.ssh'
+                           verbosity (0,1,2) of the ssh agent can also be specified
+   -p, --print             print an indenttity or the current one
+   -r, --remove            remove an identity
+   -s, --get-settings      get the current settings that jj-identity can changes
+   -l, --list              list all the identities
+   -R, --list-raw          list all identities without details
+   -u, --update            refresh the local settings with the global settings of the current identity
+   -c,--get-shell-command  get GIT_SSH_COMMAND environment variable for for an identity
+                           if it followed by more parameter, execute a command with it
+EOF
+)"
+
+lookup () {
+  local identity="$1"
+  local key="$2"
+
+  jj config get "identity.$identity.$key"
+}
+
+format_identity () {
+  local identity="$1"
+
+  echo "[$identity] $(format_raw_identity "$identity")"
+}
+
+format_raw_identity () {
+  local identity gpgkey sshkey sshkeyverbosity output
+  identity="$1"
+  gpgkey="$(lookup "$identity" signingkey)"
+  sshkey="$(lookup "$identity" sshkey)"
+  sshkeyverbosity="$(lookup "$identity" sshkeyverbosity)"
+
+
+  output="$(lookup "$identity" name) <$(lookup "$identity" email)>"
+  if [ -n "$gpgkey" ]
+  then
+    output="$output (GPG key: $gpgkey)"
+  fi
+
+  if [ -n "$sshkey" ];
+  then
+    local verbosity=""
+    if [ -n "$sshkeyverbosity" ];
+    then
+      verbosity=" with verbosity $sshkeyverbosity"
+    fi
+    output="$output (SSH key: $sshkey$verbosity)"
+  fi
+
+  echo "$output"
+}
+
+# TODO: This should return an array ()?
+get_ssh_command () {
+  local identit sshkey sshkeyverbosity
+  identity="$1"
+  sshkey="$(lookup "$identity" sshkey)"
+  sshkeyverbosity="$(lookup "$identity" sshkeyverbosity)"
+
+  if [ -n "$sshkey" ];
+  then
+    local verbosity=""
+    case $sshkeyverbosity in
+      1) verbosity="-v " ;;
+      2) verbosity="-vvv " ;;
+      *) verbosity="" ;;
+    esac
+
+    if [[ $sshkey != '/'* ]] && [[ $sshkey != '.'* ]]
+    then
+      sshkey="$HOME/.ssh/$sshkey"
+    fi
+    echo "ssh $verbosity-i $sshkey"
+  else
+    echo ''
+  fi
+}
+
+env_ssh_command () {
+  local identity name sshCommand
+  identity="$1"
+  shift
+
+  if [ "$identity" = "" ]; then
+    identity="$(jj config get user.identity)"
+  fi
+
+  if [ -z "$identity" ];
+  then
+    echo "You need to specify an identity or being in a repository with an identity set"
+  else
+    name="$(lookup "$identity" name)"
+    if [ -n "$name" ];
+    then
+      sshCommand="$(get_ssh_command "$identity")"
+      if [ $# == 0 ]
+      then
+        echo "GIT_SSH_COMMAND=\"$sshCommand\""
+      else
+        GIT_SSH_COMMAND="$sshCommand" "$@"
+      fi
+    else
+      echo "Identity $identity does not exist. Doing nothing..."
+    fi
+  fi
+}
+
+use_identity () {
+  local identity name email gpgkey sshCommand
+  identity="$1"
+  name="$(lookup "$identity" name)"
+  email="$(lookup "$identity" email)"
+  gpgkey="$(lookup "$identity" signingkey)"
+  sshCommand="$(get_ssh_command "$identity")"
+
+  if [ -n "$name" ];
+  then
+    echo "Using identity: $(format_identity "$identity")"
+    jj config set --repo user.identity "$identity"
+    jj config set --repo user.name "$name"
+    jj config set --repo user.email "$email"
+
+    # Enable or disable GPG key usage
+    if [ -n "$gpgkey" ];
+    then
+      jj config set --repo user.signingkey "$gpgkey"
+      jj config set --repo commit.gpgsign true
+      jj config set --repo tag.gpgsign true
+    else
+      jj config unset --repo user.signingkey
+      jj config unset --repo commit.gpgsign
+      jj config unset --repo tag.gpgsign
+    fi
+
+    # Enable or disable SSH key usage
+    if [ -n "$sshCommand" ];
+    then
+      jj config set repo core.sshCommand "$sshCommand"
+    else
+      if jj config get core.sshCommand &>/dev/null; then
+        jj config unset --repo core.sshCommand || true
+      fi
+    fi
+  else
+    echo "Identity $identity does not exist. Doing nothing..."
+    print_current_identity
+  fi
+}
+
+update_identity () {
+  local identity prev_settings curr_settings diff_string
+  identity="$(jj config get user.identity)"
+  prev_settings=$(get_current_settings "$identity" | sed -e 's/^/  /')
+  use_identity "$identity"
+  curr_settings=$(get_current_settings "$identity" | sed -e 's/^/  /')
+  diff_string="$(diff --color=always <(echo "$prev_settings") <(echo "$curr_settings"))"
+  if [ -n "$diff_string" ];
+  then
+    echo "These local setting changed:"
+    echo "$diff_string"
+  else
+    echo "Settings are current. No changes were made."
+  fi
+}
+
+list_raw_identities () {
+  jj config list | grep -e '^identity\.' | cut -d"." -f2 | sort -u
+}
+
+list_identities () {
+  local identities
+  identities="$(list_raw_identities)"
+
+  echo "Available identities:"
+  for identity in $identities; do
+    format_identity "$identity"
+  done
+}
+
+print_raw_identity () {
+  local identity name
+  identity="$1"
+
+  if [ "$identity" = "" ]; then
+    identity="$(jj config get user.identity)"
+  fi
+
+  if [ -z "$identity" ];
+  then
+    echo "You need to specify an identity or being in a repository with an identity set"
+  else
+    name="$(lookup "$identity" name)"
+    if [ -n "$name" ];
+    then
+      format_raw_identity "$identity"
+    else
+      echo "Identity $identity does not exist."
+    fi
+  fi
+}
+
+print_current_identity () {
+  local identity
+  identity="$(jj config get user.identity)"
+
+  if [ -n "$identity" ];
+  then
+    echo "Current identity: $(format_identity "$identity")"
+  else
+    echo "Current identity: no identity set"
+  fi
+}
+
+get_current_settings () {
+  jj config list | grep -e '^(user\.|(commit|tag)\.gpgsign|core.ssh[cC]ommand)' | sort -u
+}
+
+# TODO: Make this interactive, at least for the code name/email
+define_identity () {
+  local identity="$1"
+  local name="$2"
+  local email="$3"
+  local sshkey="$4"
+  local gpgkey="$5"
+
+  jj config set --user identity."$identity".name "$name"
+  jj config set --user identity."$identity".email "$email"
+
+  if [ -n "$sshkey" ];
+  then
+    define_ssh "$identity" "$sshkey"
+  fi
+
+  if [ -n "$gpgkey" ];
+  then
+    define_gpg "$identity" "$gpgkey"
+  fi
+
+  echo "Created $(format_identity "$identity")"
+  echo "Enter 'jj identity $identity' to use it in the current repository."
+}
+
+remove_identity () {
+  local identity formated_identity
+  identity="$1"
+  formated_identity="$(format_identity "$identity")"
+
+  # INFO: this will currently fail
+  jj config unset --user identity."$identity"
+  echo "Removed $formated_identity"
+}
+
+define_gpg () {
+  local indentity gpgkey name current_identity
+  identity="$1"
+  gpgkey="$2"
+  name="$(lookup "$identity" name)"
+
+  if [ -n "$name" ];
+  then
+    jj config set --user identity."$identity".signingkey "$gpgkey"
+    echo "Added GPG key $gpgkey to $(format_identity "$identity")"
+
+    current_identity="$(jj config get user.identity)"
+    if [ "$current_identity" == "$identity" ]
+    then
+      use_identity "$identity"
+    fi
+  else
+    echo "Error: could not define GPG key for undefined identity '$identity'"
+  fi
+}
+
+define_ssh () {
+  local identity sshkey sshkeyverbosity name current_identity
+  local identity="$1"
+  local sshkey="$2"
+  local sshkeyverbosity="$3"
+  name="$(lookup "$identity" name)"
+
+  if [ -n "$name" ];
+  then
+    jj config set --user identity."$identity".sshkey "$sshkey"
+    echo "Added SSH key $sshkey to $(format_identity "$identity")"
+
+    if [ -n "$sshkeyverbosity" ];
+    then
+      jj config set --user identity."$identity".sshkeyverbosity "$sshkeyverbosity"
+    fi
+
+    current_identity="$(jj config get user.identity)"
+    if [ "$current_identity" == "$identity" ]
+    then
+      use_identity "$identity"
+    fi
+  else
+    echo "Error: could not define SSH key for undefined identity '$identity'"
+  fi
+}
+
+IDENTITY="$1"
+
+check_arguments () {
+  if [ "$1" -lt "$2" ]; then
+    usage
+    exit 1
+  fi
+}
+
+# For the some commands, it is ok not being in a jj folder
+case $IDENTITY in
+  -l|--list|-R|--list-raw|-d|--define|--define-gpg|--define-ssh|-r|--remove|-p|--print|-c|--set-shell-command)
+    # To prevent git-sh-setup to error out with  'fatal: not a git repository (or any of the parent directories): .git'
+    NONGIT_OK=1
+esac
+SUBDIRECTORY_OK=1
+# shellcheck source=/usr/lib/git-core/git-sh-setup
+# . "$(git --exec-path)/git-sh-setup"
+
+case $IDENTITY in
+  "") print_current_identity ;;
+
+  -d|--define)
+    shift
+    check_arguments $# 3
+    define_identity "$1" "$2" "$3" "$4" "$5"
+    ;;
+
+  --define-gpg)
+    shift
+    check_arguments $# 2
+    define_gpg "$1" "$2"
+    ;;
+
+  --define-ssh)
+    shift
+    check_arguments $# 2
+    define_ssh "$1" "$2" "$3"
+    ;;
+
+  -p|--print)
+    shift
+    print_raw_identity "$1"
+    ;;
+
+  -s|--get-settings) get_current_settings ;;
+
+  -r|--remove)
+    shift
+    check_arguments $# 1
+    remove_identity "$1"
+    ;;
+
+  -l|--list) list_identities ;;
+
+  -R|--list-raw) list_raw_identities ;;
+
+  -u|--update) update_identity "$1" ;;
+
+  -c|--get-shell-command)
+    shift
+    env_ssh_command "$@"
+    ;;
+
+  *) use_identity "$IDENTITY" ;;
+esac
