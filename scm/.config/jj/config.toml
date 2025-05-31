@@ -1,0 +1,103 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Jan Christoph Ebersbach"
+email = "jan-christoph.ebersbach@identinet.io"
+
+[identity.default]
+name = "Jan Christoph Ebersbach"
+email = "jceb@e-jc.de"
+signingkey = "444912B0B381009F"
+[identity.ssi]
+name = "Jan Christoph Ebersbach"
+email = "jan-christoph.ebersbach@identinet.io"
+signingkey = "444912B0B381009F"
+[identity.biz]
+name = "Jan Christoph Ebersbach"
+email = "jan-christoph.ebersbach@41ppl.com"
+signingkey = "444912B0B381009F"
+[identity.eucon]
+name = "Jan Christoph Ebersbach"
+email = "jan.ebersbach@eucon.com"
+
+[ui]
+default-command = "status"
+diff.format = "git"
+
+[signing]
+behavior = "own"
+backend = "gpg"
+
+[colors]
+"diff token" = { underline = false }
+
+[git]
+sign-on-push = true
+auto-local-bookmark = true
+push-new-bookmarks = false #  maybe set this to true
+
+[core]
+fsmonitor = "watchman"
+watchman.register-snapshot-trigger = true
+
+[snapshot]
+max-new-file-size = "10MiB"
+# auto-update-stale = true # what does this do?
+
+[templates]
+log_node = '''
+if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
+  "◇",
+  builtin_log_node
+)
+'''
+
+[template-aliases]
+# hide non-important parts of the ID
+'format_short_change_id(id)' = 'id.shortest()'
+"in_branch(commit)" = 'commit.contained_in("immutable_heads()..bookmarks()")'
+
+[revset-aliases]
+# used to update bookmarks
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
+# set all remote bookmarks (commits pushed to remote branches) to be immutable
+'immutable_heads()' = "builtin_immutable_heads() | remote_bookmarks()"
+
+[aliases]
+
+# update git tag/bookmark to the latest change
+# tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
+
+# list all configuration options
+config-all = ["config", "list", "--include-defaults"]
+
+# b = ["bookmark"]
+bc = ["bookmark", "create", "-r", "@-"]
+bl = ["bookmark", "list"]
+bs = ["bookmark", "set"]
+bt = ["bookmark", "track"]
+c = ["commit"]
+ci = ["commit", "--interactive"]
+d = ["diff"]
+de = ["describe"]
+e = ["edit"]
+l = ["log"]
+ll = ["log", "-r", "::@"]
+la = ["log", "-r", "::"]
+lt = ["log", "-r", "tags() | bookmarks()"]
+lh = ["log", "-r", "heads(all())"]
+f = ["file"]
+gp = ["git", "push"]
+gf = ["git", "fetch"]
+gu = ["git", "fetch"]
+ls = ["file", "list"]
+n = ["new"]
+r = ["rebase"]
+s = ["show"]
+sq = ["squash"]
+ss = ["squash"]
+si = ["squash", "--interactive"]
+w = ["workspace"]
