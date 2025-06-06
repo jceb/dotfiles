@@ -208,13 +208,6 @@
     name = Jan Christoph Ebersbach
     email = jan-christoph.ebersbach@identinet.io
     signingkey = 444912B0B381009F
-[identity "biz"]
-    name = Jan Christoph Ebersbach
-    email = jan-christoph.ebersbach@41ppl.com
-    signingkey = 444912B0B381009F
 [identity "eucon"]
     name = Jan Christoph Ebersbach
     email = jan.ebersbach@eucon.com
-[identity "jb10x"]
-    name = Jan Christoph Ebersbach
-    email = jan-christoph@jb10x.com

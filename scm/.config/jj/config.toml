@@ -12,10 +12,6 @@ signingkey = "444912B0B381009F"
 name = "Jan Christoph Ebersbach"
 email = "jan-christoph.ebersbach@identinet.io"
 signingkey = "444912B0B381009F"
-[identity.biz]
-name = "Jan Christoph Ebersbach"
-email = "jan-christoph.ebersbach@41ppl.com"
-signingkey = "444912B0B381009F"
 [identity.eucon]
 name = "Jan Christoph Ebersbach"
 email = "jan.ebersbach@eucon.com"
@@ -23,6 +19,7 @@ email = "jan.ebersbach@eucon.com"
 [ui]
 default-command = "status"
 diff.format = "git"
+merge-editor = "vimdiff"
 
 [signing]
 behavior = "own"
@@ -31,10 +28,15 @@ backend = "gpg"
 [colors]
 "diff token" = { underline = false }
 
+[lazyjj]
+# https://github.com/Cretezy/lazyjj?tab=readme-ov-file#configuration
+# highlight-color = "#323264"
+highlight-color = "#b7c1e3"
+
 [git]
 sign-on-push = true
 auto-local-bookmark = true
-push-new-bookmarks = false #  maybe set this to true
+push-new-bookmarks = true
 
 [core]
 fsmonitor = "watchman"
@@ -97,6 +99,7 @@ ls = ["file", "list"]
 n = ["new"]
 r = ["rebase"]
 s = ["show"]
+sp = ["split"]
 sq = ["squash"]
 ss = ["squash"]
 si = ["squash", "--interactive"]
