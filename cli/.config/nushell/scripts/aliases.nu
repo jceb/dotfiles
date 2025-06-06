@@ -112,6 +112,7 @@ export alias jls = ^jj file list
 export alias jn = ^jj new
 export alias jr = ^jj rebase
 export alias js = ^jj show
+export alias jsp = ^jj split
 export alias jsq = ^jj squash
 export alias jss = ^jj squash
 export alias jsi = ^jj squash --interactive
