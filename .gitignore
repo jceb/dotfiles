@@ -15,7 +15,6 @@ __pycache__/
 /kubernetes/.config/k9s/skin.yml
 /xorg/.config/environment.d/nnn-bookmarks.conf
 *.pdf
-/scm/.config/direnv/direnvrc
 /scm/.config/lazygit/state.yml
 /cli/.config/nushell/history.txt
 --help

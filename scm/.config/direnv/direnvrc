@@ -1,4 +1,4 @@
-source $HOME/.nix-profile/share/nix-direnv/direnvrc
+# source $HOME/.nix-profile/share/nix-direnv/direnvrc
 
 : ${XDG_CACHE_HOME:=$HOME/.cache}
 declare -A direnv_layout_dirs
