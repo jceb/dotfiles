@@ -8,7 +8,16 @@ set -u
 # set -x
 
 get_current_branch() { # retrieve the current branch's name
-	git rev-parse --abbrev-ref HEAD
+	local branch
+	branch="$(git rev-parse --abbrev-ref HEAD)"
+	if [ "$branch" = "HEAD" ]; then
+		branch="$(jj log --no-graph -r 'heads(::@- & bookmarks())' -T 'remote_bookmarks.filter(|b| b.remote() != "git").map(|b| b.name()).join("\n")' | head -n 1)"
+		# remote=$(git config "branch.main.remote")
+		# if [ -z "${remote}" ] && [ "$1" = "HEAD" ]; then
+		# 	remote=$(git config "branch.master.remote")
+		# fi
+	fi
+	echo "$branch"
 }
 
 get_file_path() { # return the relative path within the git repository to file or directory
@@ -41,7 +50,15 @@ get_remote_url() { # retrieve the remote URL for the current branch
 	if [ $# -ne 1 ]; then
 		return 1
 	fi
+
 	remote=$(git config "branch.${1}.remote")
+	if [ -z "$remote" ]; then
+		remote="$(jj log --no-graph -r 'heads(::@- & bookmarks())' -T 'remote_bookmarks.filter(|b| b.remote() != "git").map(|b| b.remote()).join("\n")' | head -n 1)"
+		# remote=$(git config "branch.main.remote")
+		# if [ -z "${remote}" ] && [ "$1" = "HEAD" ]; then
+		# 	remote=$(git config "branch.master.remote")
+		# fi
+	fi
 	if [ -n "${remote}" ]; then
 		git config "remote.${remote}.url" | sed -e 's/ssh\.dev\.azure\.com:v3/dev.azure.com/' -e '/^git@/s/:/\//'
 	fi
