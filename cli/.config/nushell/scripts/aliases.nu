@@ -116,7 +116,9 @@ export alias jsp = ^jj split
 export alias jsq = ^jj squash
 export alias jss = ^jj squash
 export alias jsi = ^jj squash --interactive
-export alias jt = ^jj tug
+export alias jtg = ^jj tug
+export alias jtug = ^jj tug
+export alias jt = ^jj tag
 export def jjignore [
   --force (-f)
   # Overwrite existing exclude file
