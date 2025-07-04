@@ -19,3 +19,4 @@ __pycache__/
 /cli/.config/nushell/history.txt
 --help
 scm/.config/lazygit/config.yml
+/scm/.config/direnv/lib/hm-nix-direnv.sh
