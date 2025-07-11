@@ -18,6 +18,7 @@ email = "jan.ebersbach@eucon.com"
 
 [ui]
 default-command = "status"
+diff-formater = ":git"
 diff.format = "git"
 merge-editor = "vimdiff"
 
@@ -72,6 +73,9 @@ if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
 # tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 rebase-all = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk()"]
+rebase-main = ["rebase", "-d", "trunk()"]
+# Github pull-request diff
+diff-main = ["diff", "--from", "fork_point(trunk()|@)"]
 
 # list all configuration options
 config-all = ["config", "list", "--include-defaults"]
