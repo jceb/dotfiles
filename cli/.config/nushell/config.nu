@@ -373,11 +373,13 @@ $env.config = {
             description_text: yellow
         }
         source: { |buffer, position|
-            # history | last 10 | get command | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
-            # atuin history list --cmd-only | lines | last 10 | split row ' ' | str trim | filter {|x| ($x | str length) > 0}
-            # open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 10" | get command | split row ' ' | filter {$in != '|'} | str trim | str trim --char '"' | str trim --char "'" | filter {is-not-empty}
-            open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 20" | get command | each {smart-parse | reverse} | flatten | filter {is-not-empty}
-            | filter {|it| $it in ["|" "==" "!="] | not $in}
+            # history | last 10 | get command | split row ' ' | str trim | where {|x| ($x | str length) > 0}
+            # atuin history list --cmd-only | lines | last 10 | split row ' ' | str trim | where {|x| ($x | str length) > 0}
+            # open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 10"
+        # | get command | split row ' ' | where {$in != '|'} | str trim | str trim --char '"' | str trim --char "'" |
+        # where {is-not-empty}
+            open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 20" | get command | each {smart-parse | reverse} | flatten | where {is-not-empty}
+            | where {|it| $it in ["|" "==" "!="] | not $in}
             | find $buffer
             | find $buffer
             | each {|it| {value: ($it | ansi strip)}}

@@ -325,5 +325,5 @@ export alias o = open-cli
 export alias rr = sk -i -c "rg -S --hidden -n -H {}"
 
 export def find-pod [image] {
-    kubectl get pod -A -o json | from json | get items | filter {|it| $it.status.containerStatuses | any {|el| $el.image =~ $image} } | get metadata
+    kubectl get pod -A -o json | from json | get items | where {|it| $it.status.containerStatuses | any {|el| $el.image =~ $image} } | get metadata
 }
