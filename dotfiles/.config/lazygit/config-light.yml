@@ -33,3 +33,7 @@ gui:
 
 services:
   gitlab.eucon-services.com: gitlab:gitlab.eucon-services.com
+
+os:
+  open: "open-cli {{filename}}"
+  openLink: "open-cli {{link}}"

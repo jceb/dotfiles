@@ -1,36 +1,36 @@
-[submodule "tmux/plugins/tpm"]
-	path = cli/.tmux/plugins/tpm
+[submodule "dotfiles/.tmux/plugins/tpm"]
+	path = dotfiles/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
-[submodule "tmux/plugins/tmux-sensible"]
-	path = cli/.tmux/plugins/tmux-sensible
+[submodule "dotfiles/.tmux/plugins/tmux-sensible"]
+	path = dotfiles/.tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
-[submodule "tmux/plugins/tmux-yank"]
-	path = cli/.tmux/plugins/tmux-yank
+[submodule "dotfiles/.tmux/plugins/tmux-yank"]
+	path = dotfiles/.tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
-[submodule "tmux/plugins/tmux-open"]
-	path = cli/.tmux/plugins/tmux-open
+[submodule "dotfiles/.tmux/plugins/tmux-open"]
+	path = dotfiles/.tmux/plugins/tmux-open
 	url = https://github.com/tmux-plugins/tmux-open.git
-[submodule "config/vis/plugins/commentary"]
-	path = editors/.config/vis/plugins/commentary
+[submodule "dotfiles/.config/vis/plugins/commentary"]
+	path = dotfiles/.config/vis/plugins/commentary
 	url = https://github.com/lutobler/vis-commentary.git
-[submodule "config/vis/plugins/editorconfig"]
-	path = editors/.config/vis/plugins/editorconfig
+[submodule "dotfiles/.config/vis/plugins/editorconfig"]
+	path = dotfiles/.config/vis/plugins/editorconfig
 	url = https://github.com/vktec/vis-editorconfig.git
-[submodule "config/vis/plugins/surround"]
-	path = editors/.config/vis/plugins/surround
+[submodule "dotfiles/.config/vis/plugins/surround"]
+	path = dotfiles/.config/vis/plugins/surround
 	url = https://repo.or.cz/vis-surround.git
-[submodule "emacs.d"]
-	path = editors/.emacs.d
+[submodule "dotfiles/.emacs.d"]
+	path = dotfiles/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
-[submodule "cli/.config/nushell/nu_scripts"]
-	path = cli/.config/nushell/nu_scripts
+[submodule "dotfiles/.config/nushell/nu_scripts"]
+	path = dotfiles/.config/nushell/nu_scripts
 	url = https://github.com/nushell/nu_scripts.git
-[submodule "scm/.config/lazygit/lazygit"]
-	path = scm/.config/lazygit/lazygit
+[submodule "dotfiles/.config/lazygit/lazygit"]
+	path = dotfiles/.config/lazygit/lazygit
 	url = https://github.com/catppuccin/lazygit.git
-[submodule "kubernetes/.config/k9s/k9s"]
-	path = kubernetes/.config/k9s/catpuccin
+[submodule "dotfiles/.config/k9s/k9s"]
+	path = dotfiles/.config/k9s/catpuccin
 	url = https://github.com/catppuccin/k9s.git
-[submodule "cli/.config/nushell/jj-gh-pr.nu"]
-	path = cli/.config/nushell/jj-gh-pr.nu
+[submodule "dotfiles/.config/nushell/jj-gh-pr.nu"]
+	path = dotfiles/.config/nushell/jj-gh-pr.nu
 	url = https://github.com/eopb/jj-gh-pr.nu.git
