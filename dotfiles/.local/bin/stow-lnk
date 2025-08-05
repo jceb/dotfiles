@@ -1,0 +1,108 @@
+#!/usr/bin/env nu
+# vi: ft=nu
+
+use std/log
+
+def _unstow [
+  file: path
+  # file to stow in the dotfiles directory
+  --stowdir (-s): path = ~/Documents/dotfiles
+  # Stow directory that contains
+  --package (-p): string = "dotfiles"
+  # Package name / subdirectory below the stow directory
+] {
+  if ($file | path type) != "symlink" {
+    log error $"File or directory is not a symlink: ($file)"
+    exit 1
+  }
+  let stowdir_package = [$stowdir $package] | path join
+  let file_relative = try {
+    $file | path relative-to $env.HOME
+  } catch {
+    log error $"File or directory is not a child of ($env.HOME): ($file)"
+    exit 1
+  }
+  try {
+    $file | path expand | path relative-to $stowdir_package
+  } catch {
+    log error $"File or directory is not linking to directory ($stowdir_package): ($file)"
+    exit 1
+  }
+  let file_dotfile = [$stowdir $package $file_relative] | path join
+  if ($file | path expand) != $file_dotfile {
+    log error $"Symlink doesn't point to the correct dotfile: ($file_dotfile)"
+    exit 1
+  }
+  log info $"Unstowing ($file_dotfile) to ($file)"
+  rm -v $file
+  mv -v $file_dotfile $file
+}
+
+def _stow [
+  file: path
+  # file to stow in the dotfiles directory
+  --stowdir (-s): path = ~/Documents/dotfiles
+  # Stow directory that contains
+  --package (-p): string = "dotfiles"
+  # Package name / subdirectory below the stow directory
+] {
+  # 1. determine relative path to home directory
+  if ($file | path exists | not $in) {
+    log error $"File or directory does not exist: ($file)"
+    exit 1
+  }
+  try {
+    $file | path expand | path relative-to $stowdir
+    log error $"File or directory is already a part of the dotfiles folder ($stowdir): ($file)"
+    exit 1
+    # if an error is thrown, all is good - relative-to fails with an error if the path is not relative!
+  }
+  let file_relative = try {
+    $file | path relative-to $env.HOME
+  } catch {
+    log error $"File or directory is not a child of ($env.HOME): ($file)"
+    exit 1
+  }
+  # 2. ensure that none of the parent directories is a symlink to prevent double linking
+  mut current_path = $file
+  while ($current_path != $env.HOME) and ($current_path | path type) != "symlink" {
+    $current_path = $current_path | path dirname
+  }
+  if $current_path != $env.HOME {
+    log error $"File or directory is a symlink. Further symlinking is not supported ($current_path)"
+    exit 1
+  }
+  # 3. mv file / directory into target directory at the same location
+  let file_dotfile = [$stowdir $package $file_relative] | path join
+  if ($file_dotfile | path exists) {
+    log error $"File or directory already exists: ($file_dotfile)"
+    exit 1
+  }
+  log info $"Moving ($file) to ($file_dotfile)"
+  mv $file $file_dotfile
+  # 4. execute stow to create a symlink in the current location
+  log info $"Relinking files"
+  cd $stowdir
+  stow -t ~ -v $package
+}
+
+# Moves a file or directory into a central dotfiles directory and creates a symlink to it in the current location.
+#
+# stow-lnk requires GNU stow.
+def main [
+  file: path
+  # file to stow in the dotfiles directory
+  --stowdir (-s): path = ~/Documents/dotfiles
+  # Stow directory that contains
+  --package (-p): string = "dotfiles"
+  # Package name / subdirectory below the stow directory
+  --unstow (-u)
+  # Unstow a file
+] {
+  let stowdir = $stowdir | path expand
+  if $unstow {
+    _unstow $file --stowdir=$stowdir --package=$package
+  } else {
+    _stow $file --stowdir=$stowdir --package=$package
+  }
+}
