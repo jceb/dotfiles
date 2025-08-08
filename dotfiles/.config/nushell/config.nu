@@ -16,7 +16,7 @@ let light_theme = (tokyo-day)
 # carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 let carapace_completer = {|spans|
   # if the current command is an alias, get it's expansion
-  let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+  let expanded_alias = (scope aliases | where name == $spans.0 | get -o 0 | get -o expansion)
   # overwrite
   let spans = (if $expanded_alias != null  {
     # put the first word of the expanded alias first in the span
@@ -284,7 +284,7 @@ $env.config = {
     pre_execution: [{ null }] # run before the repl input is run
     env_change: {
             PWD: [{|before, after|
-              if ($before == null) or (($before != ($env.DIRHISTORY_REVERSE | get -i 0)) and ($before != ($env.DIRHISTORY | get -i 0))) {
+              if ($before == null) or (($before != ($env.DIRHISTORY_REVERSE | get -o 0)) and ($before != ($env.DIRHISTORY | get -o 0))) {
                 $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | prepend $before);
               }
             }] # run if the PWD environment is different since the last repl input
