@@ -10,15 +10,6 @@
 [submodule "dotfiles/.tmux/plugins/tmux-open"]
 	path = dotfiles/.tmux/plugins/tmux-open
 	url = https://github.com/tmux-plugins/tmux-open.git
-[submodule "dotfiles/.config/vis/plugins/commentary"]
-	path = dotfiles/.config/vis/plugins/commentary
-	url = https://github.com/lutobler/vis-commentary.git
-[submodule "dotfiles/.config/vis/plugins/editorconfig"]
-	path = dotfiles/.config/vis/plugins/editorconfig
-	url = https://github.com/vktec/vis-editorconfig.git
-[submodule "dotfiles/.config/vis/plugins/surround"]
-	path = dotfiles/.config/vis/plugins/surround
-	url = https://repo.or.cz/vis-surround.git
 [submodule "dotfiles/.emacs.d"]
 	path = dotfiles/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
