@@ -228,9 +228,9 @@ export def --env cdx [...files] {
   }
   cd $next_wd
 }
-export alias cd. = cdx .git Cargo.toml packages.json deno.json deno.jsonc flake.nix
+export alias cd. = cdx .jj .git Cargo.toml packages.json deno.json deno.jsonc flake.nix
 export alias cdb = cdx base
-export alias cdg = cdx .git
+export alias cdg = cdx .git .jj
 export alias cdj = cdx packages.json deno.json deno.jsonc
 export alias cdn = cdx flake.nix
 export alias cdr = cdx Cargo.toml

@@ -20,3 +20,4 @@ __pycache__/
 --help
 scm/.config/lazygit/config.yml
 /scm/.config/direnv/lib/hm-nix-direnv.sh
+*.msgpackz
