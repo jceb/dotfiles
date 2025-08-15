@@ -1,4 +1,3 @@
-secrets/
 xmonad.o
 xmonad.hi
 xmonad.errors
@@ -9,18 +8,11 @@ auth.*
 *.log.*
 *.pid
 skin.yaml
-/cli/.config/fish/conf.d/other.fish
-/cli/.config/fish/fish_variables
 __pycache__/
-/kubernetes/.config/k9s/skin.yml
-/xorg/.config/environment.d/nnn-bookmarks.conf
 *.pdf
-/scm/.config/lazygit/state.yml
-/cli/.config/nushell/history.txt
 --help
-scm/.config/lazygit/config.yml
-/scm/.config/direnv/lib/hm-nix-direnv.sh
 *.msgpackz
 history.db*
 last_version_check_time
 latest_version
+/dotfiles/.config/yazi/flavors

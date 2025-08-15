@@ -1,0 +1,10 @@
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[flavor]
+# FIXME: apparently, yazi fails to auto-detect the color properly. Not sure why. Therefore, automatic color switching fails
+light = "catppuccin-latte"
+# light = "catppuccin-macchiato"
+dark = "catppuccin-macchiato"
+
+# [tabs]
+# inactive = { fg = "blue", bg = "green" }
