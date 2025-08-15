@@ -58,13 +58,13 @@ def _stow [
     # if an error is thrown, all is good - relative-to fails with an error if the path is not relative!
   }
   let file_relative = try {
-    $file | path relative-to $env.HOME
+    $file | path expand -n | path relative-to $env.HOME
   } catch {
     log error $"File or directory is not a child of ($env.HOME): ($file)"
     exit 1
   }
   # 2. ensure that none of the parent directories is a symlink to prevent double linking
-  mut current_path = $file
+  mut current_path = $file | path expand -n
   while ($current_path != $env.HOME) and ($current_path | path type) != "symlink" {
     $current_path = $current_path | path dirname
   }
@@ -79,6 +79,7 @@ def _stow [
     exit 1
   }
   log info $"Moving ($file) to ($file_dotfile)"
+  mkdir ($file_dotfile | path dirname)
   mv $file $file_dotfile
   # 4. execute stow to create a symlink in the current location
   log info $"Relinking files"
