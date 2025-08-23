@@ -58,6 +58,8 @@ export alias ela = ^exa -lha
 export alias ell = ^exa -l
 export alias eltr = ^exa -l -smodified
 export alias eltra = ^exa -laa -smodified
+# export alias t = ^exa -T --absolute
+export alias t = ^tree -f --gitignore
 
 export def flux-status [] {
  flux get source git -A
