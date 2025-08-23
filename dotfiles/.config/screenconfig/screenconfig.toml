@@ -55,10 +55,26 @@ position = ["--right-of", "laptop"]
 [monitors.m14d.outputs.DP-2]
 position = ["--left-of", "laptop"]
 
+[monitors.ecuon]
+description = "Eucon"
+wallpaper = "~/wallpaper2560x1440_2.png"
+# The position of this screen relative to another screen, in this case
+# relative to the screen "laptop".  Position is one of
+# --right-of, --left-of, --above, --below or --same-as
+# (see xrandr(1) for more information)
+
+[monitors.eucon.outputs.DP-7]
+edids = ["AC10A0B83046344C"]
+position = ["--above", "laptop"]
+
+[monitors.eucon.outputs.DP-8]
+edids = ["AC10A17132485255"]
+position = ["--right-of", "eucon", "DP-7"]
+
 [monitors.iiyama]
 description = "Iiyama"
 edids = ["CD2646B40000306A"]
-wallpaper = "~/wallpaper1280x1024.png"
+wallpaper = "~/wallpaper2560x1440_3.png"
 # The position of this screen relative to another screen, in this case
 # relative to the screen "laptop".  Position is one of
 # --right-of, --left-of, --above, --below or --same-as
