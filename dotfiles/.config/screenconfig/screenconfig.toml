@@ -14,6 +14,7 @@ edids = [
   "7038000000000000",
   "AF06203600000000",
   "6F0E140700000000",
+  "E5090D5F00000000",
 ]
 # The path to a wallpaper can be specified for each screen.  The wallpaper is
 # set through the tool "feh"
@@ -133,10 +134,26 @@ wallpaper = "~/wallpaper2560x1440_2.png"
 [monitors.benq.outputs.DP-6]
 position = ["--right-of", "benq", "DP-5"]
 wallpaper = "~/wallpaper2560x1440_3.png"
-[monitors.benq.outputs.HDMI-1]
 
+[monitors.benq.outputs.DP-8]
+position = ["--above", "laptop"]
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.benq.outputs.DP-9]
+position = ["--right-of", "benq", "DP-10"]
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.benq.outputs.DP-10]
+position = ["--above", "laptop"]
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.benq.outputs.DP-11]
+position = ["--right-of", "benq", "DP-10"]
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.benq.outputs.HDMI-1]
 # position = ["--right-of", "benq", "DP-2"]
-position = ["--right-of", "DP-2"]
+# position = ["--right-of", "DP-2"]
 # position = ["--right-of", "benq", "DP-2"]
 # position = ["--pos", "2560x0"]
 # position = ["--pos", "5120x0"]
@@ -206,6 +223,24 @@ wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.ateliergemeinschaft.outputs.DP-6]
 position = ["--right-of", "ateliergemeinschaft", "DP-5"]
+# position = ["--right-of", "laptop"]
+# position = ["--pos", "0x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-8]
+# position = ["--right-of", "ateliergemeinschaft", "DP-2"]
+position = ["--above", "laptop"]
+# position = ["--right-of", "ateliergemeinschaft", "HDMI-1"]
+# position = ["--pos", "2560x0"]
+# position = ["--pos", "2560x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-9]
+position = ["--right-of", "ateliergemeinschaft", "DP-8"]
 # position = ["--right-of", "laptop"]
 # position = ["--pos", "0x0"]
 # position = ["--pos", "0x2160"]
