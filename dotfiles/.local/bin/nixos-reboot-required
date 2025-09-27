@@ -1,0 +1,11 @@
+#!/usr/bin/env -S nu
+
+# Tests whether a NixOS system needs to be rebooted
+# Exit code 1 if a reboot is required
+def main [] {
+  if (ls -l /nix/var/nix/profiles/system/kernel /run/booted-system/kernel | $in.0.target != $in.1.target) {
+    print $"Reboot required (ls -l /run/booted-system/kernel | $in.0.target)-> (ls -l /nix/var/nix/profiles/system/kernel | $in.0.target)" exit 1
+  } else {
+    print "No reboot required"
+  }
+}
