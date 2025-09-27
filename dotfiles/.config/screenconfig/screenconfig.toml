@@ -140,15 +140,21 @@ position = ["--above", "laptop"]
 wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.benq.outputs.DP-9]
-position = ["--right-of", "benq", "DP-10"]
+# position = ["--above", "laptop"]
+position = ["--right-of", "benq", "DP-8"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.benq.outputs.DP-10]
+# position = ["--right-of", "benq", "DP-9"]
 position = ["--above", "laptop"]
 wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.benq.outputs.DP-11]
 position = ["--right-of", "benq", "DP-10"]
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.benq.outputs.DP-12]
+position = ["--right-of", "benq", "DP-11"]
 wallpaper = "~/wallpaper2560x1440_3.png"
 
 [monitors.benq.outputs.HDMI-1]
@@ -240,8 +246,32 @@ position = ["--above", "laptop"]
 wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.ateliergemeinschaft.outputs.DP-9]
-position = ["--right-of", "ateliergemeinschaft", "DP-8"]
-# position = ["--right-of", "laptop"]
+# position = ["--right-of", "ateliergemeinschaft", "DP-8"]
+position = ["--above", "laptop"]
+# position = ["--pos", "0x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-10]
+# position = ["--right-of", "ateliergemeinschaft", "DP-9"]
+position = ["--above", "laptop"]
+# position = ["--pos", "0x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-11]
+position = ["--right-of", "ateliergemeinschaft", "DP-10"]
+# position = ["--above", "laptop"]
+# position = ["--pos", "0x0"]
+# position = ["--pos", "0x2160"]
+# resolution = "2560x1440"
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.ateliergemeinschaft.outputs.DP-12]
+position = ["--right-of", "ateliergemeinschaft", "DP-10"]
+# position = ["--above", "laptop"]
 # position = ["--pos", "0x0"]
 # position = ["--pos", "0x2160"]
 # resolution = "2560x1440"
