@@ -246,8 +246,8 @@ position = ["--above", "laptop"]
 wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.ateliergemeinschaft.outputs.DP-9]
-# position = ["--right-of", "ateliergemeinschaft", "DP-8"]
-position = ["--above", "laptop"]
+position = ["--right-of", "ateliergemeinschaft", "DP-8"]
+# position = ["--above", "laptop"]
 # position = ["--pos", "0x0"]
 # position = ["--pos", "0x2160"]
 # resolution = "2560x1440"
