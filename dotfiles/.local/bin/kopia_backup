@@ -10,7 +10,7 @@ def main [] {
   print $"Using snapshot ($latest_snapshot.name)"
   sudo mount --bind $"($latest_snapshot.name)/@home" $backup_dir
   print "Creating backup"
-  print kopia snapshot create ...([Backup Documents Seafile] | each {[$backup_dir jceb $in] | path join})
+  kopia snapshot create ...([Backup Documents Seafile] | each {[$backup_dir jceb $in] | path join})
   print "Unmounting directories"
   sudo umount $backup_dir
   sudo umount $rootfs_dir
