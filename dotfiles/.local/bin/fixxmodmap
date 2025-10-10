@@ -42,13 +42,13 @@ touchpad || true
 
 naturalscrolling
 
-MONITOR="HDMI-1"
+MONITOR="DP-9"
 
 # assign wacom tablet to the third screen
 # xsetwacom --set "HUION Huion Tablet stylus" MapToOutput "$MONITOR" || true
 # xsetwacom --set "HUION Huion Tablet Touch Strip pad" MapToOutput "$MONITOR" || true
 # xsetwacom --set "HUION Huion Tablet Dial pad" MapToOutput "$MONITOR" || true
-# xsetwacom --set "HUION Huion Tablet Pad pad" MapToOutput "$MONITOR" || true
+# xsetwacom --set "HUION Huion Tablet pad" MapToOutput "$MONITOR" || true
 # xsetwacom --set "Wacom One by Wacom M Pen stylus" MapToOutput "$MONITOR" || true
 # xsetwacom --set "Wacom One by Wacom M Pen eraser" MapToOutput "$MONITOR" || true
 
@@ -62,24 +62,24 @@ xsetwacom --list devices | awk -F\\t '/Wacom .*type: (STYLUS|ERASER)/ {print $2}
 # xsetwacom --set "Wacom One by Wacom M Pen eraser" Rotate none || true
 # xsetwacom --set "Wacom One by Wacom M Pen stylus" Rotate half || true
 # xsetwacom --set "Wacom One by Wacom M Pen eraser" Rotate half || true
-if xsetwacom --list devices | grep -q "HUION Huion Tablet Pad pad"; then
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 1 key "v" || true
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 2 key "n" || true
+if xsetwacom --list devices | grep -q "HUION Huion Tablet pad"; then
+	xsetwacom --set "HUION Huion Tablet pad" Button 1 key "v" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 2 key "n" || true
 
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 3 key "p" || true
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 8 key "e" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 3 key "p" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 8 key "e" || true
 
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 9 key "s" || true
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 10 key "l" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 9 key "s" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 10 key "l" || true
 
 	# ---
 
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 11 key "s" || true
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 12 key "n" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 11 key "s" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 12 key "n" || true
 
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 13 key "p" || true
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 14 key "shift e" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 13 key "p" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 14 key "shift e" || true
 
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 15 key "r" || true
-	xsetwacom --set "HUION Huion Tablet Pad pad" Button 16 key "e" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 15 key "r" || true
+	xsetwacom --set "HUION Huion Tablet pad" Button 16 key "e" || true
 fi
