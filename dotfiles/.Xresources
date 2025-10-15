@@ -1,5 +1,6 @@
 ! vi: commentstring=!%s
-Xcursor.theme		: Adwaita
+! Xcursor.theme		: Adwaita
+Xcursor.theme		: Bibata-Modern-Classic
 Xcursor.size		: 24
 Xft.antialias		: 1
 Xft.autohint		: 0
