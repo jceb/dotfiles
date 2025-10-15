@@ -15,6 +15,7 @@ def _unstow [
     log error $"File or directory is not a symlink: ($file)"
     exit 1
   }
+  let file = $file | path expand -n
   let stowdir_package = [$stowdir $package] | path join
   let file_relative = try {
     $file | path relative-to $env.HOME
