@@ -170,6 +170,7 @@ myManageHook = manageDocks <+> composeAll
                -- , className =? "Floating.Terminal" --> doFloat
                , className =? "Gajim" --> doFloat
                , className =? "Hexchat" --> doFloat
+               , className =? "Places" --> doCenterFloat -- Firefox bookmark window
                , className =? "Jitsi" --> doFloat
                , className =? "Kio_uiserver" --> doFloat
                , className =? "pavucontrol" --> doFloat
