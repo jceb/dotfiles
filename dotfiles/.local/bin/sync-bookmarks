@@ -47,6 +47,7 @@ def write_file(file, content):
         with open(expand_path(file), "w") as f:
             f.write(content)
             return True
+    print("INFO: Did not create bookmark file", file)
     return False
 
 
