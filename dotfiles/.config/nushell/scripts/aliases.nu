@@ -1,41 +1,41 @@
 # Lists the files in a directory, directories are listed first.
 export def list [
-    dir: string = "."
-    --sort-by (-s): string = "name" # Sort by column
-    --reverse (-r) # Reverse sort order
-    --all (-a) # Show hidden files
-    --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
-    --full-paths (-f) # display paths as absolute paths
-    --du (-d) # Display the apparent directory size ("disk usage") in place of the directory metadata size
-    --directory (-D) # List the specified directory itself instead of its contents
-    --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
-    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
+  dir: string = "."
+  --sort-by (-s): string = "name" # Sort by column
+  --reverse (-r) # Reverse sort order
+  --all (-a) # Show hidden files
+  --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
+  --full-paths (-f) # display paths as absolute paths
+  --du (-d) # Display the apparent directory size ("disk usage") in place of the directory metadata size
+  --directory (-D) # List the specified directory itself instead of its contents
+  --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
+  --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
 ] {
-    ls --all=$all --long=$long --full-paths=$full_paths --du=$du --directory=$directory --mime-type=$mime_type --threads=$threads $dir | sort-by -c {|a, b|
-      if ($a.type == "dir") {
-        if ($b.type == "dir") {
-          # print $"($a.name) ($b.name): ($a.name < $b.name)"
-          if $reverse {
-            ($a | get $sort_by) > ($b | get $sort_by)
-          } else {
-            ($a | get $sort_by) < ($b | get $sort_by)
-          }
-        } else {
-          # if a is a directory, then it's sorted before b
-          true
-        }
-      } else if ($b.type == "dir") {
-        # if b is a directory, then it's sorted before a
-        false
-      } else {
+  ls --all=$all --long=$long --full-paths=$full_paths --du=$du --directory=$directory --mime-type=$mime_type --threads=$threads $dir | sort-by -c {|a, b|
+    if ($a.type == "dir") {
+      if ($b.type == "dir") {
         # print $"($a.name) ($b.name): ($a.name < $b.name)"
         if $reverse {
           ($a | get $sort_by) > ($b | get $sort_by)
         } else {
           ($a | get $sort_by) < ($b | get $sort_by)
         }
+      } else {
+        # if a is a directory, then it's sorted before b
+        true
+      }
+    } else if ($b.type == "dir") {
+      # if b is a directory, then it's sorted before a
+      false
+    } else {
+      # print $"($a.name) ($b.name): ($a.name < $b.name)"
+      if $reverse {
+        ($a | get $sort_by) > ($b | get $sort_by)
+      } else {
+        ($a | get $sort_by) < ($b | get $sort_by)
       }
     }
+  }
 }
 
 export alias l = list
@@ -62,9 +62,9 @@ export alias eltra = ^exa -laa -smodified
 export alias t = ^tree -f --gitignore
 
 export def flux-status [] {
- flux get source git -A
- flux get kustomizations -A
- flux get helmrelease -A
+  flux get source git -A
+  flux get kustomizations -A
+  flux get helmrelease -A
 }
 
 # quilt
@@ -282,11 +282,11 @@ export def nix-init [] {
     exit 1
   }
   "# Documentation: https://direnv.net/man/direnv-stdlib.1.html
-source_up_if_exists
-dotenv_if_exists
+  source_up_if_exists
+  dotenv_if_exists
 
-use flake .flake
-" | save .envrc
+  use flake .flake
+  " | save .envrc
   mkdir .flake
   cp ~/.config/templates/flake.nix .flake
   git add .flake
@@ -309,7 +309,7 @@ export def nix-clean [] {
 
 # Misc
 export def psa [searchterm=""] {
-    ps -l | where name =~ $searchterm | select user_id pid start_time status command
+  ps -l | where name =~ $searchterm | select user_id pid start_time status command
 }
 
 # npm install -g yo generator-standard-readme
@@ -327,5 +327,5 @@ export alias o = open-cli
 export alias rr = sk -i -c "rg -S --hidden -n -H {}"
 
 export def find-pod [image] {
-    kubectl get pod -A -o json | from json | get items | where {|it| $it.status.containerStatuses | any {|el| $el.image =~ $image} } | get metadata
+  kubectl get pod -A -o json | from json | get items | where {|it| $it.status.containerStatuses | any {|el| $el.image =~ $image} } | get metadata
 }
