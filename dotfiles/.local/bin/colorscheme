@@ -50,14 +50,13 @@ else
 	sed -i -e 's/^#\s*--theme=\(.*\) # dark$/--theme=\1 # dark/' -e 's/^--theme=\(.*\) # light$/# --theme=\1 # light/' ~/.config/bat/config
 fi
 
-# tmate setenv -g COLORSCHEME "${COLORSCHEME}"
-# tmate source ~/.tmux.conf
-set +u
-if [ -n "${TMUX}" ]; then
+# set +u
+# if [ -n "${TMUX}" ]; then
+if tmux info &>/dev/null; then # test if tmux is running
 	tmux setenv -g COLORSCHEME "${COLORSCHEME}"
 	tmux source ~/.tmux.conf
 fi
-set -u
+# set -u
 
-echo "Now run:"
+echo "Reload the nushell theme via:"
 echo "source ~/.config/nushell/config.nu"
