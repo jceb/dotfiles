@@ -5,13 +5,13 @@ def main [] {
   let backup_dir = "/mnt/data"
   let rootfs_dir = "/mnt/rootfs"
   print "Mounting directories"
-  sudo mount /dev/mapper/system $rootfs_dir
-  let latest_snapshot = ls -l $"($rootfs_dir)/timeshift-btrfs/snapshots" | last
+  # sudo mount /dev/mapper/system $rootfs_dir
+  let latest_snapshot = ls -l $"($rootfs_dir)/btrbk_snapshots" | last
   print $"Using snapshot ($latest_snapshot.name)"
-  sudo mount --bind $"($latest_snapshot.name)/@home" $backup_dir
+  sudo mount --bind $"($latest_snapshot.name)" $backup_dir
   print "Creating backup"
   kopia snapshot create ...([Backup Documents Seafile] | each {[$backup_dir jceb $in] | path join})
   print "Unmounting directories"
   sudo umount $backup_dir
-  sudo umount $rootfs_dir
+  # sudo umount $rootfs_dir
 }
