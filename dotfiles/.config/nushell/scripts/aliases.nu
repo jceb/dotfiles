@@ -38,6 +38,8 @@ export def list [
   }
 }
 
+export alias da = direnv allow
+
 export alias l = list
 export alias ll = list
 export alias la = list -a
@@ -90,6 +92,7 @@ export alias qt = ^quilt top
 export alias j = ^jj
 export alias ja = ^jj abandon
 export alias jb = ^jj bookmark
+export alias jbb = ^jj bookmark create -r @-
 export alias jbc = ^jj bookmark create -r @-
 export alias jbl = ^jj bookmark list
 export alias jbs = ^jj bookmark set
@@ -100,13 +103,14 @@ export alias jd = ^jj diff
 export alias jde = ^jj desc
 export alias jdm = ^jj diff-main
 export alias je = ^jj edit
+export alias jee = ^jj edit @-
 export alias jf = ^jj file
 export alias jg = ^jj git
-export alias jgf = ^jj git fetch
+export alias jgf = ^jj git fetch --all-remotes
 export alias jp = ^jj git push
 export alias jgp = ^jj git push
-export alias jgu = ^jj git fetch
-export alias ju = ^jj git fetch
+export alias jgu = ^jj git fetch --all-remotes
+export alias ju = ^jj git fetch --all-remotes
 export alias jl = ^jj log
 export alias jll = ^jj log -r ::@
 export alias jla = ^jj log -r ::
@@ -118,6 +122,7 @@ export alias jr = ^jj rebase
 export alias jrm = ^jj rebase-main
 export alias js = ^jj show
 export alias jsp = ^jj split
+export alias jspi = ^jj split -i
 export alias jsq = ^jj squash
 export alias jss = ^jj squash
 export alias jsi = ^jj squash --interactive
@@ -282,8 +287,9 @@ export def nix-init [] {
     exit 1
   }
   "# Documentation: https://direnv.net/man/direnv-stdlib.1.html
-  source_up_if_exists
+  dotenv_if_exists .env.local
   dotenv_if_exists
+  source_up_if_exists
 
   use flake .flake
   " | save .envrc
