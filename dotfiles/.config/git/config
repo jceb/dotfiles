@@ -201,7 +201,9 @@
 [cola]
     spellcheck = false
 [credential]
-	helper = store
+    # helper = store
+    # https://github.com/languitar/pass-git-helper
+    helper = !pass-git-helper $@
 
 [identity "default"]
     name = Jan Christoph Ebersbach
