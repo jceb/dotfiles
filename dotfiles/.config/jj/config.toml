@@ -1,4 +1,5 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+# Documentation: https://docs.jj-vcs.dev/latest/config/
 
 [user]
 name = "Jan Christoph Ebersbach"
@@ -18,8 +19,7 @@ email = "jan.ebersbach@eucon.com"
 
 [ui]
 default-command = "status"
-diff-formater = ":git"
-diff.format = "git"
+diff-formatter = ":git"
 merge-editor = "vimdiff"
 
 [signing]
@@ -39,8 +39,8 @@ sign-on-push = true
 auto-local-bookmark = true
 push-new-bookmarks = true
 
-[core]
-fsmonitor = "watchman"
+[fsmonitor]
+backend = "watchman"
 watchman.register-snapshot-trigger = true
 
 [snapshot]
