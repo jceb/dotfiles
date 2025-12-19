@@ -1,27 +1,36 @@
 [submodule "dotfiles/.tmux/plugins/tpm"]
 	path = dotfiles/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+	branch = master
 [submodule "dotfiles/.tmux/plugins/tmux-sensible"]
 	path = dotfiles/.tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
+	branch = master
 [submodule "dotfiles/.tmux/plugins/tmux-yank"]
 	path = dotfiles/.tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
+	branch = master
 [submodule "dotfiles/.tmux/plugins/tmux-open"]
 	path = dotfiles/.tmux/plugins/tmux-open
 	url = https://github.com/tmux-plugins/tmux-open.git
+	branch = master
 [submodule "dotfiles/.emacs.d"]
 	path = dotfiles/.emacs.d
 	url = https://github.com/hlissner/doom-emacs
+	branch = master
 [submodule "dotfiles/.config/nushell/nu_scripts"]
 	path = dotfiles/.config/nushell/nu_scripts
 	url = https://github.com/nushell/nu_scripts.git
+	branch = main
 [submodule "dotfiles/.config/lazygit/lazygit"]
 	path = dotfiles/.config/lazygit/lazygit
 	url = https://github.com/catppuccin/lazygit.git
+	branch = main
 [submodule "dotfiles/.config/k9s/k9s"]
 	path = dotfiles/.config/k9s/catpuccin
 	url = https://github.com/catppuccin/k9s.git
+	branch = main
 [submodule "dotfiles/.config/nushell/jj-gh-pr.nu"]
 	path = dotfiles/.config/nushell/jj-gh-pr.nu
 	url = https://github.com/eopb/jj-gh-pr.nu.git
+	branch = main
