@@ -4,3 +4,8 @@
 [mgr]
 ratio = [1, 4, 3]
 show_hidden = true
+
+# Documentation: https://github.com/yazi-rs/plugins/tree/main/piper.yazi
+[[plugin.prepend_previewers]]
+url = "*"
+run = 'piper -- bat -p --color=always "$1"'
