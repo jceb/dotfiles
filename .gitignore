@@ -16,3 +16,4 @@ history.db*
 last_version_check_time
 latest_version
 /dotfiles/.config/yazi/flavors
+/dotfiles/.config/jj/repos

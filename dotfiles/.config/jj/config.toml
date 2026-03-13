@@ -36,8 +36,9 @@ highlight-color = "#b7c1e3"
 
 [git]
 sign-on-push = true
-auto-local-bookmark = true
-push-new-bookmarks = true
+
+[remotes.origin]
+auto-track-bookmarks = "*"
 
 [fsmonitor]
 backend = "watchman"
@@ -48,12 +49,12 @@ max-new-file-size = "10MiB"
 # auto-update-stale = true # what does this do?
 
 [templates]
-log_node = '''
-if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
-  "◇",
-  builtin_log_node
-)
-'''
+# log_node = '''
+# if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
+#   "◇",
+#   builtin_log_node
+# )
+# '''
 
 [template-aliases]
 # hide non-important parts of the ID
@@ -64,8 +65,9 @@ if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
 # used to update bookmarks
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 
-# set all remote bookmarks (commits pushed to remote branches) to be immutable
-'immutable_heads()' = "builtin_immutable_heads() | remote_bookmarks()"
+# Remove  untracked_remote_bookmarks() and replace it with just bookmarks("release") to make feature etc.
+# branches/bookmarks editable
+'immutable_heads()' = 'trunk() | tags() | bookmarks("release")'
 
 [aliases]
 
@@ -89,25 +91,30 @@ c = ["commit"]
 ci = ["commit", "--interactive"]
 d = ["diff"]
 de = ["describe"]
+dm = ["diff-main"]
 e = ["edit"]
-l = ["log"]
-ll = ["log", "-r", "::@"]
-la = ["log", "-r", "::"]
-lb = ["log", "-r", "bookmarks()"]
-lbt = ["log", "-r", "tags() | bookmarks()"]
-lt = ["log", "-r", "tags()"]
-lh = ["log", "-r", "heads(all())"]
+ee = ["edit", "@-"]
+l = ["log", "-s"]
+ll = ["log", "-s", "-r", "::@"]
+la = ["log", "-s", "-r", "::"]
+lb = ["log", "-s", "-r", "bookmarks()"]
+lbt = ["log", "-s", "-r", "tags() | bookmarks()"]
+lt = ["log", "-s", "-r", "tags()"]
+lh = ["log", "-s", "-r", "heads(all())"]
+ls = ["file", "list"]
 f = ["file"]
 gp = ["git", "push"]
-gf = ["git", "fetch"]
-gu = ["git", "fetch"]
-ls = ["file", "list"]
+gf = ["git", "fetch", "--all-remotes"]
+gu = ["git", "fetch", "--all-remotes"]
 n = ["new"]
 r = ["rebase"]
 rm = ["rebase-main"]
 s = ["show"]
+si = ["squash", "--interactive"]
 sp = ["split"]
+spi = ["split", "--interactive"]
 sq = ["squash"]
 ss = ["squash"]
-si = ["squash", "--interactive"]
+tg = ["tug"]
+t = ["tag"]
 w = ["workspace"]
