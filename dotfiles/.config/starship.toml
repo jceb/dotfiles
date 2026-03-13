@@ -23,35 +23,6 @@ truncation_symbol = "…/"
 style = "blue bold"
 disabled = false
 
-[git_branch]
-always_show_remote = true
-format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
-
-[git_status]
-# disabled = true
-style = "bold purple"
-ahead = "⇡$count"
-behind = "⇣$count"
-diverged = "⇕$ahead_count/$behind_count"
-
-[custom.quilt_applied]
-description = "List of applied quilt patches"
-when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
-shell = ["sh"]
-command = "quilt applied | wc -l | tr -d '\n'; echo -n '/'; quilt series | wc -l"
-format = "[$symbol$output]($style) "
-symbol = "🩹"
-style = "bold blue"
-
-[custom.quilt_patches]
-disabled = true
-description = "List of total quilt patches"
-when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
-shell = ["bash"]
-command = "quilt series | wc -l"
-format = "/[$symbol$output]($style) "
-style = "bold blue"
-
 [custom.nix_packages]
 disabled = false
 description = "Nix shell information"
@@ -65,3 +36,99 @@ style = "bold blue"
 # hide output
 format = 'via [$symbol$state](bold blue) '
 # symbol = "❄️ "
+
+# Source: https://github.com/jj-vcs/jj/wiki/Starship
+# custom module for jj status
+[custom.jj]
+description = "The current jj status"
+when = "jj --ignore-working-copy root"
+shell = ["sh", "--norc", "--noprofile"]
+symbol = "🥋 "
+command = '''
+jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+  separate(" ",
+    change_id.shortest(4),
+    bookmarks,
+    "|",
+    concat(
+      if(conflict, "💥"),
+      if(divergent, "🚧"),
+      if(hidden, "👻"),
+      if(immutable, "🔒"),
+    ),
+    raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
+    raw_escape_sequence("\x1b[1;32m") ++ coalesce(
+      truncate_end(29, description.first_line(), "…"),
+      "(no description set)",
+    ) ++ raw_escape_sequence("\x1b[0m"),
+  )
+'
+'''
+
+# optionally disable git modules when JJ is found.
+# note that you'll need to add ${custom.git_branch}, ${custom.git_commit} etc
+# into format: https://starship.rs/config/#default-prompt-format
+
+[git_status]
+disabled = true # disabled due to jj
+style = "bold purple"
+ahead = "⇡$count"
+behind = "⇣$count"
+diverged = "⇕$ahead_count/$behind_count"
+
+[custom.git_status]
+when = "! jj --ignore-working-copy root"
+shell = ["sh", "--norc", "--noprofile"]
+command = "starship module git_status"
+# style = "" # This disables the default "(bold green)" style
+description = "Only show git_status if we're not in a jj repo"
+
+[git_branch]
+disabled = true
+always_show_remote = true
+format = "on [$symbol$branch]($style)(:[$remote_name/$remote_branch]($style)) "
+
+[custom.git_branch]
+when = "! jj --ignore-working-copy root"
+shell = ["sh", "--norc", "--noprofile"]
+command = "starship module git_branch"
+description = "Only show git_branch if we're not in a jj repo"
+# style = ""
+
+[git_commit]
+disabled = true
+
+[custom.git_commit]
+when = "! jj --ignore-working-copy root"
+shell = ["sh", "--norc", "--noprofile"]
+command = "starship module git_commit"
+# style = ""
+description = "Only show git_commit if we're not in a jj repo"
+
+[git_metrics]
+disabled = true
+
+[custom.git_metrics]
+when = "! jj --ignore-working-copy root"
+shell = ["sh", "--norc", "--noprofile"]
+command = "starship module git_metrics"
+description = "Only show git_metrics if we're not in a jj repo"
+# style = ""
+
+[custom.quilt_applied]
+description = "List of applied quilt patches"
+when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
+shell = ["sh", "--norc", "--noprofile"]
+command = "quilt applied | wc -l | tr -d '\n'; echo -n '/'; quilt series | wc -l"
+format = "[$symbol$output]($style) "
+symbol = "🩹"
+style = "bold blue"
+
+[custom.quilt_patches]
+disabled = true
+description = "List of total quilt patches"
+when = 'set -o pipefail; findfile patches | xargs -I {} test -e "{}/series"'
+shell = ["bash"]
+command = "quilt series | wc -l"
+format = "/[$symbol$output]($style) "
+style = "bold blue"
