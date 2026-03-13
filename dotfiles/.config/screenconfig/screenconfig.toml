@@ -87,6 +87,29 @@ description = "AOC"
 edids = ["E305240200001989"]
 position = ["--right-of", "laptop"]
 
+[monitors.iiyamaprolite]
+description = "Benq BL1152"
+edids = ["CD26619401010101"]
+position = ["--above", "laptop"]
+
+[monitors.iiyamaprolite.outputs.DP-8]
+position = ["--above", "laptop"]
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.iiyamaprolite.outputs.DP-9]
+# position = ["--above", "laptop"]
+position = ["--right-of", "benq", "DP-8"]
+wallpaper = "~/wallpaper2560x1440_3.png"
+
+[monitors.iiyamaprolite.outputs.DP-10]
+# position = ["--right-of", "benq", "DP-9"]
+position = ["--above", "laptop"]
+wallpaper = "~/wallpaper2560x1440_2.png"
+
+[monitors.iiyamaprolite.outputs.DP-11]
+position = ["--right-of", "benq", "DP-10"]
+wallpaper = "~/wallpaper2560x1440_3.png"
+
 [monitors.benq]
 description = "Benq BL1152"
 edids = ["D109801B00005445"]
@@ -120,7 +143,8 @@ position = ["--above", "laptop"]
 wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.benq.outputs.DP-3]
-position = ["--above", "laptop"]
+# position = ["--above", "laptop"]
+position = ["--right-of", "benq", "DP-2"]
 wallpaper = "~/wallpaper2560x1440_2.png"
 
 [monitors.benq.outputs.DP-4]
