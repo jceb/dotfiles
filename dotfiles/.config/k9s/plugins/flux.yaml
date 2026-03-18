@@ -1,0 +1,355 @@
+# $HOME/.k9s/plugin.yml
+# move selected line to chosen resource in K9s, then:
+# Shift-T (with confirmation) to toggle helm releases or kustomizations suspend and resume
+# Shift-R (no confirmation) to reconcile a git source or a helm release or a kustomization
+plugins:
+  suspend-git:
+    shortCut: s
+    confirm: false
+    description: Flux suspend
+    scopes:
+      - gitrepositories
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          flux
+          suspend source git
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -k
+  resume-git:
+    shortCut: r
+    confirm: false
+    description: Flux resume
+    scopes:
+      - gitrepositories
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          flux
+          resume source git
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -k
+  reconcile-git:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - gitrepositories
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          flux
+          reconcile source git
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile-helm-repo:
+    shortCut: Shift-R
+    description: Flux reconcile
+    scopes:
+      - helmrepositories
+    command: bash
+    background: false
+    confirm: false
+    args:
+      - -c
+      - >-
+          flux
+          reconcile source helm
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile-oci-repo:
+    shortCut: Shift-R
+    description: Flux reconcile
+    scopes:
+      - ocirepositories
+    command: bash
+    background: false
+    confirm: false
+    args:
+      - -c
+      - >-
+          flux
+          reconcile source oci
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  suspend:
+    shortCut: s
+    confirm: false
+    description: Flux suspend
+    scopes:
+      - kustomizations
+      - helmreleases
+      - alerts
+      - receivers
+      - providers
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          resource="${RESOURCE_NAME}";
+          resource="${resource%%s}";
+          resource=$([ "${resource}" = "provider" ] && echo "alert-provider" || echo $resource);
+          flux
+          suspend $resource
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -k
+  resume:
+    shortCut: r
+    confirm: false
+    description: Flux resume
+    scopes:
+      - kustomizations
+      - helmreleases
+      - alerts
+      - receivers
+      - providers
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          resource="${RESOURCE_NAME}";
+          resource="${resource%%s}";
+          resource=$([ "${resource}" = "provider" ] && echo "alert-provider" || echo $resource);
+          flux
+          resume $resource
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  toggle:
+    shortCut: t
+    confirm: false
+    scopes:
+      - kustomizations
+      - helmreleases
+      - alerts
+      - receivers
+      - providers
+    description: Flux toggle to suspend or resume
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          resource="${RESOURCE_NAME}";
+          resource="${resource%%s}";
+          resource=$([ "${resource}" = "provider" ] && echo "alert-provider" || echo $resource);
+          suspended=$(kubectl --context $CONTEXT get $RESOURCE_NAME -n $NAMESPACE $NAME -o=custom-columns=TYPE:.spec.suspend | tail -1);
+          verb=$([ $suspended = "true" ] && echo "resume" || echo "suspend");
+          flux
+          $verb $resource
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - kustomizations
+      - helmreleases
+      - alerts
+      - receivers
+      - providers
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          resource="${RESOURCE_NAME}";
+          resource="${resource%%s}";
+          resource=$([ "${resource}" = "provider" ] && echo "alert-provider" || echo $resource);
+          flux
+          reconcile $resource
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -k
+  reconcile-ir:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - imagerepositories
+    command: sh
+    background: false
+    args:
+      - -c
+      - >-
+          flux
+          reconcile image repository
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile-iua:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - imageupdateautomations
+    command: sh
+    background: false
+    args:
+      - -c
+      - >-
+          flux
+          reconcile image update
+          --context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  toggle-rset:
+    shortCut: Shift-T
+    confirm: false
+    scopes:
+      - resourcesets
+    description: Toggle to suspend or resume a ResourceSet
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          reconcile=$(kubectl --context $CONTEXT get resourceset -n $NAMESPACE $NAME -o=custom-columns='TYPE:.metadata.annotations.fluxcd\.controlplane\.io/reconcile' | tail -1);
+          verb=$([ $reconcile = "disabled" ] && echo "resume" || echo "suspend");
+          flux-operator
+          $verb rset
+          --kube-context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  toggle-inputprovider:
+    shortCut: Shift-T
+    confirm: false
+    scopes:
+      - resourcesetinputprovider
+    description: Flux toggle to suspend or resume an InputProvider
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          reconcile=$(kubectl --context $CONTEXT get resourcesetinputprovider -n $NAMESPACE $NAME -o=custom-columns='TYPE:.metadata.annotations.fluxcd\.controlplane\.io/reconcile' | tail -1);
+          verb=$([ $reconcile = "disabled" ] && echo "resume" || echo "suspend");
+          flux-operator
+          $verb inputprovider
+          --kube-context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile-rset:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - resourcesets
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          flux-operator
+          reconcile rset
+          --kube-context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile-inputprovider:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - resources
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          flux-operator
+          reconcile inputprovider
+          --kube-context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  reconcile-fluxinstance:
+    shortCut: Shift-R
+    confirm: false
+    description: Flux reconcile
+    scopes:
+      - fluxinstances
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          flux-operator
+          reconcile instance
+          --kube-context $CONTEXT
+          -n $NAMESPACE $NAME
+          | less -K
+  trace:
+    shortCut: Shift-Q
+    confirm: false
+    description: Flux trace
+    scopes:
+      - all
+    command: bash
+    background: false
+    args:
+      - -c
+      - >-
+          if [ -n "$RESOURCE_GROUP" ]; then api_endpoint="/apis/$RESOURCE_GROUP/$RESOURCE_VERSION"; else api_endpoint="/api/$RESOURCE_VERSION"; fi;
+          api_resource=$(kubectl get --raw "${api_endpoint}" | jq -r ".resources[] | select(.name==\"$RESOURCE_NAME\")");
+          kind=$(echo ${api_resource} | jq -r '.kind');
+          namespace_arg=$(echo ${api_resource} | jq -r "if .namespaced == true then \"--namespace $NAMESPACE\" else \"\" end");
+          [ -n "$RESOURCE_GROUP" ] && api_version=$RESOURCE_GROUP/;
+          api_version=${api_version}$RESOURCE_VERSION;
+          flux
+          trace
+          --context $CONTEXT
+          --kind ${kind}
+          --api-version ${api_version}
+          ${namespace_arg}
+          $NAME
+          |& less -K
+  # credits: https://github.com/fluxcd/flux2/discussions/2494
+  get-suspended-helmreleases:
+    shortCut: Shift-X
+    confirm: false
+    description: Flux get suspended Helm Releases
+    scopes:
+      - helmrelease
+    command: sh
+    background: false
+    args:
+      - -c
+      - >-
+          kubectl get
+          --context $CONTEXT
+          --all-namespaces
+          helmreleases.helm.toolkit.fluxcd.io -o json
+          | jq -r '.items[] | select(.spec.suspend==true) | [.metadata.namespace,.metadata.name,.spec.suspend] | @tsv'
+          | less -K
+  get-suspended-kustomizations:
+    shortCut: Shift-X
+    confirm: false
+    description: Flux get suspended Kustomizations
+    scopes:
+      - kustomizations
+    command: sh
+    background: false
+    args:
+      - -c
+      - >-
+          kubectl get
+          --context $CONTEXT
+          --all-namespaces
+          kustomizations.kustomize.toolkit.fluxcd.io -o json
+          | jq -r '.items[] | select(.spec.suspend==true) | [.metadata.name,.spec.suspend] | @tsv'
+          | less -K

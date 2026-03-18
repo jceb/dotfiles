@@ -1,0 +1,15 @@
+# See https://k9scli.io/topics/columns/
+views:
+  kustomize.toolkit.fluxcd.io/v1/kustomizations: &flux
+    sortColumn: NAME:desc
+    columns:
+      - NAMESPACE
+      - NAME
+      - SUSPENDED:.spec.suspend
+      - READY
+      - STATUS
+      - AGE
+  helm.toolkit.fluxcd.io/v2/helmreleases: *flux
+  notification.toolkit.fluxcd.io/v1beta3/alerts: *flux
+  notification.toolkit.fluxcd.io/v1/receivers: *flux
+  notification.toolkit.fluxcd.io/v1beta3/providers: *flux
