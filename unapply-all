@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd "$(dirname "$0")"
-find . -mindepth 1 -maxdepth 1 -type d -not -name .\* -printf "%f\n" | xargs -n 1 stow -D
+cd "$(dirname "$0")" || exit
+find . -mindepth 1 -maxdepth 1 -type d -not -name .\* -printf "%f\n" | grep -v .git | grep -v .jj | grep -v .old | xargs -n 1 stow -D

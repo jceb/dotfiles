@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import time
 import os
+import json
 from lxml import etree as ET
 from lxml.builder import E
 
@@ -26,6 +27,11 @@ def split_lines(lines, separator):
     return [
         line.strip().split(separator, 1) for line in lines if line and separator in line
     ]
+
+
+def read_bookmarks(bookmark_file):
+    with open(expand_path(bookmark_file)) as f:
+        return json.loads(f.read())
 
 
 def read_warp_bookmarks(bookmark_file):
@@ -173,7 +179,8 @@ def sync_bookmarks(bookmarks, bookmark_generators):
 
 if __name__ == "__main__":
     sync_bookmarks(
-        read_warp_bookmarks("~/.warprc"),
+        # read_warp_bookmarks("~/.warprc"),
+        read_bookmarks("~/.config/bookmarks.json"),
         (
             get_fuf_bookmarks,
             get_gtk3_bookmarks,
