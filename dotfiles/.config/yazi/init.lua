@@ -14,14 +14,15 @@ local function readBookmarks()
 	local data = file:read("*a")
 	file:close()
 	local keys = {}
-	for v, k in string.gmatch(data, "file://([%w%a/]+) ([^\n]+)\n") do
+	for v, k in string.gmatch(data, "file://([%w%a%p]+) ([^\n]+)\n") do
 		local key = string.sub(k, 1, 1)
+		local path = string.gsub(v, "\\%20", " ")
 		if not keys[key] then
-			print("k", key, k, v)
+			-- print("k", key, k, path)
 			keys[key] = true
 			table.insert(bookmarks, {
 				key = key,
-				path = v,
+				path = path,
 			})
 			-- else
 			-- table.insert(bookmarks, {
@@ -31,6 +32,8 @@ local function readBookmarks()
 	end
 	return bookmarks
 end
+
+-- readBookmarks()
 
 require("bunny"):setup({
 	hops = readBookmarks(),
