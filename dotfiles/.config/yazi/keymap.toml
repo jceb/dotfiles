@@ -1,6 +1,21 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 [[mgr.prepend_keymap]]
+desc = "Edit file"
+on = "e"
+run = "open"
+
+[[mgr.prepend_keymap]]
+desc = "Enter directory"
+on = "<Enter>"
+run = "enter"
+
+[[mgr.prepend_keymap]]
+desc = "Leave directory"
+on = "<Backspace>"
+run = "leave"
+
+[[mgr.prepend_keymap]]
 desc = "Start interactive shell"
 on = "!"
 run = 'shell --block "$SHELL"'
