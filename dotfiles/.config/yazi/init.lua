@@ -1,9 +1,11 @@
 -- See https://github.com/stelcodes/bunny.yazi
+
 local function shellexpand(path)
 	local home = os.getenv("HOME")
 	return path:gsub("^~", home)
 end
 
+-- Load backmarks from gtk-3
 local function readBookmarks()
 	local bookmarks = {}
 	local filename = shellexpand("~/.config/gtk-3.0/bookmarks")
@@ -24,6 +26,7 @@ local function readBookmarks()
 				key = key,
 				path = path,
 			})
+			-- All bookmarks need to have a key, unfortunately they can't be provided just as a path
 			-- else
 			-- table.insert(bookmarks, {
 			-- 	path = v,

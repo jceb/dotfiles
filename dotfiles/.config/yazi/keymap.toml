@@ -1,5 +1,6 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
+# Unify keymaps between yazi and nnn
 [[mgr.prepend_keymap]]
 desc = "Edit file"
 on = "e"
