@@ -1,7 +1,14 @@
+"$schema" = "https://yazi-rs.github.io/schemas/package.json"
+
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
 rev = "1962818"
 hash = "384464b6df8cb807425c521f8cd790f3"
+
+[[plugin.deps]]
+use = "stelcodes/bunny"
+rev = "71b14a3"
+hash = "18a2829738214fe9bca99a2fef19113d"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
