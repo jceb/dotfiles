@@ -1,4 +1,6 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+# Defaults https://github.com/sxyazi/yazi/blob/d4924ebcad7125e2e7fc654ba017bd698d44af9b/yazi-config/preset/keymap-default.toml
+# Config https://yazi-rs.github.io/docs/configuration/keymap/
 
 # Unify keymaps between yazi and nnn
 [[mgr.prepend_keymap]]
