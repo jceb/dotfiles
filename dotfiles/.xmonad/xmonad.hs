@@ -70,6 +70,7 @@ swapMasterOrSlave = W.modify' $ \c -> case c of
 -- myDynamicTitle = myDynamicPropertyQuery "_NET_WM_NAME"
 
 scratchpads = [
+  NS "linphone" "linphone" (className =? "linphone") (customFloating $ W.RationalRect (4/20) (4/20) (8/10) (8/10)),
   NS "standardnotes" "/etc/profiles/per-user/jceb/bin/standardnotes" (className =? "Standard Notes") (customFloating $ W.RationalRect (1/20) (1/20) (9/10) (9/10)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking — JC's thinking system — Mozilla Firefox") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
   -- NS "thingking" "firefox --new-window https://noteself.org/online/" (title =? "thingking") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20)),
@@ -244,6 +245,7 @@ myAdditionalKeys =
   , ((mod4Mask .|. controlMask, xK_equal), sendMessage $ IncMasterRows 1)
   , ((mod4Mask .|. controlMask, xK_minus), sendMessage $ IncMasterRows (-1))
   , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster) -- %! Move focus to the master window
+  , ((mod4Mask, xK_u), namedScratchpadAction scratchpads "linphone")
   , ((mod1Mask, xK_space), namedScratchpadAction scratchpads "floating-terminal")
   -- , ((mod1Mask .|. controlMask, xK_space), namedScratchpadAction scratchpads "floating-terminal-fullscreen")
   , ((mod4Mask, xK_space), namedScratchpadAction scratchpads "standardnotes")
