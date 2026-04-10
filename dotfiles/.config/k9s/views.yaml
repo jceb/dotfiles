@@ -1,7 +1,7 @@
 # See https://k9scli.io/topics/columns/
 views:
   kustomize.toolkit.fluxcd.io/v1/kustomizations: &flux
-    sortColumn: NAME:desc
+    sortColumn: NAMESPACE:asc
     columns:
       - NAMESPACE
       - NAME

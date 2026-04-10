@@ -7,3 +7,13 @@ aliases:
   ro: roles
   rb: rolebindings
   np: networkpolicies
+  hr: &hr helmreleases
+  hrp: &hrp helmrepositories
+  hrepo: *hrp
+  repo: *hrp
+  g: &git gitrepositories
+  gi: *git
+  git: *git
+  k: &k kustomizations
+  ku: *k
+  kus: *k
