@@ -1,121 +1,115 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nu
 # Author: Jan Christoph Ebersbach <jceb@e-jc.de>
-# License: Apache 2
-# Last Modified: Wed 13. May 2020 16:52:20 +0200 CEST
+# SPDX-License-Identifier: Apache-2.0
 
-set -e
-set -u
-# set -x
-
-get_current_branch() { # retrieve the current branch's name
-	local branch
-	branch="$(git rev-parse --abbrev-ref HEAD)"
-	if [ "$branch" = "HEAD" ]; then
-		branch="$(jj log --no-graph -r 'heads(::@- & bookmarks())' -T 'remote_bookmarks.filter(|b| b.remote() != "git").map(|b| b.name()).join("\n")' | head -n 1)"
-		# remote=$(git config "branch.main.remote")
-		# if [ -z "${remote}" ] && [ "$1" = "HEAD" ]; then
-		# 	remote=$(git config "branch.master.remote")
-		# fi
-	fi
-	echo "$branch"
+# Get git root
+def find-git-root []: nothing -> string {
+  let cmd = do -c {git rev-parse --show-toplevel} | complete
+  if $cmd.exit_code == 0 {
+    $cmd.stdout | lines | first
+  } else {
+    error make {msg: "git root not found"}
+  }
 }
 
-get_file_path() { # return the relative path within the git repository to file or directory
-	# $1: file:line_number or directory
-	local linnr filename filepath repopath
-
-	if [ $# -ne 1 ]; then
-		return 1
-	fi
-	filename="$(echo "${1}" | sed -e 's/:\([0-9]\+\)$//')"
-	if [ -d "${filename}" ]; then
-		# special treatment for directories
-		repopath="$(readlink -e "$(git rev-parse --show-toplevel)")"
-		linnr=
-		filepath="${filename:$((${#repopath} + 1))}" # +1 to strip the leading slash that would remain
-	elif [ -e "${filename}" ]; then
-		cd "$(dirname "${filename}")"
-		linnr="$(echo "${1}" | sed -ne 's/.*:\([0-9]\+\)$/#L\1/p')"
-		filepath="$(git ls-tree --full-name --name-only HEAD "$(basename "${filename}")" | head -n 1)"
-	else
-		exit 1
-	fi
-	echo "${filepath}${linnr}"
+# Get jj root
+def find-jj-root []: nothing -> string {
+  let cmd = do -c {jj workspace root} | complete
+  if $cmd.exit_code == 0 {
+    $cmd.stdout | lines | first
+  } else {
+    error make {msg: "jj root not found"}
+  }
 }
 
-get_remote_url() { # retrieve the remote URL for the current branch
-	# $1: branch name
-	local remote
-
-	if [ $# -ne 1 ]; then
-		return 1
-	fi
-
-	remote=$(git config "branch.${1}.remote")
-	if [ -z "$remote" ]; then
-		remote="$(jj log --no-graph -r 'heads(::@- & bookmarks())' -T 'remote_bookmarks.filter(|b| b.remote() != "git").map(|b| b.remote()).join("\n")' | head -n 1)"
-		# remote=$(git config "branch.main.remote")
-		# if [ -z "${remote}" ] && [ "$1" = "HEAD" ]; then
-		# 	remote=$(git config "branch.master.remote")
-		# fi
-	fi
-	if [ -n "${remote}" ]; then
-		git config "remote.${remote}.url" | sed -e 's/ssh\.dev\.azure\.com:v3/dev.azure.com/' -e '/^git@/s/:/\//'
-	fi
+# Find repository root directory
+def find-root []: nothing -> record<directory: string, scm: string> {
+  mut root = ""
+  mut scm = ""
+  try {
+    $root = find-jj-root
+    $scm = "jj"
+  }
+  if ($root | is-empty) {
+    try {
+      $root = find-git-root
+      $scm = "git"
+    }
+  }
+  if ($root | is-empty) {
+    error make {msg: "SCM root directory not found"}
+  }
+  { directory: $root, scm: $scm }
 }
 
-transform_url() { # convert HTTPS/SSH git URL into the HTTPS URL of the service
-	# $1: URL
-
-	if [ $# -ne 1 ]; then
-		return 1
-	fi
-	echo "${1}" | sed -e 's/^git@/https:\/\//' -e 's/\.git$//'
+# Get current repository branch
+def get-current-branch []: record<directory: string, scm: string> -> string {
+  let ctx = $in
+  match $ctx.scm {
+    jj => (jj log --no-graph -r 'heads(::@ & bookmarks())' -T 'remote_bookmarks.filter(|b| b.remote() != "git").map(|b| b.name()).join("\n")' | lines | first),
+    git => (git rev-parse --abbrev-ref HEAD | lines | first)
+  }
 }
 
-build_full_url() { # build URL full including file or directory
-	# $1: transformed base URL
-	# $2: branch
-	# $3: file path
-	local path
-
-	if [ $# -ne 3 ]; then
-		return 1
-	fi
-	if [ -z "${3}" ] || test -d "${3}"; then
-		path="tree/${2}/${3}"
-	else
-		path="blob/${2}/${3}"
-	fi
-	echo "${1}/${path}"
+# Get remote
+def get-remote [
+  name: string = ""
+  # Remote name, defaults to the first found remote
+]: record<directory: string, scm: string> -> record<name: string, url: string> {
+  let ctx = $in
+  let remotes = match $ctx.scm {
+    jj => (jj git remote list | lines | parse "{name} {url}"),
+    git => (git remote -v | parse "{name}\t{url} {_}")
+  }
+  let remote = if ($name | is-not-empty) {
+    $remotes | where name == $name
+  } else {
+    $remotes
+  } | first
+  {
+    name: $remote.name
+    url: (if ($remote.url | str starts-with "git@") { $remote.url | str replace ":" "/" | str replace "git@" "https://" | str replace "ssh.dev.azure.com:v3" "dev.azure.com"} else { $remote.url })
+  }
 }
 
-main() {
-	local file filepath branch remote_url transformed_url
-
-	if [ $# -eq 0 ]; then
-		# use current directory if no parameter was provided
-		file='.'
-	elif [ $# -ne 1 ] || [ "${1}" = "-h" ] || [ "${1}" = "--help" ]; then
-		echo "USAGE: $(basename "${0}") [FILE[:LINE_NUMBER]|DIRECTORY]"
-		echo 'Print the github/gitlab URL to the repository including the passed file or directory name.'
-		return 1
-	else
-		file="${1}"
-	fi
-
-	if [ -d "${file}" ]; then
-		cd "${file}"
-		file=""
-	else
-		cd "$(dirname "${file}")"
-		file="$(basename "${file}")"
-	fi
-	branch="$(get_current_branch)"
-	remote_url="$(get_remote_url "${branch}")"
-	transformed_url="$(transform_url "${remote_url}")"
-	filepath="$(get_file_path "$(pwd)/${file}")"
-	echo $(build_full_url "${transformed_url}" "${branch}" "${filepath}")
+# Join URL
+def join-url [
+  remote: record<name: string, url: string>
+  # Remote
+  branch: string
+  # Branch
+  --path (-p): record<path: string, linenr: string>
+  # Path to file or directory
+]: record<directory: string, scm: string> -> string {
+  let ctx = $in
+  let url = $remote.url | url parse
+  mut segment = "tree"
+  mut fragment = ""
+  let path = if ($path | is-not-empty) {
+    let type = [$ctx.directory $path.path] | path join | path type
+    $segment = if $type != "dir" {"blob"} else {$segment}
+    if ($path.linenr | is-not-empty) and $type != "dir" {
+      $fragment = $"L($path.linenr)"
+    }
+    $path.path
+  } else {""}
+  $url | update path ([($url.path | str replace -r ".git$" "") $segment $branch $path] | path join) | update fragment $fragment | url join
 }
 
-main "${@}"
+# Extracts the repository's URL in the version control hub
+def main [
+  path: path = ""
+  # File or directory path, defaults to the root of the repository
+  --open (-o)
+  # Open URL in browser
+  --remote (-r): string
+  # Specific remote name, defaults to the first remote
+  ]: nothing -> string {
+    let ctx = find-root
+    let branch = $ctx | get-current-branch
+    let remote = $ctx | get-remote $remote
+    let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand | path relative-to $ctx.directory)}
+    let url = $ctx | join-url $remote $branch --path $path
+    if $open { xdg-open $url }
+    $url
+}
