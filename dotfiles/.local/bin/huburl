@@ -2,6 +2,8 @@
 # Author: Jan Christoph Ebersbach <jceb@e-jc.de>
 # SPDX-License-Identifier: Apache-2.0
 
+use std/log
+
 # Get git root
 def find-git-root []: nothing -> string {
   let cmd = do -c {git rev-parse --show-toplevel} | complete
@@ -23,17 +25,33 @@ def find-jj-root []: nothing -> string {
 }
 
 # Find repository root directory
-def find-root []: nothing -> record<directory: string, scm: string> {
+def find-root [
+]: string -> record<directory: string, scm: string> {
+  let path = $in
+  def find-dir []: string -> string {
+    let p = $in
+    if ($p | path type) == "dir" {
+      return $p
+    }
+    $p | path dirname | find-dir
+  }
+  cd ($path | find-dir)
   mut root = ""
   mut scm = ""
   try {
     $root = find-jj-root
     $scm = "jj"
+      log debug "found a jujutsu repository"
+  } catch {
+    log debug "not a jujutsu repository"
   }
   if ($root | is-empty) {
     try {
       $root = find-git-root
       $scm = "git"
+      log debug "found a git repository"
+    } catch {
+      log debug "not a git repository"
     }
   }
   if ($root | is-empty) {
@@ -104,12 +122,24 @@ def main [
   # Open URL in browser
   --remote (-r): string
   # Specific remote name, defaults to the first remote
+  --verbose (-v)
+  # Verbose log output
   ]: nothing -> string {
-    let ctx = find-root
+    if $verbose {
+      $env.NU_LOG_LEVEL = "debug"
+    }
+    let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand)} else {{path: (pwd), linenr: null}}
+    let ctx = $path.path | find-root
+    cd $ctx.directory
+    log debug $"repository root directory: ($ctx.directory)"
     let branch = $ctx | get-current-branch
+    log debug $"current branch: ($branch)"
     let remote = $ctx | get-remote $remote
-    let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand | path relative-to $ctx.directory)}
+    log debug $"current remote: ($remote)"
+    let path = $path | update path ($in.path | path relative-to $ctx.directory)
+    log debug $"relative path: ($path)"
     let url = $ctx | join-url $remote $branch --path $path
+    log debug $"url: ($url)"
     if $open { xdg-open $url }
     $url
 }
