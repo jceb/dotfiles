@@ -191,6 +191,7 @@ myManageHook = manageDocks <+> composeAll
                , className =? "linphone" --> doFloat
                , className =? "zoom" --> doFloat
                , className =? "ramboxpro" --> doShift "1"
+               , className =? "game.exe" --> doShift "5" -- Diablo
                , className =? "nsp" --> doShift "NSP"
                -- , className =? "Thunderbird" --> doShift "8"
                ] <+> namedScratchpadManageHook scratchpads <+> fullscreenManageHook
