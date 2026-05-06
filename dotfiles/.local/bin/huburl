@@ -89,6 +89,12 @@ def get-remote [
   }
 }
 
+let FORGE_GITHUB = "GitHub"
+let FORGE_GITLAB = "GitLab"
+let FORGE_GITEA = "GitTea / Forgejo"
+let FORGE_AZURE_DEVOPS = "Azure DevOps"
+let FORGE_SRHT = "Source Hut"
+
 # Join URL
 def join-url [
   remote: record<name: string, url: string>
@@ -98,37 +104,48 @@ def join-url [
   --path (-p): record<path: string, linenr: string>
   # Path to file or directory
 ]: record<directory: string, scm: string> -> string {
-  let GITHUB = 1
-  let GITLAB = 2
-  let GITEA = 3
-  let AZUREDEVOPS = 4
-  let forge_type = if ($remote.url | str contains "github") {
-    $GITHUB
-  } else if ($remote.url | str contains "gitlab") {
-    $GITLAB
-  } else if ($remote.url | str contains "azure") {
-    $AZUREDEVOPS
-  } else if ($remote.url | str contains "gitea") or ($remote.url | str contains "forgejo") or ($remote.url | str contains "41ppl") {
-    $GITEA
-  }
   let ctx = $in
   let url = $remote.url | url parse
-  mut segment = if $forge_type in [$GITEA] { "src/branch" } else if $forge_type in [$AZUREDEVOPS] { "" } else { "tree" }
+  let forge_type = if ($url.host in ["github.com"]) {
+    $FORGE_GITHUB
+  } else if ($url.host in ["gitlab.com"]) {
+    $FORGE_GITLAB
+  } else if ($url.host in ["dev.azure.com"]) {
+    $FORGE_AZURE_DEVOPS
+  } else if ($url.host in ["gitea.com", "codeberg.org"]) {
+    $FORGE_GITEA
+  } else if ($url.host in ["git.sr.ht"]) {
+    $FORGE_SRHT
+  }
+  log debug $"found a forge of type: ($forge_type)"
+  mut segment = if $forge_type in [$FORGE_GITEA] { "src/branch" } else if $forge_type in [$FORGE_AZURE_DEVOPS] { "" } else { "tree" }
   let segment_gitea = "src/branch"
   mut fragment = ""
-  let params = if $forge_type in [$AZUREDEVOPS] { [{key: version, value: $"GB($branch)" }] | if ($path | is-not-empty) { append [{key: path, value: $path.path}] } else { $in } } else { [] }
-  let branch = if $forge_type in [$AZUREDEVOPS] { "" } else { $branch }
+  let params = if $forge_type in [$FORGE_AZURE_DEVOPS] {
+    [{key: version, value: $"GB($branch)" }] | if ($path | is-not-empty) {
+      append [{key: path, value: $path.path}]
+    } else { $in }
+  } else if $forge_type in [$FORGE_SRHT] {
+    [{key: "view-source", value: "" }]
+  } else {
+    []
+  }
+  let branch = if $forge_type in [$FORGE_AZURE_DEVOPS] { "" } else { $branch }
   let path = if ($path | is-not-empty) {
-    if $forge_type in [$GITHUB $GITLAB] {
+    if $forge_type in [$FORGE_GITHUB $FORGE_GITLAB $FORGE_SRHT] {
       let type = [$ctx.directory $path.path] | path join | path type
-      $segment = if $type != "dir" { "blob" } else { $segment }
+      $segment = if $type != "dir" { if $forge_type in [$FORGE_SRHT] { "tree" } else { "blob" }} else { $segment }
       if ($path.linenr | is-not-empty) and $type != "dir" {
         $fragment = $"L($path.linenr)"
       }
+      $path.path
+    } else {
+      ""
     }
-    $path.path
   } else {""}
-  let url = if $forge_type in [$AZUREDEVOPS] { let p = $url.path | path split; $url | update path ($p | insert ($p | length | $in - 1) _git | path join) } else { $url }
+  let url = if $forge_type in [$FORGE_AZURE_DEVOPS] {
+    let p = $url.path | path split; $url | update path ($p | insert ($p | length | $in - 1) _git | path join)
+  } else { $url }
   $url | reject query | update path ([($url.path | str replace -r ".git$" "") $segment $branch $path] | path join) | update params ($in.params | append $params) | update fragment $fragment | url join
 }
 
