@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 use std/log
+# use std/clip # once clipboard support lands in nushell
 
 # Get git root
 def find-git-root []: nothing -> string {
@@ -212,5 +213,6 @@ def main [
   log debug $"url: ($url)"
   if $open { xdg-open $url }
   if $copy { $url | xsel -i }
+  # if $copy { $url | clip copy } # once clipboard support lands in nushell
   $url
 }
