@@ -25,8 +25,7 @@ def find-jj-root []: nothing -> string {
 }
 
 # Find repository root directory
-def find-root [
-]: string -> record<directory: string, scm: string> {
+def find-root []: string -> record<directory: string, scm: string> {
   let path = $in
   def find-dir []: string -> string {
     let p = $in
@@ -41,7 +40,7 @@ def find-root [
   try {
     $root = find-jj-root
     $scm = "jj"
-      log debug "found a jujutsu repository"
+    log debug "found a jujutsu repository"
   } catch {
     log debug "not a jujutsu repository"
   }
@@ -145,23 +144,23 @@ def main [
   # Specific remote name, defaults to the first remote
   --verbose (-v)
   # Verbose log output
-  ]: nothing -> string {
-    if $verbose {
-      $env.NU_LOG_LEVEL = "debug"
-    }
-    let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand)} else {{path: (pwd), linenr: null}}
-    let ctx = $path.path | find-root
-    cd $ctx.directory
-    log debug $"repository root directory: ($ctx.directory)"
-    let branch = $ctx | get-current-branch
-    log debug $"current branch: ($branch)"
-    let remote = $ctx | get-remote $remote
-    log debug $"current remote: ($remote)"
-    let path = $path | update path ($in.path | path relative-to $ctx.directory)
-    log debug $"relative path: ($path)"
-    let url = $ctx | join-url $remote $branch --path $path
-    log debug $"url: ($url)"
-    if $open { xdg-open $url }
-    if $copy { $url | xsel -i }
-    $url
+]: nothing -> string {
+  if $verbose {
+    $env.NU_LOG_LEVEL = "debug"
+  }
+  let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand)} else {{path: (pwd), linenr: null}}
+  let ctx = $path.path | find-root
+  cd $ctx.directory
+  log debug $"repository root directory: ($ctx.directory)"
+  let branch = $ctx | get-current-branch
+  log debug $"current branch: ($branch)"
+  let remote = $ctx | get-remote $remote
+  log debug $"current remote: ($remote)"
+  let path = $path | update path ($in.path | path relative-to $ctx.directory)
+  log debug $"relative path: ($path)"
+  let url = $ctx | join-url $remote $branch --path $path
+  log debug $"url: ($url)"
+  if $open { xdg-open $url }
+  if $copy { $url | xsel -i }
+  $url
 }
