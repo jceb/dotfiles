@@ -148,7 +148,7 @@ def main [
   if $verbose {
     $env.NU_LOG_LEVEL = "debug"
   }
-  let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand)} else {{path: (pwd), linenr: null}}
+  let path = $path | parse --regex '^(?<path>[^:]+)(?::(?<linenr>[0-9]+))?$' | if ($in | is-not-empty) {first | update path ($in.path | path expand)} else {{path: (pwd | path expand), linenr: null}}
   let ctx = $path.path | find-root
   cd $ctx.directory
   log debug $"repository root directory: ($ctx.directory)"
