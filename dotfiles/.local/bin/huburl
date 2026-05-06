@@ -139,6 +139,8 @@ def main [
   # File or directory path, defaults to the root of the repository
   --open (-o)
   # Open URL in browser
+  --copy (-c)
+  # Copy URL into the clipboard
   --remote (-r): string
   # Specific remote name, defaults to the first remote
   --verbose (-v)
@@ -160,5 +162,6 @@ def main [
     let url = $ctx | join-url $remote $branch --path $path
     log debug $"url: ($url)"
     if $open { xdg-open $url }
+    if $copy { $url | xsel -i }
     $url
 }
