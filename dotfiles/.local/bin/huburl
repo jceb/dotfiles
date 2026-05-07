@@ -91,27 +91,27 @@ def get-remote [
 }
 
 let CONFIG_PATH = "~/.config/huburl/config.toml" | path expand
+let CONFIG_DEFAULT = {
+  forges: {
+    github: ["github.com"]
+    gitlab: ["gitlab.com"]
+    gitea: ["gitea.com"]
+    forgejo: ["codeberg.org"]
+    azure: ["dev.azure.com"]
+    srht: ["git.sr.ht"]
+  }
+}
 
 def load-config []: nothing -> record<forges: record<github: list<string>, gitlab: list<string>, gitea: list<string>, forgejo: list<string>, azure: list<string>, srht: list<string>>> {
   let config_user = if ($CONFIG_PATH | path exists) { open $CONFIG_PATH } else { {} }
-  let config_default = {
-    forges: {
-      github: ["github.com"]
-      gitlab: ["gitlab.com"]
-      gitea: ["gitea.com"]
-      forgejo: ["codeberg.org"]
-      azure: ["dev.azure.com"]
-      srht: ["git.sr.ht"]
-    }
-  }
-  $config_default | update forges (
-    $config_default.forges |
-      update github ($config_default.forges.github | append ($config_user | get -o forges.github.hostnames | default [])) |
-      update gitlab ($config_default.forges.gitlab | append ($config_user | get -o forges.gitlab.hostnames | default [])) |
-      update gitea ($config_default.forges.gitea | append ($config_user | get -o forges.gitea.hostnames | default [])) |
-      update forgejo ($config_default.forges.forgejo | append ($config_user | get -o forges.forgejo.hostnames | default [])) |
-      update azure ($config_default.forges.azure | append ($config_user | get -o forges.azure.hostnames | default [])) |
-      update srht ($config_default.forges.srht | append ($config_user | get -o forges.srht.hostnames | default []))
+  $CONFIG_DEFAULT | update forges (
+    $CONFIG_DEFAULT.forges |
+      update github ($CONFIG_DEFAULT.forges.github | append ($config_user | get -o forges.github.hostnames | default [])) |
+      update gitlab ($CONFIG_DEFAULT.forges.gitlab | append ($config_user | get -o forges.gitlab.hostnames | default [])) |
+      update gitea ($CONFIG_DEFAULT.forges.gitea | append ($config_user | get -o forges.gitea.hostnames | default [])) |
+      update forgejo ($CONFIG_DEFAULT.forges.forgejo | append ($config_user | get -o forges.forgejo.hostnames | default [])) |
+      update azure ($CONFIG_DEFAULT.forges.azure | append ($config_user | get -o forges.azure.hostnames | default [])) |
+      update srht ($CONFIG_DEFAULT.forges.srht | append ($config_user | get -o forges.srht.hostnames | default []))
   )
 }
 
@@ -167,7 +167,7 @@ def join-url [
   }
   let branch = if $forge_type in [$FORGE_AZURE] { "" } else { $branch }
   let path = if ($path | is-not-empty) {
-    if $forge_type in [$FORGE_GITHUB $FORGE_GITLAB $FORGE_SRHT] {
+    if $forge_type in [$FORGE_GITHUB $FORGE_GITLAB $FORGE_GITEA $FORGE_FORGEJO $FORGE_SRHT] {
       let type = [$ctx.directory $path.path] | path join | path type
       $segment = if $type != "dir" { if $forge_type in [$FORGE_SRHT] { "tree" } else { "blob" }} else { $segment }
       if ($path.linenr | is-not-empty) and $type != "dir" {
@@ -184,6 +184,118 @@ def join-url [
   $url | reject query | update path ([($url.path | str replace -r ".git$" "") $segment $branch $path] | path join) | update params ($in.params | append $params) | update fragment $fragment | url join
 }
 
+def test-join-url [] {
+  use std/assert
+  let ctx = {directory: ".", scm: "git"}
+  let config = $CONFIG_DEFAULT
+
+  # TODO: Test SSH 
+
+  # GitHub
+  let res = $ctx | join-url $config {name: "origin", url: "https://github.com/example/repo"} "main"
+  let exp = "https://github.com/example/repo/tree/main/"
+  assert ($res == $exp) $"When a github repository is provided, then the result should be a github url. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://github.com/example/repo"} "main" --path {path: "huburl", linenr: ""}
+  let exp = "https://github.com/example/repo/blob/main/huburl"
+  assert ($res == $exp) $"When a repository and path at github is provided, then the result should be a github url with a path. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://github.com/example/repo"} "main" --path {path: "huburl", linenr: "23"}
+  let exp = "https://github.com/example/repo/blob/main/huburl#L23"
+  assert ($res == $exp) $"When a repository and path with line number at github is provided, then the result should be a github url with a path. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://github.com/example/repo"} "main" --path {path: ".", linenr: "23"}
+  let exp = "https://github.com/example/repo/tree/main/."
+  assert ($res == $exp) $"When a repository and directory path with line number at github is provided, then the result should be a github url with a path and without the line number. Result: ($res), Expected: ($exp)"
+
+  # GitLab
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitlab.com/example/repo"} "main"
+  let exp = "https://gitlab.com/example/repo/tree/main/"
+  assert ($res == $exp) $"When a gitlab repository is provided, then the result should be a gitlab url. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitlab.com/example/repo"} "main" --path {path: "huburl", linenr: ""}
+  let exp = "https://gitlab.com/example/repo/blob/main/huburl"
+  assert ($res == $exp) $"When a repository and path at gitlab is provided, then the result should be a gitlab url with a path. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitlab.com/example/repo"} "main" --path {path: "huburl", linenr: "23"}
+  let exp = "https://gitlab.com/example/repo/blob/main/huburl#L23"
+  assert ($res == $exp) $"When a repository and path with line number at gitlab is provided, then the result should be a gitlab url with a path and a line number. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitlab.com/example/repo"} "main" --path {path: ".", linenr: "23"}
+  let exp = "https://gitlab.com/example/repo/tree/main/."
+  assert ($res == $exp) $"When a repository and directory path with line number at gitlab is provided, then the result should be a gitlab url with a path and without the line number. Result: ($res), Expected: ($exp)"
+
+  # Gitea
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitea.com/example/repo"} "main"
+  let exp = "https://gitea.com/example/repo/src/branch/main/"
+  assert ($res == $exp) $"When a gitea repository is provided, then the result should be a gitea url. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitea.com/example/repo"} "main" --path {path: "huburl", linenr: ""}
+  let exp = "https://gitea.com/example/repo/blob/main/huburl"
+  assert ($res == $exp) $"When a repository and path at gitea is provided, then the result should be a gitea url with a path. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitea.com/example/repo"} "main" --path {path: "huburl", linenr: "23"}
+  let exp = "https://gitea.com/example/repo/blob/main/huburl#L23"
+  assert ($res == $exp) $"When a repository and path with line number at gitea is provided, then the result should be a gitea url with a path and a line number. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://gitea.com/example/repo"} "main" --path {path: ".", linenr: "23"}
+  let exp = "https://gitea.com/example/repo/src/branch/main/."
+  assert ($res == $exp) $"When a repository and directory path with line number at gitea is provided, then the result should be a gitea url with a path and without the line number. Result: ($res), Expected: ($exp)"
+
+  # Forgejo
+  let res = $ctx | join-url $config {name: "origin", url: "https://codeberg.org/example/repo"} "main"
+  let exp = "https://codeberg.org/example/repo/src/branch/main/"
+  assert ($res == $exp) $"When a forgejo repository is provided, then the result should be a forgejo url. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://codeberg.org/example/repo"} "main" --path {path: "huburl", linenr: ""}
+  let exp = "https://codeberg.org/example/repo/blob/main/huburl"
+  assert ($res == $exp) $"When a repository and path at forgejo is provided, then the result should be a forgejo url with a path. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://codeberg.org/example/repo"} "main" --path {path: "huburl", linenr: "23"}
+  let exp = "https://codeberg.org/example/repo/blob/main/huburl#L23"
+  assert ($res == $exp) $"When a repository and path with line number at forgejo is provided, then the result should be a forgejo url with a path and a line number. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://codeberg.org/example/repo"} "main" --path {path: ".", linenr: "23"}
+  let exp = "https://codeberg.org/example/repo/src/branch/main/."
+  assert ($res == $exp) $"When a repository and directory path with line number at forgejo is provided, then the result should be a forgejo url with a path and without the line number. Result: ($res), Expected: ($exp)"
+
+  # Azure DevOps
+  let res = $ctx | join-url $config {name: "origin", url: "https://user@dev.azure.com/ORG/PROJECT/_git/repo"} "main"
+  let exp = "https://user@dev.azure.com/ORG/PROJECT/_git/_git/repo/?version=GBmain"
+  assert ($res == $exp) $"When a azure repository is provided, then the result should be a azure url. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://user@dev.azure.com/ORG/PROJECT/_git/repo"} "main" --path {path: "huburl", linenr: ""}
+  let exp = "https://user@dev.azure.com/ORG/PROJECT/_git/_git/repo/?version=GBmain&path=huburl"
+  assert ($res == $exp) $"When a repository and path at azure is provided, then the result should be a azure url with a path. Result: ($res), Expected: ($exp)"
+
+  ## not supported
+  let res = $ctx | join-url $config {name: "origin", url: "https://user@dev.azure.com/ORG/PROJECT/_git/repo"} "main" --path {path: "huburl", linenr: "23"}
+  let exp = "https://user@dev.azure.com/ORG/PROJECT/_git/_git/repo/?version=GBmain&path=huburl"
+  assert ($res == $exp) $"When a repository and path with line number at azure is provided, then the result should be a azure url with a path and without a line number - azure doesn't support it. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://user@dev.azure.com/ORG/PROJECT/_git/repo"} "main" --path {path: ".", linenr: "23"}
+  let exp = "https://user@dev.azure.com/ORG/PROJECT/_git/_git/repo/?version=GBmain&path=."
+  assert ($res == $exp) $"When a repository and directory path with line number at azure is provided, then the result should be a azure url with a path and without the line number. Result: ($res), Expected: ($exp)"
+
+  # Source Hut
+  let res = $ctx | join-url $config {name: "origin", url: "https://git.sr.ht/example/repo"} "main"
+  let exp = "https://git.sr.ht/example/repo/tree/main/?view-source="
+  assert ($res == $exp) $"When a forgejo repository is provided, then the result should be a forgejo url. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://git.sr.ht/example/repo"} "main" --path {path: "huburl", linenr: ""}
+  let exp = "https://git.sr.ht/example/repo/tree/main/huburl?view-source="
+  assert ($res == $exp) $"When a repository and path at forgejo is provided, then the result should be a forgejo url with a path. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://git.sr.ht/example/repo"} "main" --path {path: "huburl", linenr: "23"}
+  let exp = "https://git.sr.ht/example/repo/tree/main/huburl?view-source=#L23"
+  assert ($res == $exp) $"When a repository and path with line number at forgejo is provided, then the result should be a forgejo url with a path and a line number. Result: ($res), Expected: ($exp)"
+
+  let res = $ctx | join-url $config {name: "origin", url: "https://git.sr.ht/example/repo"} "main" --path {path: ".", linenr: "23"}
+  let exp = "https://git.sr.ht/example/repo/tree/main/.?view-source="
+  assert ($res == $exp) $"When a repository and directory path with line number at forgejo is provided, then the result should be a forgejo url with a path and without the line number. Result: ($res), Expected: ($exp)"
+  log info "All tests passed"
+}
+
 # Builds the URL of the current repository and path in the source control hub
 def main [
   path: path = ""
@@ -196,7 +308,13 @@ def main [
   # Specific remote name, defaults to the first remote
   --verbose (-v)
   # Verbose log output
+  --test
+  # Run tests
 ]: nothing -> string {
+  if $test {
+    test-join-url
+    exit 0
+  }
   if $verbose {
     $env.NU_LOG_LEVEL = "debug"
   }
