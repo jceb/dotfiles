@@ -124,6 +124,8 @@ let FORGE_SRHT = "Source Hut"
 
 # Join URL
 def join-url [
+  config: record<forges: record<github: list<string>, gitlab: list<string>, gitea: list<string>, forgejo: list<string>, azure: list<string>, srht: list<string>>>
+  # Configuration
   remote: record<name: string, url: string>
   # Remote
   branch: string
@@ -133,7 +135,6 @@ def join-url [
 ]: record<directory: string, scm: string> -> string {
   let ctx = $in
   let url = $remote.url | url parse
-  let config = load-config
   let forge_type = if ($url.host in $config.forges.github) {
     $FORGE_GITHUB
   } else if ($url.host in $config.forges.gitlab) {
@@ -183,7 +184,7 @@ def join-url [
   $url | reject query | update path ([($url.path | str replace -r ".git$" "") $segment $branch $path] | path join) | update params ($in.params | append $params) | update fragment $fragment | url join
 }
 
-# Extracts the repository's URL in the version control hub
+# Builds the URL of the current repository and path in the source control hub
 def main [
   path: path = ""
   # File or directory path, defaults to the root of the repository
@@ -209,7 +210,8 @@ def main [
   log debug $"current remote: ($remote)"
   let path = $path | update path ($in.path | path relative-to $ctx.directory)
   log debug $"relative path: ($path)"
-  let url = $ctx | join-url $remote $branch --path $path
+  let config = load-config
+  let url = $ctx | join-url $config $remote $branch --path $path
   log debug $"url: ($url)"
   if $open { xdg-open $url }
   if $copy { $url | xsel -i }
