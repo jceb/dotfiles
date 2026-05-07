@@ -102,7 +102,7 @@ def get-remote [
 
 let CONFIG_PATH = "~/.config/huburl/config.toml" | path expand
 let CONFIG_DEFAULT = {
-  forges: {
+  hubs: {
     github: ["github.com"]
     gitlab: ["gitlab.com"]
     gitea: ["cloud.gitea.com"]
@@ -112,29 +112,29 @@ let CONFIG_DEFAULT = {
   }
 }
 
-def load-config []: nothing -> record<forges: record<github: list<string>, gitlab: list<string>, gitea: list<string>, forgejo: list<string>, azure: list<string>, srht: list<string>>> {
+def load-config []: nothing -> record<hubs: record<github: list<string>, gitlab: list<string>, gitea: list<string>, forgejo: list<string>, azure: list<string>, srht: list<string>>> {
   let config_user = if ($CONFIG_PATH | path exists) { open $CONFIG_PATH } else { {} }
-  $CONFIG_DEFAULT | update forges (
-    $CONFIG_DEFAULT.forges |
-      update github ($CONFIG_DEFAULT.forges.github | append ($config_user | get -o forges.github.hostnames | default [])) |
-      update gitlab ($CONFIG_DEFAULT.forges.gitlab | append ($config_user | get -o forges.gitlab.hostnames | default [])) |
-      update gitea ($CONFIG_DEFAULT.forges.gitea | append ($config_user | get -o forges.gitea.hostnames | default [])) |
-      update forgejo ($CONFIG_DEFAULT.forges.forgejo | append ($config_user | get -o forges.forgejo.hostnames | default [])) |
-      update azure ($CONFIG_DEFAULT.forges.azure | append ($config_user | get -o forges.azure.hostnames | default [])) |
-      update srht ($CONFIG_DEFAULT.forges.srht | append ($config_user | get -o forges.srht.hostnames | default []))
+  $CONFIG_DEFAULT | update hubs (
+    $CONFIG_DEFAULT.hubs |
+      update github ($CONFIG_DEFAULT.hubs.github | append ($config_user | get -o hubs.github.hostnames | default [])) |
+      update gitlab ($CONFIG_DEFAULT.hubs.gitlab | append ($config_user | get -o hubs.gitlab.hostnames | default [])) |
+      update gitea ($CONFIG_DEFAULT.hubs.gitea | append ($config_user | get -o hubs.gitea.hostnames | default [])) |
+      update forgejo ($CONFIG_DEFAULT.hubs.forgejo | append ($config_user | get -o hubs.forgejo.hostnames | default [])) |
+      update azure ($CONFIG_DEFAULT.hubs.azure | append ($config_user | get -o hubs.azure.hostnames | default [])) |
+      update srht ($CONFIG_DEFAULT.hubs.srht | append ($config_user | get -o hubs.srht.hostnames | default []))
   )
 }
 
-let FORGE_GITHUB = "GitHub"
-let FORGE_GITLAB = "GitLab"
-let FORGE_GITEA = "GitTea"
-let FORGE_FORGEJO = "Forgejo"
-let FORGE_AZURE = "Azure DevOps"
-let FORGE_SRHT = "Source Hut"
+let HUB_GITHUB = "GitHub"
+let HUB_GITLAB = "GitLab"
+let HUB_GITEA = "GitTea"
+let HUB_FORGEJO = "Forgejo"
+let HUB_AZURE = "Azure DevOps"
+let HUB_SRHT = "Source Hut"
 
 # Join URL
 def join-url [
-  config: record<forges: record<github: list<string>, gitlab: list<string>, gitea: list<string>, forgejo: list<string>, azure: list<string>, srht: list<string>>>
+  config: record<hubs: record<github: list<string>, gitlab: list<string>, gitea: list<string>, forgejo: list<string>, azure: list<string>, srht: list<string>>>
   # Configuration
   remote: record<name: string, url: string>
   # Remote
@@ -145,41 +145,41 @@ def join-url [
 ]: record<directory: string, scm: string> -> string {
   let ctx = $in
   let url = $remote.url | url parse
-  let forge_type = if ($url.host in $config.forges.github) {
-    $FORGE_GITHUB
-  } else if ($url.host in $config.forges.gitlab) {
-    $FORGE_GITLAB
-  } else if ($url.host in $config.forges.gitea) {
-    $FORGE_GITEA
-  } else if ($url.host in $config.forges.forgejo) {
-    $FORGE_FORGEJO
-  } else if ($url.host in $config.forges.azure) {
-    $FORGE_AZURE
-  } else if ($url.host in $config.forges.srht) {
-    $FORGE_SRHT
+  let hub_type = if ($url.host in $config.hubs.github) {
+    $HUB_GITHUB
+  } else if ($url.host in $config.hubs.gitlab) {
+    $HUB_GITLAB
+  } else if ($url.host in $config.hubs.gitea) {
+    $HUB_GITEA
+  } else if ($url.host in $config.hubs.forgejo) {
+    $HUB_FORGEJO
+  } else if ($url.host in $config.hubs.azure) {
+    $HUB_AZURE
+  } else if ($url.host in $config.hubs.srht) {
+    $HUB_SRHT
   } else {
-    log warning $"Unknown forge type, falling back to type ($FORGE_GITLAB)"
-    log info $"Configure your custom forge in file ($CONFIG_PATH)\nSupported forge types: github, gitlab, gitea, forgjo, azure, srht\nSample configuration for this forge:\n\n[forges.gitlab]\nhostnames = [ \"($url.host)\" ]"
-    $FORGE_GITLAB
+    log warning $"Unknown hub type, falling back to type ($HUB_GITLAB)"
+    log info $"Configure your custom hub in file ($CONFIG_PATH)\nSupported hub types: github, gitlab, gitea, forgjo, azure, srht\nSample configuration for this hub:\n\n[hubs.gitlab]\nhostnames = [ \"($url.host)\" ]"
+    $HUB_GITLAB
   }
-  log debug $"found a forge of type: ($forge_type)"
-  mut segment = if $forge_type in [$FORGE_GITEA $FORGE_FORGEJO] { "src/branch" } else if $forge_type in [$FORGE_AZURE] { "" } else { "tree" }
+  log debug $"found a hub of type: ($hub_type)"
+  mut segment = if $hub_type in [$HUB_GITEA $HUB_FORGEJO] { "src/branch" } else if $hub_type in [$HUB_AZURE] { "" } else { "tree" }
   let segment_gitea = "src/branch"
   mut fragment = ""
-  let params = if $forge_type in [$FORGE_AZURE] {
+  let params = if $hub_type in [$HUB_AZURE] {
     [{key: version, value: $"GB($branch)" }] | if ($path | is-not-empty) and ($path.path | is-not-empty) {
       append [{key: path, value: $path.path}]
     } else { $in }
-  } else if $forge_type in [$FORGE_SRHT] {
+  } else if $hub_type in [$HUB_SRHT] {
     [{key: "view-source", value: "" }]
   } else {
     []
   }
-  let branch = if $forge_type in [$FORGE_AZURE] { "" } else { $branch }
+  let branch = if $hub_type in [$HUB_AZURE] { "" } else { $branch }
   let path = if ($path | is-not-empty) {
-    if $forge_type in [$FORGE_GITHUB $FORGE_GITLAB $FORGE_GITEA $FORGE_FORGEJO $FORGE_SRHT] {
+    if $hub_type in [$HUB_GITHUB $HUB_GITLAB $HUB_GITEA $HUB_FORGEJO $HUB_SRHT] {
       let type = [$ctx.directory $path.path] | path join | path type
-      $segment = if $type != "dir" { if $forge_type in [$FORGE_SRHT] { "tree" } else { "blob" }} else { $segment }
+      $segment = if $type != "dir" { if $hub_type in [$HUB_SRHT] { "tree" } else { "blob" }} else { $segment }
       if ($path.linenr | is-not-empty) and $type != "dir" {
         $fragment = $"L($path.linenr)"
       }
@@ -188,7 +188,7 @@ def join-url [
       ""
     }
   } else {""}
-  let url = if $forge_type in [$FORGE_AZURE] {
+  let url = if $hub_type in [$HUB_AZURE] {
     let p = $url.path | path split; $url | update path ($p | if ($p | get ($p | length | $in - 2)) != "_git" {insert ($p | length | $in - 1) _git} else {$p} | path join)
   } else { $url }
   $url | reject query | reject username | reject password | update path ([($url.path | str replace -r ".git$" "") $segment $branch $path] | path join) | update params ($in.params | append $params) | update fragment $fragment | url join
