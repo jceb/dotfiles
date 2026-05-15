@@ -36,7 +36,7 @@ lookup () {
   local identity="$1"
   local key="$2"
 
-  jj config get "identity.$identity.$key"
+  jj config get "identity.$identity.$key" 2>/dev/null
 }
 
 format_identity () {
@@ -104,7 +104,7 @@ env_ssh_command () {
   shift
 
   if [ "$identity" = "" ]; then
-    identity="$(jj config get user.identity)"
+    identity="$(jj config get user.identity  2>/dev/null)"
   fi
 
   if [ -z "$identity" ];
@@ -171,7 +171,7 @@ use_identity () {
 
 update_identity () {
   local identity prev_settings curr_settings diff_string
-  identity="$(jj config get user.identity)"
+  identity="$(jj config get user.identity 2>/dev/null)"
   prev_settings=$(get_current_settings "$identity" | sed -e 's/^/  /')
   use_identity "$identity"
   curr_settings=$(get_current_settings "$identity" | sed -e 's/^/  /')
@@ -204,7 +204,7 @@ print_raw_identity () {
   identity="$1"
 
   if [ "$identity" = "" ]; then
-    identity="$(jj config get user.identity)"
+    identity="$(jj config get user.identity 2>/dev/null)"
   fi
 
   if [ -z "$identity" ];
@@ -223,7 +223,7 @@ print_raw_identity () {
 
 print_current_identity () {
   local identity
-  identity="$(jj config get user.identity)"
+  identity="$(jj config get user.identity 2>/dev/null)"
 
   if [ -n "$identity" ];
   then
@@ -283,7 +283,7 @@ define_gpg () {
     jj config set --user identity."$identity".signingkey "$gpgkey"
     echo "Added GPG key $gpgkey to $(format_identity "$identity")"
 
-    current_identity="$(jj config get user.identity)"
+    current_identity="$(jj config get user.identity 2>/dev/null)"
     if [ "$current_identity" == "$identity" ]
     then
       use_identity "$identity"
@@ -310,7 +310,7 @@ define_ssh () {
       jj config set --user identity."$identity".sshkeyverbosity "$sshkeyverbosity"
     fi
 
-    current_identity="$(jj config get user.identity)"
+    current_identity="$(jj config get user.identity 2>/dev/null)"
     if [ "$current_identity" == "$identity" ]
     then
       use_identity "$identity"
