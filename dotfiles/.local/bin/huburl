@@ -93,7 +93,7 @@ def get-remote [
     $remotes | where name == $name
   } else {
     $remotes
-  } | first
+  } | sort-by -c {|a, b| if "origin" in [$a.name $b.name] { $a.name == "origin" } else { $a.name < $b.name }} | first
   {
     name: $remote.name
     url: ($remote.url | transform-remote)
