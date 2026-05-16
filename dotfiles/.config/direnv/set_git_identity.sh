@@ -5,6 +5,10 @@ set -euo pipefail
 # 2: current directory
 # 3: relative path to .git folder in repository
 
+if [ -z "$1" ]; then
+    echo "No identity specified" 1>&2
+    exit 1
+fi
 cd "$(dirname "${2}/${3}/..")"
 
 if git rev-parse --show-toplevel &>/dev/null; then
@@ -13,7 +17,8 @@ if git rev-parse --show-toplevel &>/dev/null; then
         git identity "$1"
     fi
 fi
-if jj workspace root &>/dev/null && [ -z  "$(jj workspace root &>/dev/null)" ]; then
+
+if jj workspace root &>/dev/null; then
     if [ "$(jj config get user.identity 2>/dev/null)" != "${1}" ]; then
         echo "Setting jj identity to '$1' for repository $(dirname "${3}")"
         jj-identity -u "$1"
