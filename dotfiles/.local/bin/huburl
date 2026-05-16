@@ -164,7 +164,6 @@ def join-url [
   }
   log debug $"found a hub of type: ($hub_type)"
   mut segment = if $hub_type in [$HUB_GITEA $HUB_FORGEJO] { "src/branch" } else if $hub_type in [$HUB_AZURE] { "" } else { "tree" }
-  let segment_gitea = "src/branch"
   mut fragment = ""
   let params = if $hub_type in [$HUB_AZURE] {
     [{key: version, value: $"GB($branch)" }] | if ($path | is-not-empty) and ($path.path | is-not-empty) {
@@ -179,7 +178,9 @@ def join-url [
   let path = if ($path | is-not-empty) {
     if $hub_type in [$HUB_GITHUB $HUB_GITLAB $HUB_GITEA $HUB_FORGEJO $HUB_SRHT] {
       let type = [$ctx.directory $path.path] | path join | path type
-      $segment = if $type != "dir" { if $hub_type in [$HUB_SRHT] { "tree" } else { "blob" }} else { $segment }
+      if $hub_type in [$HUB_GITHUB $HUB_GITLAB $HUB_SRHT] {
+        $segment = if $type != "dir" { if $hub_type in [$HUB_SRHT] { "tree" } else { "blob" }} else { $segment }
+      }
       if ($path.linenr | is-not-empty) and $type != "dir" {
         $fragment = $"L($path.linenr)"
       }
@@ -253,11 +254,11 @@ def test-join-url [] {
   assert ($res == $exp) $"When a gitea repository is provided, then the result should be a gitea url. Result: ($res), Expected: ($exp)"
 
   let res = $ctx | join-url $config $remote "main" --path {path: "huburl", linenr: ""}
-  let exp = "https://cloud.gitea.com/example/repo/blob/main/huburl"
+  let exp = "https://cloud.gitea.com/example/repo/src/branch/main/huburl"
   assert ($res == $exp) $"When a repository and path at gitea is provided, then the result should be a gitea url with a path. Result: ($res), Expected: ($exp)"
 
   let res = $ctx | join-url $config $remote "main" --path {path: "huburl", linenr: "23"}
-  let exp = "https://cloud.gitea.com/example/repo/blob/main/huburl#L23"
+  let exp = "https://cloud.gitea.com/example/repo/src/branch/main/huburl#L23"
   assert ($res == $exp) $"When a repository and path with line number at gitea is provided, then the result should be a gitea url with a path and a line number. Result: ($res), Expected: ($exp)"
 
   let res = $ctx | join-url $config $remote "main" --path {path: ".", linenr: "23"}
@@ -273,11 +274,11 @@ def test-join-url [] {
   assert ($res == $exp) $"When a forgejo repository is provided, then the result should be a forgejo url. Result: ($res), Expected: ($exp)"
 
   let res = $ctx | join-url $config $remote "main" --path {path: "huburl", linenr: ""}
-  let exp = "https://codeberg.org/example/repo/blob/main/huburl"
+  let exp = "https://codeberg.org/example/repo/src/branch/main/huburl"
   assert ($res == $exp) $"When a repository and path at forgejo is provided, then the result should be a forgejo url with a path. Result: ($res), Expected: ($exp)"
 
   let res = $ctx | join-url $config $remote "main" --path {path: "huburl", linenr: "23"}
-  let exp = "https://codeberg.org/example/repo/blob/main/huburl#L23"
+  let exp = "https://codeberg.org/example/repo/src/branch/main/huburl#L23"
   assert ($res == $exp) $"When a repository and path with line number at forgejo is provided, then the result should be a forgejo url with a path and a line number. Result: ($res), Expected: ($exp)"
 
   let res = $ctx | join-url $config $remote "main" --path {path: ".", linenr: "23"}
