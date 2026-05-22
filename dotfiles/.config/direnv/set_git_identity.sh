@@ -21,6 +21,6 @@ fi
 if jj workspace root &>/dev/null; then
     if [ "$(jj config get user.identity 2>/dev/null)" != "${1}" ]; then
         echo "Setting jj identity to '$1' for repository $(dirname "${3}")"
-        jj-identity -u "$1"
+        jj-identity "$1"
     fi
 fi
