@@ -2,8 +2,8 @@
 # set -x
 # start a new terminal and open tmux in it
 # TERMINAL="st"
-# TERMINAL="ghostty"
-TERMINAL="alacritty"
+TERMINAL="ghostty"
+# TERMINAL="alacritty"
 # SHELL="/usr/bin/fish"
 #SHELL="$(getent passwd jceb | awk -F: '{print $7}')"
 SHELL="$(which nu)"
@@ -21,10 +21,10 @@ if [ $# -ge 1 ] && ([ "${1}" = '-h' ] || [ "${1}" = '--help' ]); then
 	exit
 fi
 
-if [ "${TERMINAL}" != "ghostty" ]; then
+# if [ "${TERMINAL}" != "ghostty" ]; then
 	# specify the window's class
-	if [ $# -ge 1 ] && [ "${1}" = '-c' ]; then
-		command+=('-c' "${2}")
+	if [ $# -ge 1 ] && [ "${1}" = '--class' ]; then
+		command+=('--class' "${2}")
 		shift 2
 	fi
 
@@ -55,7 +55,7 @@ if [ "${TERMINAL}" != "ghostty" ]; then
 			shift 1
 		fi
 		command+=("${@}")
-	fi
+	# fi
 fi
 
 # spawn new terminal
