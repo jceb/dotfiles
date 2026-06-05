@@ -20,6 +20,10 @@ window-inherit-working-directory = true
 window-new-tab-position = current
 title-report = false
 auto-update = off
+quick-terminal-animation-duration = 0
+custom-shader-animation = false
+
+# Default key bindings: ghostty +list-keybinds --default
 
 # Tmux like bindings
 # keybind = ctrl+space>s=new_split:down
@@ -67,34 +71,34 @@ auto-update = off
 # keybind = ctrl+space>z=toggle_split_zoom
 
 # unbind almost all default bindings
-keybind = shift+up=unbind
-keybind = shift+left=unbind
-keybind = shift+right=unbind
-keybind = shift+down=unbind
-keybind = ctrl+tab=unbind
-keybind = ctrl+comma=unbind
-keybind = alt+1=unbind
-keybind = alt+2=unbind
-keybind = alt+3=unbind
-keybind = alt+4=unbind
-keybind = alt+5=unbind
-keybind = alt+6=unbind
-keybind = alt+7=unbind
-keybind = alt+8=unbind
-keybind = alt+9=unbind
-keybind = ctrl+shift+e=unbind
-keybind = ctrl+shift+t=unbind
-keybind = ctrl+shift+w=unbind
-keybind = ctrl+shift+n=unbind
-keybind = ctrl+shift+q=unbind
-keybind = ctrl+shift+c=unbind
-keybind = ctrl+shift+o=unbind
-keybind = ctrl+shift+a=unbind
-keybind = ctrl+shift+v=unbind
-keybind = ctrl+shift+comma=unbind
-keybind = super+ctrl+right_bracket=unbind
-keybind = super+ctrl+left_bracket=unbind
-keybind = ctrl+alt+up=unbind
-keybind = ctrl+alt+down=unbind
-keybind = ctrl+alt+left=unbind
-keybind = ctrl+alt+right=unbind
+# keybind = shift+up=unbind
+# keybind = shift+left=unbind
+# keybind = shift+right=unbind
+# keybind = shift+down=unbind
+# keybind = ctrl+tab=unbind
+# keybind = ctrl+comma=unbind
+# keybind = alt+1=unbind
+# keybind = alt+2=unbind
+# keybind = alt+3=unbind
+# keybind = alt+4=unbind
+# keybind = alt+5=unbind
+# keybind = alt+6=unbind
+# keybind = alt+7=unbind
+# keybind = alt+8=unbind
+# keybind = alt+9=unbind
+# keybind = ctrl+shift+e=unbind
+# keybind = ctrl+shift+t=unbind
+# keybind = ctrl+shift+w=unbind
+# keybind = ctrl+shift+n=unbind
+# keybind = ctrl+shift+q=unbind
+# keybind = ctrl+shift+c=unbind
+# keybind = ctrl+shift+o=unbind
+# keybind = ctrl+shift+a=unbind
+# keybind = ctrl+shift+v=unbind
+# keybind = ctrl+shift+comma=unbind
+# keybind = super+ctrl+right_bracket=unbind
+# keybind = super+ctrl+left_bracket=unbind
+# keybind = ctrl+alt+up=unbind
+# keybind = ctrl+alt+down=unbind
+# keybind = ctrl+alt+left=unbind
+# keybind = ctrl+alt+right=unbind
