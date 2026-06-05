@@ -607,7 +607,7 @@ $env.config = {
         # { send: executehostcommand cmd: "cd $'(open ~/.warprc | sed -ne 's/:/\\t/p' | fzf --color $'(cat ~/.config/colorscheme),hl:1' --reverse --height 40% | awk '{print $2}'| str trim)'"}
         { send: executehostcommand cmd: "cd (
         if ('~/.config/gtk-3.0/bookmarks' | path exists) {
-          open ~/.config/gtk-3.0/bookmarks | parse 'file://{path} {description}' | each {|e| $\"($e.description)\t($e.path)\"} | to text
+          open --raw ~/.config/gtk-3.0/bookmarks | lines | parse 'file://{path} {description}' | each {|e| $\"($e.description)\t($e.path)\"} | to text
           # open ~/.bookmarks.json | items {|description, path| $\"($description)\t($path)\"} | to text
         } else {
           ""
