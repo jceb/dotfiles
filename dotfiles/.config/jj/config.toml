@@ -4,17 +4,17 @@
 [user]
 name = "Jan Christoph Ebersbach"
 email = "jceb@e-jc.de"
-signingkey = "444912B0B381009F"
+signingkey = "710D07F6A639361DCB6EBBA1444912B0B381009F"
 
 [identity.default]
 name = "Jan Christoph Ebersbach"
 email = "jceb@e-jc.de"
-signingkey = "444912B0B381009F"
+signingkey = "710D07F6A639361DCB6EBBA1444912B0B381009F"
 
 [identity.ssi]
 name = "Jan Christoph Ebersbach"
 email = "jan-christoph.ebersbach@identinet.io"
-signingkey = "444912B0B381009F"
+signingkey = "1544C99330D1334766D8BDB06084526B35026C0C"
 
 [ui]
 default-command = "status"
