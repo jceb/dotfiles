@@ -321,6 +321,10 @@ export def psa [searchterm=""] {
   ps -l | where name =~ $searchterm | select user_id pid start_time status command
 }
 
+export def psk [searchterm=""] {
+  psa $searchterm | each { print $"Killing pid \(($in.pid)\): ($in.command)"; kill $in.pid }
+}
+
 # npm install -g yo generator-standard-readme
 export alias create-readme = yo standard-readme
 
