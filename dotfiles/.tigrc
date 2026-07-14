@@ -13,6 +13,7 @@ bind main	C		!git commit					# Commit changes
 bind main	P		!git push					# Push changes
 bind main	U		!git pull					# Pull changes
 bind main	M		?git merge %(commit)		# Merge commit
+bind main	R		?git revert %(commit)		# Rever commit
 bind refs	M		?git merge %(commit)		# Merge commit
 bind main	<C-f>	?git merge --ff %(commit)	# Merge commit, fast-forward
 bind refs	<C-f>	?git merge --ff %(commit)	# Merge commit, fast-forward
