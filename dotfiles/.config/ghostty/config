@@ -59,7 +59,7 @@ custom-shader-animation = false
 # keybind = ctrl+space>7=goto_tab:7
 # keybind = ctrl+space>8=goto_tab:8
 # keybind = ctrl+space>9=goto_tab:9
-# keybind = ctrl+space>r=reload_config
+keybind = ctrl+space>r=reload_config
 # keybind = ctrl+space>comma=open_config
 # keybind = ctrl+space>shift+comma=resize_split:left,10
 # keybind = ctrl+space>shift+period=resize_split:right,10
