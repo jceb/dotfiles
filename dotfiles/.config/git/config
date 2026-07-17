@@ -211,8 +211,8 @@
 [identity "default"]
     name = Jan Christoph Ebersbach
     email = jceb@e-jc.de
-    signingkey = 710D07F6A639361DCB6EBBA1444912B0B381009F
+    signingkey = 444912B0B381009F
 [identity "ssi"]
     name = Jan Christoph Ebersbach
     email = jan-christoph.ebersbach@identinet.io
-    signingkey = 1544C99330D1334766D8BDB06084526B35026C0C
+    signingkey = 917F23B1953DDC5B

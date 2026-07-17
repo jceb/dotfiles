@@ -145,11 +145,15 @@ use_identity () {
     # Enable or disable GPG key usage
     if [ -n "$gpgkey" ];
     then
-      jj config set --repo user.signingkey "$gpgkey"
+      # jj config unset --repo user.signingkey || true
+      # jj config unset --repo siging.key || true
+      # jj config unset --repo commit.gpgsign || true
+      # jj config unset --repo tag.gpgsign || true
+      jj config set --repo signing.key "$gpgkey"
       jj config set --repo commit.gpgsign true
       jj config set --repo tag.gpgsign true
     else
-      jj config unset --repo user.signingkey
+      jj config unset --repo signing.key
       jj config unset --repo commit.gpgsign
       jj config unset --repo tag.gpgsign
     fi

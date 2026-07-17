@@ -4,17 +4,16 @@
 [user]
 name = "Jan Christoph Ebersbach"
 email = "jceb@e-jc.de"
-signingkey = "710D07F6A639361DCB6EBBA1444912B0B381009F"
 
 [identity.default]
 name = "Jan Christoph Ebersbach"
 email = "jceb@e-jc.de"
-signingkey = "710D07F6A639361DCB6EBBA1444912B0B381009F"
+signingkey = "444912B0B381009F"
 
 [identity.ssi]
 name = "Jan Christoph Ebersbach"
 email = "jan-christoph.ebersbach@identinet.io"
-signingkey = "1544C99330D1334766D8BDB06084526B35026C0C"
+signingkey = "917F23B1953DDC5B"
 
 [ui]
 default-command = "status"
@@ -24,6 +23,7 @@ merge-editor = "vimdiff"
 [signing]
 behavior = "own"
 backend = "gpg"
+key = "444912B0B381009F"
 
 [colors]
 "diff token" = { underline = false }
@@ -33,8 +33,8 @@ backend = "gpg"
 # highlight-color = "#323264"
 highlight-color = "#b7c1e3"
 
-[git]
-sign-on-push = true
+# [git]
+# sign-on-push = true
 
 [remotes.origin]
 # auto-track-bookmarks = "*"
