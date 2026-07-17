@@ -270,25 +270,23 @@ $env.config = {
   }
 
   hooks: {
-    pre_prompt: [
-      # {# null # replace with source code to run before the prompt is shown
-      # }
-      {
-        # See https://github.com/nushell/nu_scripts/blob/main/direnv/config.nu
-        code: "
-        let direnv = (direnv export json | from json)
-        let direnv = if not ($direnv | is-empty) { $direnv } else { {} }
-        $direnv | load-env
-        "
-      }
-    ]
     pre_execution: [{ null }] # run before the repl input is run
     env_change: {
-      PWD: [{|before, after|
-        if ($before == null) or (($before != ($env.DIRHISTORY_REVERSE | get -o 0)) and ($before != ($env.DIRHISTORY | get -o 0))) {
-          $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | prepend $before);
+      PWD: [
+        {|before, after|
+          if ($before == null) or (($before != ($env.DIRHISTORY_REVERSE | get -o 0)) and ($before != ($env.DIRHISTORY | get -o 0))) {
+            $env.DIRHISTORY = ($env | default [] DIRHISTORY | get DIRHISTORY | prepend $before);
+          }
         }
-      }] # run if the PWD environment is different since the last repl input
+        {
+          # See https://github.com/nushell/nu_scripts/blob/main/nu-hooks/nu-hooks/direnv/direnv.nu
+          code: "
+          let direnv = (direnv export json | from json)
+          let direnv = if not ($direnv | is-empty) { $direnv } else { {} }
+          $direnv | load-env
+          "
+        }
+      ] # run if the PWD environment is different since the last repl input
     }
     display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
     command_not_found: { null } # return an error message when a command is not found
