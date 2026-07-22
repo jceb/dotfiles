@@ -1,0 +1,47 @@
+#!/usr/bin/env -S nu --stdin
+# Copyright 2026 - 2026, identinet GmbH. All rights reserved.
+# SPDX-License-Identifier: MIT
+
+use std/log
+
+# Start a user chroot with nix and disassemble it when exiting it;
+# Add additional packages to the environment beforehand via: nix profile --store ~/.nix add 'nixpkgs#PKG'
+def main [
+  directory: string = "."
+  # Data directory that is mounted into the chroot
+  mount_point: string = "/data"
+  # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
+  --packages (-p): list<string> = []
+  # List of additional packages to be made available via nix
+  --verbose (-v)
+  # Verbose log output
+] {
+  if $verbose { $env.NU_LOG_LEVEL = "debug" }
+  let root = mktemp -d -t user-chroot_XXXXXX
+  log info $"Setting up chroot at: ($root)"
+  def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
+  log debug "Ensure nushell is installed and the local nix store exists"
+  let _packages = $packages | append [nix nushell coreutils]| each {$"nixpkgs#($in)"}
+  nix profile --store ~/.nix add ...$_packages
+  log info "Preparing filesystem"
+  let _mnt = $mount_point | path relative-to  / | join-with-root-dir -c
+  let _nix = "nix" | join-with-root-dir -c
+  let _dev = "dev" | join-with-root-dir -c
+  let _proc = "proc" | join-with-root-dir -c
+  sudo mount -o bind $directory $_mnt
+  sudo mount -o bind ~/.nix/nix $_nix
+  sudo mount -o bind /dev $_dev
+  sudo mount -t proc proc $_proc
+  let sudo = (which sudo).0.path
+  let unshare = (which unshare).0.path
+  let path = [(readlink -f ~/.local/state/nix/profiles/profile) bin] | path join
+  log debug $path
+  let cmd = [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
+  PATH=$path run-external $cmd
+  log info "Cleaning up filesystem"
+  sudo umount $_proc; rmdir $_proc
+  sudo umount $_dev; rmdir $_dev
+  sudo umount $_nix; rmdir $_nix
+  sudo umount $_mnt; rmdir $_mnt
+  if ($root | path exists) { rmdir $root }
+}
