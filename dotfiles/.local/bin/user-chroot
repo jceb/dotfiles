@@ -11,8 +11,8 @@ def main [
   # Data directory that is mounted into the chroot
   --mount_point (-m): string = "/data"
   # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
-  --packages (-p): list<string> = []
-  # List of additional packages to be made available via nix
+  --packages (-p): string
+  # Comma-separated list of additional packages to be made available via nix, alongside nushell and coreutils
   --verbose (-v)
   # Verbose log output
 ] {
@@ -21,7 +21,7 @@ def main [
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | append [nix nushell coreutils]| each {$"nixpkgs#($in)"}
+  let _packages = $packages | split row "," | append [nushell coreutils]| each {$"nixpkgs#($in)"}
   nix profile --store ~/.nix add ...$_packages
   log info "Preparing filesystem"
   let _mnt = $mount_point | path relative-to  / | join-with-root-dir -c
