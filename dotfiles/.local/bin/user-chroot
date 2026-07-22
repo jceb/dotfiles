@@ -32,7 +32,6 @@ def main [
   sudo mount -o bind ~/.nix/nix $_nix
   sudo mount -o bind /dev $_dev
   sudo mount -t proc proc $_proc
-  let sudo = (which sudo).0.path
   let unshare = (which unshare).0.path
   let path = [(readlink -f ~/.local/state/nix/profiles/profile) bin] | path join
   log debug $path
