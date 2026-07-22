@@ -4,12 +4,12 @@
 
 use std/log
 
-# Start a user chroot with nix and disassemble it when exiting it;
+# Start a user space chroot with nix and disassemble it when the main program terminates;
 # Add additional packages to the environment beforehand via: nix profile --store ~/.nix add 'nixpkgs#PKG'
 def main [
-  directory: string = "."
+  directory: string
   # Data directory that is mounted into the chroot
-  mount_point: string = "/data"
+  --mount_point (-m): string = "/data"
   # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
   --packages (-p): list<string> = []
   # List of additional packages to be made available via nix
