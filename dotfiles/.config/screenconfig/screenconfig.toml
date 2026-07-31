@@ -52,9 +52,17 @@ wallpaper = "~/wallpaper2560x1440_3.png"
 # --right-of, --left-of, --above, --below or --same-as
 # (see xrandr(1) for more information)
 [monitors.m14d.outputs.DP-1]
-position = ["--right-of", "laptop"]
+position = [
+  # "--right-of", "laptop",
+  "--same-as",
+  "laptop",
+]
 [monitors.m14d.outputs.DP-2]
-position = ["--left-of", "laptop"]
+position = [
+  # "--right-of", "laptop",
+  "--same-as",
+  "laptop",
+]
 
 [monitors.ecuon]
 description = "Eucon"
