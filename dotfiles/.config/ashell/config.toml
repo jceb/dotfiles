@@ -1,0 +1,40 @@
+# Documentation: https://malpenzibo.github.io/ashell/docs/configuration
+
+[modules]
+left = [ "Workspaces" ]
+center = [ "WindowTitle" ]
+right = [ [ "Tempo", "Privacy", "SystemInfo", "Tray", "Keyboard", "Settings", "Notifications" ] ]
+
+[system_info]
+indicators = [ "Cpu", "Memory", "Temperature"]
+
+[tempo]
+clock_format = "%a %d %b %R"
+weather_location = { City = "Bremen" }
+
+[workspaces]
+# visibility_mode = "All"
+visibility_mode = "MonitorSpecific"
+# visibility_mode = "MonitorSpecificExclusive"
+group_by_monitor = false
+enable_workspace_filling = true
+max_workspaces = 10
+
+[tray]
+blocklist = []
+
+[appearance]
+font_name = "JetBrains Mono"
+
+primary_color = "#7aa2f7"
+success_color = "#9ece6a"
+warning_color = "#e0af68"
+danger_color = "#f7768e"
+text_color = "#a9b1d6"
+
+workspace_colors = [ "#7aa2f7", "#9ece6a" ]
+
+[appearance.background_color]
+base = "#1a1b26"
+weak = "#24273a"
+strong = "#414868"
