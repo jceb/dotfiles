@@ -11,7 +11,7 @@ def main [
   # Data directory that is mounted into the chroot
   --mount_point (-m): string = "/data"
   # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
-  --packages (-p): string
+  --packages (-p): string = ""
   # Comma-separated list of additional packages to be made available via nix, alongside nushell and coreutils
   --verbose (-v)
   # Verbose log output
@@ -21,26 +21,37 @@ def main [
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | split row "," | append [nushell coreutils]| each {$"nixpkgs#($in)"}
-  nix profile --store ~/.nix add ...$_packages
+  let _packages = $packages | split row "," | append [nushell coreutils] | where (is-not-empty) | each {$"nixpkgs#($in)"}
+  # let cmd = [nix profile --store ~/.nix add ...$_packages] # --store doesn't seem to work properly
+  let cmd = [nix profile add ...$_packages]
+  log debug $"Executing: ($cmd | str join ' ')"
+  run-external ...$cmd
   log info "Preparing filesystem"
   let _mnt = $mount_point | path relative-to  / | join-with-root-dir -c
   let _nix = "nix" | join-with-root-dir -c
   let _dev = "dev" | join-with-root-dir -c
+  let _tmp = "tmp" | join-with-root-dir -c
   let _proc = "proc" | join-with-root-dir -c
+  let _profile = "/run/current-system/sw" | join-with-root-dir -c
   sudo mount -o bind $directory $_mnt
-  sudo mount -o bind ~/.nix/nix $_nix
+  # sudo mount -o bind ~/.nix/nix $_nix
+  sudo mount -o bind /nix $_nix
   sudo mount -o bind /dev $_dev
+  sudo mount -o bind /tmp $_tmp
   sudo mount -t proc proc $_proc
+  let profile = readlink -f ~/.local/state/nix/profiles/profile
+  sudo mount -o bind $profile $_profile
   let unshare = (which unshare).0.path
-  let path = [(readlink -f ~/.local/state/nix/profiles/profile) bin] | path join
-  log debug $path
   let cmd = [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
-  PATH=$path run-external $cmd
+  log debug $"Executing: PATH=/bin ($cmd | str join ' ')"
+  PATH=/run/current-system/sw/bin:/run/current-system/sw/sbin run-external $cmd
   log info "Cleaning up filesystem"
+  sudo umount $_profile; rmdir $_profile
   sudo umount $_proc; rmdir $_proc
+  sudo umount $_tmp; rmdir $_tmp
   sudo umount $_dev; rmdir $_dev
   sudo umount $_nix; rmdir $_nix
+  sudo umount $_mnt; rmdir $_mnt
   sudo umount $_mnt; rmdir $_mnt
   if ($root | path exists) { rmdir $root }
 }
