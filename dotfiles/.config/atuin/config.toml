@@ -3,33 +3,11 @@
 ## linux: ~/.local/share/atuin/history.db
 # db_path = "~/.history.db"
 db_path = "~/.config/atuin/history.db"
+search_mode = "daemon-fuzzy"
 
-## where to store your encryption key, default is your system data directory
-# key_path = "~/.key"
-
-## where to store your auth session token, default is your system data directory
-# session_path = "~/.key"
-
-## date format used, either "us" or "uk"
-# dialect = "us"
-
-## enable or disable automatic sync
-# auto_sync = true
-
-## enable or disable automatic update checks
-# update_check = true
-
-## address of the sync server
-# sync_address = "https://api.atuin.sh"
-
-## how often to sync history. note that this is only triggered when a command
-## is ran, so sync intervals may well be longer
-## set it to 0 to sync after every command
-# sync_frequency = "1h"
-
-## which search mode to use
-## possible values: prefix, fulltext, fuzzy, skim
-search_mode = "fuzzy"
+[daemon]
+enabled = true
+autostart = true
 
 ## which filter mode to use
 ## possible values: global, host, session, directory
