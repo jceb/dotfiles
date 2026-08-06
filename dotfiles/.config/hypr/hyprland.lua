@@ -27,8 +27,8 @@ hl.monitor({
 
 hl.monitor({
 	output = "DP-8",
-	-- mode = "preferred",
-	mode = "2560x1440@100",
+	mode = "preferred",
+	-- mode = "2560x1440@100",
 	position = "0x0",
 	-- scale = "auto",
 	scale = 1,
@@ -36,8 +36,26 @@ hl.monitor({
 
 hl.monitor({
 	output = "DP-9",
-	-- mode = "preferred",
-	mode = "2560x1440@100",
+	mode = "preferred",
+	-- mode = "2560x1440@100",
+	position = "2560x0",
+	-- scale = "auto",
+	scale = 1,
+})
+
+hl.monitor({
+	output = "DP-10",
+	mode = "preferred",
+	-- mode = "2560x1440@100",
+	position = "0x0",
+	-- scale = "auto",
+	scale = 1,
+})
+
+hl.monitor({
+	output = "DP-11",
+	mode = "preferred",
+	-- mode = "2560x1440@100",
 	position = "2560x0",
 	-- scale = "auto",
 	scale = 1,
@@ -432,6 +450,15 @@ hl.window_rule({
 	float = true,
 	center = true,
 	size = { "(monitor_w - 400)", "(monitor_h - 200)" },
+})
+
+hl.window_rule({
+	name = "floating windows title",
+	match = {
+		title = "Extension: \\(Bitwarden Password Manager\\)",
+	},
+	float = true,
+	-- workspace = "special:magic",
 })
 
 hl.window_rule({
