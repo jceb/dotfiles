@@ -266,7 +266,7 @@ hl.config({
 		kb_layout = "us",
 		kb_variant = "colemak",
 		kb_model = "",
-		kb_options = "",
+		kb_options = "compose:ralt,caps:ctrl_modifier",
 		kb_rules = "",
 		repeat_delay = 250,
 		repeat_rate = 25,
