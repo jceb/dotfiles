@@ -23,6 +23,9 @@ auto-update = off
 quick-terminal-animation-duration = 0
 custom-shader-animation = false
 
+# keybind = shift+insert=paste_from_selection
+keybind = shift+insert=paste_from_clipboard
+
 # Default key bindings: ghostty +list-keybinds --default
 
 # Tmux like bindings

@@ -303,7 +303,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd(terminal))
-hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- local closeWindowBind =
 -- closeWindowBind:set_enabled(false)
