@@ -7,10 +7,38 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+
+-- hl.monitor({
+-- 	output = "",
+-- 	mode = "preferred",
+-- 	position = "auto",
+-- 	-- scale = "auto",
+-- 	scale = 1,
+-- })
+
 hl.monitor({
-	output = "",
-	mode = "preferred",
-	position = "auto",
+	output = "eDP-1",
+	-- mode = "preferred",
+	mode = "2560x1600@300",
+	position = "0x1440",
+	-- scale = "auto",
+	scale = 1,
+})
+
+hl.monitor({
+	output = "DP-8",
+	-- mode = "preferred",
+	mode = "2560x1440@100",
+	position = "0x0",
+	-- scale = "auto",
+	scale = 1,
+})
+
+hl.monitor({
+	output = "DP-9",
+	-- mode = "preferred",
+	mode = "2560x1440@100",
+	position = "2560x0",
 	-- scale = "auto",
 	scale = 1,
 })
@@ -275,7 +303,9 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd(terminal))
-local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + C", hl.dsp.window.close())
+-- local closeWindowBind =
 -- closeWindowBind:set_enabled(false)
 hl.bind(
 	mainMod .. " + SHIFT + Q",
@@ -283,6 +313,7 @@ hl.bind(
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("copyq toggle"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + Return", hl.dsp.layout("swapwithmaster"))
@@ -389,6 +420,66 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
 -- Example window rules that are useful
+
+-- Get window properties: hyprctl clients
+
+hl.window_rule({
+	name = "floating window - firefox lib",
+	match = {
+		title = "Library",
+		class = "firefox",
+	},
+	float = true,
+	center = true,
+	size = { "(monitor_w - 400)", "(monitor_h - 200)" },
+})
+
+hl.window_rule({
+	name = "floating windows",
+	match = {
+		class = "(pavucontrol|Scratchpad|Linphone|zoom)",
+	},
+	float = true,
+	-- workspace = "special:magic",
+})
+
+hl.window_rule({
+	name = "copyq",
+	match = {
+		class = "com.github.hluk.copyq",
+	},
+	float = true,
+	center = true,
+	border_size = 0,
+})
+
+hl.window_rule({
+	name = "rambox",
+	match = {
+		class = "rambox",
+	},
+	workspace = 1,
+})
+
+hl.window_rule({
+	name = "pinned windows",
+	match = {
+		class = "(game.exe|steam_app_default|Qemu-system-x86_64|qemu)",
+	},
+	workspace = 5,
+})
+
+hl.window_rule({
+	name = "magic workspace terminal",
+	match = {
+		class = "(Floating.Terminal)",
+	},
+	float = true,
+	size = { "monitor_w * 0.95", "monitor_h / 2.5" },
+	move = { "(monitor_w - window_w) / 2", 100 },
+	workspace = "special:magic",
+	border_size = 0,
+})
 
 local suppressMaximizeRule = hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
