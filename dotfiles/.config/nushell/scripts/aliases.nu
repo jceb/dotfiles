@@ -47,11 +47,14 @@ export alias lsa = list -a
 export alias lla = list -la
 export def lt [dir: string = "."] {
   # ls $dir | sort-by modified -r
-  list --sort-by modified $dir
+  list -r --sort-by modified $dir
 }
 # export alias lt = (ls | sort-by modified -r)
 export def ltr [dir: string = "."] {
-  list -r --sort-by modified $dir
+  list --sort-by modified $dir
+}
+export def ltra [dir: string = "."] {
+  list -a --sort-by modified $dir
 }
 # export alias ltr = (ls | sort-by modified)
 export alias el = ^exa --group-directories-first --git -F

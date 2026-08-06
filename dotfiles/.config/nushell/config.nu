@@ -282,7 +282,7 @@ $env.config = {
           # See https://github.com/nushell/nu_scripts/blob/main/nu-hooks/nu-hooks/direnv/direnv.nu
           code: "
           let direnv = (direnv export json | from json)
-          let direnv = if not ($direnv | is-empty) { $direnv } else { {} }
+          let direnv = if ($direnv | is-not-empty) { $direnv } else { {} }
           $direnv | load-env
           "
         }

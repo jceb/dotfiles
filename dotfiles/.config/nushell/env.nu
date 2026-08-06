@@ -49,7 +49,7 @@ $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts')
     ($nu.default-config-dir | path join 'nu_scripts' 'aliases' 'git')
     # ($nu.default-config-dir | path join 'nu_scripts' 'git')
-    ($nu.default-config-dir | path join 'nu_scripts' 'hooks' 'direnv')
+    # ($nu.default-config-dir | path join 'nu_scripts' 'hooks' 'direnv')
     ($nu.default-config-dir | path join 'nu_scripts' 'just')
 ]
 
@@ -79,7 +79,7 @@ $env.PATH = ($env.PATH | prepend [$"($env.HOME)/.rustup/toolchains/stable-x86_64
 #       PWD: [{
 #         code: "
 #           let direnv = (direnv export json | from json)
-#           let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+#           let direnv = if ($direnv | is-not-empty) { $direnv } else { {} }
 #           $direnv | load-env
 #         "
 #       }]
