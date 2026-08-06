@@ -70,6 +70,8 @@ keybind = ctrl+space>r=reload_config
 # keybind = ctrl+space>left_bracket=write_scrollback_file:paste
 # keybind = ctrl+space>z=toggle_split_zoom
 
+keybind = ctrl+enter=unbind
+
 # unbind almost all default bindings
 # keybind = shift+up=unbind
 # keybind = shift+left=unbind
