@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+SHELL=$(which nu) exec ghostty --class=Floating.Terminal --title=Floating.Terminal --window-height=40 --window-width=345 --window-position-x=40 --window-position-y=40 -e herdr session attach yeahherdr
