@@ -442,6 +442,17 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Get window properties: hyprctl clients
 
 hl.window_rule({
+	name = "floating window - thunderbird",
+	match = {
+		title = ".*Reminder.*",
+		class = "thunderbird",
+	},
+	float = true,
+	center = true,
+	size = { "monitor_w / 3", "monitor_h / 3" },
+})
+
+hl.window_rule({
 	name = "floating window - firefox lib",
 	match = {
 		title = "Library",
@@ -455,9 +466,20 @@ hl.window_rule({
 hl.window_rule({
 	name = "floating windows title",
 	match = {
-		title = "Extension: \\(Bitwarden Password Manager\\)",
+		title = "Extension: \\(Bitwarden Password Manager\\).*",
 	},
 	float = true,
+	-- workspace = "special:magic",
+})
+
+hl.window_rule({
+	name = "floating windows save",
+	match = {
+		title = "Save Attachment.*",
+	},
+	float = true,
+	center = true,
+	size = { "monitor_w / 2", "monitor_h / 2" },
 	-- workspace = "special:magic",
 })
 
