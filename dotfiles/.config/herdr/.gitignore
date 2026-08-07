@@ -1,4 +1,5 @@
 .plugins.lock
 *.json
 sessions*
-
+*.log
+*.sock

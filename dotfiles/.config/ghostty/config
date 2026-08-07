@@ -14,7 +14,7 @@ gtk-wide-tabs = false
 resize-overlay = never
 selection-invert-fg-bg = true
 # ghostty +list-themes
-theme = TokyoNight Day
+theme = TokyoNight Moon
 window-decoration = false
 window-inherit-working-directory = true
 window-new-tab-position = current
