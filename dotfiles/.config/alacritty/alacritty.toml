@@ -2,8 +2,8 @@
 
 [general]
 import = [
-  "alacritty-tokyoday.toml", # light
-  # "alacritty-tokyonight.toml", # dark
+  # "alacritty-tokyoday.toml", # light
+  "alacritty-tokyonight.toml", # dark
 ]
 
 [colors]
