@@ -18,8 +18,8 @@
 
 hl.monitor({
 	output = "eDP-1",
-	-- mode = "preferred",
-	mode = "2560x1600@300",
+	mode = "preferred",
+	-- mode = "2560x1600@300",
 	position = "0x1440",
 	-- scale = "auto",
 	scale = 1,
