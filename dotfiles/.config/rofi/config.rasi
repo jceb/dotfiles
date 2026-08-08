@@ -1,6 +1,10 @@
 // List of themes: https://davatorium.github.io/rofi/themes/themes/
 // Source: https://github.com/davatorium/rofi/tree/next/themes
 
+configuration {
+    font: "JetBrainsMono Nerd Font 9";
+}
+
 /************************************************
  * ROFI Color theme
  * User: leofa
