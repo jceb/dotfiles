@@ -122,6 +122,9 @@ hl.env("HYPRCURSOR_SIZE", "24")
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
+	group = {
+		auto_group = false,
+	},
 	general = {
 		gaps_in = 1,
 		gaps_out = 0,
@@ -331,6 +334,7 @@ hl.bind(
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("gsimplecal"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("copyq toggle"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
