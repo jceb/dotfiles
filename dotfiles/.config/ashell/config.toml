@@ -20,7 +20,7 @@ right = [
 indicators = ["Cpu", "Memory", "Temperature"]
 
 [tempo]
-clock_format = "%a %d %b %R"
+clock_format = "CW%V, %a %e %b %R %Y"
 weather_location = { City = "Bremen" }
 
 [workspaces]
@@ -44,6 +44,8 @@ show_brightness_percentage = true
 [appearance]
 style = "Solid"
 font_name = "JetBrains Mono"
+# font_size = 8 # doesn't seem to work
+# scale_factor = 1.0
 primary_color = "#7aa2f7"
 success_color = "#9ece6a"
 warning_color = "#e0af68"
