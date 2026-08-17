@@ -1,12 +1,23 @@
 # Documentation: https://malpenzibo.github.io/ashell/docs/configuration
+# https://malpenzibo.github.io/ashell/docs/configuration/full_config
 
 [modules]
-left = [ "Workspaces" ]
-center = [ "WindowTitle" ]
-right = [ [ "Tempo", "Privacy", "SystemInfo", "Tray", "Keyboard", "Settings", "Notifications" ] ]
+left = ["Workspaces"]
+center = ["WindowTitle"]
+right = [
+  [
+    "Tempo",
+    "Privacy",
+    "SystemInfo",
+    "Tray",
+    "Keyboard",
+    "Settings",
+    "Notifications",
+  ],
+]
 
 [system_info]
-indicators = [ "Cpu", "Memory", "Temperature"]
+indicators = ["Cpu", "Memory", "Temperature"]
 
 [tempo]
 clock_format = "%a %d %b %R"
@@ -23,16 +34,23 @@ max_workspaces = 10
 [tray]
 blocklist = []
 
-[appearance]
-font_name = "JetBrains Mono"
 
+[osd]
+enabled = true
+timeout = 200
+show_volume_percentage = true
+show_brightness_percentage = true
+
+[appearance]
+style = "Solid"
+font_name = "JetBrains Mono"
 primary_color = "#7aa2f7"
 success_color = "#9ece6a"
 warning_color = "#e0af68"
 danger_color = "#f7768e"
 text_color = "#a9b1d6"
-
-workspace_colors = [ "#7aa2f7", "#9ece6a" ]
+workspace_colors = ["#7aa2f7"]
+special_workspace_colors = ["#9ece6a"]
 
 [appearance.background_color]
 base = "#1a1b26"
