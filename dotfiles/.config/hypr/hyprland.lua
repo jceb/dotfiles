@@ -297,9 +297,9 @@ hl.config({
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 		natural_scroll = true,
 
-		-- touchpad = {
-		-- 	natural_scroll = true,
-		-- },
+		touchpad = {
+			natural_scroll = true,
+		},
 	},
 })
 
@@ -336,8 +336,9 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("gsimplecal"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("copyq toggle"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("flameshot gui"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + Y", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + Return", hl.dsp.layout("swapwithmaster"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("cyclenext"))
 -- hl.bind(mainMod .. " + J", hl.dsp.window.cycle_next({ next = false }))
@@ -444,6 +445,16 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Example window rules that are useful
 
 -- Get window properties: hyprctl clients
+
+hl.window_rule({
+	name = "floating window - firefox",
+	match = {
+		class = "xdg-desktop-portal-gtk",
+	},
+	float = true,
+	center = true,
+	size = { "monitor_w / 2", "monitor_h / 2" },
+})
 
 hl.window_rule({
 	name = "floating window - thunderbird",
