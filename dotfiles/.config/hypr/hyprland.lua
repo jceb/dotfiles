@@ -1,6 +1,6 @@
 -- Documenation: https://wiki.hypr.land/Configuring/Start/
 -- Dispatchers, relevant for key bindings: https://wiki.hypr.land/Configuring/Basics/Dispatchers/
--- API: https://alejandrominaya.github.io/hyprland-lua-docs/#s5
+-- API: https://alejandrominaya.github.io/hyprland-lua-docs/
 
 ------------------
 ---- MONITORS ----
@@ -379,8 +379,8 @@ end)
 -- hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 -- hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 -- hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-hl.bind(mainMod .. " + left", hl.dsp.focus({ workspace = "e-1", on_current_monitor = true }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ workspace = "e+1", on_current_monitor = true }))
+hl.bind(mainMod .. " + left", hl.dsp.focus({ workspace = "-1", on_current_monitor = true }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ workspace = "+1", on_current_monitor = true }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
