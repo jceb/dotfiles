@@ -86,7 +86,7 @@ hl.on("hyprland.start", function()
 	-- hl.exec_cmd(terminal)
 	-- hl.exec_cmd("nm-applet")
 	-- hl.exec_cmd("waybar & hyprpaper & firefox")
-	hl.exec_cmd("ashell")
+	-- hl.exec_cmd("ashell")
 end)
 
 -------------------------------
@@ -300,6 +300,12 @@ hl.config({
 		touchpad = {
 			natural_scroll = true,
 		},
+	},
+	binds = {
+		allow_workspace_cycles = true, -- don't forget the previous workspace, so cycling works as expected
+	},
+	misc = {
+		focus_on_activate = true, -- immediately focus the window that requires attention
 	},
 })
 
