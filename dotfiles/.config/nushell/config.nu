@@ -661,7 +661,7 @@ $env.config = {
       ]
     }
     {
-      name: directory_u
+      name: directory_h
       modifier: alt
       keycode: char_h
       mode: [emacs vi_normal vi_insert]
