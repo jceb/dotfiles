@@ -67,7 +67,7 @@ max-new-file-size = "10MiB"
 
 # Remove  untracked_remote_bookmarks() and replace it with just bookmarks("release") to make feature etc.
 # branches/bookmarks editable
-'immutable_heads()' = 'trunk() | tags() | bookmarks("release")'
+'immutable_heads()' = 'trunk() | tags() | bookmarks("release") | bookmarks("prod")'
 
 [aliases]
 
