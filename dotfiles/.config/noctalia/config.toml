@@ -1,0 +1,15 @@
+[shell]
+corner_radius_scale = 0
+
+[shell.screen_corners]
+enabled = false
+
+[theme]
+mode = "dark"
+builtin = "Tokyo-Night"
+
+[bar.default]
+position = "top"
+shadow = false
+concave_edge_corners = false
+show_on_workspace_switch = false
