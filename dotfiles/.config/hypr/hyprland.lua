@@ -7,6 +7,7 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- List all monitors: hyprctl monitors all
 
 -- hl.monitor({
 -- 	output = "",
@@ -56,6 +57,7 @@ hl.monitor({
 	output = "DP-11",
 	mode = "preferred",
 	-- mode = "2560x1440@100",
+	-- mode = "2560x1440@60",
 	position = "2560x0",
 	-- scale = "auto",
 	scale = 1,
