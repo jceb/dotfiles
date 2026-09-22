@@ -88,12 +88,12 @@ $env.PATH = ($env.PATH | prepend [$"($env.HOME)/.rustup/toolchains/stable-x86_64
 # }
 
 # set environment variables for gpg and ssh agent
-if ($env | default null GPG_AGENT_INFO | get GPG_AGENT_INFO | is-empty) {
-	$env.GPG_AGENT_INFO = (gpgconf --list-dirs agent-socket)
+if ($env | get -o GPG_AGENT_INFO | is-empty) {
+    $env.GPG_AGENT_INFO = (gpgconf --list-dirs agent-socket)
 }
 
-if ($env | default null SSH_AUTH_SOCK | get SSH_AUTH_SOCK | is-empty) {
-	$env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
+if ($env | get -o SSH_AUTH_SOCK | is-empty) {
+    $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 }
 
 # Carapace is set up in config.nu:
