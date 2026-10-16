@@ -1,10 +1,6 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 # Documentation: https://docs.jj-vcs.dev/latest/config/
 
-[user]
-name = "Jan Christoph Ebersbach"
-email = "jceb@e-jc.de"
-
 [identity.default]
 name = "Jan Christoph Ebersbach"
 email = "jceb@e-jc.de"
@@ -19,11 +15,6 @@ signingkey = "917F23B1953DDC5B"
 default-command = "status"
 diff-formatter = ":git"
 merge-editor = "vimdiff"
-
-[signing]
-behavior = "own"
-backend = "gpg"
-key = "444912B0B381009F"
 
 [colors]
 "diff token" = { underline = false }

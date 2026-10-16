@@ -1,0 +1,7 @@
+# overrides the default configuation
+[user]
+name = "Jan Christoph Ebersbach"
+email = "jceb@e-jc.de"
+
+[signing]
+key = "444912B0B381009F"
