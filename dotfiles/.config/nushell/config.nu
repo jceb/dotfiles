@@ -14,15 +14,15 @@ let light_theme = (tokyo-day)
 # Configure carapace:
 # mkdir ~/.cache/carapace
 # carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
-let carapace_completer = {|spans|
+let carapace_completer = {|place|
   # if the current command is an alias, get it's expansion
-  let expanded_alias = (scope aliases | where name == $spans.0 | get -o 0 | get -o expansion)
+  let expanded_alias = (scope aliases | where name == $place.command | get -o 0 | get -o expansion)
   # overwrite
   let spans = (if $expanded_alias != null  {
     # put the first word of the expanded alias first in the span
-    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+    $place.command | skip 1 | prepend ($expanded_alias | split row " " | take 1)
   } else {
-      $spans
+      $place.command
     })
   carapace $spans.0 nushell ...$spans
   | from json
@@ -644,8 +644,8 @@ $env.config = {
     }
     {
       name: last_word_menu
-      modifier: alt
-      keycode: char_.
+      modifier: Alt
+      keycode: Char_.
       mode: [emacs vi_normal vi_insert]
       event: [
         { send: menu name: last_word_menu }
