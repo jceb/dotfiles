@@ -21,37 +21,57 @@ def main [
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | split row "," | append [nushell coreutils] | where (is-not-empty) | each {$"nixpkgs#($in)"}
-  # let cmd = [nix profile --store ~/.nix add ...$_packages] # --store doesn't seem to work properly
-  let cmd = [nix profile add ...$_packages]
+  let _packages = $packages | split row "," | append [nushell coreutils] | where (is-not-empty) | each { $"nixpkgs#($in)" }
+  let profile = "nix-profile" | join-with-root-dir
+  let cmd = [nix profile add --profile $profile ...$_packages]
   log debug $"Executing: ($cmd | str join ' ')"
   run-external ...$cmd
   log info "Preparing filesystem"
   let _mnt = $mount_point | path relative-to  / | join-with-root-dir -c
   let _nix = "nix" | join-with-root-dir -c
   let _dev = "dev" | join-with-root-dir -c
+  let _ssl = "etc/ssl" | join-with-root-dir -c
   let _tmp = "tmp" | join-with-root-dir -c
   let _proc = "proc" | join-with-root-dir -c
-  let _profile = "/run/current-system/sw" | join-with-root-dir -c
+  let _hostname = "etc/hostname" | join-with-root-dir
+  let _group = "etc/group" | join-with-root-dir
+  let _passwd = "etc/passwd" | join-with-root-dir
+  let _resolvconf = "etc/resolv.conf" | join-with-root-dir
   sudo mount -o bind $directory $_mnt
   # sudo mount -o bind ~/.nix/nix $_nix
   sudo mount -o bind /nix $_nix
   sudo mount -o bind /dev $_dev
-  sudo mount -o bind /tmp $_tmp
+  sudo mount -o bind /etc/ssl $_ssl
+  "user-chroot" | save $_hostname
+  "root:x:0:" | save $_group
+  "root:x:0:0:System administrator:/root:/bin/nu" | save $_passwd
+  "nameserver 127.0.0.53" | save $_resolvconf
+  chmod 1777 $_tmp
   sudo mount -t proc proc $_proc
-  let profile = readlink -f ~/.local/state/nix/profiles/profile
-  sudo mount -o bind $profile $_profile
+  let profile_dirs = [bin sbin lib libexec include share]
+  $profile_dirs | each {|dir|
+    if ([$profile $dir] | path join | path exists) {
+      ln -s ([($profile | path basename) $dir] | path join) ($dir | join-with-root-dir)
+    }
+  }
   let unshare = (which unshare).0.path
   let cmd = [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
-  log debug $"Executing: PATH=/bin ($cmd | str join ' ')"
-  PATH=/run/current-system/sw/bin:/run/current-system/sw/sbin run-external $cmd
+  log debug $"Executing: PATH=/bin:/sbin ($cmd | str join ' ')"
+  PATH=/bin:/sbin run-external $cmd
   log info "Cleaning up filesystem"
-  sudo umount $_profile; rmdir $_profile
+  $profile_dirs | each {|dir|
+    if ([$profile $dir] | path join | path exists) {
+      rm ($dir | join-with-root-dir)
+    }
+  }
+  rm -rpf $_tmp $_hostname $_group $_passwd $_resolvconf
   sudo umount $_proc; rmdir $_proc
-  sudo umount $_tmp; rmdir $_tmp
+  sudo umount $_ssl; rmdir $_ssl
   sudo umount $_dev; rmdir $_dev
   sudo umount $_nix; rmdir $_nix
   sudo umount $_mnt; rmdir $_mnt
-  sudo umount $_mnt; rmdir $_mnt
+  rmdir ("etc" | join-with-root-dir)
+  rm $profile
+  glob $"($profile)-*-link" | each { rm $in }
   if ($root | path exists) { rmdir $root }
 }
