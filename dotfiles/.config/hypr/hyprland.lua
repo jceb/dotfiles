@@ -492,6 +492,8 @@ hl.window_rule({
 		title = "Extension: \\(Bitwarden Password Manager\\).*",
 	},
 	float = true,
+	center = true,
+	size = { "monitor_w / 3", "monitor_h / 3" },
 	-- workspace = "special:magic",
 })
 
