@@ -19,3 +19,4 @@ latest_version
 /dotfiles/.config/yazi/flavors
 /dotfiles/.config/jj/repos
 *.example
+*.lock
