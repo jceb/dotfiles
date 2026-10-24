@@ -15,6 +15,8 @@ def main [
   # Comma-separated list of additional packages to be made available via nix, alongside nushell and coreutils
   --verbose (-v)
   # Verbose log output
+  --preserve-env (-P): string = ""
+  # Comma-separated list of variables to preserve in the new environment
 ] {
   if $verbose { $env.NU_LOG_LEVEL = "debug" }
   let root = mktemp -d -t user-chroot_XXXXXX
@@ -51,13 +53,14 @@ def main [
   let profile_dirs = [bin sbin lib libexec include share]
   $profile_dirs | each {|dir|
     if ([$profile $dir] | path join | path exists) {
-      ln -s ([($profile | path basename) $dir] | path join) ($dir | join-with-root-dir)
+      ln -s ([/ ($profile | path basename) $dir] | path join) ($dir | join-with-root-dir)
     }
   }
   let unshare = (which unshare).0.path
-  let cmd = [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
-  log debug $"Executing: PATH=/bin:/sbin ($cmd | str join ' ')"
-  PATH=/bin:/sbin run-external $cmd
+  let envcmd = (which env).0.path
+  let cmd = [$envcmd -i "PATH=/bin:/sbin"] | append ($preserve_env | split row "," | each {|e| $'($e)=($env | get -o $e | default "")'}) | append [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
+  log debug $"Executing: ($cmd | str join ' ')"
+  run-external $cmd
   log info "Cleaning up filesystem"
   $profile_dirs | each {|dir|
     if ([$profile $dir] | path join | path exists) {
