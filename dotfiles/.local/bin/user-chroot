@@ -6,6 +6,7 @@ use std/log
 
 # Start a user space chroot with nix and disassemble it when the main program terminates;
 # Add additional packages to the environment beforehand via: nix profile --store ~/.nix add 'nixpkgs#PKG'
+# It's similar to https://github.com/containers/bubblewrap
 def main [
   directory: string
   # Data directory that is mounted into the chroot
