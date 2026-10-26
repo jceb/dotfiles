@@ -291,6 +291,7 @@ $env.config = {
     display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
     command_not_found: { null } # return an error message when a command is not found
   }
+
   menus: [
     # Configuration for default nushell menus
     # Note the lack of source parameter
@@ -321,7 +322,7 @@ $env.config = {
         # open ~/.warprc | lines | parse "{shortcut}:{directory}"
         # | where shortcut =~ $buffer or directory =~ $buffer
         # | sort-by shortcut
-        # | each { |it| {description: $it.shortcut value: $it.directory} }
+        # | each {|it| {description: $it.shortcut value: $it.directory} }
       }
     }
     {
@@ -337,11 +338,11 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|buffer, position|
         fd -E .git -E .jj -E .direnv -E node_modules -d 4 -H -t f -t l -L
         | lines
         | where ($it =~ $buffer)
-        | each { |it| {value: $it} }
+        | each {|it| {value: $it} }
       }
     }
     {
@@ -357,21 +358,22 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|buffer, position|
         fd -E .git -E .jj -E .direnv -E node_modules -d 4 -H -t d -t l -L
         | lines
         | where ($it =~ $buffer)
-        | each { |it| {value: $"./($it)"} }
+        | each {|it| {value: $"./($it)"} }
       }
     }
     {
       name: last_word_menu
-      only_buffer_difference: true
+      input_mode: diff
       marker: "h "
       type: {
-        layout: list
+        # layout: list
         page_size: 10
-        # layout: columnar
+        layout: columnar
+        columns: 1
         # columns: 4
         # col_width: 20   # Optional value. If missing all the screen width is used to calculate column width
         # col_padding: 2
@@ -381,16 +383,17 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|token: record, buffer: string|
+        # scope variables | where ($it.name | str contains $token.text) | sort-by name | each { |row| {value: $row.name description: $row.type} }
         # history | last 10 | get command | split row ' ' | str trim | where {|x| ($x | str length) > 0}
         # atuin history list --cmd-only | lines | last 10 | split row ' ' | str trim | where {|x| ($x | str length) > 0}
         # open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 10"
         # | get command | split row ' ' | where {$in != '|'} | str trim | str trim --char '"' | str trim --char "'" |
         # where {is-not-empty}
-        open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 20" | get command | each {smart-parse | reverse} | flatten | where {is-not-empty}
+        open ~/.config/atuin/history.db | query db "SELECT command FROM history ORDER BY timestamp DESC LIMIT 10" | get command | each {smart-parse | reverse} | flatten | where {is-not-empty}
         | where {$in in ["|" "==" "!="] | not $in}
-        | find -i $buffer
-        | each {{value: ($in | ansi strip)}}
+        | where ($in | str contains $token.text)
+        | wrap value
       }
     }
     {
@@ -406,12 +409,12 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|buffer, position|
         yq e '.contexts[].name' $env.KUBECONFIG
         | lines
         | compact
         | where ($it =~ $buffer)
-        | each { |it| {value: $"--context=($it)"} }
+        | each {|it| {value: $"--context=($it)"} }
       }
     }
     {
@@ -434,7 +437,7 @@ $env.config = {
     }
     {
       name: history_menu
-      only_buffer_difference: true
+      input_mode: diff
       marker: "? "
       type: {
         layout: list
@@ -482,10 +485,10 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|buffer, position|
         $nu.scope.commands
         | where name =~ $buffer
-        | each { |it| {value: $it.name description: $it.usage} }
+        | each {|it| {value: $it.name description: $it.usage} }
       }
     }
     {
@@ -501,11 +504,11 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|buffer, position|
         $nu.scope.vars
         | where name =~ $buffer
         | sort-by name
-        | each { |it| {value: $it.name description: $it.type} }
+        | each {|it| {value: $it.name description: $it.type} }
       }
     }
     {
@@ -525,19 +528,20 @@ $env.config = {
         selected_text: green_reverse
         description_text: yellow
       }
-      source: { |buffer, position|
+      source: {|buffer, position|
         $nu.scope.commands
         | where name =~ $buffer
-        | each { |it| {value: $it.name description: $it.usage} }
+        | each {|it| {value: $it.name description: $it.usage} }
       }
     }
   ]
+
   keybindings: [
     # extend vi insert mode with emacs bindings
     {
       name: vi_i_move_left
-      modifier: alt
-      keycode: char_b
+      modifier: Alt
+      keycode: Char_b
       mode: vi_insert
       event: [
         { edit: MoveWordLeft }
@@ -545,8 +549,8 @@ $env.config = {
     }
     {
       name: vi_i_move_right
-      modifier: alt
-      keycode: char_f
+      modifier: Alt
+      keycode: Char_f
       mode: vi_insert
       event: [
         { until: [
@@ -558,7 +562,7 @@ $env.config = {
     {
       name: vi_i_move_left_ctl
       modifier: control
-      keycode: char_b
+      keycode: Char_b
       mode: vi_insert
       event: [
         { edit: MoveLeft }
@@ -567,7 +571,7 @@ $env.config = {
     {
       name: vi_i_move_right_ctl
       modifier: control
-      keycode: char_f
+      keycode: Char_f
       mode: vi_insert
       event: [
         { edit: MoveRight }
@@ -575,7 +579,7 @@ $env.config = {
     }
     {
       name: vi_i_delete
-      modifier: alt
+      modifier: Alt
       keycode: backspace
       mode: vi_insert
       event: [
@@ -597,7 +601,7 @@ $env.config = {
     {
       name: bookmark_menu
       modifier: control
-      keycode: char_k
+      keycode: Char_k
       mode: [emacs vi_normal vi_insert]
       event: [
         # { send: menu name: bookmark_menu }
@@ -616,7 +620,7 @@ $env.config = {
     {
       name: kube_context_menu
       modifier: control
-      keycode: char_g
+      keycode: Char_g
       mode: [emacs vi_normal vi_insert]
       event: [
         { send: menu name: kube_context_menu }
@@ -624,8 +628,8 @@ $env.config = {
     }
     {
       name: file_menu
-      modifier: alt
-      keycode: char_t
+      modifier: Alt
+      keycode: Char_t
       mode: [emacs vi_normal vi_insert]
       event: [
         { send: menu name: file_menu }
@@ -634,8 +638,8 @@ $env.config = {
     }
     {
       name: directory_menu
-      modifier: alt
-      keycode: char_n
+      modifier: Alt
+      keycode: Char_n
       mode: [emacs vi_normal vi_insert]
       event: [
         # { send: menu name: directory_menu }
@@ -647,14 +651,12 @@ $env.config = {
       modifier: Alt
       keycode: Char_.
       mode: [emacs vi_normal vi_insert]
-      event: [
-        { send: menu name: last_word_menu }
-      ]
+      event: { send: menu, name: last_word_menu }
     }
     {
       name: directory_u
-      modifier: alt
-      keycode: char_u
+      modifier: Alt
+      keycode: Char_u
       mode: [emacs vi_normal vi_insert]
       event: [
         { send: executehostcommand cmd: "cd .." }
@@ -662,8 +664,8 @@ $env.config = {
     }
     {
       name: directory_h
-      modifier: alt
-      keycode: char_h
+      modifier: Alt
+      keycode: Char_h
       mode: [emacs vi_normal vi_insert]
       event: [
         { send: executehostcommand
@@ -673,8 +675,8 @@ $env.config = {
     }
     {
       name: directory_l
-      modifier: alt
-      keycode: char_l
+      modifier: Alt
+      keycode: Char_l
       mode: [emacs vi_normal vi_insert]
       event: [
         { send: executehostcommand
@@ -692,14 +694,14 @@ $env.config = {
     {
       name: history_menu
       modifier: control
-      keycode: char_r
+      keycode: Char_r
       mode: [emacs vi_normal vi_insert]
       event: { send: menu name: history_menu }
     }
     {
       name: help_menu
       modifier: control
-      keycode: char_q
+      keycode: Char_q
       # mode: emacs
       mode: [emacs vi_normal vi_insert]
       event: { send: menu name: help_menu }
@@ -707,14 +709,14 @@ $env.config = {
     {
       name: next_page
       modifier: control
-      keycode: char_x
+      keycode: Char_x
       mode: [emacs vi_normal vi_insert]
       event: { send: menupagenext }
     }
     {
       name: undo_or_previous_page
       modifier: control
-      keycode: char_z
+      keycode: Char_z
       mode: emacs
       event: {
         until: [
@@ -726,7 +728,7 @@ $env.config = {
     {
       name: yank
       modifier: control
-      keycode: char_y
+      keycode: Char_y
       mode: emacs
       event: {
         until: [
@@ -737,7 +739,7 @@ $env.config = {
     {
       name: unix-line-discard
       modifier: control
-      keycode: char_u
+      keycode: Char_u
       mode: [emacs, vi_normal, vi_insert]
       event: {
         until: [
@@ -748,7 +750,7 @@ $env.config = {
     # {
     #   name: kill-line
     #   modifier: control
-    #   keycode: char_k
+    #   keycode: Char_k
     #   mode: [emacs, vi_normal, vi_insert]
     #   event: {
     #     until: [
@@ -760,21 +762,21 @@ $env.config = {
     {
       name: commands_menu
       modifier: control
-      keycode: char_t
+      keycode: Char_t
       mode: [emacs, vi_normal, vi_insert]
       event: { send: menu name: commands_menu }
     }
     {
       name: vars_menu
-      modifier: alt
-      keycode: char_o
+      modifier: Alt
+      keycode: Char_o
       mode: [emacs, vi_normal, vi_insert]
       event: { send: menu name: vars_menu }
     }
     {
       name: commands_with_description
       modifier: control
-      keycode: char_s
+      keycode: Char_s
       mode: [emacs, vi_normal, vi_insert]
       event: { send: menu name: commands_with_description }
     }
@@ -782,7 +784,7 @@ $env.config = {
       # Inspired by https://github.com/nushell/nushell/issues/11555#issuecomment-1895771935
       name: reload_config
       modifier: none
-      keycode: f5
+      keycode: F5
       mode: [emacs vi_normal vi_insert]
       event: {
         send: executehostcommand,
