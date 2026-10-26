@@ -34,7 +34,7 @@ def main [
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/($channel)#($in)" } | append ($flakes | split row ",")
+  let _packages = $packages | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/($channel)#($in)" } | append ($flakes | split row ",") | where (is-not-empty)
   let profile = "nix-profile" | join-with-root-dir
   let cmd = [nix profile add --profile $profile ...$_packages]
   log debug $"Executing: ($cmd | str join ' ')"
