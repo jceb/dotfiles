@@ -40,6 +40,7 @@ def main [
   let _group = "etc/group" | join-with-root-dir
   let _passwd = "etc/passwd" | join-with-root-dir
   let _resolvconf = "etc/resolv.conf" | join-with-root-dir
+  let _nuconfig = ".config/nushell" | join-with-root-dir
   sudo mount -o bind $directory $_mnt
   # sudo mount -o bind ~/.nix/nix $_nix
   sudo mount -o bind /nix $_nix
@@ -68,7 +69,7 @@ def main [
       rm ($dir | join-with-root-dir)
     }
   }
-  rm -rpf $_tmp $_hostname $_group $_passwd $_resolvconf
+  rm -rpf $_tmp $_hostname $_group $_passwd $_resolvconf $_nuconfig
   sudo umount $_proc; rmdir $_proc
   sudo umount $_ssl; rmdir $_ssl
   sudo umount $_dev; rmdir $_dev
