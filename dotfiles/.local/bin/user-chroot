@@ -13,7 +13,7 @@ def main [
   --mount_point (-m): string = "/data"
   # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
   --packages (-p): string = ""
-  # Comma-separated list of additional packages to be made available via nix, alongside nushell and coreutils
+  # Comma-separated list of additional packages to be made available via nix, alongside nushell and busybox
   --verbose (-v)
   # Verbose log output
   --preserve-env (-P): string = ""
@@ -24,7 +24,7 @@ def main [
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | split row "," | append [nushell coreutils] | where (is-not-empty) | each { $"nixpkgs#($in)" }
+  let _packages = $packages | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/nixpkgs-unstable#($in)" }
   let profile = "nix-profile" | join-with-root-dir
   let cmd = [nix profile add --profile $profile ...$_packages]
   log debug $"Executing: ($cmd | str join ' ')"
@@ -45,7 +45,7 @@ def main [
   # sudo mount -o bind ~/.nix/nix $_nix
   sudo mount -o bind /nix $_nix
   sudo mount -o bind /dev $_dev
-  sudo mount -o bind /etc/ssl $_ssl
+  rsync -aL /etc/ssl/ $_ssl
   "user-chroot" | save $_hostname
   "root:x:0:" | save $_group
   "root:x:0:0:System administrator:/root:/bin/nu" | save $_passwd
@@ -69,9 +69,8 @@ def main [
       rm ($dir | join-with-root-dir)
     }
   }
-  rm -rpf $_tmp $_hostname $_group $_passwd $_resolvconf $_nuconfig
+  rm -rpf $_tmp $_hostname $_group $_passwd $_resolvconf $_nuconfig $_ssl
   sudo umount $_proc; rmdir $_proc
-  sudo umount $_ssl; rmdir $_ssl
   sudo umount $_dev; rmdir $_dev
   sudo umount $_nix; rmdir $_nix
   sudo umount $_mnt; rmdir $_mnt
