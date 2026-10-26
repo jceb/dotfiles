@@ -7,13 +7,23 @@ use std/log
 # Start a user space chroot with nix and disassemble it when the main program terminates;
 # Add additional packages to the environment beforehand via: nix profile --store ~/.nix add 'nixpkgs#PKG'
 # It's similar to https://github.com/containers/bubblewrap
+#
+# Example:
+# - Start a user environment with the latest pi agent in /tmp/test and pass in the GEMINI_API_KEY environment variable
+#   $ user-chroot -p nodejs -f github:earendil-works/pi/stable -P GEMINI_API_KEY /tmp/test
+# - Like the above command but use the latest pi agent in nixos-unstable instead
+#   $ user-chroot -c nixpkgs-unstable -p nodejs,pi-coding-agent -P GEMINI_API_KEY /tmp/test
 def main [
   directory: string
   # Data directory that is mounted into the chroot
   --mount_point (-m): string = "/data"
   # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
   --packages (-p): string = ""
-  # Comma-separated list of additional packages to be made available via nix, alongside nushell and busybox
+  # Comma-separated list of additional nix packages to be made available via nix, alongside nushell and busybox
+  --channel (-c): string = "nixpkgs"
+  # Nix channel to install packages from
+  --flakes (-f): string = ""
+  # Comma-separated list of additional flakes to be made available via nix
   --verbose (-v)
   # Verbose log output
   --preserve-env (-P): string = ""
@@ -24,7 +34,7 @@ def main [
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/nixpkgs-unstable#($in)" }
+  let _packages = $packages | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/($channel)#($in)" } | append ($flakes | split row ",")
   let profile = "nix-profile" | join-with-root-dir
   let cmd = [nix profile add --profile $profile ...$_packages]
   log debug $"Executing: ($cmd | str join ' ')"
@@ -45,7 +55,7 @@ def main [
   # sudo mount -o bind ~/.nix/nix $_nix
   sudo mount -o bind /nix $_nix
   sudo mount -o bind /dev $_dev
-  rsync -aL /etc/ssl/ $_ssl
+  rsync -r -L --chmod=755 /etc/ssl/ $_ssl
   "user-chroot" | save $_hostname
   "root:x:0:" | save $_group
   "root:x:0:0:System administrator:/root:/bin/nu" | save $_passwd
