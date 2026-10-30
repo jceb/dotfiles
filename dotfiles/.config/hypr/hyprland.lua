@@ -307,7 +307,7 @@ hl.config({
 		allow_workspace_cycles = true, -- don't forget the previous workspace, so cycling works as expected
 	},
 	misc = {
-		focus_on_activate = true, -- immediately focus the window that requires attention
+		focus_on_activate = false, -- immediately focus the window that requires attention
 	},
 })
 
