@@ -20,8 +20,8 @@ def main [
   # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
   --packages (-p): string = ""
   # Comma-separated list of additional nix packages to be made available via nix, alongside nushell and busybox
-  --channel (-c): string = "nixpkgs"
-  # Nix channel to install packages from
+  --channel (-c): string = "nixos-26.05"
+  # Nix channel to install packages from, e.g. nixos-unstable
   --flakes (-f): string = ""
   # Comma-separated list of additional flakes to be made available via nix
   --verbose (-v)
