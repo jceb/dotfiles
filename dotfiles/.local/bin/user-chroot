@@ -5,7 +5,6 @@
 use std/log
 
 # Start a user space chroot with nix and disassemble it when the main program terminates;
-# Add additional packages to the environment beforehand via: nix profile --store ~/.nix add 'nixpkgs#PKG'
 # It's similar to https://github.com/containers/bubblewrap
 #
 # Example:
@@ -72,6 +71,7 @@ def main [
   let envcmd = (which env).0.path
   let cmd = [$envcmd -i "PATH=/bin:/sbin"] | append ($preserve_env | split row "," | each {|e| $'($e)=($env | get -o $e | default "")'}) | append [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
   log debug $"Executing: ($cmd | str join ' ')"
+  log info $"Install additional packages: ([nix profile add --profile $profile $"nixpkgs/($channel)#PKG"] | str join ' ')"
   run-external $cmd
   log info "Cleaning up filesystem"
   $profile_dirs | each {|dir|
