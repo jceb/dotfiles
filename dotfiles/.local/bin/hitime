@@ -42,13 +42,13 @@ def main [
   if $warntime >= 0sec {
     print -e $"Warning will be sent ($warntime) before, at (date now | $in + $time - $warntime)."
     sleep ($time - $warntime)
-    notify-send -t 100000 -e -a "Time's almost up" $full_message
+    notify-send -t 10000 -e -a "Time's almost up" $full_message
     sleep $warntime
   } else {
     print -e "Warn time disabled."
     sleep $time
   }
-  notify-send -t 600000 -e -a "Done" $full_message
+  notify-send -t 300000 -a "Done" $full_message
 }
 
 # vi ft=nu:tw=80:sw=2:ts=4:sts=4:et
