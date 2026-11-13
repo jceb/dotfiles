@@ -15,31 +15,36 @@ use std/log
 def main [
   directory: string
   # Data directory that is mounted into the chroot
-  --mount_point (-m): string = "/data"
-  # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory
+  --mount_point (-m): string = ""
+  # Mount point for the data directory; if mount point is set to /, bind mount directories for dev, proc and nix will be created inside the data directory (default: /data; or via env UCHROOT_MOUNT_POINT)
   --packages (-p): string = ""
-  # Comma-separated list of additional nix packages to be made available via nix, alongside nushell and busybox
-  --channel (-c): string = "nixos-26.05"
+  # Comma-separated list of additional nix packages to be made available via nix, alongside nushell and busybox (default: nixos-26.05; or via env UCHROOT_PACKAGES)
+  --channel (-c): string = ""
   # Nix channel to install packages from, e.g. nixos-unstable
   --flakes (-f): string = ""
-  # Comma-separated list of additional flakes to be made available via nix
+  # Comma-separated list of additional flakes to be made available via nix (or via env UCHROOT_FLAKES)
   --verbose (-v)
-  # Verbose log output
+  # Verbose log output (or via env UCHROOT_VERBOSE)
   --preserve-env (-P): string = ""
-  # Comma-separated list of variables to preserve in the new environment
+  # Comma-separated list of variables to preserve in the new environment (or via env UCHROOT_PRESERVE_ENV)
 ] {
-  if $verbose { $env.NU_LOG_LEVEL = "debug" }
+  let _verbose = if ($verbose | is-empty) { $env | get -o UCHROOT_VERBOSE | default false } else { $verbose }
+  if $_verbose { $env.NU_LOG_LEVEL = "debug" }
   let root = mktemp -d -t user-chroot_XXXXXX
   log info $"Setting up chroot at: ($root)"
   def join-with-root-dir [--create (-c)]: string -> string { let dir = [$root $in] | path join; if $create {log debug $"Creating directory: ($dir)"; mkdir $dir}; $dir }
   log debug "Ensure nushell is installed and the local nix store exists"
-  let _packages = $packages | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/($channel)#($in)" } | append ($flakes | split row ",") | where (is-not-empty)
+  let _preserve_env = if ($preserve_env | is-empty) { $env | get -o UCHROOT_PRESERVE_ENV | default "" } else { $preserve_env }
+  let _mount_point = if ($mount_point | is-empty) { $env | get -o UCHROOT_MOUNT_POINT | default "/data" } else { $mount_point }
+  let _channel = if ($channel | is-empty) { $env | get -o UCHROOT_CHANNEL | default "nixos-26.05" } else { $channel }
+  let _flakes = if ($flakes | is-empty) { $env | get -o UCHROOT_FLAKES | default "" } else { $flakes }
+  let _packages = if ($packages | is-empty) { $env | get -o UCHROOT_PACKAGES | default "" } else { $packages } | split row "," | append [nushell busybox] | where (is-not-empty) | each { $"nixpkgs/($_channel)#($in)" } | append ($_flakes | split row ",") | where (is-not-empty)
   let profile = "nix-profile" | join-with-root-dir
   let cmd = [nix profile add --profile $profile ...$_packages]
   log debug $"Executing: ($cmd | str join ' ')"
   run-external ...$cmd
   log info "Preparing filesystem"
-  let _mnt = $mount_point | path relative-to  / | join-with-root-dir -c
+  let _mnt = $_mount_point | path relative-to  / | join-with-root-dir -c
   let _nix = "nix" | join-with-root-dir -c
   let _dev = "dev" | join-with-root-dir -c
   let _ssl = "etc/ssl" | join-with-root-dir -c
@@ -69,9 +74,9 @@ def main [
   }
   let unshare = (which unshare).0.path
   let envcmd = (which env).0.path
-  let cmd = [$envcmd -i "PATH=/bin:/sbin"] | append ($preserve_env | split row "," | each {|e| $'($e)=($env | get -o $e | default "")'}) | append [$unshare -rmU -R $root -w $mount_point -- nu --no-config-file --no-history]
+  let cmd = [$envcmd -i "PATH=/bin:/sbin"] | append ($_preserve_env | split row "," | each {|e| $'($e)=($env | get -o $e | default "")'}) | append [$unshare -rmU -R $root -w $_mount_point -- nu --no-config-file --no-history]
   log debug $"Executing: ($cmd | str join ' ')"
-  log info $"Install additional packages: ([nix profile add --profile $profile $"nixpkgs/($channel)#PKG"] | str join ' ')"
+  log info $"Install additional packages: ([nix profile add --profile $profile $"nixpkgs/($_channel)#PKG"] | str join ' ')"
   run-external $cmd
   log info "Cleaning up filesystem"
   $profile_dirs | each {|dir|
