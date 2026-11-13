@@ -93,6 +93,6 @@ def main [
   rm $profile
   glob $"($profile)-*-link" | each { rm $in }
   log info "Remaining files and directories:"
-  ^find $root
+  glob ([$root **] | path join)
   if ($root | path exists) { rmdir $root }
 }
