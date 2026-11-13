@@ -28,7 +28,7 @@ def main [
   --preserve-env (-P): string = ""
   # Comma-separated list of variables to preserve in the new environment (or via env UCHROOT_PRESERVE_ENV)
 ] {
-  let _verbose = if ($verbose | is-empty) { $env | get -o UCHROOT_VERBOSE | default false } else { $verbose }
+  let _verbose = if ($verbose | is-empty) { $env | get -o UCHROOT_VERBOSE | default false | into bool } else { $verbose }
   if $_verbose { $env.NU_LOG_LEVEL = "debug" }
   let root = mktemp -d -t user-chroot_XXXXXX
   log info $"Setting up chroot at: ($root)"
