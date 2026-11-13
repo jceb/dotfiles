@@ -92,5 +92,7 @@ def main [
   rmdir ("etc" | join-with-root-dir)
   rm $profile
   glob $"($profile)-*-link" | each { rm $in }
+  log info "Remaining files and directories:"
+  ^find $root
   if ($root | path exists) { rmdir $root }
 }
