@@ -76,7 +76,7 @@ def main [
   let envcmd = (which env).0.path
   let cmd = [$envcmd -i "PATH=/bin:/sbin"] | append ($_preserve_env | split row "," | each {|e| $'($e)=($env | get -o $e | default "")'}) | append [$unshare -rmU -R $root -w $_mount_point -- nu --no-config-file --no-history]
   log debug $"Executing: ($cmd | str join ' ')"
-  log info $"Install additional packages: ([nix profile add --profile $profile $"nixpkgs/($_channel)#PKG"] | str join ' ')"
+  log info $"Install additional packages with: ([nix profile add --profile $profile $"nixpkgs/($_channel)#PKG"] | str join ' ')"
   run-external $cmd
   log info "Cleaning up filesystem"
   $profile_dirs | each {|dir|
@@ -93,7 +93,7 @@ def main [
   rm $profile
   glob $"($profile)-*-link" | each { rm $in }
   if ($root | path exists) {
-    log info $"Remaining files and directories:\n(glob ([$root **] | path join) | take 100 | table -e)"
+    log info $"Remaining files and directories:\n(glob ([$root **] | path join) | skip 1 | take 100 | table -e)"
     rmdir $root 
   }
 }
