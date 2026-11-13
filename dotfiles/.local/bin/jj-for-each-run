@@ -2,10 +2,15 @@
 set -euo pipefail
 
 JOBS="${JOBS:-16}"     # set this to the number of parallel jobs, only works if xargs or parallel are installed - attention, output of the commands will be interlaced / mixed for xargs
-VERBOSE="${VERBOSE:-}" # set this to 1
+VERBOSE="${VERBOSE:-}" # set this to 1 to output commands before executing them
 V=
 if [ "${VERBOSE}" = "1" ]; then
 	V="-t"
+fi
+FOLLOW="${FOLLOW:-}" # set this to 1 to follow symlinks
+F=
+if [ "${FOLLOW}" = "1" ]; then
+	F="-L"
 fi
 
 SCRIPT="$(mktemp)"
@@ -19,11 +24,11 @@ EOF
 chmod a+x "${SCRIPT}"
 
 if type parallel &>/dev/null; then
-	find -L . -type d -name .jj -printf '%h\n' | parallel "-j${JOBS}" ${V} -k sh -eo pipefail -c "echo && cd {} && echo {} && ${SCRIPT}"
+	find ${F} . -type d -name .jj -printf '%h\n' | parallel "-j${JOBS}" ${V} -k sh -eo pipefail -c "echo && cd {} && echo {} && ${SCRIPT}"
 elif type xargs &>/dev/null; then
-	find -L . -type d -name .jj -printf '%h\n' | xargs -I {} ${V} "-P${JOBS}" sh -eo pipefail -c "echo && cd {} && echo {} && ${SCRIPT}"
+	find ${F} . -type d -name .jj -printf '%h\n' | xargs -r -I {} ${V} "-P${JOBS}" sh -eo pipefail -c "echo && cd {} && echo {} && ${SCRIPT}"
 else
-	find -L . -type d -name .jj -printf '%h\n' | while read d; do
+	find ${F} . -type d -name .jj -printf '%h\n' | while read d; do
 		(
 			[ "${VERBOSE}" = "1" ] && set -x || true
 			cd "${d}"
