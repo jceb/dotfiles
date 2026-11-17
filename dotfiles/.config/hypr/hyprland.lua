@@ -489,7 +489,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "floating windows title",
 	match = {
-		title = "Extension: \\(Bitwarden Password Manager\\).*",
+		title = ".*Bitwarden.*",
 	},
 	float = true,
 	center = true,
@@ -500,7 +500,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "floating windows save",
 	match = {
-		title = "Save Attachment.*",
+		title = ".*Save Attachment.*",
 	},
 	float = true,
 	center = true,
